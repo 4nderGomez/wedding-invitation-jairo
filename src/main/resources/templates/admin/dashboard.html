@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Jairo & Jennifer</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+    <div class="admin-layout">
+        <!--Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-logo">
+                <h2>J & J</h2>
+                <p>Administración de boda</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#summary" class="nav-link-active">Resumen</a>
+                <a href="#todayRegistrations" class="nav-link">Registros de hoy</a>
+                <a href="#guests" class="nav-link">Invitados</a>
+                <a href="#settings" class="nav-link">Configuración</a>
+            </nav>
+            <form method="post" action="/logout" class="logout-form">
+                <button type="submit" class="logout-button">
+                    Cerrar sesión
+                </button>
+            </form>
+        </aside>
+
+        <!-- Contenido -->
+        <main class="admin-main">
+            <!-- Encabezado -->
+            <header class="admin-header">
+                <div> 
+                    <h1>Dashboard</h1>
+                    <p>Panel administrativo de la boda</p>
+                </div>
+                <div class="admin-user">
+                    <span>Administrador</span>
+                </div>
+            </header>
+
+            <section class="dashboard-section summary-section" id="summary">
+                <div class="summary-grid">
+                    <article class="summary-card">
+                        <span>Total invitados</span>
+                        <h2 id="totalGuests">0</h2>
+                    </article>
+                    <article class="summary-card">
+                        <span>Adultos</span>
+                        <h2 id="totalAdults">0</h2>
+                    </article>
+                    <article class="summary-card">
+                        <span>Niños</span>
+                        <h2 id="totalChildren">0</h2>
+                    </article>
+                    <article class="summary-card highlight">
+                        <span>Confirmaciones</span>
+                        <h2 id="totalGuests">0</h2>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Controles -->
+            <section class="dashboard-section controls-section" id="settings">
+                <div class="controls-header">
+                    <h2>Controles</h2>
+                </div>
+                <div class="controls-grid">
+                    <div class="control-card">
+                        <h3>Registro de invitados</h3>
+                        <p>Activa o desactiva el formulario de confirmación</p>
+                        <button type="button" id="toggleRegistrationButton">
+                            Activar / Desactivar registros
+                        </button>
+                    </div>
+                    <div class="control-card">
+                        <h3>Exportar información</h3>
+                        <p>Descara la lista de invitados en archivo Excel</p>
+                        <a href="/admin/guests/export" class="export-button">
+                            Descargar Excel
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Registro del presente -->
+            <section class="dashboard-section today-section" id="todayRegistrations">
+                <div class="section-header">
+                    <div>
+                        <h2>Registrados hoy</h2>
+                        <p>
+                            Invitados que confirmarón el día de hoy
+                        </p>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="today-table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre y apellidos</th>
+                                    <th>Invitado de</th>
+                                    <th>Tipo de invitado</th>
+                                    <th>Teléfono</th>
+                                    <th>Correo</th>
+                                    <th>Adulto/Niño</th>
+                                    <th>Asistencia</th>
+                                    <th>Fecha de registro</th>
+                                    <th>Operación</th>
+                                </tr>
+                            </thead>
+                            <tbody id="todayRegistrationsTableBody">
+                                <!-- Aquí traera los registros del día de hoy -->
+                                <!-- Ejemplo temporal -->
+                                <tr>
+                                    <td>Juan Pérez</td>
+                                    <td>Familia del novio</td>
+                                    <td>Principal</td>
+                                    <td>9581234567</td>
+                                    <td>juan@email.com</td>
+                                    <td>Sí asistirá</td>
+                                    <td>10:35 AM</td>
+                                    <td>
+                                        <button type="button" class="delete-button">
+                                            Eliminar
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="empty-state" id="todayEmptyState">
+                            <p>No hay registros nuevos</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Invitados -->
+            <section class="dashboard-section guests-section" id="guests">
+                <div class="section-header">
+                    <div>
+                        <h2>Lista de invitados</h2>
+                        <p>Consulta, filtra y administra los registros</p>
+                    </div>
+                </div>
+
+                <!-- Filtros -->
+                <div class="filters-panel">
+                    <div class="filter-group">
+                        <label for="searchGuest">Buscar invitado</label>
+                        <input
+                            type="text"
+                            id="searchGuest"
+                            name="searchGuest"
+                            placeholder="Nombre, telefono o correo"
+                        >
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterGuestSide">Invitado de</label>
+                        <select id="filterGuestSide" name="filterGuestSide">
+                            <option value="">Todos</option>
+                            <option value="NOVIO">Invitados del novio</option>
+                            <option value="NOVIA">Invitados de la novia</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterAgeGroup">Tipo</label>
+                        <select id="filterAgeGroup" name="filterAgeGroup">
+                            <option value="">Todos</option>
+                            <option value="ADULT">Adultos</option>
+                            <option value="CHILD">Niños</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterAttendance">Asistencia</label>
+                        <select id="filterAttendance" name="filterAttendance">
+                            <option value="">Todos</option>
+                            <option value="ATTENDING">Sí asistirán</option>
+                            <option value="NOT_ATTENDING">No asistirán</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterDate">Fecha de refistro</label>
+                        <input type="date" id="filterDate" name="filterDate">
+                    </div>
+                </div>
+
+                <!-- Tabla que expone a los invitados -->
+                <div class="table-wrapper">
+                    <table class="guests-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre y apellidos</th>
+                                <th>Invitado de</th>
+                                <th>Tipo de invitado</th>
+                                <th>Teléfono</th>
+                                <th>Correo</th>
+                                <th>Adulto/Niño</th>
+                                <th>Asistencia</th>
+                                <th>Fecha de registro</th>
+                                <th>Operación</th>
+                            </tr>
+                        </thead>
+                        <!-- Contenido de la tabla -->
+                        <tbody id="guestsTableBody">
+                            <!-- Ejemplo temporal -->
+                            <tr>
+                            <td>Juan Pérez</td>
+                            <td>Familia del novio</td>
+                            <td>Principal</td>
+                            <td>9581234567</td>
+                            <td>juan@email.com</td>
+                            <td>Adulto</td>
+                            <td>Sí asistirá</td>
+                            <td>2026-01-01</td>
+                            <td>
+                                <button type="button" class="delete-button">
+                                    Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>María Pérez</td>
+                            <td>Familia del novio</td>
+                            <td>Acompañante</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>Niño</td>
+                            <td>Sí asistirá</td>
+                            <td>2026-01-01</td>
+                            <td>
+                                <button type="button" class="delete-button">
+                                    Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script th:src="@{/js/admin.js}"></script>
+</body>
+</html>

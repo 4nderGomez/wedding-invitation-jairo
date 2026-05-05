@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jairo & Jennifer | Invitación</title>
+    <link rel="stylesheet" href="@{/css/public.css}">
+</head>
+<body>
+    <!-- Botón de música flotante -->
+    <button class="music-button" id="musicButton" aria-label="Activar o pausar música">
+        ♫
+    </button>
+    <audio id="backgroundMusic" loop>
+        <source th:src="@{/audio}" type="audio/mpeg">>
+    </audio>
+
+    <!-- Hero -->
+    <header class="hero" id="hero">
+        <div class="hero-overlay">
+            <p class="hero-label">Nuestra boda</p>
+            <h1>Jairo & Jennifer</h1>
+            <p class="hero-date">21 de noviembre de 2026</p>
+            <a href="#rsvp" class="hero-button">Confirmar asistencia</a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Mesaje de introducción -->
+        <section class="section intro-section" id="intro">
+            <p class="section-label">Con mucha alegría</p>
+            <h2>Nos casamos</h2>
+            <p>
+                Queremos compartir este día tan especial con las personas que más queremos.
+                Será un honor contar con tu presencia.
+            </p>
+        </section>
+
+        <!-- Pareja y familia -->
+        <section class="section family-section" id="family">
+            <!-- Nombre de los novios -->
+            <h2>Nuestros nombres</h2>
+            <div class="couple-names">
+                <div class="person-card">
+                    <span>Novio</span>
+                    <h3>Jairo Gabriel Pinacho Rodríguez</h3>
+                </div>
+                <div class="ampersand">&</div>
+                <div class="person-card">
+                    <span>Novia</span>
+                    <h3>Jennifer Pacheco García</h3>
+                </div>
+            </div>
+
+            <!-- Nombre de los padres -->
+            <div class="family-grid">
+                <article class="family-card">
+                    <h3>Padres del novio</h3>
+                    <p>Gabriel Pinacho Mendoza</p>
+                    <p>Teresa Rodríguez Calvo</p>
+                </article>
+                <article class="family-card">
+                    <h3>Padres de la novia</h3>
+                    <p>Pedro Pacheco Martínez</p>
+                    <p>Ericel García Vásquez</p>
+                </article>
+                <article class="family-card">
+                    <h3>Padrinos de velación</h3>
+                    <p>Cesar Salinas García</p>
+                    <p>Mireya Ortega Lavariega</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Countdown -->
+        <section class="section countdown-section" id="countdown">
+            <p class="section-label">Faltan</p>
+            <h2>Cuenta regresiva</h2>
+            <div class="Countdown-grid" id="CountdownTimer">
+                <div class="Countdown-item">
+                    <span id="days">00</span>
+                    <p>Días</p>
+                </div>
+                <div class="Countdown-item">
+                    <span id="hours">00</span>
+                    <p>Horas</p>
+                </div>
+                <div class="Countdown-item">
+                    <span id="minutes">00</span>
+                    <p>Minutos</p>
+                </div>
+                <div class="Countdown-item">
+                    <span id="seconds">00</span>
+                    <p>Segundos</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Locaciones -->
+        <section class="section locations-section" id="locations">
+            <h2>¿Dónde será?</h2>
+            <div class="location-grid">
+                <article class="location-card">
+                    <h3>Ceremonia religiosa</h3>
+                    <p class="location-place">
+                        Parroquia de Ntra. Sra. de la Inmaculada Concepción
+                    </p>
+                    <p>Santa María Huatulco</p>
+                    <p class="location-time">5:00 PM</p>
+
+                    <a href="#" class="location-button" target="_blank">
+                        Ver ubicación
+                    </a>
+                </article>
+                <article class="location-card">
+                    <h3>Recepción</h3>
+                    <p class="location-place">
+                        Unidad Deportiva de Santa María Huatulco
+                    </p>
+                    <p>Santa María Huatulco</p>
+                    <p class="location-time">7:00 PM</p>
+
+                    <a href="#" class="location-button" target="_blank">
+                        Ver ubicación
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Cronograma -->
+        <section class="section schedule-section" id="schedule">
+            <h2>Cronograma</h2>
+            <div class="timeline">
+                <article class="timeline-item">
+                    <span>5:00 PM</span>
+                    <h3>Misa</h3>
+                    <p>Ceremonia religiosa</p>
+                </article>
+                <article class="timeline-item">
+                    <span>7:00 PM</span>
+                    <h3>Comida</h3>
+                    <p>Recepción y convivencia</p>
+                </article>
+                <article class="timeline-item">
+                    <span>10:00 PM</span>
+                    <h3>Baile</h3>
+                    <p>Celebración</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Guardar la fecha -->
+        <section class="section calendar-section" id="calendar">
+            <p class="section-label">Agenda la fecha</p>
+            <h2>No olvides este día</h2>
+            <p>
+                Guarda la fecha en tu calendario para acompañarnos en nuestra boda.
+            </p>
+            <a href="#" class="calendar-button" id="calendarButton">
+                Agendar en el calendario
+            </a>
+        </section>
+
+        <!-- Mesa de regalos -->
+        <section class="section gifts-section" id="gifts">
+            <p class="section-label">Mesa de regalos</p>
+            <h2>Tu presencia es nuestro mejor regalo</h2>
+            <p>
+                Si deseas tener un detalle con nosotros, puedes visitar nuestra mesa de regalos.
+            </p>
+            <a href="#" class="gift-button" target="_blank">
+                Ver mesa de regalos
+            </a>
+        </section>
+
+        <!-- Galeria -->
+        <section class="section gallery-section" id="gallery">
+            <h2>Nuestra historia contada en fotos</h2>
+            <div class="gallery-grid">
+                <figure class="gallery-item">
+                    <img th:src="@{/images/gallery/photo-1.jpg}" alt="Foto de los novios">
+                </figure>
+                <figure class="gallery-item">
+                    <img th:src="@{/images/gallery/photo-2.jpg}" alt="Foto de los novios">
+                </figure>
+                <figure class="gallery-item">
+                    <img th:src="@{/images/gallery/photo-3.jpg}" alt="Foto de los novios">
+                </figure>
+                <figure class="gallery-item">
+                    <img th:src="@{/images/gallery/photo-4.jpg}" alt="Foto de los novios">
+                </figure>
+            </div>
+        </section>
+
+        <!-- Fotos compartidas por los invitados -->
+        <section class="section guest-photos-section" id="guestPhotos">
+            <p class="section-label">Después de la boda</p>
+            <h2>Comparte tus fotos con nosotros</h2>
+            <p>
+                Después del evento podrás subir aquí tus fotos y recuerdos de este día tan especial.
+            </p>
+            <button class="guest-photos-button" id="guestPhotosButton" disabled>
+                Disponible después de la boda
+            </button>
+        </section>
+
+        <!-- Formulario -->
+        <section class="section rsvp-section" id="rsvp">
+            <p class="section-label">Confirma tu asistencia</p>
+            <h2>¿Nos acompañas?</h2>
+            <form class="rsvp-form" id="rsvpForm">
+                <input type="hidden" id="invitationCode" name="invitationCode" th:value="${invitationCode}">
+                <div class="form-group attendance-options">
+                    <label>
+                        <input type="radio" name="attendanceStatus" value="ATTENDING" checked>
+                        Sí asistiré
+                    </label>
+                    <label>
+                        <input type="radio" name="attendanceStatus" value="NOT_ATTENDING">
+                        No podré asistir
+                    </label>
+                </div>
+
+                <!-- Datos del invitado -->
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="mainFirstName">Nombre</label>
+                        <input type="text"  id="mainFirstName" name="mainFirstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mainLastName">Apellidos</label>
+                        <input type="text" id="mainLastName" name="mainLastName" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="guestSide">¿De parte de quién vienes?</label>
+                            <select id="guestSide" name="guestSide" required>
+                                <option value="">Seleccione una opción</option>
+                                <option value="NOVIO">De parte del novio</option>
+                                <option value="NOVIA">De parte de la novia</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group attending-only">
+                            <label for="fromCity">¿Viene de Huatulco?</label>
+                            <select id="fromCity" name="fromCity">
+                                <option value="">Selecciona una opción</option>
+                                <option value="true">Sí</option>
+                                <option value="false">No, vengo de fuera</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                    <!-- Acompañantes -->
+                    <div class="form-section attending-only" id="companionsSection">
+                        <h3>Acompañantes</h3>
+                        <div class="companions-actions">
+                            <button type="button" id="addAdultButton">
+                                Agregar adulto
+                            </button>
+                            <button type="button" id="addChildButton">
+                                Agregar niño
+                            </button>
+                        </div>
+                        <div class="companions-list" id="companionsList">
+                            <!-- JS Agregar los acompañantes-->
+                        </div>
+                        <div class="guest-total">
+                            <p>Total de invitados: <span id="guestTotal">1</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Mensaje a los novios -->
+                    <div class="form-section attending-only">
+                        <h3>Mensaje para los novios</h3>
+                        <div class="form-group">
+                            <label for="message">Palabras para los novios</label>
+                            <textarea id="message" name="message" rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit">
+                            Enviar confirmación
+                        </button>
+                    </div>
+            </form>
+        </section>
+        <section class="section closing-section" id="closing">
+            <h2>¡Gracias por ser parte de nuestra historia!</h2>
+            <p>Con cariño, Jairo & Jennifer</p>
+        </section>
+    </main>
+
+    <script th:src="@{/js/public.js}"></script>
+    <script th:src="@{/js/rsvp.js}"></script>
+</body>
+</html>

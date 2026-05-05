@@ -1,5 +1,6 @@
 package com.wedding.invitationjairo.enums;
 
-public class GuestTye {
-    
+public enum GuestType {
+    PRINCIPAL,
+    COMPANION
 }

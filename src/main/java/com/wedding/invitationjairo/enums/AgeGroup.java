@@ -1,5 +1,6 @@
 package com.wedding.invitationjairo.enums;
 
-public class AgeGroup {
-    
+public enum AgeGroup {
+    ADULT,
+    CHILD
 }

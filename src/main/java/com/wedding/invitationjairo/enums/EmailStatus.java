@@ -1,5 +1,6 @@
 package com.wedding.invitationjairo.enums;
 
-public class EmailStatus {
-    
+public enum EmailStatus {
+    SENT,
+    FAILED
 }

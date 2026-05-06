@@ -89,5 +89,48 @@ public class GuestConfirmationRequest {
         this.guestSide = guestSide;
     }
 
-    //
+    //phone
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    //email
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    //fromCity
+    public Boolean getFromCity() {
+        return fromCity;
+    }
+
+    public void setFromCity(Boolean fromCity) {
+        this.fromCity = fromCity;
+    }
+
+    //message
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    //companions
+    public List<GuestCompanionRequest> getCompanions() {
+        return companions;
+    }
+
+    public void setCompanions(List<GuestCompanionRequest> companions) {
+        this.companions = companions;
+    }
 }

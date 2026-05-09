@@ -1,5 +1,39 @@
 package com.wedding.invitationjairo.service;
 
+import com.wedding.invitationjairo.exception.ResourceNotFoundException;
+import com.wedding.invitationjairo.model.AppSetting;
+import com.wedding.invitationjairo.repository.AppSettingRepository;
+
+import org.springframework.stereotype.Service;
+import java.time.LocalDateTime;
+
+@Service
 public class AppSettingService {
-    
+    private final AppSettingRepository appSettingRepository;
+
+    public AppSettingService(AppSettingRepository appSettingRepository) {
+        this.appSettingRepository = appSettingRepository;
+    }
+
+    public String getSettingValue(String settingKey) {
+        return appSettingRepository.findBySettingKey(settingKey)
+            .map(AppSetting::getSettingValue)
+            .orElseThrow(() -> new ResourceNotFoundException("Configuración no encontrada" + settingKey));
+    }
+
+    public boolean getBooleanSetting(String settingKey) {
+        String value = getSettingValue(settingKey);
+        
+        return Boolean.parseBoolean(value);
+    }
+
+    public AppSetting updateSetting(String settingKey, String newValue) {
+        AppSetting setting = appSettingRepository.findBySettingKey(settingKey)
+            .orElseThrow(() -> new ResourceNotFoundException("Configuración no encontrada" + settingKey));
+
+            setting.setSettingValue(newValue);
+            setting.setUpdatedAt(LocalDateTime.now());
+
+            return appSettingRepository.save(setting);
+    }
 }

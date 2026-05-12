@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jairo & Jennifer | Invitación</title>
-    <link rel="stylesheet" href="@{/css/public.css}">
+    <link rel="stylesheet" th:href="@{/css/public.css}">
 </head>
 <body>
     <!-- Botón de música flotante -->
@@ -14,14 +14,47 @@
     <audio id="backgroundMusic" loop>
         <source th:src="@{/audio}" type="audio/mpeg">>
     </audio>
+    
+    <!-- Navegador -->
+    <nav class="site-nav">
+        <a href="#family">Historia</a>
+        <a href="#schedule">Cronograma</a>
+        <div class="site-brand">
+            Jairo & Jennifer
+        </div>
+        <a href="#locations">Lugar</a>
+        <a href="#calendar" class="site-nav-button">Calendario</a>
+    </nav>
 
     <!-- Hero -->
     <header class="hero" id="hero">
-        <div class="hero-overlay">
-            <p class="hero-label">Nuestra boda</p>
-            <h1>Jairo & Jennifer</h1>
-            <p class="hero-date">21 de noviembre de 2026</p>
-            <a href="#rsvp" class="hero-button">Confirmar asistencia</a>
+
+        <div class="hero-content">
+            <figure class="hero-photo hero-photo-left">
+                <img th:src="@{/images/hero/1.jpeg}" alt="Foto de los novios">
+            </figure>
+
+            <div class="hero-center">
+                <p class="hero-label">Nuestra boda</p>
+
+                <h1>
+                    Jairo
+                    <span>&</span>
+                    Jennifer
+                </h1>
+
+                <p class="hero-date">21 · 11 · 2026</p>
+
+                <p class="hero-message">
+                    Con alegría queremos compartir el inicio de esta nueva historia.
+                </p>
+
+                <a href="#rsvp" class="hero-button">Confirmar asistencia</a>
+            </div>
+
+            <figure class="hero-photo hero-photo-right">
+                <img th:src="@{/images/hero/2.jpeg}" alt="Detalle de boda">
+            </figure>
         </div>
     </header>
 
@@ -77,12 +110,12 @@
         <section class="section countdown-section" id="countdown">
             <p class="section-label">Faltan</p>
             <h2>Cuenta regresiva</h2>
-            <div class="Countdown-grid" id="CountdownTimer">
-                <div class="Countdown-item">
+            <div class="countdown-grid" id="CountdownTimer">
+                <div class="countdown-item">
                     <span id="days">00</span>
                     <p>Días</p>
                 </div>
-                <div class="Countdown-item">
+                <div class="countdown-item">
                     <span id="hours">00</span>
                     <p>Horas</p>
                 </div>
@@ -304,7 +337,7 @@
         </section>
     </main>
 
-    <script th:src="@{/js/public.js}"></script>
-    <script th:src="@{/js/rsvp.js}"></script>
+    <script type="module" th:src="@{/js/public.js}"></script>
+    <script type="module" th:src="@{/js/rsvp.js}"></script>
 </body>
 </html>

@@ -12,6 +12,7 @@ body {
     min-height: 100vh;
     font-family: var(--font-body);
     color: var(--color-text-main);
+    background: var(--color-ivory);
 }
 
 button,

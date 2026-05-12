@@ -1,0 +1,4 @@
+import { RsvpForm } from "./rsvp/RsvpForm.js";
+
+const rsvpForm = new RsvpForm();
+rsvpForm.init();

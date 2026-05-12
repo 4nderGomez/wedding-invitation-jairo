@@ -1,0 +1,52 @@
+:root {
+    /* PALETA DE COLORES */
+    /* Base */
+    --color-cream: #F7F1EA;
+    --color-ivory: #FFFDF8;
+
+    /* Romantic accents */
+    --color-dusty-pink: #E8B8B4;
+    --color-peach: #F2B891;
+
+    /* Greens */
+    --color-olive: #5F6B4F;
+    --color-sage: #8A947B;
+
+    /* Blue gray */
+    --color-blue-gray: #7C93A3;
+    --color-deep-blue: #17324A;
+
+    /* Gold / wood */
+    --color-gold:#C7A45D;
+    --color-wood: #9A5E34;
+
+    /* Text */
+    --color-text-main: #2F2A25;
+    --color-text-soft: #6F675F;
+    --color-white: #FFFFFF;
+
+    /* UI */
+    --color-card-glass: rgba(255, 253, 248, 0.72);
+    --color-input-bg: rgba(23, 50, 74, 0.88);
+    --color-input-icon: #F7F1EA;
+    --color-border-soft: rgba(255, 255, 255, 0.45);
+
+    /* Feedback */
+    --color-error: #9B2C2C;
+    --color-success: #3F6B4A;
+
+    /* Shadows */
+    --shadow-card: 0 30px 80px rgba(23, 50, 74, 0.28);
+    --shadow-button: 0 16px 35px rgba(199, 164, 93, 0.32);
+
+    /* Radius */
+    --radius-card: 32px;
+    --radius-input: 14px;
+    --radius-pill: 999px;
+
+    /* Transitions */
+    --transition-soft: 0.3s ease;
+
+    --glass-card: rgba(255, 250, 244, 0.68);
+    --input-bg: rgba(24, 49, 74, 0.92);
+}

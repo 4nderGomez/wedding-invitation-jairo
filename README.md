@@ -18,3 +18,7 @@
     Fotos invitados
     Confirmación
     Cierre
+
+Great Vibes        -> iniciales, monograma, detalles románticos
+Playfair Display   -> títulos elegantes
+Poppins            -> formularios, botones, texto normal

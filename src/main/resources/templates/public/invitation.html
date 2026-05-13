@@ -62,47 +62,87 @@
 
         <!-- Mesaje de introducción -->
         <section class="section intro-section" id="intro">
-            <p class="section-label">Con mucha alegría</p>
-            <h2>Nos casamos</h2>
-            <p>
-                Queremos compartir este día tan especial con las personas que más queremos.
-                Será un honor contar con tu presencia.
-            </p>
+            <div class="intro-container">
+                <p class="section-label">Con mucha alegría</p>
+                <h2>Nos casamos</h2>
+                <div class="intro-divider"></div>
+                <p class="intro-text">
+                    Queremos compartir este día tan especial con las personas que han sido parte
+                    de nuestra historia. Será un honor contar con tu presencia mientras celebramos
+                    el inicio de esta nueva etapa.
+                </p>
+                <p class="intro-signature">
+                    Jairo & Jennifer
+                </p>
+            </div>
         </section>
 
         <!-- Pareja y familia -->
         <section class="section family-section" id="family">
-            <!-- Nombre de los novios -->
-            <h2>Nuestros nombres</h2>
-            <div class="couple-names">
-                <div class="person-card">
-                    <span>Novio</span>
-                    <h3>Jairo Gabriel Pinacho Rodríguez</h3>
+            <div class="family-container">
+                <div class="family-heading">
+                    <p class="section-label">Con la bendición de Dios y nuestras familias</p>
+                    <h2>Nuestros nombres</h2>
                 </div>
-                <div class="ampersand">&</div>
-                <div class="person-card">
-                    <span>Novia</span>
-                    <h3>Jennifer Pacheco García</h3>
-                </div>
-            </div>
+                
+                <!-- Novios -->
+                <div class="couple-showcase">
+                    <article class="couple-card">
+                        <figure class="couple-photo">
+                            <img th:src="@{/images/family/novio.jpeg}" alt="Foto del novio">
+                        </figure>
+                        <div class="couple-info">
+                            <span>Novio</span>
+                            <h3>Jairo Gabriel Pinacho Rodríguez</h3>
+                        </div>
+                    </article>
 
-            <!-- Nombre de los padres -->
-            <div class="family-grid">
-                <article class="family-card">
-                    <h3>Padres del novio</h3>
-                    <p>Gabriel Pinacho Mendoza</p>
-                    <p>Teresa Rodríguez Calvo</p>
-                </article>
-                <article class="family-card">
-                    <h3>Padres de la novia</h3>
-                    <p>Pedro Pacheco Martínez</p>
-                    <p>Ericel García Vásquez</p>
-                </article>
-                <article class="family-card">
-                    <h3>Padrinos de velación</h3>
-                    <p>Cesar Salinas García</p>
-                    <p>Mireya Ortega Lavariega</p>
-                </article>
+                    <div class="ampersand">&</div>
+
+                    <article class="couple-card">
+                        <figure class="couple-photo">
+                            <img th:src="@{/images/family/novia.jpeg}" alt="Foto de la novia">
+                        </figure>
+                        <div class="couple-info">
+                            <span>Novia</span>
+                            <h3>Jennifer Pacheco García</h3>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Familias -->
+                <div class="family-grid">
+                    <article class="family-card">
+                        <figure class="family-photo">
+                            <img th:src="@{/images/family/padres-novio.jpeg}" alt="Padres del novio">
+                        </figure>
+                        <div class="family-card-content">
+                            <span>Padres del novio</span>
+                            <h3>Gabriel Pinacho Mendoza</h3>
+                            <p>Teresa Rodríguez Calvo</p>
+                        </div>
+                    </article>
+                    <article class="family-card family-card-featured">
+                        <figure class="family-photo">
+                            <img th:src="@{/images/family/padrinos-velacion.jpeg}" alt="Padrinos de velación">
+                        </figure>
+                        <div class="family-card-content">
+                            <span>Padres de velación</span>
+                            <h3>Cesar Salinas García</h3>
+                            <p>Mireya Ortega Lavariega</p>
+                        </div>
+                    </article>
+                    <article class="family-card">
+                        <figure class="family-photo">
+                            <img th:src="@{/images/family/padres-novia.jpeg}" alt="Padres de la novia">
+                        </figure>
+                        <div class="family-card-content">
+                            <span>Padres de la novia</span>
+                            <h3>>Pedro Pacheco Martínez</h3>
+                            <p>Ericel García Vásquez</p>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
 

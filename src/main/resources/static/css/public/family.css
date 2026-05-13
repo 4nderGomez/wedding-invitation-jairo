@@ -1,0 +1,210 @@
+.family-section {
+    padding: clamp(84px, 10vw, 130px) clamp(20px, 5vw, 72px);
+    background: var(--color-ivory);
+    color: var(--color-text-main);
+}
+
+.family.container {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.family-heading {
+    max-width: 760px;
+    margin: 0 auto 34px;
+    text-align: center;
+}
+
+.family-heading .section-label {
+    margin-bottom: 20px;
+    font-size: 0.76rem;
+    letter-spacing: 0.34rem;
+    text-transform: uppercase;
+    color: var(--color-gold);
+}
+
+.family-heading h2 {
+    font-family: var(--font-title);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-deep-blue);
+}
+
+/* Novios */
+.couple-showcase {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: clamp(24px, 4vw, 52px);
+    margin-bottom: clamp(64px, 8vw, 96px);
+}
+
+.couple-card {
+    display: grid;
+    grid-template-columns: minmax(140px, 220px) 1fr;
+    align-items: center;
+    gap: 28px;
+}
+
+.couple-card:last-child {
+    grid-template-columns: 1fr minmax(140px, 220px);
+}
+
+.couple-card:last-child .couple-photo {
+    order: 2;
+}
+
+.couple-card:last-child .couple-info {
+    text-align: right;
+}
+
+.couple-photo {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(c--color-cream);
+    box-shadow: var(--shadow-soft);
+}
+
+.couple-photo img,
+.family-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(35%) contrast(0.96);
+}
+
+.couple-info span,
+.family-card-content span {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.24rem;
+    text-transform: uppercase;
+    color: var(--color-gold);
+}
+
+.couple-info h3 {
+    font-family: var(--font-title);
+    font-size: clamp(1.45rem, 2.6vw, 2.15rem);
+    font-weight: 600;
+    line-height: 1.18;
+    color: var(--color-olive);
+}
+
+.ampersand {
+    font-family: var(--font-script);
+    font-size: clamp(3.4rem, 7vw, 6rem);
+    color: var(--color-sage);
+}
+
+/* Familia */
+.family-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(22px, 3vw, 34px);
+}
+
+.family-card {
+    background: var(--color-cream);
+    border: 1px solid rgba(23, 50, 74, 0.08);
+}
+
+.family-card-featured {
+    transform: translateY(26px);
+}
+
+.family-photo {
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    overflow: hidden;
+    background: var(--color-ivory);
+}
+
+.family-card-content {
+    padding: 28px 24px 30px;
+    text-align: center;
+}
+
+.family-card-content h3,
+.family-card-content p {
+    font-family: var(--font-title);
+    font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--color-text-main);
+}
+
+.family-card-content p {
+    margin-top: 6px;
+    color: var(--color-text-soft);
+}
+
+@media (max-width: 900px) {
+    .couple-showcase {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .ampersand {
+        text-align: center;
+        line-height: 0.7;
+    }
+
+    .couple-card,
+    .couple-card:last-child {
+        max-width: 620px;
+        margin: 0 auto;
+        grid-template-columns: 180px 1fr;
+    }
+
+    .couple-card:last-child .couple-photo {
+        order: 0;
+    }
+
+    .couple-card:last-child .couple-info {
+        text-align: left;
+    }
+
+    .family-grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+        margin: 0 auto;
+    }
+
+    .family-card-featured {
+        transform: none;
+    }
+}
+
+@media (max-width: 560px) {
+    .family-section {
+        padding: 74px 20px;
+    }
+
+    .family-heading {
+        margin-bottom: 46px;
+    }
+
+    .couple-card,
+    .couple-card:last-child {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        text-align: center;
+    }
+
+    .couple-card:last-child .couple-info {
+        text-align: center;
+    }
+
+    .couple-photo {
+        max-width: 240px;
+        margin: 0 auto;
+    }
+
+    .family-card-content {
+        padding: 24px 20px 26px;
+    }
+}

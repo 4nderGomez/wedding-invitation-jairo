@@ -1,5 +1,5 @@
 .hero {
-    min-height: 1120px;
+    min-height: calc(100vh - 120px);
     padding: 25px clamp(20px, 5vw, 72px) 80px;
     background: var(--color-ivory);
     color: var(--color-text-main);

@@ -1,0 +1,70 @@
+.intro-section {
+    padding: clamp(90px, 12vw, 150px) clamp(20px, 5vw, 72px);
+    background: var(--color-cream);
+    color: var(--color-text-main);
+}
+
+.intro-container {
+    max-width: 840px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.intro-section .section-label {
+    margin-bottom: 22px;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.42rem;
+    text-transform: uppercase;
+    color: var(--color-gold);
+}
+
+.intro-section h2 {
+    font-family: var(--font-title);
+    font-size: clamp(3rem, 7vw, 5.8rem);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-deep-blue);
+}
+
+.intro-divider {
+    width: 72px;
+    height: 1px;
+    margin: 34px auto 38px;
+    background: var(--color-gold);
+}
+
+.intro-text {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: clamp(0.98rem, 1.6vw, 1.1rem);
+    line-height: 2;
+    color: var(--color-text-soft);
+}
+
+.intro-signature {
+    margin-top: 34px;
+    font-family: var(--font-script);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    color: var(--color-olive);
+}
+
+@media (max-width: 600px) {
+    .intro-section {
+        padding: 78px 22px;
+    }
+
+    .intro-section .section-label {
+        letter-spacing: 0.28em;
+        font-size: 0.7rem;
+    }
+
+    .intro-divider {
+        margin: 28px auto 30px;
+    }
+
+    .intro-text {
+        line-height: 1.85;
+    }
+}

@@ -60,7 +60,7 @@
 
     <main>
 
-        <!-- Mesaje de introducción -->
+        <!-- Mensaje de introducción -->
         <section class="section intro-section" id="intro">
             <div class="intro-container">
                 <p class="section-label">Con mucha alegría</p>
@@ -148,56 +148,68 @@
 
         <!-- Countdown -->
         <section class="section countdown-section" id="countdown">
-            <p class="section-label">Faltan</p>
-            <h2>Cuenta regresiva</h2>
-            <div class="countdown-grid" id="CountdownTimer">
-                <div class="countdown-item">
-                    <span id="days">00</span>
-                    <p>Días</p>
-                </div>
-                <div class="countdown-item">
-                    <span id="hours">00</span>
-                    <p>Horas</p>
-                </div>
-                <div class="Countdown-item">
-                    <span id="minutes">00</span>
-                    <p>Minutos</p>
-                </div>
-                <div class="Countdown-item">
-                    <span id="seconds">00</span>
-                    <p>Segundos</p>
+            <div class="countdown-overlay">
+                <p class="section-label">Faltan</p>
+                <h2>Cuenta regresiva</h2>
+                <div class="countdown-grid" id="countdownTimer">
+                    <div class="countdown-item">
+                        <span id="days">00</span>
+                        <p>Días</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours">00</span>
+                        <p>Horas</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes">00</span>
+                        <p>Minutos</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds">00</span>
+                        <p>Segundos</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Locaciones -->
         <section class="section locations-section" id="locations">
-            <h2>¿Dónde será?</h2>
-            <div class="location-grid">
-                <article class="location-card">
-                    <h3>Ceremonia religiosa</h3>
-                    <p class="location-place">
-                        Parroquia de Ntra. Sra. de la Inmaculada Concepción
-                    </p>
-                    <p>Santa María Huatulco</p>
-                    <p class="location-time">5:00 PM</p>
+            <div class="locations-container">
+                <div class="locations-heading">
+                    <p class="section-label">Dónde celebraremos</p>
+                    <h2>Ubicaciones</h2>
+                </div>
 
-                    <a href="#" class="location-button" target="_blank">
-                        Ver ubicación
-                    </a>
-                </article>
-                <article class="location-card">
-                    <h3>Recepción</h3>
-                    <p class="location-place">
-                        Unidad Deportiva de Santa María Huatulco
-                    </p>
-                    <p>Santa María Huatulco</p>
-                    <p class="location-time">7:00 PM</p>
-
-                    <a href="#" class="location-button" target="_blank">
-                        Ver ubicación
-                    </a>
-                </article>
+                <div class="location-grid">
+                    <article class="location-card">
+                        <figure class="location-photo">
+                            <img th:src="@{/images/locations/church.png}" alt="Parroquia de la Inmaculada Concepción">
+                        </figure>
+                        <div class="location-content">
+                            <span>Ceremonia religiosa</span>
+                            <h3>Parroquia de Ntra. Sra. de la Inmaculada Concepción</h3>
+                            <p>Santa María Huatulco</p>
+                            <p class="location-time">5:00 PM</p>
+                            <a href="https://www.google.com/maps/place/Parroquia+de+Ntra.+Sra.+de+la+Inmaculada+Concepci%C3%B3n,+de+Santa+Mar%C3%ADa+Huatulco/@15.8365011,-96.3218828,17z/data=!3m1!4b1!4m6!3m5!1s0x85bf2e7f51fa98a5:0x7861767158f2541c!8m2!3d15.8365011!4d-96.3218828!16s%2Fg%2F11dxqb3jzc?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3D" class="location-button" target="_blank">
+                                Ver ubicación
+                            </a>
+                        </div>
+                    </article>
+                    <article class="location-card">
+                        <figure class="location-photo">
+                            <img th:src="@{/images/locations/party.jpeg}" alt="Unidad Deportiva de Santa María Huatulco">
+                        </figure>
+                        <div class="location-content">
+                            <span>Recepción</span>
+                            <h3>Unidad Deportiva de Santa María Huatulco</h3>
+                            <p>Santa María Huatulco</p>
+                            <p class="location-time">/:00 PM</p>
+                            <a href="https://www.google.com/maps/place/Unidad+Deportiva+de+Santa+Mar%C3%ADa+Huatulco/data=!4m2!3m1!1s0x0:0x976bc50d430f3d4f?sa=X&ved=1t:2428&ictx=111" class="location-button" target="_blank">
+                                Ver ubicación
+                            </a>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
 

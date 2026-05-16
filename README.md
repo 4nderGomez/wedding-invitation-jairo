@@ -1,24 +1,32 @@
---> Diseño de la base de datos
-    invitation_links -> Links únicos: familia del novio / familia de la novia
-    guest_groups -> Invitados principales
-    guest_companions -> Acompañantes del invitado principal (Adultos y/o niños)
-    app_settings -> Configuración general del sistema
-    admin_users -> Usuarios estáticos de administradores
+# Diseño de la Base de Datos
 
---> SECCIONES DE invitation.html
-    Portada
-    Mensaje inicial
-    Novios / familia
-    Cuenta regresiva
-    Ubicaciones
-    Cronograma
-    Calendario
-    Mesa de regalos
-    Galería
-    Fotos invitados
-    Confirmación
-    Cierre
+- **enlaces_invitación** → Enlaces únicos: familia del novato / familia de la nova
+- **grupos_invitados** → Invitados principales
+- **invitados_compañeros** → Acompañantes del invitado principal (adultos y/o niños)
+- **configuración_aplicación** → Configuración general del sistema
+- **usuarios_administradores** → Usuarios estáticos de administradores
 
-Great Vibes        -> iniciales, monograma, detalles románticos
-Playfair Display   -> títulos elegantes
-Poppins            -> formularios, botones, texto normal
+---
+
+# Secciones de `invitación.html`
+
+1. Portada 
+2. Mensaje inicial 
+3. Novios / familia 
+4. Cuenta regresiva 
+5. Ubicaciones 
+6. Cronograma 
+7. Calendario 
+8. Mesa de regalos 
+9. Galería 
+10. Fotos invitadas 
+11. Confirmación 
+12. Cierre 
+
+---
+
+# Tipografías
+
+- **Grandes vibraciones** → Iniciales, monograma y detalles románticos
+- **Parque de juegos Pantalla** → Títulos elegantes
+- **Poppins** → Formularios, botones y texto general

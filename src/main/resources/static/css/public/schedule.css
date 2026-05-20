@@ -1,0 +1,102 @@
+.schedule-section {
+    padding: clamp(86px, 10vw, 132px) clamp(20px, 5vw, 72px);
+    background:
+        linear-gradient(rgba(95, 107, 79, 0.86),
+        rgba(95, 107, 79, 0.86)),
+        url("../../images/sections/schedule-bg.jpeg") center / cover no-repeat;
+        color: var(--color-white);
+}
+
+.schedule-container {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.schedule-heading {
+    max-width: 760px;
+    margin: 0 auto 56px;
+    text-align: center;
+}
+
+.schedule-heading .section-label {
+    margin-bottom: 18px;
+    font-size: 0.76rem;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--color-peach);
+}
+
+.schedule-heading h2 {
+    font-family: var(--font-title);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-ivory);
+}
+
+.timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(18px, 3vw, 34px);
+}
+
+.timeline-item {
+    position: relative;
+    padding: 38px 28px 40px;
+    text-align: center;
+    background: rgba(255, 253, 248, 0.13);
+    border: 1px solid var(--color-border-soft);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 50px rgba(23, 50, 74, 0.14);
+    transition: var(--transition-soft);
+}
+
+.timeline-item:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 253, 248, 0.18);
+}
+
+.timeline-item {
+    cursor: pointer;
+}
+
+.timeline-icon {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 22px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--color-card-glass);
+    border: 1px solid rgba(255, 253, 248, 0.5);
+}
+
+.timeline-icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(34%) sepia(14%) saturate(761%) hue-rotate(46deg) brightness(93%) contrast(88%);
+}
+
+.timeline-item span {
+    display: block;
+    margin-bottom: 14px;
+    font-family: var(--font-title);
+    font-size: clamp(1.55rem, 3vw, 2.25rem);
+    font-weight: 600;
+    color: var(--color-peach);
+}
+
+.timeline h3 {
+    margin-bottom: 8px;
+    font-family: var(--font-title);
+    font-size: clamp(1.45rem, 2.5vw, 1.9rem);
+    font-weight: 600;
+    color: var(--color-ivory);
+}
+
+.timeline p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba(255, 253, 248, 0.78);
+}

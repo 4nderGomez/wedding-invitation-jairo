@@ -215,66 +215,108 @@
 
         <!-- Cronograma -->
         <section class="section schedule-section" id="schedule">
-            <h2>Cronograma</h2>
-            <div class="timeline">
-                <article class="timeline-item">
-                    <span>5:00 PM</span>
-                    <h3>Misa</h3>
-                    <p>Ceremonia religiosa</p>
-                </article>
-                <article class="timeline-item">
-                    <span>7:00 PM</span>
-                    <h3>Comida</h3>
-                    <p>Recepción y convivencia</p>
-                </article>
-                <article class="timeline-item">
-                    <span>10:00 PM</span>
-                    <h3>Baile</h3>
-                    <p>Celebración</p>
-                </article>
+            <div class="schedule-container">
+                <div class="schedule-heading">
+                    <p class="section-label">El día de nuestra boda</p>
+                    <h2>Cronograma</h2>
+                </div>
+
+                <div class="timeline">
+                    <article class="timeline-item" onclick="window.open('https://www.google.com/maps/place/Parroquia+de+Ntra.+Sra.+de+la+Inmaculada+Concepci%C3%B3n,+de+Santa+Mar%C3%ADa+Huatulco/@15.8365011,-96.3218828,17z/data=!3m1!4b1!4m6!3m5!1s0x85bf2e7f51fa98a5:0x7861767158f2541c!8m2!3d15.8365011!4d-96.3218828!16s%2Fg%2F11dxqb3jzc?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3D', '_blank')">
+                        <div class="timeline-icon">
+                            <img th:src="@{/images/icons/church.svg}" alt="">
+                        </div>
+                        <span>5:00 PM</span>
+                        <h3>Misa</h3>
+                        <p>Ceremonia religiosa</p>
+                    </article>
+
+                    <article class="timeline-item" onclick="window.open('https://www.google.com/maps/place/Unidad+Deportiva+de+Santa+Mar%C3%ADa+Huatulco/data=!4m2!3m1!1s0x0:0x976bc50d430f3d4f?sa=X&ved=1t:2428&ictx=111', '_blank')">
+                        <div class="timeline-icon">
+                            <img th:src="@{/images/icons/dinner.svg}" alt="">
+                        </div>
+                        <span>7:00 PM</span>
+                        <h3>Cena</h3>
+                        <p>Recepción y convivencia</p>
+                    </article>
+
+                    <article class="timeline-item" onclick="window.open('https://www.google.com/maps/place/Unidad+Deportiva+de+Santa+Mar%C3%ADa+Huatulco/data=!4m2!3m1!1s0x0:0x976bc50d430f3d4f?sa=X&ved=1t:2428&ictx=111', '_blank')">
+                        <div class="timeline-icon">
+                            <img th:src="@{/images/icons/dance.svg}" alt="">
+                        </div>
+                        <span>10:00 PM</span>
+                        <h3>Baile</h3>
+                        <p>Celebración</p>
+                    </article>
+                </div>
             </div>
-        </section>
-
-        <!-- Guardar la fecha -->
-        <section class="section calendar-section" id="calendar">
-            <p class="section-label">Agenda la fecha</p>
-            <h2>No olvides este día</h2>
-            <p>
-                Guarda la fecha en tu calendario para acompañarnos en nuestra boda.
-            </p>
-            <a href="#" class="calendar-button" id="calendarButton">
-                Agendar en el calendario
-            </a>
-        </section>
-
-        <!-- Mesa de regalos -->
-        <section class="section gifts-section" id="gifts">
-            <p class="section-label">Mesa de regalos</p>
-            <h2>Tu presencia es nuestro mejor regalo</h2>
-            <p>
-                Si deseas tener un detalle con nosotros, puedes visitar nuestra mesa de regalos.
-            </p>
-            <a href="#" class="gift-button" target="_blank">
-                Ver mesa de regalos
-            </a>
         </section>
 
         <!-- Galeria -->
         <section class="section gallery-section" id="gallery">
-            <h2>Nuestra historia contada en fotos</h2>
-            <div class="gallery-grid">
-                <figure class="gallery-item">
-                    <img th:src="@{/images/gallery/photo-1.jpg}" alt="Foto de los novios">
-                </figure>
-                <figure class="gallery-item">
-                    <img th:src="@{/images/gallery/photo-2.jpg}" alt="Foto de los novios">
-                </figure>
-                <figure class="gallery-item">
-                    <img th:src="@{/images/gallery/photo-3.jpg}" alt="Foto de los novios">
-                </figure>
-                <figure class="gallery-item">
-                    <img th:src="@{/images/gallery/photo-4.jpg}" alt="Foto de los novios">
-                </figure>
+            <div class="gallery-container">
+                <div class="gallery-heading">
+                    <p class="section-label">
+                        Galeria
+                    </p>
+                    <h2>Estás invitado a ver el inicio</h2>
+                    <p>de la nueva familia Pinacho Pacheco</p>
+                </div>
+                
+                <div class="gallery-carousel" id="galleryCarousel">
+                    <button class="gallery-arrow gallery-arrow-left" type="button" id="galleryPrev" aria-label="Foto anterior">
+                        ‹
+                    </button>
+
+                    <div class="gallery-track-wrapper">
+                        <div class="gallery-track" id="galleryTrack">
+                            <figure class="gallery-slide">
+                                <img th:src="@{/images/gallery/photo-1.png}" alt="Sesión save the date de los novios">
+                            </figure>
+                            <figure class="gallery-slide">
+                                <img th:src="@{/images/gallery/photo-2.png}" alt="Sesión save the date de los novios">
+                            </figure>
+                            <figure class="gallery-slide">
+                                <img th:src="@{/images/gallery/photo-3.png}" alt="Sesión save the date de los novios">
+                            </figure>
+                            <figure class="gallery-slide">
+                                <img th:src="@{/images/gallery/photo-4.png}" alt="Sesión save the date de los novios">
+                            </figure>
+                            <figure class="gallery-slide">
+                                <img th:src="@{/images/gallery/photo-5.png}" alt="Sesión save the date de los novios">
+                            </figure>
+                            <figure class="gallery-slide">
+                                <img th:src="@{/images/gallery/photo-6.png}" alt="Sesión save the date de los novios">
+                            </figure>
+                            <figure class="gallery-slide">
+                                <img th:src="@{/images/gallery/photo-7.png}" alt="Sesión save the date de los novios">
+                            </figure>
+                            <figure class="gallery-slide">
+                                <img th:src="@{/images/gallery/photo-8.png}" alt="Sesión save the date de los novios">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <button class="gallery-arrow gallery-arrow-right" type="button" id="galleryNext" aria-label="Siguiente foto">
+                        ›
+                    </button>
+                </div>
+            </div>
+
+            <div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
+                <button class="lightbox-close" type="button" id="lightboxClose" aria-label="Cerrar imagen">
+                    ×
+                </button>
+
+                <button class="lightbox-arrow lightbox-arrow-left" type="button" id="lightboxPrev" aria-label="Imagen anterior">
+                    ‹
+                </button>
+
+                <img id="lightboxImage" src="" alt="Fotografía ampliada de los novios">
+
+                <button class="lightbox-arrow lightbox-arrow-right" type="button" id="lightboxNext" aria-label="Siguiente imagen">
+                    ›
+                </button>
             </div>
         </section>
 
@@ -288,6 +330,18 @@
             <button class="guest-photos-button" id="guestPhotosButton" disabled>
                 Disponible después de la boda
             </button>
+        </section>
+
+        <!-- Guardar la fecha -->
+        <section class="section calendar-section" id="calendar">
+            <p class="section-label">Agenda la fecha</p>
+            <h2>No olvides este día</h2>
+            <p>
+                Guarda la fecha en tu calendario para acompañarnos en nuestra boda.
+            </p>
+            <a href="#" class="calendar-button" id="calendarButton">
+                Agendar en el calendario
+            </a>
         </section>
 
         <!-- Formulario -->

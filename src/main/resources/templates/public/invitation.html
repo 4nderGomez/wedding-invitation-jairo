@@ -322,124 +322,316 @@
 
         <!-- Fotos compartidas por los invitados -->
         <section class="section guest-photos-section" id="guestPhotos">
-            <p class="section-label">Después de la boda</p>
-            <h2>Comparte tus fotos con nosotros</h2>
-            <p>
-                Después del evento podrás subir aquí tus fotos y recuerdos de este día tan especial.
-            </p>
-            <button class="guest-photos-button" id="guestPhotosButton" disabled>
-                Disponible después de la boda
-            </button>
-        </section>
+            <div class="guest-photos-overlay">
+                <div class="guest-photos-container">
+                    <div class="guest-photos-content">
+                        <p class="section-label">Después de la boda</p>
+                        <h2>Comparte tus recuerdos con nosotros</h2>
+                        <p>
+                            Después de celebrar juntos este día tan especial, podrás compartir aquí
+                            las fotos y momentos que hayas capturado durante nuestra boda.
+                        </p>
 
-        <!-- Guardar la fecha -->
-        <section class="section calendar-section" id="calendar">
-            <p class="section-label">Agenda la fecha</p>
-            <h2>No olvides este día</h2>
-            <p>
-                Guarda la fecha en tu calendario para acompañarnos en nuestra boda.
-            </p>
-            <a href="#" class="calendar-button" id="calendarButton">
-                Agendar en el calendario
-            </a>
-        </section>
+                        <div class="guest-photos-card">
+                            <div class="guest-camera-wrapper">
+                                <img
+                                    th:src="@{/images/sections/guest-photos.png}"
+                                    alt="Cámara vintage"
+                                    class="guest-camera-image">
+                            </div>
+                            <h3>Álbum de invitados</h3>
+                            <p id="guestPhotosMessage">
+                                Esta opción estará disponible después de la boda.
+                            </p>
 
-        <!-- Formulario -->
-        <section class="section rsvp-section" id="rsvp">
-            <p class="section-label">Confirma tu asistencia</p>
-            <h2>¿Nos acompañas?</h2>
-            <form class="rsvp-form" id="rsvpForm">
-                <input type="hidden" id="invitationCode" name="invitationCode" th:value="${invitationCode}">
-                <div class="form-group attendance-options">
-                    <label>
-                        <input type="radio" name="attendanceStatus" value="ATTENDING" checked>
-                        Sí asistiré
-                    </label>
-                    <label>
-                        <input type="radio" name="attendanceStatus" value="NOT_ATTENDING">
-                        No podré asistir
-                    </label>
-                </div>
-
-                <!-- Datos del invitado -->
-                <div class="form-section">
-                    <div class="form-group">
-                        <label for="mainFirstName">Nombre</label>
-                        <input type="text"  id="mainFirstName" name="mainFirstName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="mainLastName">Apellidos</label>
-                        <input type="text" id="mainLastName" name="mainLastName" required>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone">Teléfono</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Correo electrónico</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="guestSide">¿De parte de quién vienes?</label>
-                            <select id="guestSide" name="guestSide" required>
-                                <option value="">Seleccione una opción</option>
-                                <option value="NOVIO">De parte del novio</option>
-                                <option value="NOVIA">De parte de la novia</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group attending-only">
-                            <label for="fromCity">¿Viene de Huatulco?</label>
-                            <select id="fromCity" name="fromCity">
-                                <option value="">Selecciona una opción</option>
-                                <option value="true">Sí</option>
-                                <option value="false">No, vengo de fuera</option>
-                            </select>
+                            <button 
+                                class="guest-photos-button"
+                                id="guestPhotosButton"
+                                type="button"
+                                disabled>
+                                Comparte tus fotos
+                            </button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                    <!-- Acompañantes -->
-                    <div class="form-section attending-only" id="companionsSection">
-                        <h3>Acompañantes</h3>
-                        <div class="companions-actions">
-                            <button type="button" id="addAdultButton">
-                                Agregar adulto
+        <!-- RSVP y calendario -->
+        <section class="section rsvp-calendar-section" id="rsvp">
+            <div class="rsvp-calendar-container">
+                <!-- RSVP -->
+                <div class="rsvp-panel" id="rsvpPanel">
+                    <div class="rsvp-intro" id="rsvpIntro">
+                        <p class="section-label">Confirma tu asistencia</p>
+                        <h2>¿Nos acompañas?</h2>
+                        <p>
+                            Tu respuesta nos ayudará a preparar con mucho cariño
+                            todo para el gran día.
+                        </p>
+
+                        <form class="rsvp-choice-form" id="rsvpChoiceForm">
+                            <input type="hidden" id="invitationCode" name="invitationCode" th:value="${invitationCode}">
+                            <div class="attendance-options">
+                                <label class="attendance-option">
+                                    <input type="radio" name="attendanceStatus" value="ATTENDING" checked>
+                                    <span>Sí asistiré</span>
+                                </label>
+                                <label class="attendance-option">
+                                    <input type="radio" name="attendanceStatus" value="NOT_ATTENDING">
+                                    <span>No podré asistir</span>
+                                </label>
+                            </div>
+
+                            <button class="rsvp-continue-button" type="button" id="openRsvpModalButton">
+                                Continuar
                             </button>
-                            <button type="button" id="addChildButton">
-                                Agregar niño
-                            </button>
-                        </div>
-                        <div class="companions-list" id="companionsList">
-                            <!-- JS Agregar los acompañantes-->
-                        </div>
-                        <div class="guest-total">
-                            <p>Total de invitados: <span id="guestTotal">1</span></p>
-                        </div>
+                        </form>
                     </div>
 
-                    <!-- Mensaje a los novios -->
-                    <div class="form-section attending-only">
-                        <h3>Mensaje para los novios</h3>
-                        <div class="form-group">
-                            <label for="message">Palabras para los novios</label>
-                            <textarea id="message" name="message" rows="4"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-submit">
-                        <button type="submit">
-                            Enviar confirmación
+                    <div class="rsvp-result" id="rsvpResult" hidden>
+                        <p class="section-label" id="rsvpResultLabel">Respuesta enviada</p>
+                        <h2 id="rsvpResultTitle">Tus datos han sido enviados correctamente</h2>
+                        <p id="rsvpResultMessage">
+                            Te esperamos en este gran día para celebrar el incio de la familia Pinacho Pacheco
+                        </p>
+                        <button class="rsvp-continue-button" type="button" disabled>
+                            Respuesta registrada
                         </button>
                     </div>
-            </form>
-        </section>
-        <section class="section closing-section" id="closing">
-            <h2>¡Gracias por ser parte de nuestra historia!</h2>
-            <p>Con cariño, Jairo & Jennifer</p>
+                </div>
+
+                <!-- Columna de calendario -->
+                <div class="wedding-calendar-panel" id="weddingCalendarPanel">
+                    <div class="calendar-heading">
+                        <p class="section-label">Agenda la fecha</p>
+                        <h2>Noviembre 2026</h2>
+                        <p>
+                            Guarda este día para acompañarnos en nuestra boda
+                        </p>
+                    </div>
+
+                    <div class="wedding-calendar-card" id="weddingCalendarCard">
+                        <div class="calendar-weekdays">
+                            <span>Dom</span>
+                            <span>Lun</span>
+                            <span>Mar</span>
+                            <span>Mir</span>
+                            <span>Jue</span>
+                            <span>Vie</span>
+                            <span>Sáb</span>
+                        </div>
+
+                        <div class="calendar-days">
+                            <span class="calendar-day">1</span>
+                            <span class="calendar-day">2</span>
+                            <span class="calendar-day">3</span>
+                            <span class="calendar-day">4</span>
+                            <span class="calendar-day">5</span>
+                            <span class="calendar-day">6</span>
+                            <span class="calendar-day">7</span>
+
+                            <span class="calendar-day">8</span>
+                            <span class="calendar-day">9</span>
+                            <span class="calendar-day">10</span>
+                            <span class="calendar-day">11</span>
+                            <span class="calendar-day">12</span>
+                            <span class="calendar-day">13</span>
+                            <span class="calendar-day">14</span>
+
+                            <span class="calendar-day">15</span>
+                            <span class="calendar-day">16</span>
+                            <span class="calendar-day">17</span>
+                            <span class="calendar-day">18</span>
+                            <span class="calendar-day">19</span>
+                            <span class="calendar-day">20</span>
+                            
+                            <span class="calendar-day wedding-day" id="weddingDay">
+                                21
+                                <span class="wedding-day-icon">♡</span>
+                            </span>
+
+                            <span class="calendar-day">22</span>
+                            <span class="calendar-day">23</span>
+                            <span class="calendar-day">24</span>
+                            <span class="calendar-day">25</span>
+                            <span class="calendar-day">26</span>
+                            <span class="calendar-day">27</span>
+                            <span class="calendar-day">28</span>
+
+                            <span class="calendar-day">29</span>
+                            <span class="calendar-day">30</span>
+                            <span class="calendar-day calendar-day-empty"></span>
+                            <span class="calendar-day calendar-day-empty"></span>
+                            <span class="calendar-day calendar-day-empty"></span>
+                            <span class="calendar-day calendar-day-empty"></span>
+                            <span class="calendar-day calendar-day-empty"></span>
+                        </div>
+                    </div>
+
+                    <div class="calendar-actions">
+                        <a href="#" class="calendar-button" id="calendarButton" target="_blank" rel="nooponer_noreferrer">
+                            Agregar a Google Calendar
+                        </a>
+                        <p class="calendar-note">
+                            Este botón abrirá Google Calendar en una nueva pestala.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ventana emergente (Modal): Sí asistirá -->
+            <div class="rsvp-modal" id="attendingModal" aria-hidden="true">
+                <div class="rsvp-modal-card" role="dialog" aria-modal="true" aria-labelledby="attendingModalTitle">
+                    <button class="rsvp-modal-close" type="button" data-close-modal aria-label="Cerrar formulario">
+                        ×
+                    </button>
+
+                    <div class="rsvp-modal-heading">
+                        <p class="section-label">Confirmación de asistencia</p>
+                        <h2 id="attendingModalTitle">Nos alegra que nos acompañes</h2>
+                        <p>
+                            Completa tus datos para registrar tu asistencia.
+                        </p>
+                    </div>
+
+                    <form class="rsvp-form" id="attendingForm">
+                        <input type="hidden" name="attendanceStatus" value="ATTENDING">
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="attendingFirstName">Nombre</label>
+                                <input type="text" id="attendingFirstName" name="mainFirstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="attendingLastName">Apellidos</label>
+                                <input type="text" id="attendingLastName" name="mainLastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="attendingPhone">Teléfono</label>
+                                <input type="tel" id="attendingPhone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="attendingEmail">Correo electrónico</label>
+                                <input type="email" id="attendingEmail" name="email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="attendingGuestSide">¿De parte de quién fuiste invitado?</label>
+                                <select id="attendingGuestSide" name="guestSide" required>
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="NOVIO">De parte del novio</option>
+                                    <option value="NOVIA">De parte de la novia</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="attendingFromCity">¿Vienes de Huatulco?</label>
+                                <select id="attendingFromCity" name="fromCity">
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="true">Sí</option>
+                                    <option value="false">No, vengo de fuera</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-section" id="companionsSection">
+                            <h3>Acompañantes</h3>
+                            <div class="companions-actions">
+                                <button type="button" id="addAdultButton">
+                                    Agregar adulto
+                                </button>
+                                <button type="button" id="addChildButton">
+                                    Agregar niño
+                                </button>
+                            </div>
+
+                            <div class="companions-list" id="companionsList">
+                                <!-- JS agregará los acompañantes -->
+                            </div>
+
+                            <div class="guest-total">
+                                <p>Total de invitados: <span id="guestTotal">1</span></p>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Mensaje para los novios</h3>
+                            <div class="form-group">
+                                <textarea id="attendingMessage" name="message" rows="4"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-submit">
+                            <button type="submit">
+                                Enviar confirmación
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Ventana emergente: No podré asistir -->
+            <div class="rsvp-modal" id="notAttendingModal" aria-hidden="true">
+                <div class="rsvp-modal-card" role="dialog" aria-modal="true" aria-labelledby="notAttendingModalTitle">
+                    <button class="rsvp-modal-close" type="button" data-close-modal aria-label="Cerrar formulario">
+                        ×
+                    </button>
+
+                    <div class="rsvp-modal-heading">
+                        <p class="section-label">Respuesta a la invitación</p>
+                        <h2 id="notAttendingModalTitle">Gracias por avisarnos</h2>
+                        <p>
+                            Puedes dejarnos tus datos y un mensaje para los novios.
+                        </p>
+                    </div>
+
+                    <form class="rsvp-form" id="notAttendingForm">
+                        <input type="hidden" name="attendanceStatus" value="NOT_ATTENDING">
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="notAttendingFirstName">Nombre(s)</label>
+                                <input type="text" id="notAttendingFirstName" name="mainFirstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="notAttendingLastName">Appelido(s)</label>
+                                <input type="text" id="notAttendingLastName" name="mainLastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="notAttendingPhone">Teléfono</label>
+                                <input type="tel" id="notAttendingPhone" name="mainPhone" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="notAttendingGuestSide">¿De parte de quién fuiste invitado?</label>
+                                <select id="notAttendingGuestSide" name="guestSide" required>
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="NOVIO">De parte del novio</option>
+                                    <option value="NOVIA">DE parte de la novia</option>
+                                </select>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Mensaje para los novios</h3>
+                                <div class="form-group">
+                                    <textarea id="notAttendingMessage" name="message" rows="4"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-submit">
+                                <button type="submit">
+                                    Enviar respuesta
+                                </button>
+                            </div>
+                    </form>
+                </div>
+            </div>
         </section>
     </main>
 

@@ -1,0 +1,104 @@
+.rsvp-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(20px, 4vw, 48px);
+    background: rgba(10, 18, 28, 0.72);
+    backdrop-filter: blur(14px);
+}
+
+.rsvp-modal.active {
+    display: flex;
+}
+
+.rsvp-modal-card {
+    position: relative;
+    width: min(100%, 860px);
+    max-height: 88vh;
+    padding: clamp(32px, 5vw, 52px);
+    overflow-y: auto;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 253, 248, 0.97),
+            rgba(247, 241, 234, 0.96)
+        );
+    border: 1px solid rgba(199, 164, 93, 0.34);
+    box-shadow: var(--shadow-elegant);
+}
+
+.rsvp-modal-card::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(199, 164, 93, 0.2);
+    pointer-events: none;
+}
+
+.rsvp-modal-close {
+    position: sticky;
+    top: 0;
+    margin-left: auto;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(199, 164, 93, 0.32);
+    border-radius: 50%;
+    background: rgba(255, 253, 248, 0.88);
+    color: var(--color-deep-blue);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 4;
+    transition: var(--transition-soft);
+}
+
+.rsvp-modal-close:hover {
+    background: var(--color-deep-blue);
+    color: var(--color-white);
+}
+
+.rsvp-modal-heading {
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+    margin: -12px auto 34px;
+    text-align: center;
+}
+
+.rsvp-modal-heading .section-label {
+    margin-bottom: 16px;
+    color: var(--color-gold);
+}
+
+.rsvp-modal-heading h2 {
+    font-family: var(--font-title);
+    font-size: clamp(2.3rem, 5vw, 4.2rem);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-deep-blue);
+}
+
+.rsvp-modal-heading p {
+    max-width: 520px;
+    margin: 22px auto 0;
+    line-height: 1.8;
+    color: var(--color-text-soft);
+}
+
+.rsvp-modal .form-section,
+.rsvp-modal .form-row,
+.rsvp-modal .form-group,
+.rsvp-modal .form-submit {
+    position: relative;
+    z-index: 1;
+}
+
+body.rsvp-modal-open {
+    overflow: hidden;
+}

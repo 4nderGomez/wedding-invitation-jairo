@@ -229,3 +229,16 @@
     font-size: 0.92rem;
     color: var(--color-text-soft);
 }
+
+.form-group input.is-invalid,
+.form-group select.is-invalid,
+.form-group textarea.is-invalid {
+    border-color: rgba(160, 64, 64, 0.72);
+    box-shadow: 0 0 0 4px rgba(160, 64, 64, 0.1);
+}
+
+.field-error {
+    margin-top: 8px;
+    font-size: 0.78rem;
+    color: rgba(160, 64, 64, 0.92);
+}

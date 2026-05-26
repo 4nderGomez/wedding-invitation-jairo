@@ -1,4 +1,4 @@
-export class ComapnionManager {
+export class CompanionManager {
     constructor() {
         this.addAdultButton = document.getElementById("addAdultButton");
         this.addChildButton = document.getElementById("addChildButton");

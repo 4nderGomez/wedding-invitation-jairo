@@ -2,12 +2,12 @@ export class RsvpValidator {
     validateForm(form) {
         if(!form) return false;
 
-        const requiredFields = form.querySelectorAll("[required>]");
+        const requiredFields = form.querySelectorAll("[required]");
         let isValid = true;
 
         requiredFields.forEach((field) => {
             if(!field.value.trim()) {
-                this.markFiledAsInvalid(field);
+                this.markFieldAsInvalid(field);
                 isValid = false;
             } else
                 this.clearFieldError(field);

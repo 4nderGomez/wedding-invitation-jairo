@@ -14,7 +14,7 @@ export class RsvpForm {
     init(){
         if(!this.choiceForm || !this.openModalButton || !this.rsvpModal) return;
 
-        this.openModalButton-addEventListener("click", () => {
+        this.openModalButton.addEventListener("click", () => {
             const selectedStatus = this.getSelectedAttendanceStatus();
 
             if(selectedStatus === "ATTENDING") {
@@ -23,7 +23,7 @@ export class RsvpForm {
             }
 
             if(selectedStatus === "NOT_ATTENDING")
-                this.rsvpModal.openAttendingModal();
+                this.rsvpModal.openNotAttendingModal();
         });
     }
 

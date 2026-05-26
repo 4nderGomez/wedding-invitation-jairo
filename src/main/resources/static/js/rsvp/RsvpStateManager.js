@@ -54,7 +54,7 @@ export class RsvpStateManager {
             this.resultTitle.textContent = title;
 
         if(this.resultMessage)
-            this.resultMessage = message;
+            this.resultMessage.textContent = message;
 
         if(this.weddingDay){
             this.weddingDay.classList.remove("is-confirmed", "is-declined");

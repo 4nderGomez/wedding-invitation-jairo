@@ -5,7 +5,7 @@ import {RsvpModal} from "./rsvp/RsvpModal.js"
 import {RsvpStateManager} from "./rsvp/RsvpStateManager.js";
 import {RsvpValidator} from "./rsvp/RsvpValidator.js";
 import {RsvpForm} from "./rsvp/RsvpForm.js";
-import {ComapnionManager} from "./rsvp/CompanionManager.js";
+import {CompanionManager} from "./rsvp/CompanionManager.js";
 import {WeddingCalendar} from "./rsvp/WeddingCalendar.js";
 
 
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const rsvpStateManager = new RsvpStateManager();
     const rsvpValidator = new RsvpValidator();
     const rsvpForm = new RsvpForm(rsvpModal, rsvpStateManager, rsvpValidator);
-    const companionManager = new ComapnionManager();
+    const companionManager = new CompanionManager();
     const weddingCalendar = new WeddingCalendar();
 
     countdownTimer.init();

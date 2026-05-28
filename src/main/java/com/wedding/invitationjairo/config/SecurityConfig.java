@@ -14,7 +14,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests(auth -> auth 
+            .csrf(csrf -> csrf
+                .ignoringRequestMatchers("/api/guests/**")
+            )
+            .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
                     "/",
                     "/i/**",
@@ -23,7 +26,7 @@ public class SecurityConfig {
                     "/js/**",
                     "/images/**",
                     "/audio/**",
-                    "/favico.ico"
+                    "/favicon.ico"
                 ).permitAll()
                 .requestMatchers("/admin/**").authenticated()
                 .anyRequest().permitAll()

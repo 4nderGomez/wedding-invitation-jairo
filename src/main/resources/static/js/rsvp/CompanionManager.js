@@ -2,8 +2,8 @@ export class CompanionManager {
     constructor() {
         this.addAdultButton = document.getElementById("addAdultButton");
         this.addChildButton = document.getElementById("addChildButton");
-        this.companionsList = document.getElementById("companionList");
-        this.guestTotal = document.getElementById("companionsList");
+        this.companionsList = document.getElementById("companionsList");
+        this.guestTotal = document.getElementById("guestTotal");
 
         this.companionIndex = 0;
     }
@@ -16,7 +16,7 @@ export class CompanionManager {
         });
 
         this.addChildButton?.addEventListener("click", () => {
-                this.companionIndex("CHILD", "Niño");
+                this.addCompanion("CHILD", "Niño");
         });
 
         this.updateGuestTotal();
@@ -28,35 +28,56 @@ export class CompanionManager {
         companionCard.dataset.ageGroup = ageGroup;
 
         companionCard.innerHTML = `
-            <div class="companion-card-heading">
-                <h4>Acompañante ${label}</h4>
-                <button type="button" class="remove-companion-button" aria-label="Eliminar acompañante">
+            <div class="companion-type-indicator"></div>
+
+            <div class="companion-card-content">
+
+                <button
+                    type="button"
+                    class="remove-companion-button"
+                    aria-label="Eliminar acompañante">
                     ×
                 </button>
-            </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Nombre</label>
-                    <input
-                        type="text"
-                        name="companions[${this.companionIndex}].firstName"
-                        required>
+                <div class="companion-card-heading">
+                    <span>
+                        ${ageGroup === "ADULT"
+                            ? "Invitado adicional"
+                            : "Pequeño invitado"}
+                    </span>
+
+                    <h4>
+                        ${ageGroup === "ADULT"
+                            ? "Acompañante adulto"
+                            : "Acompañante infantil"}
+                    </h4>
                 </div>
 
-                <div class="form-group">
-                    <label>Apellidos</label>
-                    <input
-                        type="text"
-                        name="companions[${this.companionIndex}].lastName"
-                        required>
-                </div>
-            </div>
+                <div class="form-row compact-row">
+                    <div class="form-group">
+                        <label>Nombre</label>
 
-            <input
-                type="hidden"
-                name="companions[${this.companionIndex}].ageGroup"
-                value="${ageGroup}">
+                        <input
+                            type="text"
+                            name="companions[${this.companionIndex}].firstName"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Apellidos</label>
+
+                        <input
+                            type="text"
+                            name="companions[${this.companionIndex}].lastName"
+                            required>
+                    </div>
+                </div>
+
+                <input
+                    type="hidden"
+                    name="companions[${this.companionIndex}].ageGroup"
+                    value="${ageGroup}">
+            </div>
         `;
 
         const removeButton = companionCard.querySelector(".remove-companion-button");
@@ -75,7 +96,7 @@ export class CompanionManager {
     updateGuestTotal() {
         if(!this.guestTotal) return;
 
-        const comapanionsCount = this.companionsList.querySelector(".companion-card").length;
+        const comapanionsCount = this.companionsList.querySelectorAll(".companion-card").length;
         const mainGuest = 1;
 
         this.guestTotal.textContent = mainGuest + comapanionsCount;

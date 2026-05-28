@@ -37,31 +37,31 @@ public class GuestService {
     @Transactional
     public GuestGroup confirmGuestAttendance(GuestConfirmationRequest request) {
         validateRegistrationIsEnabled();
+        validateRequiredRequestData(request);
 
-        InvitationLink invitationLink = invitationLinkService.getActiveLinkByCode(request.getInvitationCode());
+        InvitationLink invitationLink = invitationLinkService.getActiveLinkByCode(cleanText(request.getInvitationCode()));
 
         GuestGroup guestGroup = new GuestGroup();
+
         guestGroup.setInvitationLink(invitationLink);
-        guestGroup.setMainFirstName(request.getMainFirstName());
-        guestGroup.setMainLastName(request.getMainLastName());
+        guestGroup.setMainFirstName(cleanText(request.getMainFirstName()));
+        guestGroup.setMainLastName(cleanText(request.getMainLastName()));
         guestGroup.setGuestSide(request.getGuestSide());
         guestGroup.setAttendanceStatus(request.getAttendanceStatus());
-        guestGroup.setPhone(request.getPhone());
-        guestGroup.setEmail(request.getEmail());
-        guestGroup.setMessage(request.getMessage());
+        guestGroup.setPhone(cleanText(request.getPhone()));
+        guestGroup.setMessage(cleanText(request.getMessage()));
 
         if (request.getAttendanceStatus() == AttendanceStatus.ATTENDING) {
+            guestGroup.setEmail(cleanText(request.getEmail()));
             guestGroup.setCompanions(buildCompanions(request.getCompanions(), guestGroup));
         } else {
+            guestGroup.setEmail(null);
             guestGroup.setCompanions(new ArrayList<>());
         }
 
         GuestGroup savedGuestGroup = guestGroupRepository.save(guestGroup);
 
-        if(savedGuestGroup.getAttendanceStatus() == AttendanceStatus.ATTENDING
-            && savedGuestGroup.getEmail() != null
-            && !savedGuestGroup.getEmail().isBlank()) 
-            emailService.sendConfirmationEmail(savedGuestGroup);
+        sendConfirmationEmailIfNeeded(savedGuestGroup);
 
         return savedGuestGroup;
     }
@@ -71,6 +71,45 @@ public class GuestService {
 
         if (!registrationEnabled) {
             throw new IllegalStateException("El registro de invitados está cerrado");
+        }
+    }
+
+    private void validateRequiredRequestData(GuestConfirmationRequest request) {
+        if(request == null)
+            throw new IllegalArgumentException("La solicitud de confirmación no puede estar vacía");
+
+        if(isBlank(request.getInvitationCode()))
+            throw new IllegalArgumentException("El código de invitación es obligatorio");
+
+        if(request.getAttendanceStatus() == null)
+            throw new IllegalArgumentException("El estado de asistencia es obligatorio");
+
+        if(isBlank(request.getMainFirstName()))
+            throw new IllegalArgumentException(("El nombre del invitado principal es obligatorio"));
+
+        if(isBlank(request.getMainLastName()))
+            throw new IllegalArgumentException(("Los apellidos del invitado principal son obligatorios"));
+
+        if(request.getGuestSide() == null)
+            throw new IllegalArgumentException("Debes indicar de parte de quién viene el invitado");
+
+        if(request.getAttendanceStatus() == AttendanceStatus.ATTENDING && request.getCompanions() != null)
+            validateCompanions(request.getCompanions());
+    }
+
+    private void validateCompanions(List<GuestCompanionRequest> companions){
+        for(GuestCompanionRequest companion : companions) {
+            if(companion == null)
+                throw new IllegalArgumentException("Hay un compañero vacío");
+
+            if(isBlank(companion.getFirstName()))
+                throw new IllegalArgumentException("El nombre del acompañante es obligatorio");
+
+            if(isBlank(companion.getLastName()))
+                throw new IllegalArgumentException("Los apellidos del acompañante son obligatorios");
+
+            if(companion.getAgeGroup() == null)
+                throw new IllegalArgumentException("La edad del acompañante es obligatoria");
         }
     }
 
@@ -87,8 +126,8 @@ public class GuestService {
         for (GuestCompanionRequest companionRequest : companionRequests) {
             GuestCompanion companion = new GuestCompanion();
             companion.setGuestGroup(guestGroup);
-            companion.setFirstName(companionRequest.getFirstName());
-            companion.setLastName(companionRequest.getLastName());
+            companion.setFirstName(cleanText(companionRequest.getFirstName()));
+            companion.setLastName(cleanText(companionRequest.getLastName()));
             companion.setAgeGroup(companionRequest.getAgeGroup());
             companion.setGuestType(GuestType.COMPANION);
 
@@ -96,5 +135,28 @@ public class GuestService {
         }
 
         return companions;
+    }
+
+    private void sendConfirmationEmailIfNeeded(GuestGroup savedGuestGroup) {
+        if(savedGuestGroup.getAttendanceStatus() != AttendanceStatus.ATTENDING)
+            return;
+
+        if(isBlank(savedGuestGroup.getEmail()))
+            return;
+
+        emailService.sendConfirmationEmail(savedGuestGroup);
+    }
+
+    private String cleanText(String value) {
+        if(value == null)
+            return null;
+
+        String cleanedValue = value.trim();
+        
+        return cleanedValue.isEmpty() ? null : cleanedValue;
+    }
+
+    private boolean isBlank(String value){
+        return value == null || value.trim().isEmpty();
     }
 }

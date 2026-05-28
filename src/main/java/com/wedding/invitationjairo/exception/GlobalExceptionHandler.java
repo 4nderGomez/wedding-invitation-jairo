@@ -37,4 +37,18 @@ public class GlobalExceptionHandler {
             .status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(ApiResponse.error("Ocurrio un error inesperado"));
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ApiResponse> handleIllegalArgumentException(IllegalArgumentException exception) {
+        return ResponseEntity
+            .badRequest()
+            .body(ApiResponse.error(exception.getMessage()));
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<ApiResponse> handleIllegalStateException(IllegalStateException exception) {
+        return ResponseEntity
+            .status(HttpStatus.CONFLICT)
+            .body(ApiResponse.error(exception.getMessage()));
+    }
 }

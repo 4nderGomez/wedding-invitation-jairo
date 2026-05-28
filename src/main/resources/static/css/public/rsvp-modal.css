@@ -39,7 +39,10 @@
 }
 
 .rsvp-modal-close {
-    position: sticky;
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    z-index: 5;
     top: 0;
     margin-left: auto;
     width: 44px;

@@ -1,12 +1,13 @@
 //import { MusicPlayer } from "./public/MusicPlayer.js";
 import { CountdownTimer } from "./public/CountdownTimer.js";
 import { GalleryCarousel } from "./public/GalleryCarousel.js";
-import {RsvpModal} from "./rsvp/RsvpModal.js"
-import {RsvpStateManager} from "./rsvp/RsvpStateManager.js";
-import {RsvpValidator} from "./rsvp/RsvpValidator.js";
-import {RsvpForm} from "./rsvp/RsvpForm.js";
-import {CompanionManager} from "./rsvp/CompanionManager.js";
-import {WeddingCalendar} from "./rsvp/WeddingCalendar.js";
+import { RsvpModal } from "./rsvp/RsvpModal.js"
+import { RsvpStateManager} from "./rsvp/RsvpStateManager.js";
+import { RsvpValidator } from "./rsvp/RsvpValidator.js";
+import { RsvpApi } from "./rsvp/RsvpApi.js";
+import { RsvpForm } from "./rsvp/RsvpForm.js";
+import { CompanionManager } from "./rsvp/CompanionManager.js";
+import { WeddingCalendar } from "./rsvp/WeddingCalendar.js";
 
 
 /*const musicPlayer = new MusicPlayer();
@@ -19,7 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const rsvpModal = new RsvpModal();
     const rsvpStateManager = new RsvpStateManager();
     const rsvpValidator = new RsvpValidator();
-    const rsvpForm = new RsvpForm(rsvpModal, rsvpStateManager, rsvpValidator);
+    const rsvpApi = new RsvpApi();
+    const rsvpForm = new RsvpForm(
+        rsvpModal,
+        rsvpStateManager,
+        rsvpValidator,
+        rsvpApi
+    );
     const companionManager = new CompanionManager();
     const weddingCalendar = new WeddingCalendar();
 

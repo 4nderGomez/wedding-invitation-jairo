@@ -40,6 +40,7 @@ export class RsvpModal {
         if(!modal) return;
 
         this.activeModal = modal;
+        this.previousFocusedElement = document.activeElement;
 
         modal.classList.add("active");
         modal.setAttribute("aria-hidden", "false");
@@ -50,10 +51,15 @@ export class RsvpModal {
     closeActiveModal() {
         if(!this.activeModal) return;
 
+        if(this.activeModal.contains(document.activeElement))
+            document.activeElement.blur();
+
         this.activeModal.classList.remove("active");
         this.activeModal.setAttribute("aria-hidden", "true");
 
         document.body.classList.remove("rsvp-modal-open");
+
+        this.previousFocusedElement?.focus()
 
         this.activeModal = null;
     }

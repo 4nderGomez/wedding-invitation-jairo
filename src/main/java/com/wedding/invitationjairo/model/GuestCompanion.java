@@ -3,6 +3,8 @@ package com.wedding.invitationjairo.model;
 import com.wedding.invitationjairo.enums.AgeGroup;
 import com.wedding.invitationjairo.enums.GuestType;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -27,10 +29,12 @@ public class GuestCompanion {
     private String lastName;
 
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "age_group", nullable = false)
     private AgeGroup ageGroup;
 
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "guest_type", nullable = false)
     private GuestType guestType = GuestType.COMPANION;
 

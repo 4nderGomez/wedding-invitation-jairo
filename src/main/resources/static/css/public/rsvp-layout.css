@@ -1,6 +1,6 @@
 .rsvp-calendar-section {
     position: relative;
-    padding: clamp(78px, 8vw, 112px) clamp(18px, 3vw, 42px);
+    padding: clamp(64px, 7vw, 92px) clamp(18px, 3vw, 42px);
     background:
         linear-gradient(
             135deg,
@@ -39,23 +39,31 @@
 .rsvp-calendar-container {
     position: relative;
     z-index: 1;
-    max-width: 1420px;
+    max-width: 1320px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(520px, 0.92fr) minmax(620px, 1.08fr);
-    gap: clamp(22px, 2.8vw, 38px);
+    grid-template-columns: repeat(2, minmax(520px, 1fr));
+    gap: clamp(24px, 3vw, 40px);
     align-items: stretch;
 }
 
 .rsvp-panel,
 .wedding-calendar-panel {
     position: relative;
+    width: 100%;
     min-height: 100%;
 }
 
 .rsvp-panel {
     display: flex;
-    align-items: center;
+    align-items: stretch;
+}
+
+.rsvp-intro,
+.rsvp-result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .rsvp-intro,
@@ -65,9 +73,10 @@
 }
 
 .rsvp-intro,
-.wedding-result {
+.rsvp-result {
+    width: 100%;
     position: relative;
-    padding: clamp(28px, 3vw, 42px);
+    padding: clamp(28px, 3vw, 38px);
     background: rgba(255, 253, 248, 0.82);
     border: 1px solid rgba(199, 164, 93, 0.22);
     box-shadow: var(--shadow-card);
@@ -79,10 +88,10 @@
 }
 
 .rsvp-intro::before,
-.resvp-result::before {
+.rsvp-result::before {
     content: "";
     position: absolute;
-    inset: 14px;
+    inset: 12px;
     border: 1px solid rgba(199, 164, 93, 0.18);
     pointer-events: none;
 }
@@ -95,7 +104,7 @@
             rgba(22, 36, 49, 0.94),
             rgba(36, 52, 64, 0.9)
         );
-    border: 1px solid rgba(199, 164, 93, o.3);
+    border: 1px solid rgba(199, 164, 93, 0.3);
     box-shadow: var(--shadow-card);
     color: var(--color-ivory);
     overflow: hidden;
@@ -107,4 +116,16 @@
     inset: 10px;
     border: 1px solid rgba(255, 253, 248, 0.16);
     pointer-events: none;
+}
+
+.rsvp-intro,
+.rsvp-result {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.rsvp-choice-form {
+    width: 100%;
 }

@@ -1,30 +1,30 @@
 .gallery-section {
     position: relative;
-    padding: clamp(84px, 11vw, 136px) clamp(20px, 5vw, 72px);
+    padding: clamp(54px, 7vw, 86px) clamp(20px, 4vw, 56px);
     background: var(--color-ivory);
     color: var(--color-text-main);
     overflow: hidden;
 }
 
 .gallery-container {
-    max-width: 1180px;
+    max-width: 1320px;
     margin: 0 auto;
 }
 
 .gallery-heading {
-    max-width: 760px;
-    margin: 0 auto 58px;
+    max-width: 700px;
+    margin: 0 auto 38px;
     text-align: center;
 }
 
 .gallery-heading .section-label {
-    margin-bottom: 18px;
+    margin-bottom: 12px;
     color: var(--color-gold);
 }
 
 .gallery-heading h2 {
     font-family: var(--font-tile);
-    font-size:  clamp(2.8rem, 6bw, 5rem);
+    font-size:  clamp(2.4rem, 4.8vw, 4.2rem);
     font-weight: 600;
     line-height: 1;
     color: var(--color-deep-blue);
@@ -32,9 +32,9 @@
 
 .gallery-heading p {
     max-width: 620px;
-    margin: 26px auto 0;
-    font-size: clamp(0.96rem, 1.4vw, 1.08rem);
-    line-height: 1.9;
+    margin: 18px auto 0;
+    font-size: clamp(0.96rem, 1.2vw, 1.04rem);
+    line-height: 1.75;
     color: var(--color-text-soft);
 }
 
@@ -42,25 +42,25 @@
     position: relative;
     display: flex;
     align-items: center;
-    gap: clamp(14px, 2vw, 24px);
+    gap: 16px;
 }
 
 .gallery-track-wrapper {
     width: 100%;
     overflow: hidden;
-    padding: 18px 4px;
+    padding: 14px 4px;
 }
 
 .gallery-track {
     display: flex;
-    gap: clamp(18px, 2.5vw, 28px);
+    gap: 20px;
     transition: transform 0.7s ease;
 }
 
 .gallery-slide {
     position: relative;
-    flex: 0 0 calc((100% - 56px) / 3);
-    height: clamp(360px, 48vw, 520px);
+    flex: 0 0 calc((100% - 60px) / 4);
+    height: clamp(390px, 34vw, 520px);
     margin: 0;
     overflow: hidden;
     background: var(--color-cream);
@@ -88,24 +88,24 @@
 }
 
 .gallery-slide:hover {
-    transform: scale(1.04);
+    transform: scale(1.25);
     z-index: 4;
     box-shadow: var(--shadow-elegant);
 }
 
 .gallery-slide:hover img {
-    transform: scale(1.045);
+    transform: scale(1.035);
 }
 
 .gallery-arrow {
     flex: 0 0 auto;
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
     border: 1px solid rgba(199, 164, 93, 0.42);
     border-radius: 50%;
     background: var(--color-card-glass);
     color: var(--color-deep-blue);
-    font-size: 2.2rem;
+    font-size: 2rem;
     line-height: 1;
     cursor: pointer;
     backdrop-filter: blur(12px);

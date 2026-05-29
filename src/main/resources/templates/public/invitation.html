@@ -568,6 +568,7 @@
                             </div>
                         </div>
 
+                        <div class="rsvp-form-feedback" data-rsvp-feedback hidden></div>
                         <div class="form-submit">
                             <button type="submit">
                                 Enviar confirmación
@@ -606,7 +607,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="notAttendingPhone">Teléfono</label>
-                                <input type="tel" id="notAttendingPhone" name="mainPhone" required>
+                                <input type="tel" id="notAttendingPhone" name="phone" required>
                             </div>
 
                             <div class="form-group">
@@ -617,18 +618,19 @@
                                     <option value="NOVIA">DE parte de la novia</option>
                                 </select>
                             </div>
+                        </div>
 
-                            <div class="form-section">
+                            <div class="form-section form-section-message">
                                 <h3>Mensaje para los novios</h3>
                                 <div class="form-group">
-                                    <textarea id="notAttendingMessage" name="message" rows="4"></textarea>
+                                    <textarea id="notAttendingMessage" name="message" rows="1"></textarea>
                                 </div>
-                            </div>
-
-                            <div class="form-submit">
-                                <button type="submit">
-                                    Enviar respuesta
-                                </button>
+                            
+                                <div class="form-submit">
+                                    <button type="submit">
+                                        Enviar respuesta
+                                    </button>
+                                </div>
                             </div>
                     </form>
                 </div>

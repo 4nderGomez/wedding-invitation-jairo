@@ -50,6 +50,8 @@ export class RsvpForm {
     }
 
     async submitAttendingForm() {
+        this.clearFormFeedback(this.attendingForm);
+
         if(!this.rsvpValidator.validateForm(this.attendingForm)) return;
 
         const rsvpData = this.buildAttendingPayload();
@@ -63,11 +65,13 @@ export class RsvpForm {
             this.rsvpStateManager.showAttendingResult();
         } catch (error) {
             console.error(error.message);
-            alert(error.message);
+            this.showFormError(this.attendingForm, error.message);
         }
     }
 
     async submitNotAttendingForm() {
+        this.clearFormFeedback(this.attendingForm);
+        
         if(!this.rsvpValidator.validateForm(this.notAttendingForm)) return;
 
         const rsvpData = this.buildNotAttendingPayload();
@@ -81,7 +85,7 @@ export class RsvpForm {
             this.rsvpStateManager.showNotAttendingResult();
         } catch (error) {
             console.error(error.message);
-            alert(error.message);
+            this.showFormError(this.notAttendingForm, error.message);
         }
     }
 
@@ -144,5 +148,26 @@ export class RsvpForm {
             return null;
 
         return input.value === "true";
+    }
+
+    showFormError(form, message) {
+        const feedback = form.querySelector("[data-rsvp-feedback]");
+
+        if(!feedback) return;
+
+        feedback.hidden = false;
+        feedback.classList.remove("is-success");
+        feedback.classList.add("is-error");
+        feedback.textContent = message;
+    }
+
+    clearFormFeedback(form) {
+        const feedback = form.querySelector("[data-rsvp-feedback]");
+
+        if(!feedback) return;
+
+        feedback.hidden = true;
+        feedback.classList.remove("is-success", "is-error");
+        feedback.textContent = "";
     }
 }

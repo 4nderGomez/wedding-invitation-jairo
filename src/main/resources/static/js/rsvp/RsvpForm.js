@@ -64,6 +64,8 @@ export class RsvpForm {
         const rsvpData = this.buildAttendingPayload();
 
         try {
+            this.setSubmitLoading(this.attendingForm, true, "Enviando...");
+
             await this.rsvpApi.submitRsvp(rsvpData);
 
             this.rsvpModal.closeActiveModal();
@@ -72,6 +74,8 @@ export class RsvpForm {
         } catch (error) {
             console.error(error.message);
             this.showFormError(this.attendingForm, error.message);
+        } finally {
+            this.setSubmitLoading(this.attendingForm, false);
         }
     }
 
@@ -89,6 +93,8 @@ export class RsvpForm {
         const rsvpData = this.buildNotAttendingPayload();
 
         try {
+            this.setSubmitLoading(this.notAttendingForm, true, "Enviando...");
+
             await this.rsvpApi.submitRsvp(rsvpData);
 
             this.rsvpModal.closeActiveModal();
@@ -97,6 +103,8 @@ export class RsvpForm {
         } catch (error) {
             console.error(error.message);
             this.showFormError(this.notAttendingForm, error.message);
+        } finally {
+            this.setSubmitLoading(this.notAttendingForm, false);
         }
     }
 
@@ -181,4 +189,22 @@ export class RsvpForm {
         feedback.classList.remove("is-success", "is-error");
         feedback.textContent = "";
     }
+
+    setSubmitLoading(form, isLoading, loadingText = "Enviando...") {
+    const button = form.querySelector('button[type="submit"]');
+
+    if (!button) return;
+
+    if (isLoading) {
+        button.dataset.originalText = button.textContent.trim();
+        button.textContent = loadingText;
+        button.disabled = true;
+        button.classList.add("is-loading");
+        return;
+    }
+
+    button.textContent = button.dataset.originalText || "Enviar";
+    button.disabled = false;
+    button.classList.remove("is-loading");
+}
 }

@@ -1,0 +1,351 @@
+/* =========================================================
+   RESPONSIVE FINAL
+   ========================================================= */
+
+/* Pantallas grandes */
+@media (min-width: 1440px) {
+    .hero-content,
+    .family-container,
+    .gallery-container,
+    .rsvp-calendar-container {
+        max-width: 1380px;
+    }
+
+    .gallery-slide {
+        height: 560px;
+    }
+}
+
+/* Laptops y tablets grandes */
+@media (max-width: 1180px) {
+    .site-nav {
+        max-width: calc(100% - 36px);
+        padding: 14px 22px;
+        gap: 10px;
+    }
+
+    .site-nav a {
+        padding: 0 12px;
+        font-size: 0.66rem;
+    }
+
+    .hero-content {
+        grid-template-columns: 180px 1fr 180px;
+        gap: 34px;
+    }
+
+    .couple-card,
+    .couple-card:last-child {
+        grid-template-columns: 120px 1fr;
+    }
+
+    .couple-card:last-child .couple-photo {
+        order: 0;
+    }
+
+    .couple-card:last-child .couple-info {
+        text-align: left;
+    }
+
+    .rsvp-calendar-container {
+        grid-template-columns: 1fr;
+        max-width: 780px;
+    }
+
+    .wedding-calendar-panel,
+    .rsvp-intro,
+    .rsvp-result {
+        min-height: auto;
+    }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+    .site-nav {
+        position: static;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0 16px;
+        border-radius: 0;
+    }
+
+    .site-brand {
+        order: -1;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 6px;
+    }
+
+    .hero {
+        min-height: auto;
+        padding-top: 54px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        max-width: 680px;
+    }
+
+    .hero-photo {
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .hero-photo-left {
+        order: 2;
+    }
+
+    .hero-center {
+        order: 1;
+    }
+
+    .hero-photo-right {
+        display: none;
+    }
+
+    .couple-showcase {
+        grid-template-columns: 1fr;
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .couple-card,
+    .couple-card:last-child {
+        grid-template-columns: 120px 1fr;
+    }
+
+    .ampersand {
+        text-align: center;
+    }
+
+    .family-grid,
+    .location-grid,
+    .timeline {
+        grid-template-columns: 1fr;
+    }
+
+    .family-card-featured {
+        transform: none;
+    }
+
+    .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-slide {
+        flex-basis: calc((100% - 20px) / 2);
+        height: clamp(340px, 58vw, 460px);
+    }
+
+    .gallery-arrow {
+        width: 38px;
+        height: 38px;
+    }
+
+    .guest-photos-layout {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .rsvp-modal-card {
+        width: min(100%, 720px);
+    }
+}
+
+/* Teléfonos grandes */
+@media (max-width: 640px) {
+    .welcome-content {
+        padding: 24px 18px;
+    }
+
+    .welcome-logo-button img {
+        width: 140px;
+    }
+
+    .site-nav {
+        display: none;
+    }
+
+    .hero,
+    .family-section,
+    .countdown-section,
+    .locations-section,
+    .schedule-section,
+    .gallery-section,
+    .guest-photos-section,
+    .rsvp-calendar-section,
+    .footer-section {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .hero-center h1 {
+        font-size: clamp(3.4rem, 18vw, 5.2rem);
+    }
+
+    .hero-button,
+    .calendar-button,
+    .guest-photos-button,
+    .rsvp-continue-button,
+    .form-submit button {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .couple-card,
+    .couple-card:last-child {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .couple-card:last-child .couple-info {
+        text-align: center;
+    }
+
+    .couple-photo {
+        max-width: 190px;
+        margin: 0 auto;
+    }
+
+    .family-card-content {
+        padding: 20px 18px;
+    }
+
+    .countdown-grid {
+        gap: 12px;
+    }
+
+    .countdown-item {
+        padding: 22px 12px;
+    }
+
+    .timeline-item {
+        padding: 30px 22px;
+    }
+
+    .gallery-carousel {
+        gap: 8px;
+    }
+
+    .gallery-track {
+        gap: 14px;
+    }
+
+    .gallery-slide {
+        flex-basis: 100%;
+        height: clamp(390px, 115vw, 520px);
+    }
+
+    .gallery-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        background: rgba(255, 253, 248, 0.82);
+    }
+
+    .gallery-arrow-left {
+        left: 8px;
+    }
+
+    .gallery-arrow-right {
+        right: 8px;
+    }
+
+    .rsvp-intro,
+    .rsvp-result,
+    .wedding-calendar-panel {
+        padding: 28px 20px;
+    }
+
+    .calendar-weekdays,
+    .calendar-days {
+        gap: 6px;
+    }
+
+    .calendar-day {
+        min-height: 34px;
+        font-size: 0.78rem;
+    }
+
+    .rsvp-modal {
+        padding: 14px;
+    }
+
+    .rsvp-modal-card {
+        max-height: 92vh;
+        padding: 30px 20px;
+    }
+
+    .rsvp-modal-close {
+        top: 10px;
+        right: 10px;
+    }
+
+    .companions-actions {
+        flex-direction: column;
+    }
+
+    .companions-actions button {
+        width: 100%;
+    }
+
+    .rsvp-confirm-actions {
+        flex-direction: column;
+    }
+
+    .rsvp-confirm-actions button {
+        width: 100%;
+    }
+
+    .music-button {
+        right: 18px;
+        bottom: 18px;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 420px) {
+    .section-label,
+    .welcome-label {
+        letter-spacing: 0.24em;
+    }
+
+    .hero-message,
+    .gallery-heading p,
+    .guest-photos-content > p,
+    .footer-message {
+        font-size: 0.92rem;
+    }
+
+    .countdown-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .countdown-item span {
+        font-size: 2.2rem;
+    }
+
+    .location-content,
+    .family-card-content {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .gallery-slide {
+        height: 430px;
+    }
+
+    .rsvp-modal-heading h2 {
+        font-size: 2rem;
+    }
+
+    .footer-developed {
+        line-height: 1.8;
+    }
+}

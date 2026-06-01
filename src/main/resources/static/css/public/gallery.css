@@ -23,7 +23,7 @@
 }
 
 .gallery-heading h2 {
-    font-family: var(--font-tile);
+    font-family: var(--font-title);
     font-size:  clamp(2.4rem, 4.8vw, 4.2rem);
     font-weight: 600;
     line-height: 1;

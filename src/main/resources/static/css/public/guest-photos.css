@@ -1,6 +1,6 @@
 .guest-photos-section {
     position: relative;
-    padding: clamp(86´x, 11vw, 138px) clamp(20px, 5vw, 72px);
+    padding: clamp(86px, 11vw, 138px) clamp(20px, 5vw, 72px);
     background:
         linear-gradient(rgba(18, 34, 49, 0.72), rgba(18, 34, 49, 0.72)),
         url("../../images/sections/guest-photos-bg.jpeg") center/cover no-repeat;

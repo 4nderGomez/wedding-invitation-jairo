@@ -7,28 +7,35 @@ import com.wedding.invitationjairo.enums.GuestType;
 import com.wedding.invitationjairo.model.GuestCompanion;
 import com.wedding.invitationjairo.model.GuestGroup;
 import com.wedding.invitationjairo.model.InvitationLink;
+import com.wedding.invitationjairo.repository.GuestCompanionRepository;
 import com.wedding.invitationjairo.repository.GuestGroupRepository;
+import com.wedding.invitationjairo.util.GuestDataNormalizer;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class GuestService {
 
     private final GuestGroupRepository guestGroupRepository;
+    private final GuestCompanionRepository guestCompanionRepository;
     private final InvitationLinkService invitationLinkService;
     private final AppSettingService appSettingService;
     private final EmailService emailService;
 
     public GuestService(
             GuestGroupRepository guestGroupRepository,
+            GuestCompanionRepository guestCompanionRepository,
             InvitationLinkService invitationLinkService,
             AppSettingService appSettingService,
             EmailService emailService
     ) {
         this.guestGroupRepository = guestGroupRepository;
+        this.guestCompanionRepository = guestCompanionRepository;
         this.invitationLinkService = invitationLinkService;
         this.appSettingService = appSettingService;
         this.emailService = emailService;
@@ -38,6 +45,7 @@ public class GuestService {
     public GuestGroup confirmGuestAttendance(GuestConfirmationRequest request) {
         validateRegistrationIsEnabled();
         validateRequiredRequestData(request);
+        validateGuestIsNotDuplicated(request);
 
         InvitationLink invitationLink = invitationLinkService.getActiveLinkByCode(cleanText(request.getInvitationCode()));
 
@@ -145,6 +153,128 @@ public class GuestService {
             return;
 
         emailService.sendConfirmationEmail(savedGuestGroup);
+    }
+
+    private void validateGuestIsNotDuplicated(GuestConfirmationRequest request) {
+        validateMainGuestIsNotDuplicated(request);
+        validateCompanionsAreNotDuplicated(request);
+    }
+
+    private void validateMainGuestIsNotDuplicated(GuestConfirmationRequest request) {
+        String requestFullName = GuestDataNormalizer.normalizeFullName(
+                request.getMainFirstName(),
+                request.getMainLastName()
+        );
+
+        String requestEmail = GuestDataNormalizer.normalizeEmail(request.getEmail());
+        String requestPhone = GuestDataNormalizer.normalizePhone(request.getPhone());
+
+        List<GuestGroup> guestGroups = guestGroupRepository.findAll();
+
+        for (GuestGroup registeredGuest : guestGroups) {
+            String registeredFullName = GuestDataNormalizer.normalizeFullName(
+                    registeredGuest.getMainFirstName(),
+                    registeredGuest.getMainLastName()
+            );
+
+            String registeredEmail = GuestDataNormalizer.normalizeEmail(
+                    registeredGuest.getEmail()
+            );
+
+            String registeredPhone = GuestDataNormalizer.normalizePhone(
+                    registeredGuest.getPhone()
+            );
+
+            if (requestFullName != null && requestFullName.equals(registeredFullName)) {
+                throwDuplicateGuestException();
+            }
+
+            if (requestEmail != null && requestEmail.equals(registeredEmail)) {
+                throwDuplicateGuestException();
+            }
+
+            if (requestPhone != null && requestPhone.equals(registeredPhone)) {
+                throwDuplicateGuestException();
+            }
+        }
+
+        List<GuestCompanion> companions = guestCompanionRepository.findAll();
+
+        for (GuestCompanion registeredCompanion : companions) {
+            String registeredCompanionFullName = GuestDataNormalizer.normalizeFullName(
+                    registeredCompanion.getFirstName(),
+                    registeredCompanion.getLastName()
+            );
+
+            if (requestFullName != null && requestFullName.equals(registeredCompanionFullName)) {
+                throwDuplicateGuestException();
+            }
+        }
+    }
+
+    private void validateCompanionsAreNotDuplicated(GuestConfirmationRequest request) {
+        if (request.getCompanions() == null || request.getCompanions().isEmpty()) {
+            return;
+        }
+
+        Set<String> namesInCurrentRequest = new HashSet<>();
+
+        String mainGuestFullName = GuestDataNormalizer.normalizeFullName(
+                request.getMainFirstName(),
+                request.getMainLastName()
+        );
+
+        if (mainGuestFullName != null) {
+            namesInCurrentRequest.add(mainGuestFullName);
+        }
+
+        List<GuestGroup> guestGroups = guestGroupRepository.findAll();
+        List<GuestCompanion> registeredCompanions = guestCompanionRepository.findAll();
+
+        for (GuestCompanionRequest companionRequest : request.getCompanions()) {
+            String companionFullName = GuestDataNormalizer.normalizeFullName(
+                    companionRequest.getFirstName(),
+                    companionRequest.getLastName()
+            );
+
+            if (companionFullName == null) {
+                continue;
+            }
+
+            if (namesInCurrentRequest.contains(companionFullName)) {
+                throwDuplicateGuestException();
+            }
+
+            for (GuestGroup registeredGuest : guestGroups) {
+                String registeredGuestFullName = GuestDataNormalizer.normalizeFullName(
+                        registeredGuest.getMainFirstName(),
+                        registeredGuest.getMainLastName()
+                );
+
+                if (companionFullName.equals(registeredGuestFullName)) {
+                    throwDuplicateGuestException();
+                }
+            }
+
+            for (GuestCompanion registeredCompanion : registeredCompanions) {
+                String registeredCompanionFullName = GuestDataNormalizer.normalizeFullName(
+                        registeredCompanion.getFirstName(),
+                        registeredCompanion.getLastName()
+                );
+
+                if (companionFullName.equals(registeredCompanionFullName)) {
+                    throwDuplicateGuestException();
+                }
+            }
+
+            namesInCurrentRequest.add(companionFullName);
+        }
+    }
+
+    private void throwDuplicateGuestException() {
+        throw new IllegalArgumentException(
+                "Ya existe un registro con estos datos. Si necesitas corregir tu respuesta, comunícate con los novios."
+        );
     }
 
     private String cleanText(String value) {

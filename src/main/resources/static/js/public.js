@@ -1,4 +1,5 @@
-//import { MusicPlayer } from "./public/MusicPlayer.js";
+import { MusicPlayer } from "./public/MusicPlayer.js";
+import { InvitationIntro } from "./public/InvitationIntro.js";
 import { CountdownTimer } from "./public/CountdownTimer.js";
 import { GalleryCarousel } from "./public/GalleryCarousel.js";
 import { RsvpModal } from "./rsvp/RsvpModal.js"
@@ -10,11 +11,9 @@ import { RsvpForm } from "./rsvp/RsvpForm.js";
 import { CompanionManager } from "./rsvp/CompanionManager.js";
 import { WeddingCalendar } from "./rsvp/WeddingCalendar.js";
 
-
-/*const musicPlayer = new MusicPlayer();
-musicPlayer.init();*/
-
 document.addEventListener("DOMContentLoaded", () => {
+    const musicPlayer = new MusicPlayer();
+    const invitationIntro = new InvitationIntro(musicPlayer);
     const countdownTimer = new CountdownTimer("2026-11-21T17:00:00");
     const galleryCarousel = new GalleryCarousel();
 
@@ -33,6 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const companionManager = new CompanionManager();
     const weddingCalendar = new WeddingCalendar();
 
+    musicPlayer.init();
+    invitationIntro.init();
     countdownTimer.init();
     galleryCarousel.init();
     rsvpModal.init();

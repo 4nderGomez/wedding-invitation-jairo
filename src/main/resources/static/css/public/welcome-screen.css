@@ -1,0 +1,79 @@
+.welcome-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        linear-gradient(
+            135deg,
+            #f7f4ef,
+            #fdfcf9
+        );
+    text-align: center;
+}
+
+.welcome-content {
+    max-width: 600px;
+    padding: 32px;
+}
+
+.welcome-label {
+    margin-bottom: 24px;
+    font-size: 0.8rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+}
+
+.welcome-content h1 {
+    margin-bottom: 24px;
+    font-family: var(--font-title);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    color: var(--color-deep-blue);
+}
+
+.welcome-date {
+    margin-bottom: 48px;
+    color: var(--color-sage);
+    letter-spacing: 0.15em;
+}
+
+.welcome-logo-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.welcome-logo-button img {
+    width: 180px;
+    transition: 0.35s;
+}
+
+.welcome-logo-button:hover img {
+    transform: scale(1.08);
+}
+
+.welcome-message {
+    margin-top: 24px;
+    color: var(--color-text-soft);
+}
+
+body.intro-active {
+    overflow: hidden;
+}
+
+.invitation-content {
+    display: none;
+}
+
+.invitation-content.is-visible {
+    display: block;
+}
+
+.welcome-screen.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}

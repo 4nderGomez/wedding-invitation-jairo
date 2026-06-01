@@ -3,7 +3,7 @@ package com.wedding.invitationjairo.dto.response;
 import com.wedding.invitationjairo.enums.AttendanceStatus;
 
 public class GuestConfirmationResponse {
-    private boolean success;
+    private boolean succes;
     private String message;
     private Long guestGroupId;
     private AttendanceStatus attendanceStatus;
@@ -18,18 +18,18 @@ public class GuestConfirmationResponse {
         Long guestGroupId,
         AttendanceStatus attendanceStatus
     ) {
-        this.success = success;
+        this.succes = succes;
         this.message = message;
         this.guestGroupId = guestGroupId;
         this.attendanceStatus = attendanceStatus;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public boolean isSucces() {
+        return succes;
     }
 
-    public void setSuccess(boolean succes) {
-        this.success = succes;
+    public void setSucces(boolean succes) {
+        this.succes = succes;
     }
 
     public String getMessage() {

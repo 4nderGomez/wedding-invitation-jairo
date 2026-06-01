@@ -1,9 +1,10 @@
 export class RsvpForm {
-    constructor(rsvpModal, rsvpStateManager, rsvpValidator, rsvpApi) {
+    constructor(rsvpModal, rsvpStateManager, rsvpValidator, rsvpApi, rsvpConfirmModal) {
         this.rsvpModal = rsvpModal;
         this.rsvpStateManager = rsvpStateManager;
         this.rsvpValidator = rsvpValidator;
         this.rsvpApi = rsvpApi;
+        this.rsvpConfirmModal = rsvpConfirmModal;
 
         this.choiceForm = document.getElementById("rsvpChoiceForm");
         this.openModalButton = document.getElementById("openRsvpModalButton");
@@ -52,17 +53,22 @@ export class RsvpForm {
     async submitAttendingForm() {
         this.clearFormFeedback(this.attendingForm);
 
-        if(!this.rsvpValidator.validateForm(this.attendingForm)) return;
+        if (!this.rsvpValidator.validateForm(this.attendingForm)) return;
+
+        const confirmed = await this.rsvpConfirmModal.ask(
+            "Antes de enviar tu confirmación, revisa que tus datos y acompañantes estén completos. ¿Todo está correcto?"
+        );
+
+        if (!confirmed) return;
 
         const rsvpData = this.buildAttendingPayload();
 
         try {
-            const response = await this.rsvpApi.submitRsvp(rsvpData);
+            await this.rsvpApi.submitRsvp(rsvpData);
 
-            if(!response.success) return;
-            
             this.rsvpModal.closeActiveModal();
             this.rsvpStateManager.showAttendingResult();
+
         } catch (error) {
             console.error(error.message);
             this.showFormError(this.attendingForm, error.message);
@@ -70,19 +76,24 @@ export class RsvpForm {
     }
 
     async submitNotAttendingForm() {
-        this.clearFormFeedback(this.attendingForm);
-        
-        if(!this.rsvpValidator.validateForm(this.notAttendingForm)) return;
+        this.clearFormFeedback(this.notAttendingForm);
+
+        if (!this.rsvpValidator.validateForm(this.notAttendingForm)) return;
+
+        const confirmed = await this.rsvpConfirmModal.ask(
+            "Antes de enviar tu respuesta, revisa que tus datos y mensaje estén correctos. ¿Deseas enviarla ahora?"
+        );
+
+        if (!confirmed) return;
 
         const rsvpData = this.buildNotAttendingPayload();
 
         try {
-            const response = await this.rsvpApi.submitRsvp(rsvpData);
-
-            if(!response.success) return;
+            await this.rsvpApi.submitRsvp(rsvpData);
 
             this.rsvpModal.closeActiveModal();
             this.rsvpStateManager.showNotAttendingResult();
+
         } catch (error) {
             console.error(error.message);
             this.showFormError(this.notAttendingForm, error.message);

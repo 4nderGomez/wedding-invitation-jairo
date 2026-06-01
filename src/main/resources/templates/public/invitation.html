@@ -391,14 +391,19 @@
                     </div>
 
                     <div class="rsvp-result" id="rsvpResult" hidden>
-                        <p class="section-label" id="rsvpResultLabel">Respuesta enviada</p>
-                        <h2 id="rsvpResultTitle">Tus datos han sido enviados correctamente</h2>
-                        <p id="rsvpResultMessage">
-                            Te esperamos en este gran día para celebrar el incio de la familia Pinacho Pacheco
-                        </p>
-                        <button class="rsvp-continue-button" type="button" disabled>
-                            Respuesta registrada
-                        </button>
+                        <div class="rsvp-result-content">
+                            <span class="rsvp-result-icon" id="rsvpResultIcon">❤</span>
+
+                            <p class="section-label" id="rsvpResultLabel">Respuesta enviada</p>
+
+                            <h2 id="rsvpResultTitle">Gracias por acompañarnos</h2>
+
+                            <div class="rsvp-result-message" id="rsvpResultMessage"></div>
+
+                            <p class="rsvp-result-date" id="rsvpResultDate">
+                                21 de Noviembre de 2026
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -626,6 +631,7 @@
                                     <textarea id="notAttendingMessage" name="message" rows="1"></textarea>
                                 </div>
                             
+                                <div class="rsvp-form-feedback" data-rsvp-feedback hidden></div>
                                 <div class="form-submit">
                                     <button type="submit">
                                         Enviar respuesta
@@ -633,6 +639,25 @@
                                 </div>
                             </div>
                     </form>
+                </div>
+            </div>
+
+            <div class="rsvp-confirm-modal" id="rsvpConfirmModal" aria-hidden="true">
+                <div class="rsvp-confirm-card" role="dialog" aria-modal="true">
+                    <span class="rsvp-confirm-icon">❤</span>
+                    <h3>¿Todo la información esta correcta?</h3>
+                    <p id="rsvpConfirmMessage">
+                        Antes de enviar tu respuesta, revisa que tus datos y acompañantes estén completos.
+                    </p>
+                    <div class="rsvp-confirm-actions">
+                        <button type="button" class="rsvp-confirm-secondary" id="cancelRsvpConfirm">
+                            Revisar datos
+                        </button>
+                        
+                        <button type="button" class="rsvp-confirm-primary" id="acceptRsvpConfirm">
+                            Sí, enviar respuesta
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>

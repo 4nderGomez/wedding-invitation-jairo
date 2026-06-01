@@ -5,26 +5,30 @@ export class RsvpModal {
         this.closeButtons = document.querySelectorAll("[data-close-modal]");
 
         this.activeModal = null;
+        this.previousFocusedElement = null;
     }
 
     init() {
         this.closeButtons.forEach((button) => {
-            button.addEventListener("click", () => this.closeActiveModal())
+            button.addEventListener("click", () => this.closeActiveModal());
         });
 
         this.attendingModal?.addEventListener("click", (event) => {
-            if(event.target === this.attendingModal)
+            if (event.target === this.attendingModal) {
                 this.closeActiveModal();
+            }
         });
 
         this.notAttendingModal?.addEventListener("click", (event) => {
-            if(event.target === this.notAttendingModal)
+            if (event.target === this.notAttendingModal) {
                 this.closeActiveModal();
+            }
         });
 
         document.addEventListener("keydown", (event) => {
-            if(event.key === "Escape")
+            if (event.key === "Escape") {
                 this.closeActiveModal();
+            }
         });
     }
 
@@ -37,7 +41,7 @@ export class RsvpModal {
     }
 
     openModal(modal) {
-        if(!modal) return;
+        if (!modal) return;
 
         this.activeModal = modal;
         this.previousFocusedElement = document.activeElement;
@@ -49,18 +53,20 @@ export class RsvpModal {
     }
 
     closeActiveModal() {
-        if(!this.activeModal) return;
+        if (!this.activeModal) return;
 
-        if(this.activeModal.contains(document.activeElement))
+        if (this.activeModal.contains(document.activeElement)) {
             document.activeElement.blur();
+        }
 
         this.activeModal.classList.remove("active");
         this.activeModal.setAttribute("aria-hidden", "true");
 
         document.body.classList.remove("rsvp-modal-open");
 
-        this.previousFocusedElement?.focus()
+        this.previousFocusedElement?.focus();
 
         this.activeModal = null;
+        this.previousFocusedElement = null;
     }
 }

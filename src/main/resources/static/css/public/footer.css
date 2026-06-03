@@ -30,6 +30,7 @@
     z-index: 1;
     max-width: 720px;
     margin: 0 auto;
+    animation: fadeUp 0.9s ease both;
 }
 
 .footer-section .section-label {

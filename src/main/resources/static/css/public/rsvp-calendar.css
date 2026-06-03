@@ -79,6 +79,7 @@
     color: var(--color-ivory);
     font-weight: 700;
     box-shadow: 0 14px 34px rgba(199, 164, 93, 0.18);
+    animation: glowGold 3s ease-in-out infinite;
 }
 
 .wedding-day-icon {
@@ -96,6 +97,7 @@
     font-size: 0.9rem;
     line-height: 1;
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+    animation: heartBeatSoft 2.5s ease-in-out infinite;
 }
 
 .calendar-actions {

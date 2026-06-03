@@ -23,6 +23,7 @@
     font-size: 0.78rem;
     letter-spacing: 0.36em;
     color: var(--color-gold);
+    animation: fadeDown 0.8s ease both;
 }
 
 .hero-center h1 {
@@ -31,6 +32,7 @@
     line-height: 0.9;
     font-weight: 600;
     color: var(--color-deep-blue);
+    animation: zoomInSoft 1s ease 0.12s both;
 }
 
 .hero-center h1 span {
@@ -91,14 +93,22 @@
     filter: grayscale(100%) contrast(0.95);
 }
 
+.hero-date,
+.hero-message,
+.hero-button {
+    animation: fadeUp 0.9s ease 0.22s both;
+}
+
 .hero-photo-left {
     height: 310px;
     margin-top: 70px;
+    animation: fadeLeft 1s ease 0.18s both;
 }
 
 .hero-photo-right {
     height: 280px;
     margin-bottom: 90px;
+    animation: fadeRight 1s ease 0.18s both;
 }
 
 @media (max-width: 900px) {

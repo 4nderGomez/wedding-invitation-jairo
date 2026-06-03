@@ -108,6 +108,7 @@
     box-shadow: var(--shadow-card);
     color: var(--color-ivory);
     overflow: hidden;
+    animation: fadeRight 0.9s ease both;
 }
 
 .wedding-calendar-panel::before {
@@ -128,4 +129,12 @@
 
 .rsvp-choice-form {
     width: 100%;
+}
+
+.rsvp-intro {
+    animation: fadeLeft 0.9s ease both;
+}
+
+.rsvp-result {
+    animation: zoomInSoft 0.8s ease both;
 }

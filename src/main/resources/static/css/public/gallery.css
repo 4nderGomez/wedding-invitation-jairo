@@ -15,6 +15,7 @@
     max-width: 700px;
     margin: 0 auto 38px;
     text-align: center;
+    animation: fadeUp 0.9s ease both;
 }
 
 .gallery-heading .section-label {
@@ -43,6 +44,7 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    animation: fadeUp 1s ease 0.12s both;
 }
 
 .gallery-track-wrapper {

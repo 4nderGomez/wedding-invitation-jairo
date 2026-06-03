@@ -15,6 +15,7 @@
     font-size: 0.72rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
+    animation: fadeDown 0.9s ease both;
     border: 1px solid rgba(23, 50, 74, 0.08);
     box-shadow: 0 12px 34px rgba(23, 50, 74, 0.08);
 }

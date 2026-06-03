@@ -105,3 +105,7 @@
 body.rsvp-modal-open {
     overflow: hidden;
 }
+
+.rsvp-modal.active .rsvp-modal-card {
+    animation: zoomInSoft 0.35s ease both;
+}

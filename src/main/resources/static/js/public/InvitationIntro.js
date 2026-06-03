@@ -18,10 +18,12 @@ export class InvitationIntro {
 
     async startInvitation() {
         await this.musicPlayer?.play();
+
         this.welcomeScreen.classList.add("is-hidden");
         this.invitationContent.classList.add("is-visible");
 
         document.body.classList.remove("intro-active");
+        document.body.classList.add("invitation-started");
 
         setTimeout(() => {
             this.welcomeScreen.remove();

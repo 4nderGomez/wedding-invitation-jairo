@@ -9,7 +9,7 @@
 }
 
 .countdown-heading {
-    animation: fadeUp 0.9s ease both;
+    animation: countdownHeadingFloat 2s ease-in-out infinite;
 }
 
 .countdown-overlay {
@@ -44,7 +44,7 @@
     border: 1px solid rgba(255, 253, 248, 0.22);
     background: rgba(255, 253, 248, 0.08);
     backdrop-filter: blur(10px);
-    animation: zoomInSoft 0.8s ease both;
+    animation: countdownCardFloat 2.8s ease-in-out infinite;
 }
 
 .countdown-item span {
@@ -53,6 +53,7 @@
     font-size: clamp(2.4rem, 5vw, 4.5rem);
     line-height: 1;
     color: var(--color-ivory);
+    animation: countdownNumberGlow 2.5s ease-in-out infinite;
 }
 
 .countdown-item p {
@@ -63,22 +64,14 @@
     color: rgba(255, 253, 248, 0.78);
 }
 
-@media (max-width: 720px) {
-    .countdown-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.countdown-item:nth-child(2) {
+    animation-delay: 0.35s;
 }
 
-@media (max-width: 420px) {
-    .countdown-section {
-        padding: 76px 18px;
-    }
+.countdown-item:nth-child(3) {
+    animation-delay: 0.7s;
+}
 
-    .countdown-grid {
-        gap: 12px;
-    }
-
-    .countdown-item {
-        padding: 22px 12px;
-    }
+.countdown-item:nth-child(4) {
+    animation-delay: 1.05s;
 }

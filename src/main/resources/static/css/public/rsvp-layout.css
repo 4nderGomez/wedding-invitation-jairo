@@ -1,38 +1,38 @@
 .rsvp-calendar-section {
     position: relative;
-    padding: clamp(64px, 7vw, 92px) clamp(18px, 3vw, 42px);
+    margin-top: -140px;
+    padding:
+        clamp(90px, 9vw, 130px)
+        clamp(18px, 3vw, 42px)
+        clamp(64px, 7vw, 92px);
+
     background:
         linear-gradient(
             135deg,
             rgba(247, 241, 234, 0.96),
             rgba(255, 253, 248, 0.98)
         );
-        color: var(--color-text-main);
-        overflow: hidden;
+
+    color: var(--color-text-main);
+    overflow: hidden;
 }
 
 .rsvp-calendar-section::before {
     content: "";
     position: absolute;
-    top: -180px;
-    width: 420px;
-    height: 420px;
-    border-radius: 50%;
-    background: rgba(232, 184, 180, 0.22);
-    filter: blur(20px);
-    pointer-events: none;
-}
 
-.rsvp-calendar-section::after {
-    content: "";
-    position: absolute;
-    bottom: -220px;
-    left: -180px;
-    width: 460px;
-    height: 460px;
+    left: -240px;
+    bottom: -260px;
+
+    width: 520px;
+    height: 520px;
+
     border-radius: 50%;
-    background: rgba(124, 147, 163, 0.18);
-    filter: blur(20px);
+
+    background: rgba(124, 147, 163, 0.14);
+
+    filter: blur(22px);
+
     pointer-events: none;
 }
 
@@ -137,4 +137,10 @@
 
 .rsvp-result {
     animation: zoomInSoft 0.8s ease both;
+}
+
+.footer-container,
+.rsvp-calendar-container {
+    position: relative;
+    z-index: 2;
 }

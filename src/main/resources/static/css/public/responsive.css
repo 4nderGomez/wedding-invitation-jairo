@@ -349,3 +349,20 @@
         line-height: 1.8;
     }
 }
+
+@media (max-width: 640px) {
+    .companions-count-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .companions-count-field {
+        min-height: 50px;
+        padding: 9px 12px;
+    }
+
+    .companions-count-field input {
+        width: 76px;
+        height: 38px;
+    }
+}

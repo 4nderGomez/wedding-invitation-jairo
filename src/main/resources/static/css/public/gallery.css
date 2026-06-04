@@ -15,7 +15,7 @@
     max-width: 700px;
     margin: 0 auto 38px;
     text-align: center;
-    animation: fadeUp 0.9s ease both;
+    animation: galleryHeadingBreath 6s ease-in-out infinite;
 }
 
 .gallery-heading .section-label {
@@ -44,7 +44,7 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    animation: fadeUp 1s ease 0.12s both;
+    animation: galleryCarouselFloat 7s ease-in-out infinite;
 }
 
 .gallery-track-wrapper {
@@ -70,6 +70,15 @@
     box-shadow: var(--shadow-card);
     cursor: pointer;
     transition: var(--transition-soft);
+    animation: gallerySlideGlow 6.2s ease-in-out infinite;
+}
+
+.gallery-slide:nth-child(2n) {
+    animation-delay: 0.5s;
+}
+
+.gallery-slide:nth-child(3n) {
+    animation-delay: 1s;
 }
 
 .gallery-slide::after {
@@ -113,12 +122,12 @@
     backdrop-filter: blur(12px);
     transition: var(--transition-soft);
     z-index: 5;
+    animation: galleryArrowPulse 3.5s ease-in-out infinite;
 }
 
 .gallery-arrow:hover {
     background: var(--color-deep-blue);
     color: var(--color-white);
-    transform: translateY(-2px);
 }
 
 .gallery-lightbox {
@@ -133,8 +142,9 @@
     backdrop-filter: blur(14px);
 }
 
-.gallery-lightbox.active {
-    display: flex;
+.gallery-arrow:hover {
+    background: var(--color-deep-blue);
+    color: var(--color-white);
 }
 
 .gallery-lightbox img {
@@ -199,4 +209,16 @@
 
 body.gallery-open {
     overflow: hidden;
+}
+
+.gallery-lightbox.active {
+    display: flex;
+    animation: lightboxFadeIn 0.35s ease both;
+}
+
+.gallery-lightbox.active #lightboxImage {
+    animation: lightboxImageIn 0.4s ease both;
+    display: block;
+    opacity: 1;
+    visibility: visible;
 }

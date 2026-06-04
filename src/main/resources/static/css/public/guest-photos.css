@@ -1,11 +1,32 @@
 .guest-photos-section {
     position: relative;
-    padding: clamp(86px, 11vw, 138px) clamp(20px, 5vw, 72px);
+
+    padding:
+        clamp(86px, 11vw, 138px)
+        clamp(20px, 5vw, 72px)
+        clamp(220px, 18vw, 320px);
+
     background:
         linear-gradient(rgba(18, 34, 49, 0.72), rgba(18, 34, 49, 0.72)),
         url("../../images/sections/guest-photos-bg.jpeg") center/cover no-repeat;
-        color: var(--color-white);
-        overflow: hidden;
+
+    color: var(--color-white);
+    overflow: hidden;
+}
+
+.guest-photos-section::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: clamp(110px, 14vw, 190px);
+    background: linear-gradient(
+        to bottom,
+        rgba(18, 34, 49, 0),
+        rgba(247, 241, 234, 0.96)
+    );
+    pointer-events: none;
 }
 
 .guest-photos-overlay {

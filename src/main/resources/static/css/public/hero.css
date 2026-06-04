@@ -23,7 +23,6 @@
     font-size: 0.78rem;
     letter-spacing: 0.36em;
     color: var(--color-gold);
-    animation: fadeDown 0.8s ease both;
 }
 
 .hero-center h1 {
@@ -32,7 +31,7 @@
     line-height: 0.9;
     font-weight: 600;
     color: var(--color-deep-blue);
-    animation: zoomInSoft 1s ease 0.12s both;
+    animation: heroTitleBreath 7s ease-in-out infinite;
 }
 
 .hero-center h1 span {
@@ -42,6 +41,7 @@
     font-size: clamp(3rem, 7vw, 5.5rem);
     font-weight: 400;
     color: var(--color-olive);
+    animation: heroAmpersandFloat 5.5s ease-in-out infinite;
 }
 
 .hero-date {
@@ -57,6 +57,7 @@
     color: var(--color-text-soft);
     font-size: 0.92rem;
     line-height: 1.8;
+    animation: rotateSlow 2s linear infinite;
 }
 
 .hero-button {
@@ -73,6 +74,7 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     transition: var(--transition-soft);
+    animation: heroButtonGlow 5.8s ease-in-out infinite;
 }
 
 .hero-button:hover {
@@ -93,88 +95,14 @@
     filter: grayscale(100%) contrast(0.95);
 }
 
-.hero-date,
-.hero-message,
-.hero-button {
-    animation: fadeUp 0.9s ease 0.22s both;
-}
-
 .hero-photo-left {
     height: 310px;
     margin-top: 70px;
-    animation: fadeLeft 1s ease 0.18s both;
+    animation: heroPhotoFloatLeft 7s ease-in-out infinite;
 }
 
 .hero-photo-right {
     height: 280px;
     margin-bottom: 90px;
-    animation: fadeRight 1s ease 0.18s both;
-}
-
-@media (max-width: 900px) {
-    .hero {
-        padding-bottom: 64px;
-    }
-
-    .hero-nav {
-        grid-template-columns: 1fr;
-        gap: 14px;
-        margin-bottom: 50px;
-    }
-
-    .hero-brand {
-        order: -1;
-        text-align: center;
-    }
-
-    .hero-content {
-        grid-template-columns: 1fr;
-        gap: 34px;
-    }
-
-    .hero-photo {
-        width: min(320px, 100%);
-        margin: 0 auto;
-    }
-
-    .hero-photo-left {
-        height: 260px;
-    }
-
-    .hero-photo-right {
-        display: none;
-    }
-}
-
-@media (max-width: 520px) {
-    .hero-nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 18px;
-        gap: 12px;
-    }
-
-    .hero-brand {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 6px;
-        display: none;
-    }
-
-    .hero-nav {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .hero-center h1 {
-        font-size: 4.2rem;
-    }
-
-    .hero-date {
-        font-size: 2.4rem;
-    }
-
-    .hero-message {
-        font-size: 0.88rem;
-    }
+    animation: heroPhotoFloatRight 7.4s ease-in-out infinite;
 }

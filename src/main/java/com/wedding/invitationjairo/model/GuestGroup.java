@@ -10,8 +10,6 @@ import org.hibernate.type.SqlTypes;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
 
 @Entity
 @Table(name = "guest_groups")
@@ -51,6 +49,13 @@ public class GuestGroup {
     @Column(name = "message_", columnDefinition = "TEXT")
     private String message;
 
+    //Número de acompañantes: adultos y niños
+    @Column(name = "adult_companions_count", nullable = false)
+    private Integer adultCompanionsCount = 0;
+
+    @Column(name = "child_companions_count", nullable = false)
+    private Integer childCompanionsCount = 0;
+
     //Defaults
     @Enumerated(EnumType.STRING)
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
@@ -68,10 +73,6 @@ public class GuestGroup {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-
-    //Relación con acompañantes
-    @OneToMany(mappedBy = "guestGroup", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<GuestCompanion> companions;
 
     //Constructor
     public GuestGroup(){
@@ -160,6 +161,23 @@ public class GuestGroup {
         this.message = message;
     }
 
+    //Acompañantes
+    public Integer getAdultCompanionsCount() {
+        return adultCompanionsCount;
+    }
+
+    public void setAdultCompanionsCount(Integer adultCompanionsCount) {
+        this.adultCompanionsCount = adultCompanionsCount;
+    }
+
+    public Integer getChildCompanionsCount() {
+        return childCompanionsCount;
+    }
+
+    public void setChildCompanionsCount(Integer childCompanionsCount) {
+        this.childCompanionsCount = childCompanionsCount;
+    }
+
     //guestType
     public GuestType getGuestType() {
         return guestType;
@@ -194,14 +212,5 @@ public class GuestGroup {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    //companions
-    public List<GuestCompanion> getCompanions() {
-        return companions;
-    }
-
-    public void setCompanions(List<GuestCompanion> companions) {
-        this.companions = companions;
     }
 }

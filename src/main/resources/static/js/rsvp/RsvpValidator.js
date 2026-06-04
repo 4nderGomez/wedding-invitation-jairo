@@ -43,6 +43,11 @@ export class RsvpValidator {
             return false;
         }
 
+        if(this.isCompanionCountField(field) && !this.isValidCompanionCount(value)) {
+            this.markFieldAsInvalid(field, "Escribe un número entero entre 0 y 20");
+            return false;
+        }
+
         this.clearFieldError(field);
         return true;
     }
@@ -70,6 +75,12 @@ export class RsvpValidator {
         return field.type === "email";
     }
 
+    isCompanionCountField(field) {
+        return (
+            field.id == "adultCompanionsCount" || field.id == "childCompanionsCount"
+        );
+    }
+
     isValidName(value) {
         return /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s.'-]{2,60}$/.test(value);
     }
@@ -84,6 +95,14 @@ export class RsvpValidator {
         return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
     }
 
+    isValidCompanionCount(value) {
+        if(value === "") return true;
+
+        const count = Number(value);
+
+        return Number.isInteger(count) && count >= 0 && count <= 20;
+    }
+
     markFieldAsInvalid(field, message) {
         field.classList.add("is-invalid");
 
@@ -95,7 +114,7 @@ export class RsvpValidator {
 
         if(!errorMessage) {
             errorMessage = document.createElement("small");
-            errorMessage.className = ".field-error";
+            errorMessage.className = "field-error";
             formGroup.appendChild(errorMessage);
         }
 

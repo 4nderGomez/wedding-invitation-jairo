@@ -1,41 +1,32 @@
 package com.wedding.invitationjairo.service;
 
-import com.wedding.invitationjairo.dto.request.GuestCompanionRequest;
 import com.wedding.invitationjairo.dto.request.GuestConfirmationRequest;
 import com.wedding.invitationjairo.enums.AttendanceStatus;
-import com.wedding.invitationjairo.enums.GuestType;
-import com.wedding.invitationjairo.model.GuestCompanion;
 import com.wedding.invitationjairo.model.GuestGroup;
 import com.wedding.invitationjairo.model.InvitationLink;
-import com.wedding.invitationjairo.repository.GuestCompanionRepository;
 import com.wedding.invitationjairo.repository.GuestGroupRepository;
 import com.wedding.invitationjairo.util.GuestDataNormalizer;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.ArrayList;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class GuestService {
 
     private final GuestGroupRepository guestGroupRepository;
-    private final GuestCompanionRepository guestCompanionRepository;
     private final InvitationLinkService invitationLinkService;
     private final AppSettingService appSettingService;
     private final EmailService emailService;
 
     public GuestService(
             GuestGroupRepository guestGroupRepository,
-            GuestCompanionRepository guestCompanionRepository,
             InvitationLinkService invitationLinkService,
             AppSettingService appSettingService,
             EmailService emailService
     ) {
         this.guestGroupRepository = guestGroupRepository;
-        this.guestCompanionRepository = guestCompanionRepository;
         this.invitationLinkService = invitationLinkService;
         this.appSettingService = appSettingService;
         this.emailService = emailService;
@@ -61,10 +52,12 @@ public class GuestService {
 
         if (request.getAttendanceStatus() == AttendanceStatus.ATTENDING) {
             guestGroup.setEmail(cleanText(request.getEmail()));
-            guestGroup.setCompanions(buildCompanions(request.getCompanions(), guestGroup));
+            guestGroup.setAdultCompanionsCount(normalizeCompanionCount(request.getAdultCompanionsCount()));
+            guestGroup.setChildCompanionsCount(normalizeCompanionCount(request.getChildCompanionsCount()));
         } else {
             guestGroup.setEmail(null);
-            guestGroup.setCompanions(new ArrayList<>());
+            guestGroup.setAdultCompanionsCount(0);
+            guestGroup.setChildCompanionsCount(0);
         }
 
         GuestGroup savedGuestGroup = guestGroupRepository.save(guestGroup);
@@ -101,48 +94,24 @@ public class GuestService {
         if(request.getGuestSide() == null)
             throw new IllegalArgumentException("Debes indicar de parte de quién viene el invitado");
 
-        if(request.getAttendanceStatus() == AttendanceStatus.ATTENDING && request.getCompanions() != null)
-            validateCompanions(request.getCompanions());
-    }
-
-    private void validateCompanions(List<GuestCompanionRequest> companions){
-        for(GuestCompanionRequest companion : companions) {
-            if(companion == null)
-                throw new IllegalArgumentException("Hay un compañero vacío");
-
-            if(isBlank(companion.getFirstName()))
-                throw new IllegalArgumentException("El nombre del acompañante es obligatorio");
-
-            if(isBlank(companion.getLastName()))
-                throw new IllegalArgumentException("Los apellidos del acompañante son obligatorios");
-
-            if(companion.getAgeGroup() == null)
-                throw new IllegalArgumentException("La edad del acompañante es obligatoria");
+        if(request.getAttendanceStatus() == AttendanceStatus.ATTENDING) {
+            validateCompanionsCount(request.getAdultCompanionsCount(), "adultos");
+            validateCompanionsCount(request.getChildCompanionsCount(), "niños");
         }
     }
 
-    private List<GuestCompanion> buildCompanions(
-            List<GuestCompanionRequest> companionRequests,
-            GuestGroup guestGroup
-    ) {
-        List<GuestCompanion> companions = new ArrayList<>();
+    private void validateCompanionsCount(Integer count, String label) {
+        if(count == null) return;
 
-        if (companionRequests == null || companionRequests.isEmpty()) {
-            return companions;
+        if(count < 0 || count > 20) {
+            throw new IllegalArgumentException(
+                "La cantidad de " + label + " debe estar entre 0 y 20"
+            );
         }
+    }
 
-        for (GuestCompanionRequest companionRequest : companionRequests) {
-            GuestCompanion companion = new GuestCompanion();
-            companion.setGuestGroup(guestGroup);
-            companion.setFirstName(cleanText(companionRequest.getFirstName()));
-            companion.setLastName(cleanText(companionRequest.getLastName()));
-            companion.setAgeGroup(companionRequest.getAgeGroup());
-            companion.setGuestType(GuestType.COMPANION);
-
-            companions.add(companion);
-        }
-
-        return companions;
+    private Integer normalizeCompanionCount(Integer count) {
+        return count == null ? 0 : count;
     }
 
     private void sendConfirmationEmailIfNeeded(GuestGroup savedGuestGroup) {
@@ -157,7 +126,6 @@ public class GuestService {
 
     private void validateGuestIsNotDuplicated(GuestConfirmationRequest request) {
         validateMainGuestIsNotDuplicated(request);
-        validateCompanionsAreNotDuplicated(request);
     }
 
     private void validateMainGuestIsNotDuplicated(GuestConfirmationRequest request) {
@@ -196,78 +164,6 @@ public class GuestService {
             if (requestPhone != null && requestPhone.equals(registeredPhone)) {
                 throwDuplicateGuestException();
             }
-        }
-
-        List<GuestCompanion> companions = guestCompanionRepository.findAll();
-
-        for (GuestCompanion registeredCompanion : companions) {
-            String registeredCompanionFullName = GuestDataNormalizer.normalizeFullName(
-                    registeredCompanion.getFirstName(),
-                    registeredCompanion.getLastName()
-            );
-
-            if (requestFullName != null && requestFullName.equals(registeredCompanionFullName)) {
-                throwDuplicateGuestException();
-            }
-        }
-    }
-
-    private void validateCompanionsAreNotDuplicated(GuestConfirmationRequest request) {
-        if (request.getCompanions() == null || request.getCompanions().isEmpty()) {
-            return;
-        }
-
-        Set<String> namesInCurrentRequest = new HashSet<>();
-
-        String mainGuestFullName = GuestDataNormalizer.normalizeFullName(
-                request.getMainFirstName(),
-                request.getMainLastName()
-        );
-
-        if (mainGuestFullName != null) {
-            namesInCurrentRequest.add(mainGuestFullName);
-        }
-
-        List<GuestGroup> guestGroups = guestGroupRepository.findAll();
-        List<GuestCompanion> registeredCompanions = guestCompanionRepository.findAll();
-
-        for (GuestCompanionRequest companionRequest : request.getCompanions()) {
-            String companionFullName = GuestDataNormalizer.normalizeFullName(
-                    companionRequest.getFirstName(),
-                    companionRequest.getLastName()
-            );
-
-            if (companionFullName == null) {
-                continue;
-            }
-
-            if (namesInCurrentRequest.contains(companionFullName)) {
-                throwDuplicateGuestException();
-            }
-
-            for (GuestGroup registeredGuest : guestGroups) {
-                String registeredGuestFullName = GuestDataNormalizer.normalizeFullName(
-                        registeredGuest.getMainFirstName(),
-                        registeredGuest.getMainLastName()
-                );
-
-                if (companionFullName.equals(registeredGuestFullName)) {
-                    throwDuplicateGuestException();
-                }
-            }
-
-            for (GuestCompanion registeredCompanion : registeredCompanions) {
-                String registeredCompanionFullName = GuestDataNormalizer.normalizeFullName(
-                        registeredCompanion.getFirstName(),
-                        registeredCompanion.getLastName()
-                );
-
-                if (companionFullName.equals(registeredCompanionFullName)) {
-                    throwDuplicateGuestException();
-                }
-            }
-
-            namesInCurrentRequest.add(companionFullName);
         }
     }
 

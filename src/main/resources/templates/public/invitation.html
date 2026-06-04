@@ -563,21 +563,41 @@
 
                             <div class="form-section" id="companionsSection">
                                 <h3>Acompañantes</h3>
-                                <div class="companions-actions">
-                                    <button type="button" id="addAdultButton">
-                                        + Agregar invitado - adulto
-                                    </button>
-                                    <button type="button" id="addChildButton">
-                                        + Agregar pequeño invitado - niño
-                                    </button>
-                                </div>
+                                
+                                <p class="companions-count-note">
+                                    Indica cuántos acompañantes asistirán contigo. Si no llevarás acompañantes puedes dejar los campos vacios
+                                </p>
 
-                                <div class="companions-list" id="companionsList">
-                                    <!-- JS agregará los acompañantes -->
+                                <div class="companions-count-grid">
+                                    <div class="companions-count-field">
+                                        <label for="adultCompanionsCount">Adultos</label>
+                                        <input
+                                            type="number"
+                                            id="adultCompanionsCount"
+                                            name="adultCompanionsCount"
+                                            min="0"
+                                            max="20"
+                                            step="1"
+                                            inputmode="numeric"
+                                            placeholder="0">
+                                    </div>
+
+                                    <div class="companions-count-field">
+                                        <label for="childCompanionsCount">Niños</label>
+                                        <input
+                                            type="number"
+                                            id="childCompanionsCount"
+                                            name="childCompanionsCount"
+                                            min="0"
+                                            max="20"
+                                            step="1"
+                                            inputmode="numeric"
+                                            placeholder="0">
+                                    </div>
                                 </div>
 
                                 <div class="guest-total">
-                                    <p>Total de invitados: <span id="guestTotal">1</span></p>
+                                    <p> Total de invitados: <span id="guestTotal">1</span></p>
                                 </div>
                             </div>
 

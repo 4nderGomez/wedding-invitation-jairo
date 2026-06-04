@@ -119,7 +119,8 @@ export class RsvpForm {
             guestSide: this.getValue("attendingGuestSide"),
             fromCity: this.getBooleanValue("attendingFromCity"),
             message: this.getValue("attendingMessage"),
-            companions: this.getCompanions()
+            adultCompanionsCount: this.getCompanionCount("adultCompanionsCount"),
+            childCompanionsCount: this.getCompanionCount("childCompanionsCount")
         };
     }
 
@@ -134,20 +135,18 @@ export class RsvpForm {
             guestSide: this.getValue("notAttendingGuestSide"),
             fromCity: null,
             message: this.getValue("notAttendingMessage"),
-            companions: []
+            adultCompanionsCount: 0,
+            childCompanionsCount: 0
         };
     }
 
-    getCompanions() {
-        const companionCards = document.querySelectorAll(".companion-card");
+    getCompanionCount(inputId) {
+        const input = document.getElementById(inputId);
+        const value = input?.value.trim();
 
-        return Array.from(companionCards).map((card) => {
-            return {
-                firstName: card.querySelector('input[name$=".firstName"]')?.value.trim() || null,
-                lastName: card.querySelector('input[name$=".lastName"]')?.value.trim() || null,
-                ageGroup: card.querySelector('input[name$=".ageGroup"]')?.value || null
-            };
-        });
+        if(!value) return 0;
+
+        return Number(value);
     }
 
     getInvitationCode() {

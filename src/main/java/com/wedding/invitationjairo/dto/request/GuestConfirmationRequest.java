@@ -3,12 +3,9 @@ package com.wedding.invitationjairo.dto.request;
 import com.wedding.invitationjairo.enums.AttendanceStatus;
 import com.wedding.invitationjairo.enums.GuestSide;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GuestConfirmationRequest {
     @NotBlank
@@ -35,8 +32,9 @@ public class GuestConfirmationRequest {
 
     private String message;
 
-    @Valid
-    private List<GuestCompanionRequest> companions = new ArrayList<>();
+    private Integer adultCompanionsCount = 0;
+
+    private Integer childCompanionsCount = 0;
 
     //Constructor
     public GuestConfirmationRequest() {
@@ -125,12 +123,20 @@ public class GuestConfirmationRequest {
         this.message = message;
     }
 
-    //companions
-    public List<GuestCompanionRequest> getCompanions() {
-        return companions;
+    //Acompañantes
+    public Integer getAdultCompanionsCount() {
+        return adultCompanionsCount;
     }
 
-    public void setCompanions(List<GuestCompanionRequest> companions) {
-        this.companions = companions;
+    public void setAdultCompanionsCount(Integer adultCompanionsCount) {
+        this.adultCompanionsCount = adultCompanionsCount;
+    }
+
+    public Integer getChildCompanionsCount() {
+        return childCompanionsCount;
+    }
+
+    public void setChildCompanionsCount(Integer childCompanionsCount) {
+        this.childCompanionsCount = childCompanionsCount;
     }
 }

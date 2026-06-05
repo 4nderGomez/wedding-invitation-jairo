@@ -1,0 +1,172 @@
+.section-header {
+    margin-top: 40px;
+    margin-bottom: 18px;
+}
+
+.section-header h2 {
+    font-family: var(--font-title);
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+}
+
+.section-header p {
+    margin-top: 4px;
+    font-size: 0.92rem;
+    color: var(--color-text-soft);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.stat-card {
+    padding: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    box-shadow: var(--shadow-soft);
+}
+
+.stat-card span {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-text-soft);
+}
+
+.stat-card h3 {
+    margin-top: 14px;
+    font-family: var(--font-title);
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--color-olive);
+}
+
+.stat-card.is-danger h3 {
+    color: var(--color-error);
+}
+
+/* Laptop pequeña */
+@media (max-width: 1200px) {
+    .stats-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stat-card {
+        padding: 22px;
+    }
+
+    .stat-card h3 {
+        font-size: 2rem;
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .section-header {
+        margin-top: 34px;
+        margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .section-header p {
+        font-size: 0.88rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .stat-card {
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .stat-card h3 {
+        margin-top: 10px;
+        font-size: 1.85rem;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
+@media (max-width: 768px) {
+    .section-header {
+        margin-top: 28px;
+        margin-bottom: 14px;
+    }
+
+    .section-header h2 {
+        font-size: 1.35rem;
+        line-height: 1.2;
+    }
+
+    .section-header p {
+        margin-top: 3px;
+        font-size: 0.84rem;
+        line-height: 1.45;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .stat-card {
+        padding: 18px;
+    }
+
+    .stat-card span {
+        font-size: 0.74rem;
+    }
+
+    .stat-card h3 {
+        margin-top: 8px;
+        font-size: 1.65rem;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 18px 16px;
+        border-radius: 20px;
+    }
+
+    .stat-card span {
+        font-size: 0.72rem;
+    }
+
+    .stat-card h3 {
+        font-size: 1.55rem;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .section-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .section-header p {
+        font-size: 0.78rem;
+    }
+
+    .stat-card {
+        padding: 16px 14px;
+    }
+
+    .stat-card h3 {
+        font-size: 1.4rem;
+    }
+}

@@ -1,0 +1,165 @@
+.admin-header {
+    width: 100%;
+    min-height: 118px;
+
+    padding: 28px 32px;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    box-shadow: var(--shadow-soft);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.admin-kicker {
+    display: inline-block;
+    margin-bottom: 8px;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    color: var(--color-olive);
+}
+
+.admin-header h1 {
+    font-family: var(--font-title);
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+}
+
+.admin-header p {
+    margin-top: 6px;
+    font-size: 0.95rem;
+    color: var(--color-text-soft);
+}
+
+.admin-user {
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: rgba(138, 148, 123, 0.14);
+    color: var(--color-olive);
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Laptop pequeña */
+@media (max-width: 1200px) {
+    .admin-header {
+        padding: 24px 28px;
+    }
+
+    .admin-header h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .admin-header {
+        min-height: auto;
+
+        padding: 22px 24px;
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .admin-header h1 {
+        font-size: 1.9rem;
+    }
+
+    .admin-header p {
+        font-size: 0.92rem;
+    }
+
+    .admin-user {
+        align-self: flex-start;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
+@media (max-width: 768px) {
+    .admin-header {
+        padding: 20px;
+        border-radius: 24px;
+    }
+
+    .admin-kicker {
+        margin-bottom: 6px;
+        font-size: 0.72rem;
+    }
+
+    .admin-header h1 {
+        font-size: 1.7rem;
+        line-height: 1.15;
+    }
+
+    .admin-header p {
+        margin-top: 4px;
+        font-size: 0.88rem;
+        line-height: 1.5;
+    }
+
+    .admin-user {
+        padding: 9px 14px;
+        font-size: 0.82rem;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .admin-header {
+        padding: 18px 16px;
+        gap: 14px;
+    }
+
+    .admin-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .admin-header p {
+        font-size: 0.84rem;
+    }
+
+    .admin-user {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+
+        text-align: center;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .admin-header {
+        padding: 16px 14px;
+    }
+
+    .admin-kicker {
+        font-size: 0.68rem;
+    }
+
+    .admin-header h1 {
+        font-size: 1.32rem;
+    }
+
+    .admin-header p {
+        font-size: 0.8rem;
+    }
+
+    .admin-user {
+        padding: 8px 12px;
+        font-size: 0.76rem;
+    }
+}

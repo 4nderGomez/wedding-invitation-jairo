@@ -8,18 +8,22 @@
 </head>
 <body>
     <div class="admin-layout">
-        <!--Sidebar -->
         <aside class="admin-sidebar">
-            <div class="sidebar-logo">
-                <h2>J & J</h2>
-                <p>Administración de boda</p>
+            <div class="sidebar-top">
+                <div class="sidebar-logo">
+                    <h2>J & J</h2>
+                    <p>Administración de boda</p>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="#stats" class="nav-link is-active">Cantidad de invitados</a>
+                    <a href="#todayRegistrations" class="nav-link">Registrados hoy</a>
+                    <a href="#guestMessages" class="nav-link">Mensajes</a>
+                    <a href="#guests" class="nav-link">Lista de invitados</a>
+                    <a href="#registrationControl" class="nav-link">Registro</a>
+                </nav>
             </div>
-            <nav class="sidebar-nav">
-                <a href="#summary" class="nav-link-active">Resumen</a>
-                <a href="#todayRegistrations" class="nav-link">Registros de hoy</a>
-                <a href="#guests" class="nav-link">Invitados</a>
-                <a href="#settings" class="nav-link">Configuración</a>
-            </nav>
+
             <form method="post" action="/logout" class="logout-form">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 <button type="submit" class="logout-button">
@@ -28,219 +32,274 @@
             </form>
         </aside>
 
-        <!-- Contenido -->
         <main class="admin-main">
-            <!-- Encabezado -->
             <header class="admin-header">
-                <div> 
+                <div>
+                    <span class="admin-kicker">Panel administrativo</span>
                     <h1>Dashboard</h1>
-                    <p>Panel administrativo de la boda</p>
+                    <p>Gestión de confirmaciones para la boda de Jairo & Jennifer.</p>
                 </div>
+
                 <div class="admin-user">
                     <span>Administrador</span>
                 </div>
             </header>
 
-            <section class="dashboard-section summary-section" id="summary">
-                <div class="summary-grid">
-                    <article class="summary-card">
-                        <span>Total invitados</span>
-                        <h2 id="totalGuests">0</h2>
+            <section class="Dashboard-section stats-section" id="stats">
+                <div class="section-header">
+                    <div>
+                        <h2>Cantidad de invitados</h2>
+                        <p>Resumen general de confirmaciones registradas.</p>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <span>Total asistentes</span>
+                        <h3 id="totalGuests">0</h3>
                     </article>
-                    <article class="summary-card">
+
+                    <article class="stat-card">
                         <span>Adultos</span>
-                        <h2 id="totalAdults">0</h2>
+                        <h3 id="totalAdults">0</h3>
                     </article>
-                    <article class="summary-card">
+
+                    <article class="stat-card">
                         <span>Niños</span>
-                        <h2 id="totalChildren">0</h2>
+                        <h3 id="totalChildren">0</h3>
                     </article>
-                    <article class="summary-card highlight">
+
+                    <article class="stat-card">
                         <span>Confirmaciones</span>
-                        <h2 id="totalGuests">0</h2>
+                        <h3 id="totalConfirmations">0</h3>
+                    </article>
+
+                    <article class="stat-card">
+                        <span>Declinaciones</span>
+                        <h3 id="totalDeclines">0</h3>
                     </article>
                 </div>
             </section>
 
-            <!-- Controles -->
-            <section class="dashboard-section controls-section" id="settings">
-                <div class="controls-header">
-                    <h2>Controles</h2>
-                </div>
-                <div class="controls-grid">
-                    <div class="control-card">
-                        <h3>Registro de invitados</h3>
-                        <p>Activa o desactiva el formulario de confirmación</p>
-                        <button type="button" id="toggleRegistrationButton">
-                            Activar / Desactivar registros
-                        </button>
-                    </div>
-                    <div class="control-card">
-                        <h3>Exportar información</h3>
-                        <p>Descara la lista de invitados en archivo Excel</p>
-                        <a href="/admin/guests/export" class="export-button">
-                            Descargar Excel
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Registro del presente -->
             <section class="dashboard-section today-section" id="todayRegistrations">
                 <div class="section-header">
                     <div>
                         <h2>Registrados hoy</h2>
-                        <p>
-                            Invitados que confirmarón el día de hoy
-                        </p>
+                        <p>Invitados que realizaron su registro durante el día de hoy.</p>
                     </div>
-                    <div class="table-wrapper">
-                        <table class="today-table">
+                </div>
+
+                <div class="table-card">
+                    <div class="empty-state" id="todayEmptyState" hidden>
+                        <p>Hoy no hubo registros.</p>
+                    </div>
+
+                    <div class="table-wrapper" id="todayTableWrapper">
+                        <table class="admin-table today-table">
                             <thead>
                                 <tr>
-                                    <th>Nombre y apellidos</th>
-                                    <th>Invitado de</th>
-                                    <th>Tipo de invitado</th>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>De parte de quién</th>
                                     <th>Teléfono</th>
                                     <th>Correo</th>
-                                    <th>Adulto/Niño</th>
+                                    <th>Adultos</th>
+                                    <th>Niños</th>
+                                    <th>Asistencia</th>
+                                    <th>Operación</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="todayRegistrationsTableBody">
+                                <!-- Render dinámico -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-section messages-section" id="guestMessages">
+                <div class="section-header">
+                    <div>
+                        <h2>Mensaje para los novios</h2>
+                        <p>Palabras enviadas por los invitados</p>
+                    </div>
+                </div>
+
+                <div class="messages-filters">
+                    <input
+                    type="text"
+                    id="messageSearchInput"
+                    placeholder="Buscar por nombre o apellidos"
+                    >
+
+                    <select id="messageAttendanceFilter">
+                        <option value="">Todos</option>
+                        <option value="ATTENDING">Sí asistirán</option>
+                        <option value="NOT_ATTENDING">No asistirán</option>
+                    </select>
+
+                    <button type="button" id="clearMessageFiltersButton">
+                        Limpiar filtros
+                    </button>
+                </div>
+
+                <div class="messages-feed" id="messagesFeed">
+                    <!-- render dinámico -->
+                </div>
+
+                <div class="empty-state" id="messagesEmptyState" hidden>
+                    <p>No hay mensajes registrados</p>
+                </div>
+            </section>
+
+            <section class="dashboard-section guests-section" id="guests">
+                <div class="section-header">
+                    <div>
+                        <h2>Lista de invitados</h2>
+                        <p>Consulta, filtra y administra todos los registros confirmados.</p>
+                    </div>
+                </div>
+
+                <div class="filters-panel">
+                    <div class="filter-group filter-search">
+                        <label for="guestSearchInput">Buscar invitado</label>
+                        <input
+                            type="text"
+                            id="guestSearchInput"
+                            placeholder="Nombre, apellidos o parte del nombre"
+                        >
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="guestSideFilter">Invitado de</label>
+                        <select id="guestSideFilter">
+                            <option value="">Todos</option>
+                            <option value="NOVIO">Novio</option>
+                            <option value="NOVIA">Novia</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="guestTypeFilter">Tipo de invitado</label>
+                        <select id="guestTypeFilter">
+                            <option value="">Todos</option>
+                            <option value="ADULT">Adulto</option>
+                            <option value="CHILD">Niño</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="guestAttendanceFilter">Asistencia</label>
+                        <select id="guestAttendanceFilter">
+                            <option value="">Todos</option>
+                            <option value="ATTENDING">Sí asistirá</option>
+                            <option value="NOT_ATTENDING">No asistirá</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group filter-actions">
+                        <label>Acciones</label>
+
+                        <a href="/admin/guests/export" class="export-button">
+                            Exportar Excel
+                        </a>
+
+                        <button type="button" id="clearGuestFiltersButton">
+                            Limpiar filtros
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="empty-state" id="guestsEmptyState" hidden>
+                        <p>No hay invitados que coincidan con los filtros.</p>
+                    </div>
+
+                    <div class="table-wrapper guests-table-wrapper" id="guestsTableWrapper">
+                        <table class="admin-table guests-table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>De parte de quién</th>
+                                    <th>Teléfono</th>
+                                    <th>Correo</th>
+                                    <th>Adultos</th>
+                                    <th>Niños</th>
                                     <th>Asistencia</th>
                                     <th>Fecha de registro</th>
                                     <th>Operación</th>
                                 </tr>
                             </thead>
-                            <tbody id="todayRegistrationsTableBody">
-                                <!-- Aquí traera los registros del día de hoy -->
-                                <!-- Ejemplo temporal -->
-                                <tr>
-                                    <td>Juan Pérez</td>
-                                    <td>Familia del novio</td>
-                                    <td>Principal</td>
-                                    <td>9581234567</td>
-                                    <td>juan@email.com</td>
-                                    <td>Sí asistirá</td>
-                                    <td>10:35 AM</td>
-                                    <td>
-                                        <button type="button" class="delete-button">
-                                            Eliminar
-                                        </button>
-                                    </td>
-                                </tr>
+
+                            <tbody id="guestsTableBody">
+                                <!-- Render dinámico -->
                             </tbody>
                         </table>
-                        <div class="empty-state" id="todayEmptyState">
-                            <p>No hay registros nuevos</p>
-                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Invitados -->
-            <section class="dashboard-section guests-section" id="guests">
+            <section class="dashboard-section registration-control-section" id="registrationControl">
                 <div class="section-header">
                     <div>
-                        <h2>Lista de invitados</h2>
-                        <p>Consulta, filtra y administra los registros</p>
+                        <h2>Registro de invitados</h2>
+                        <p>Activa o desactiva el botón de confirmación de asistencia.</p>
                     </div>
                 </div>
 
-                <!-- Filtros -->
-                <div class="filters-panel">
-                    <div class="filter-group">
-                        <label for="searchGuest">Buscar invitado</label>
-                        <input
-                            type="text"
-                            id="searchGuest"
-                            name="searchGuest"
-                            placeholder="Nombre, telefono o correo"
-                        >
-                    </div>
-                    <div class="filter-group">
-                        <label for="filterGuestSide">Invitado de</label>
-                        <select id="filterGuestSide" name="filterGuestSide">
-                            <option value="">Todos</option>
-                            <option value="NOVIO">Invitados del novio</option>
-                            <option value="NOVIA">Invitados de la novia</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="filterAgeGroup">Tipo</label>
-                        <select id="filterAgeGroup" name="filterAgeGroup">
-                            <option value="">Todos</option>
-                            <option value="ADULT">Adultos</option>
-                            <option value="CHILD">Niños</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="filterAttendance">Asistencia</label>
-                        <select id="filterAttendance" name="filterAttendance">
-                            <option value="">Todos</option>
-                            <option value="ATTENDING">Sí asistirán</option>
-                            <option value="NOT_ATTENDING">No asistirán</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="filterDate">Fecha de refistro</label>
-                        <input type="date" id="filterDate" name="filterDate">
-                    </div>
-                </div>
+                <div class="registration-card">
+                    <div>
+                        <h3>Estado del registro</h3>
+                        <p id="registrationStatusDescription">
+                            Cargando estado del registro...
+                        </p>
 
-                <!-- Tabla que expone a los invitados -->
-                <div class="table-wrapper">
-                    <table class="guests-table">
-                        <thead>
-                            <tr>
-                                <th>Nombre y apellidos</th>
-                                <th>Invitado de</th>
-                                <th>Tipo de invitado</th>
-                                <th>Teléfono</th>
-                                <th>Correo</th>
-                                <th>Adulto/Niño</th>
-                                <th>Asistencia</th>
-                                <th>Fecha de registro</th>
-                                <th>Operación</th>
-                            </tr>
-                        </thead>
-                        <!-- Contenido de la tabla -->
-                        <tbody id="guestsTableBody">
-                            <!-- Ejemplo temporal -->
-                            <tr>
-                            <td>Juan Pérez</td>
-                            <td>Familia del novio</td>
-                            <td>Principal</td>
-                            <td>9581234567</td>
-                            <td>juan@email.com</td>
-                            <td>Adulto</td>
-                            <td>Sí asistirá</td>
-                            <td>2026-01-01</td>
-                            <td>
-                                <button type="button" class="delete-button">
-                                    Eliminar
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>María Pérez</td>
-                            <td>Familia del novio</td>
-                            <td>Acompañante</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>Niño</td>
-                            <td>Sí asistirá</td>
-                            <td>2026-01-01</td>
-                            <td>
-                                <button type="button" class="delete-button">
-                                    Eliminar
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                        <span class="registration-counter" id="registrationCounter">
+                            Intentos usados: 0 de 3
+                        </span>
+                    </div>
+
+                    <div class="registration-actions">
+                        <button type="button" class="toggle-registration-button" id="toggleRegistrationButton">
+                            Cargando...
+                        </button>
+                    </div>
                 </div>
             </section>
         </main>
     </div>
+    
+    <div class="admin-modal-overlay" id="deleteConfirmModal" hidden>
+        <div class="admin-modal-card">
+            <h3>Eliminar registro</h3>
 
-    <script th:src="@{/js/admin.js}"></script>
+            <p>
+                ¿Seguro que deseas eliminar este registro?
+                Esta acción no se puede deshacer.
+            </p>
+
+            <div class="admin-modal-actions">
+                <button type="button" class="modal-secondary-button" id="cancelDeleteButton">
+                    No
+                </button>
+
+                <button type="button" class="modal-danger-button" id="confirmDeleteButton">
+                    Sí
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="admin-modal-overlay" id="deleteLoadingModal" hidden>
+        <div class="admin-modal-card is-loading">
+            <h3>Actualizando base de datos</h3>
+            <p>Espera un momento. Estamos eliminando el registro.</p>
+
+            <div class="admin-loader"></div>
+        </div>
+    </div>
+    <script type="module" th:src="@{/js/admin.js}"></script>
 </body>
 </html>

@@ -1,10 +1,11 @@
 package com.wedding.invitationjairo.dto.response;
 
 public class DashboardSummaryResponse {
-    private long totalGuest;
+    private long totalGuests;
     private long totalAdults;
     private long totalChildren;
     private long totalConfirmations;
+    private long totalDeclines;
 
     //Constructor 1
     public DashboardSummaryResponse() {
@@ -13,25 +14,27 @@ public class DashboardSummaryResponse {
 
     //Constructor 2
     public DashboardSummaryResponse(
-        long totalGuest,
+        long totalGuests,
         long totalAdults,
         long totalChildren,
-        long totalConfirmations
+        long totalConfirmations,
+        long totalDeclines
     ) {
-        this.totalGuest = totalGuest;
+        this.totalGuests = totalGuests;
         this.totalAdults = totalAdults;
         this.totalChildren = totalChildren;
         this.totalConfirmations = totalConfirmations;
+        this.totalDeclines = totalDeclines;
     }
 
     /* --- Getters and setters --- */
     //totalGuest
-    public long getTotalGuest() {
-        return totalGuest;
+    public long getTotalGuests() {
+        return totalGuests;
     }
 
-    public void setTotalGuest(long totalGuest) {
-        this.totalGuest = totalGuest;
+    public void setTotalGuests(long totalGuest) {
+        this.totalGuests = totalGuest;
     }
 
     //totalAdults
@@ -59,5 +62,14 @@ public class DashboardSummaryResponse {
 
     public void setTotalConfirmations(long totalConfirmations) {
         this.totalConfirmations = totalConfirmations;
+    }
+
+    //totalDeclines
+    public long getTotalDeclines() {
+        return totalDeclines;
+    }
+
+    public void setTotalDeclines(long totalDeclines) {
+        this.totalDeclines = totalDeclines;
     }
 }

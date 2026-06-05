@@ -11,6 +11,39 @@ import { RsvpForm } from "./rsvp/RsvpForm.js";
 import { CompanionManager } from "./rsvp/CompanionManager.js";
 import { WeddingCalendar } from "./rsvp/WeddingCalendar.js";
 
+async function loadRegistrationStatus() {
+    try {
+        const response = await fetch("/admin/api/settings/registration");
+
+        if (!response.ok) {
+            throw new Error("No se pudo cargar el estado del registro.");
+        }
+
+        const status = await response.json();
+
+        const button = document.getElementById("openRsvpModalButton");
+
+        if (!button) return;
+
+        if (!status.enabled || status.locked) {
+            button.disabled = true;
+            button.textContent = "Botón desactivado";
+            button.classList.add("is-disabled");
+
+            if (!document.querySelector(".registration-disabled-message")) {
+                const warning = document.createElement("p");
+
+                warning.classList.add("registration-disabled-message");
+                warning.textContent = "Ya no puedes registrarte.";
+
+                button.insertAdjacentElement("afterend", warning);
+            }
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const musicPlayer = new MusicPlayer();
     const invitationIntro = new InvitationIntro(musicPlayer);
@@ -41,4 +74,5 @@ document.addEventListener("DOMContentLoaded", () => {
     companionManager.init();
     weddingCalendar.init();
     rsvpConfirmModal.init();
+    loadRegistrationStatus();
 });

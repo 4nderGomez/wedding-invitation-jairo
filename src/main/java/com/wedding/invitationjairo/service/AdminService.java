@@ -3,9 +3,8 @@ package com.wedding.invitationjairo.service;
 import com.wedding.invitationjairo.dto.response.DashboardSummaryResponse;
 import com.wedding.invitationjairo.dto.response.GuestAdminResponse;
 import com.wedding.invitationjairo.dto.response.TodayRegistrationResponse;
-import com.wedding.invitationjairo.enums.AgeGroup;
+import com.wedding.invitationjairo.dto.response.GuestMessageResponse;
 import com.wedding.invitationjairo.enums.AttendanceStatus;
-import com.wedding.invitationjairo.enums.GuestType;
 import com.wedding.invitationjairo.exception.ResourceNotFoundException;
 import com.wedding.invitationjairo.model.GuestGroup;
 import com.wedding.invitationjairo.repository.GuestGroupRepository;
@@ -18,100 +17,127 @@ import java.util.List;
 
 @Service
 public class AdminService {
-    private final GuestGroupRepository guestGroupRepository;
+        private final GuestGroupRepository guestGroupRepository;
 
-    public AdminService(GuestGroupRepository guestGroupRepository) {
-        this.guestGroupRepository = guestGroupRepository;
-    }
+        public AdminService(GuestGroupRepository guestGroupRepository) {
+                this.guestGroupRepository = guestGroupRepository;
+        }
 
-    public DashboardSummaryResponse getDashboardSummary() {
-        List<GuestGroup> guestGroups = guestGroupRepository.findAll();
+        public DashboardSummaryResponse getDashboardSummary() {
+                List<GuestGroup> guestGroups = guestGroupRepository.findAll();
 
-        long principalGuests = guestGroups.stream()
-                .filter(group -> group.getAttendanceStatus() == AttendanceStatus.ATTENDING)
-                .count();
+                long principalGuests = guestGroups.stream()
+                        .filter(group -> group.getAttendanceStatus() == AttendanceStatus.ATTENDING)
+                        .count();
 
-        long adultCompanions = guestGroups.stream()
-                .filter(group -> group.getAttendanceStatus() == AttendanceStatus.ATTENDING)
-                .mapToLong(group -> safeCount(group.getAdultCompanionsCount()))
-                .sum();
+                long adultCompanions = guestGroups.stream()
+                        .filter(group -> group.getAttendanceStatus() == AttendanceStatus.ATTENDING)
+                        .mapToLong(group -> safeCount(group.getAdultCompanionsCount()))
+                        .sum();
 
-        long childCompanions = guestGroups.stream()
-                .filter(group -> group.getAttendanceStatus() == AttendanceStatus.ATTENDING)
-                .mapToLong(group -> safeCount(group.getChildCompanionsCount()))
-                .sum();
+                long childCompanions = guestGroups.stream()
+                        .filter(group -> group.getAttendanceStatus() == AttendanceStatus.ATTENDING)
+                        .mapToLong(group -> safeCount(group.getChildCompanionsCount()))
+                        .sum();
 
-        long totalAdults = principalGuests + adultCompanions;
-        long totalChildren = childCompanions;
-        long totalGuests = totalAdults + totalChildren;
-        long totalConfirmations = guestGroupRepository.count();
+                long totalConfirmations = guestGroups.stream()
+                        .filter(group -> group.getAttendanceStatus() == AttendanceStatus.ATTENDING)
+                        .count();
 
-        return new DashboardSummaryResponse(
-                totalGuests,
-                totalAdults,
-                totalChildren,
-                totalConfirmations
-        );
-    }
+                long totalDeclines = guestGroups.stream()
+                        .filter(group -> group.getAttendanceStatus() == AttendanceStatus.NOT_ATTENDING)
+                        .count();
+                
+                long totalAdults = principalGuests + adultCompanions;
+                long totalChildren = childCompanions;
+                long totalGuests = totalAdults + totalChildren; 
 
-    public List<GuestAdminResponse> getAllGuestsForAdmin() {
-        return guestGroupRepository.findAll()
-                .stream()
-                .map(this::mapPrincipalGuestToAdminResponse)
-                .toList();
-    }
+                return new DashboardSummaryResponse(
+                        totalGuests,
+                        totalAdults,
+                        totalChildren,
+                        totalConfirmations,
+                        totalDeclines
+                );
+        }
 
-    public List<TodayRegistrationResponse> getTodayRegistrations() {
-        LocalDate today = LocalDate.now();
+        public List<GuestAdminResponse> getAllGuestsForAdmin() {
+                return guestGroupRepository.findAll()
+                        .stream()
+                        .map(this::mapPrincipalGuestToAdminResponse)
+                        .toList();
+        }
 
-        LocalDateTime startOfDay = today.atStartOfDay();
-        LocalDateTime startOfNextDay = today.plusDays(1).atStartOfDay();
+        public List<TodayRegistrationResponse> getTodayRegistrations() {
+                LocalDate today = LocalDate.now();
 
-        return guestGroupRepository.findByRegisteredAtBetween(startOfDay, startOfNextDay)
-                .stream()
-                .map(this::mapToTodayRegistrationResponse)
-                .toList();
-    }
+                LocalDateTime startOfDay = today.atStartOfDay();
+                LocalDateTime startOfNextDay = today.plusDays(1).atStartOfDay();
 
-    public void deleteGuestGroup(Long guestGroupId) {
-        GuestGroup guestGroup = guestGroupRepository.findById(guestGroupId)
-                .orElseThrow(() -> new ResourceNotFoundException("Invitado no encontrado"));
+                return guestGroupRepository.findByRegisteredAtBetween(startOfDay, startOfNextDay)
+                        .stream()
+                        .map(this::mapToTodayRegistrationResponse)
+                        .toList();
+        }
 
-        guestGroupRepository.delete(guestGroup);
-    }
+        public void deleteGuestGroup(Long guestGroupId) {
+                GuestGroup guestGroup = guestGroupRepository.findById(guestGroupId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Invitado no encontrado"));
 
-    private GuestAdminResponse mapPrincipalGuestToAdminResponse(GuestGroup guestGroup) {
-        String fullName = guestGroup.getMainFirstName() + " " + guestGroup.getMainLastName();
+                guestGroupRepository.delete(guestGroup);
+        }
 
-        return new GuestAdminResponse(
-                guestGroup.getId(),
-                fullName,
-                guestGroup.getGuestSide(),
-                GuestType.PRINCIPAL,
-                guestGroup.getPhone(),
-                guestGroup.getEmail(),
-                AgeGroup.ADULT,
-                guestGroup.getAttendanceStatus(),
-                guestGroup.getRegisteredAt()
-        );
-    }
+        private GuestAdminResponse mapPrincipalGuestToAdminResponse(GuestGroup guestGroup) {
+                return new GuestAdminResponse(
+                        guestGroup.getId(),
+                        guestGroup.getMainFirstName(),
+                        guestGroup.getMainLastName(),
+                        guestGroup.getGuestSide(),
+                        guestGroup.getPhone(),
+                        guestGroup.getEmail(),
+                        safeCount(guestGroup.getAdultCompanionsCount()),
+                        safeCount(guestGroup.getChildCompanionsCount()),
+                        guestGroup.getAttendanceStatus(),
+                        guestGroup.getRegisteredAt()
+                );
+        }
 
-    private TodayRegistrationResponse mapToTodayRegistrationResponse(GuestGroup guestGroup) {
-        String fullName = guestGroup.getMainFirstName() + " " + guestGroup.getMainLastName();
+        private TodayRegistrationResponse mapToTodayRegistrationResponse(GuestGroup guestGroup) {
+                return new TodayRegistrationResponse(
+                        guestGroup.getId(),
+                        guestGroup.getMainFirstName(),
+                        guestGroup.getMainLastName(),
+                        guestGroup.getGuestSide(),
+                        guestGroup.getPhone(),
+                        guestGroup.getEmail(),
+                        guestGroup.getAdultCompanionsCount(),
+                        guestGroup.getChildCompanionsCount(),
+                        guestGroup.getAttendanceStatus(),
+                        guestGroup.getRegisteredAt()
+                );
+        }
 
-        return new TodayRegistrationResponse(
-                guestGroup.getId(),
-                fullName,
-                guestGroup.getGuestSide(),
-                GuestType.PRINCIPAL,
-                guestGroup.getPhone(),
-                guestGroup.getEmail(),
-                guestGroup.getAttendanceStatus(),
-                guestGroup.getRegisteredAt()
-        );
-    }
+        private Integer safeCount(Integer value) {
+                return value == null ? 0 : value;
+        }
 
-    private long safeCount(Integer value) {
-        return value == null ? 0 : value;
-    }
+        public List<GuestMessageResponse> getGuestMessages() {
+                return guestGroupRepository.findAll()
+                        .stream()
+                        .filter(group -> group.getMessage()!= null)
+                        .filter(group -> !group.getMessage().isBlank())
+                        .map(this::mapToGuestMessageResponse)
+                        .toList();
+        }
+
+        private GuestMessageResponse mapToGuestMessageResponse(GuestGroup guestGroup) {
+                String fullName = guestGroup.getMainFirstName() + " " + guestGroup.getMainLastName();
+
+                return new GuestMessageResponse(
+                        guestGroup.getId(),
+                        fullName,
+                        guestGroup.getMessage(),
+                        guestGroup.getAttendanceStatus()
+                );
+        }
 }

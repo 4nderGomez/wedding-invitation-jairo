@@ -1,5 +1,6 @@
 package com.wedding.invitationjairo.service;
 
+import com.wedding.invitationjairo.dto.response.RegistrationStatusResponse;
 import com.wedding.invitationjairo.exception.ResourceNotFoundException;
 import com.wedding.invitationjairo.model.AppSetting;
 import com.wedding.invitationjairo.repository.AppSettingRepository;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Service
 public class AppSettingService {
     private final AppSettingRepository appSettingRepository;
+    private static final int MAX_DISABLE_COUNT = 3;
 
     public AppSettingService(AppSettingRepository appSettingRepository) {
         this.appSettingRepository = appSettingRepository;
@@ -35,5 +37,40 @@ public class AppSettingService {
             setting.setUpdatedAt(LocalDateTime.now());
 
             return appSettingRepository.save(setting);
+    }
+
+    public RegistrationStatusResponse getRegistrationStatus() {
+        boolean enabled = Boolean.parseBoolean(getSettingValue("registration_enabled", "true"));
+        int disableCount = Integer.parseInt(getSettingValue("registration_disable_count", "0"));
+
+        return new RegistrationStatusResponse(
+                enabled,
+                disableCount,
+                MAX_DISABLE_COUNT,
+                disableCount >= MAX_DISABLE_COUNT
+        );
+    }
+
+    public RegistrationStatusResponse updateRegistrationStatus(boolean enabled) {
+        RegistrationStatusResponse currentStatus = getRegistrationStatus();
+
+        if (!enabled && currentStatus.isLocked()) {
+            return currentStatus;
+        }
+
+        if (!enabled && currentStatus.isEnabled()) {
+            int newCount = currentStatus.getDisableCount() + 1;
+            updateSetting("registration_disable_count", String.valueOf(newCount));
+        }
+
+        updateSetting("registration_enabled", String.valueOf(enabled));
+
+        return getRegistrationStatus();
+    }
+
+    public String getSettingValue(String key, String defaultValue) {
+        return appSettingRepository.findBySettingKey(key)
+                .map(AppSetting::getSettingValue)
+                .orElse(defaultValue);
     }
 }

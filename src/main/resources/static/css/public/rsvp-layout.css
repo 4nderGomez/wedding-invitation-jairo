@@ -144,3 +144,15 @@
     position: relative;
     z-index: 2;
 }
+
+#openRsvpModalButton.is-disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.registration-disabled-message {
+    margin-top: 14px;
+    color: var(--color-error);
+    font-weight: 600;
+    text-align: center;
+}

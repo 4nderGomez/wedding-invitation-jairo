@@ -2,17 +2,18 @@ package com.wedding.invitationjairo.dto.response;
 
 import com.wedding.invitationjairo.enums.AttendanceStatus;
 import com.wedding.invitationjairo.enums.GuestSide;
-import com.wedding.invitationjairo.enums.GuestType;
 
 import java.time.LocalDateTime;
 
 public class TodayRegistrationResponse {
     private Long id;
-    private String fullName;
+    private String firstName;
+    private String lastName;
     private GuestSide guestSide;
-    private GuestType guestType;
     private String phone;
     private String email;
+    private Integer adultCompanionsCount;
+    private Integer childCompanionsCount;
     private AttendanceStatus attendanceStatus;
     private LocalDateTime registeredAt;
 
@@ -22,20 +23,24 @@ public class TodayRegistrationResponse {
 
     public TodayRegistrationResponse(
             Long id,
-            String fullName,
+            String firstName,
+            String lastName,
             GuestSide guestSide,
-            GuestType guestType,
             String phone,
             String email,
+            Integer adultCompanionsCount,
+            Integer childCompanionsCount,
             AttendanceStatus attendanceStatus,
             LocalDateTime registeredAt
     ) {
         this.id = id;
-        this.fullName = fullName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.guestSide = guestSide;
-        this.guestType = guestType;
         this.phone = phone;
         this.email = email;
+        this.adultCompanionsCount = adultCompanionsCount;
+        this.childCompanionsCount = childCompanionsCount;
         this.attendanceStatus = attendanceStatus;
         this.registeredAt = registeredAt;
     }
@@ -44,16 +49,8 @@ public class TodayRegistrationResponse {
         return id;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
     public GuestSide getGuestSide() {
         return guestSide;
-    }
-
-    public GuestType getGuestType() {
-        return guestType;
     }
 
     public String getPhone() {
@@ -76,16 +73,8 @@ public class TodayRegistrationResponse {
         this.id = id;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
     public void setGuestSide(GuestSide guestSide) {
         this.guestSide = guestSide;
-    }
-
-    public void setGuestType(GuestType guestType) {
-        this.guestType = guestType;
     }
 
     public void setPhone(String phone) {
@@ -102,5 +91,37 @@ public class TodayRegistrationResponse {
 
     public void setRegisteredAt(LocalDateTime registeredAt) {
         this.registeredAt = registeredAt;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Integer getAdultCompanionsCount() {
+        return adultCompanionsCount;
+    }
+
+    public void setAdultCompanionsCount(Integer adultCompanionsCount) {
+        this.adultCompanionsCount = adultCompanionsCount;
+    }
+
+    public Integer getChildCompanionsCount() {
+        return childCompanionsCount;
+    }
+
+    public void setChildCompanionsCount(Integer childCompanionsCount) {
+        this.childCompanionsCount = childCompanionsCount;
     }
 }

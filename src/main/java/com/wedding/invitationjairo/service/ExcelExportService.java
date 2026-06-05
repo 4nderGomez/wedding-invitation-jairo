@@ -10,12 +10,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
 @Service
 public class ExcelExportService {
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private final GuestGroupRepository guestGroupRepository;
 
     public ExcelExportService(GuestGroupRepository guestGroupRepository) {
@@ -55,13 +57,13 @@ public class ExcelExportService {
             row.createCell(1).setCellValue(guestGroup.getGuestSide().name());
             row.createCell(2).setCellValue(guestGroup.getPhone() != null ? guestGroup.getPhone() : "");
             row.createCell(3).setCellValue(guestGroup.getEmail() != null ? guestGroup.getEmail() : "");
-            row.createCell(4).setCellValue(guestGroup.getAttendanceStatus().name());
+            row.createCell(4).setCellValue(formatAttendanceStatus(guestGroup.getAttendanceStatus().name()));
             row.createCell(5).setCellValue(adultCompanions);
             row.createCell(6).setCellValue(childCompanions);
             row.createCell(7).setCellValue(totalGuests);
-            row.createCell(8).setCellValue(guestGroup.getRegisteredAt().toString());
+            row.createCell(8).setCellValue(guestGroup.getRegisteredAt().format(DATE_FORMATTER));
         }
-
+        
         for (int i = 0; i <= 8; i++) {
             sheet.autoSizeColumn(i);
         }
@@ -87,5 +89,17 @@ public class ExcelExportService {
 
     private int safeCount(Integer value) {
         return value == null ? 0 : value;
+    }
+
+    private String formatAttendanceStatus(String attendanceStatus) {
+        if ("ATTENDING".equals(attendanceStatus)) {
+            return "Sí asistirá";
+        }
+
+        if ("NOT_ATTENDING".equals(attendanceStatus)) {
+            return "No asistirá";
+        }
+
+        return "-";
     }
 }

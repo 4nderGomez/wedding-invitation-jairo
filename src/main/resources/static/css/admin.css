@@ -2,3 +2,15 @@
 @import url("./base/typography.css");
 @import url("./base/reset.css");
 @import url("./admin/login.css");
+
+@import url("./base/admin-variables.css");
+@import url("./base/admin-base.css");
+
+@import url("./admin/admin-layout.css");
+@import url("./admin/admin-sidebar.css");
+@import url("./admin/admin-header.css");
+@import url("./admin/admin-stats.css");
+@import url("./admin/admin-tables.css");
+@import url("./admin/admin-modal.css");
+@import url("./admin/admin-messages.css");
+@import url("./admin/admin-registration.css");

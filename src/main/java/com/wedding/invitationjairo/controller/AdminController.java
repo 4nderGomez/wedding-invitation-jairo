@@ -3,6 +3,8 @@ package com.wedding.invitationjairo.controller;
 import com.wedding.invitationjairo.dto.response.ApiResponse;
 import com.wedding.invitationjairo.dto.response.DashboardSummaryResponse;
 import com.wedding.invitationjairo.dto.response.GuestAdminResponse;
+import com.wedding.invitationjairo.dto.response.GuestMessageResponse;
+import com.wedding.invitationjairo.dto.response.RegistrationStatusResponse;
 import com.wedding.invitationjairo.dto.response.TodayRegistrationResponse;
 import com.wedding.invitationjairo.service.AdminService;
 import com.wedding.invitationjairo.service.AppSettingService;
@@ -34,7 +36,7 @@ public class AdminController {
 
     @GetMapping("/admin/login")
     public String showLonginPage() {
-        return "admin//login";
+        return "admin/login";
     }
 
     @GetMapping("/admin/dashboard")
@@ -69,15 +71,13 @@ public class AdminController {
     }
 
     @ResponseBody
-    @PatchMapping("/admin/api/settings/registration")
-    public ApiResponse updateRegistrationStatus(@RequestParam boolean enabled) {
-        appSettingService.updateSetting("registration_enabled", String.valueOf(enabled));
-
-        return ApiResponse.ok("Estado de registro actualizado correctamente");
+    @GetMapping("/admin/api/guests/messages")
+    public List<GuestMessageResponse> getGuestMessageResponses() {
+        return adminService.getGuestMessages();
     }
 
     @ResponseBody
-    @PatchMapping("/admin/api//settings/photos")
+    @PatchMapping("/admin/api/settings/photos")
     public ApiResponse updatePhotosStatus(@RequestParam boolean enabled) {
         appSettingService.updateSetting("photo_upload_enabled", String.valueOf(enabled));
 
@@ -95,5 +95,17 @@ public class AdminController {
             )
             .contentType(MediaType.APPLICATION_OCTET_STREAM)
             .body(excelFile);
+    }
+
+    @ResponseBody
+    @GetMapping("/admin/api/settings/registration")
+    public RegistrationStatusResponse getRegistrationStatus() {
+        return appSettingService.getRegistrationStatus();
+    }
+
+    @ResponseBody
+    @PatchMapping("/admin/api/settings/registration")
+    public RegistrationStatusResponse updateRegistrationStatus(@RequestParam boolean enabled) {
+        return appSettingService.updateRegistrationStatus(enabled);
     }
 }

@@ -1,0 +1,32 @@
+:root {
+    --color-ivory: #FFFDF8;
+
+    --color-dusty-pink: #E8B8B4;
+    --color-peach: #F2B891;
+
+    --color-olive: #5F6B4F;
+    --color-sage: #8A947B;
+    --color-blue-gray: #7C93A3;
+
+    --color-wood: #9A5E34;
+
+    --color-text-main: #2F2A25;
+    --color-text-soft: #6F675F;
+
+    --color-error: #9B2C2C;
+    --color-success: #3F6B4A;
+
+    --color-white: #FFFFFF;
+    --color-border: rgba(47, 42, 37, 0.12);
+
+    --font-main: "Poppins", sans-serif;
+    --font-title: "Playfair Display", serif;
+
+    --sidebar-width: 280px;
+
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 24px;
+
+    --shadow-soft: 0 14px 35px rgba(47, 42, 37, 0.08);
+}

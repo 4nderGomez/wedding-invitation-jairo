@@ -1,0 +1,182 @@
+.admin-layout {
+    min-height: 100vh;
+    display: flex;
+    background: var(--color-ivory);
+}
+
+.admin-main {
+    min-height: 100vh;
+    width: calc(100% - var(--sidebar-width));
+    margin-left: var(--sidebar-width);
+    padding: 32px;
+    background:
+        linear-gradient(180deg, rgba(232, 184, 180, 0.10), transparent 280px),
+        var(--color-ivory);
+}
+
+.dashboard-section {
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 32px;
+}
+
+.dashboard-section:nth-of-type(1) {
+    background: rgba(138, 148, 123, 0.10);
+    margin-top: 42px;
+    padding: 54px 36px 36px;
+    border-radius: 34px;
+}
+
+.dashboard-section:nth-of-type(2) {
+    background: rgba(124, 147, 163, 0.10);
+}
+
+.dashboard-section:nth-of-type(3) {
+    background: rgba(232, 184, 180, 0.14);
+}
+
+.dashboard-section:nth-of-type(4) {
+    background: rgba(242, 184, 145, 0.14);
+}
+
+.dashboard-section:nth-of-type(5) {
+    background: rgba(95, 107, 79, 0.10);
+}
+
+.admin-card,
+.summary-card,
+.table-card,
+.registration-card,
+.messages-card,
+.today-card {
+    background: rgba(255, 253, 248, 0.82);
+    border: 1px solid rgba(47, 42, 37, 0.08);
+    box-shadow: 0 16px 38px rgba(47, 42, 37, 0.07);
+}
+
+.section-header {
+    margin-bottom: 22px;
+    padding-left: 16px;
+    border-left: 4px solid var(--color-dusty-pink);
+}
+
+.dashboard-section {
+    margin-top: 56px;
+}
+
+/* Laptop / tablet grande */
+@media (max-width: 1200px) {
+    .admin-main {
+        padding: 28px;
+    }
+
+    .dashboard-section {
+        padding: 26px;
+        margin-top: 44px;
+    }
+
+    .dashboard-section:nth-of-type(1) {
+        padding: 44px 30px 32px;
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .admin-layout {
+        display: block;
+    }
+
+    .admin-main {
+        width: 100%;
+        margin-left: 0;
+        padding: 24px;
+        padding-top: 96px;
+    }
+
+    .dashboard-section {
+        padding: 24px;
+        margin-top: 36px;
+        margin-bottom: 28px;
+        border-radius: 28px;
+    }
+
+    .dashboard-section:nth-of-type(1) {
+        margin-top: 28px;
+        padding: 36px 26px 28px;
+        border-radius: 28px;
+    }
+
+    .section-header {
+        margin-bottom: 20px;
+        padding-left: 14px;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
+@media (max-width: 768px) {
+    .admin-main {
+        padding: 18px;
+        padding-top: 88px;
+    }
+
+    .dashboard-section {
+        padding: 20px;
+        margin-top: 30px;
+        margin-bottom: 24px;
+        border-radius: 24px;
+    }
+
+    .dashboard-section:nth-of-type(1) {
+        padding: 30px 20px 24px;
+        border-radius: 24px;
+    }
+
+    .section-header {
+        margin-bottom: 18px;
+        padding-left: 12px;
+        border-left-width: 3px;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .admin-main {
+        padding: 14px;
+        padding-top: 82px;
+    }
+
+    .dashboard-section {
+        padding: 18px 14px;
+        margin-top: 26px;
+        margin-bottom: 22px;
+        border-radius: 20px;
+    }
+
+    .dashboard-section:nth-of-type(1) {
+        padding: 24px 14px 20px;
+        border-radius: 20px;
+    }
+
+    .section-header {
+        margin-bottom: 16px;
+        padding-left: 10px;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .admin-main {
+        padding: 10px;
+        padding-top: 78px;
+    }
+
+    .dashboard-section {
+        padding: 16px 12px;
+        margin-top: 22px;
+        border-radius: 18px;
+    }
+
+    .dashboard-section:nth-of-type(1) {
+        padding: 22px 12px 18px;
+    }
+}

@@ -8,7 +8,6 @@ import com.wedding.invitationjairo.enums.AgeGroup;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -212,5 +211,18 @@ public class GuestGroup {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Integer getTotalGuestsCount() {
+        return 1 + adultCompanionsCount + childCompanionsCount;
+    }
+
+    public Integer getTotalAdultsCount() {
+        return 1 +  adultCompanionsCount;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = LocalDateTime.now();
     }
 }

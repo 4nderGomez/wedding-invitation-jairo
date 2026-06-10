@@ -7,7 +7,10 @@ export class InvitationIntro {
     }
 
     init() {
-        if (!this.startButton || !this.welcomeScreen || !this.invitationContent) return;
+        if (!this.startButton || !this.welcomeScreen || !this.invitationContent) {
+            document.body.classList.remove("intro-active");
+            return;
+        }
 
         document.body.classList.add("intro-active");
 
@@ -17,7 +20,11 @@ export class InvitationIntro {
     }
 
     async startInvitation() {
-        await this.musicPlayer?.play();
+        try {
+            await this.musicPlayer?.play();
+        } catch (error) {
+            console.warn("La música no pudo iniciar, pero la invitación continuará.", error);
+        }
 
         this.musicPlayer?.showButton();
 
@@ -29,6 +36,6 @@ export class InvitationIntro {
 
         setTimeout(() => {
             this.welcomeScreen.remove();
-        }, 700);
+        }, 1200);
     }
 }

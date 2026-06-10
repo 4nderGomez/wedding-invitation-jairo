@@ -13,6 +13,10 @@ export class MusicPlayer {
         this.bindEvents();
     }
 
+    showButton() {
+        this.musicButton?.classList.add("is-visible");
+    }
+
     bindEvents() {
         this.musicButton?.addEventListener("click", () => {
             this.toggleMusic();
@@ -82,8 +86,4 @@ export class MusicPlayer {
         this.play();
         this.wasPlayingBeforeHidden = false;
     }
-
-    showButton() {
-    this.musicButton?.classList.add("is-visible");
-}
 }

@@ -1,6 +1,7 @@
 package com.wedding.invitationjairo.service;
 
 import com.wedding.invitationjairo.dto.response.DashboardSummaryResponse;
+import com.wedding.invitationjairo.repository.EmailRepository;
 import com.wedding.invitationjairo.dto.response.GuestAdminResponse;
 import com.wedding.invitationjairo.dto.response.TodayRegistrationResponse;
 import com.wedding.invitationjairo.dto.response.GuestMessageResponse;
@@ -9,6 +10,7 @@ import com.wedding.invitationjairo.exception.ResourceNotFoundException;
 import com.wedding.invitationjairo.model.GuestGroup;
 import com.wedding.invitationjairo.repository.GuestGroupRepository;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,9 +20,14 @@ import java.util.List;
 @Service
 public class AdminService {
         private final GuestGroupRepository guestGroupRepository;
+        private final EmailRepository emailRepository;
 
-        public AdminService(GuestGroupRepository guestGroupRepository) {
-                this.guestGroupRepository = guestGroupRepository;
+        public AdminService(
+                GuestGroupRepository guestGroupRepository,
+                EmailRepository emailRepository
+        ) {
+        this.guestGroupRepository = guestGroupRepository;
+        this.emailRepository = emailRepository;
         }
 
         public DashboardSummaryResponse getDashboardSummary() {
@@ -80,9 +87,12 @@ public class AdminService {
                         .toList();
         }
 
+        @Transactional
         public void deleteGuestGroup(Long guestGroupId) {
                 GuestGroup guestGroup = guestGroupRepository.findById(guestGroupId)
                         .orElseThrow(() -> new ResourceNotFoundException("Invitado no encontrado"));
+
+                emailRepository.deleteByGuestGroupId(guestGroupId);
 
                 guestGroupRepository.delete(guestGroup);
         }

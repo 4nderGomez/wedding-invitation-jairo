@@ -10,4 +10,6 @@ public interface EmailRepository extends JpaRepository<EmailLog, Long> {
     List<EmailLog> findByGuestGroupId(Long guestGroupId);
 
     List<EmailLog> findByStatus(EmailStatus status);
+
+    void deleteByGuestGroupId(Long guestGroupId);
 }

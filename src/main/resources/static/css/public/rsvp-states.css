@@ -87,3 +87,8 @@
     background: rgba(124, 147, 163, 0.28);
     color: var(--color-ivory);
 }
+
+.rsvp-result[hidden],
+.rsvp-intro[hidden] {
+    display: none !important;
+}

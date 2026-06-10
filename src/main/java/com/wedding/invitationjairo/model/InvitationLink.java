@@ -2,8 +2,6 @@ package com.wedding.invitationjairo.model;
 
 import com.wedding.invitationjairo.enums.GuestSide;
 
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -22,7 +20,6 @@ public class InvitationLink {
     private String groupName;
 
     @Enumerated(EnumType.STRING)
-    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "guest_side", nullable = false)
     private GuestSide guestSide;
 

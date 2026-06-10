@@ -5,8 +5,6 @@ import com.wedding.invitationjairo.enums.GuestSide;
 import com.wedding.invitationjairo.enums.GuestType;
 import com.wedding.invitationjairo.enums.AgeGroup;
 
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -30,12 +28,10 @@ public class GuestGroup {
     private String mainLastName;
 
     @Enumerated(EnumType.STRING)
-    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "guest_side", nullable = false)
     private GuestSide guestSide;
 
     @Enumerated(EnumType.STRING)
-    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "attendance_status", nullable = false)
     private AttendanceStatus attendanceStatus;
 
@@ -57,12 +53,10 @@ public class GuestGroup {
 
     //Defaults
     @Enumerated(EnumType.STRING)
-    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "guest_type", nullable = false)
     private GuestType guestType = GuestType.PRINCIPAL;
 
     @Enumerated(EnumType.STRING)
-    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "age_group", nullable = false)
     private AgeGroup ageGroup = AgeGroup.ADULT;
 

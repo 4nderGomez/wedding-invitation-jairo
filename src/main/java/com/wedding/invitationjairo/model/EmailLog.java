@@ -2,8 +2,6 @@ package com.wedding.invitationjairo.model;
 
 import com.wedding.invitationjairo.enums.EmailStatus;
 
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -27,8 +25,7 @@ public class EmailLog {
     private String subject;
 
     @Enumerated(EnumType.STRING)
-    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
-    @Column(name = "status", nullable = false, columnDefinition = "email_status")
+    @Column(name = "status", nullable = false)
     private EmailStatus status;
 
     @Column(name = "error_message", columnDefinition = "TEXT")

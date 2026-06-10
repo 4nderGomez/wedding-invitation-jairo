@@ -22,10 +22,12 @@ public class SecurityConfig {
                     "/",
                     "/i/**",
                     "/api/guests/confirm",
+                    "/admin/api/settings/registration",
                     "/css/**",
                     "/js/**",
                     "/images/**",
                     "/audio/**",
+                    "/music/**",
                     "/favicon.ico"
                 ).permitAll()
                 .requestMatchers("/admin/**").authenticated()

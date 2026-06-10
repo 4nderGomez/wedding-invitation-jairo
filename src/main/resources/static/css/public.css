@@ -2,6 +2,7 @@
 @import url("./base/typography.css");
 @import url("./base/reset.css");
 @import url("./base/animations.css");
+@import url("./public/music.css");
 
 @import url("./public/welcome-screen.css");
 @import url("./public/site-nav.css");

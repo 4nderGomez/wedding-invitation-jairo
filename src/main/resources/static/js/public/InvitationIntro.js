@@ -19,6 +19,8 @@ export class InvitationIntro {
     async startInvitation() {
         await this.musicPlayer?.play();
 
+        this.musicPlayer?.showButton();
+
         this.welcomeScreen.classList.add("is-hidden");
         this.invitationContent.classList.add("is-visible");
 

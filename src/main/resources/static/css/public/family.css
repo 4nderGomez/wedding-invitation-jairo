@@ -4,8 +4,8 @@
     color: var(--color-text-main);
 }
 
-.family.container {
-    max-width: 1280px;
+.family-container {
+    width: min(100%, 1280px);
     margin: 0 auto;
 }
 
@@ -69,7 +69,7 @@
     width: 100%;
     aspect-ratio: 4 / 5;
     overflow: hidden;
-    background: var(c--color-cream);
+    background: var(--color-cream);
     box-shadow: var(--shadow-soft);
 }
 

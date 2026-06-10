@@ -9,6 +9,7 @@ export class MusicPlayer {
     init() {
         if (!this.backgroundMusic) return;
 
+        this.updateButtonText();
         this.bindEvents();
     }
 
@@ -18,8 +19,6 @@ export class MusicPlayer {
         });
 
         document.addEventListener("visibilitychange", () => {
-            console.log("Visibility:", document.visibilityState);
-
             if (document.hidden) {
                 this.pauseByLeavingPage();
             } else {
@@ -42,6 +41,7 @@ export class MusicPlayer {
         try {
             await this.backgroundMusic.play();
             this.musicButton?.classList.add("is-playing");
+            this.updateButtonText();
         } catch (error) {
             console.warn("La música no pudo reproducirse:", error);
         }
@@ -52,6 +52,7 @@ export class MusicPlayer {
 
         this.backgroundMusic.pause();
         this.musicButton?.classList.remove("is-playing");
+        this.updateButtonText();
     }
 
     toggleMusic() {
@@ -60,6 +61,12 @@ export class MusicPlayer {
         } else {
             this.pause();
         }
+    }
+
+    updateButtonText() {
+        if (!this.musicButton || !this.backgroundMusic) return;
+
+        this.musicButton.textContent = this.backgroundMusic.paused ? "Play" : "Mute";
     }
 
     pauseByLeavingPage() {
@@ -75,4 +82,8 @@ export class MusicPlayer {
         this.play();
         this.wasPlayingBeforeHidden = false;
     }
+
+    showButton() {
+    this.musicButton?.classList.add("is-visible");
+}
 }

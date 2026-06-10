@@ -8,6 +8,7 @@
     padding: clamp(20px, 4vw, 48px);
     background: rgba(10, 18, 28, 0.58);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .rsvp-confirm-modal.active {
@@ -16,28 +17,30 @@
 
 .rsvp-confirm-card {
     width: min(100%, 460px);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
     padding: 38px 34px 34px;
-    text-align: center;
+    border: 1px solid rgba(199, 164, 93, 0.34);
     background:
         linear-gradient(
             135deg,
             rgba(255, 253, 248, 0.98),
             rgba(247, 241, 234, 0.97)
         );
-    border: 1px solid rgba(199, 164, 93, 0.34);
     box-shadow: var(--shadow-elegant);
+    text-align: center;
 }
 
 .rsvp-confirm-icon {
     width: 54px;
     height: 54px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     margin-bottom: 20px;
     border-radius: 50%;
     background: rgba(199, 164, 93, 0.16);
     color: var(--color-gold);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.45rem;
     animation: heartBeatSoft 2.4s ease-in-out infinite;
 }
@@ -73,7 +76,12 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: var(--transition-soft);
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        opacity 0.25s ease;
 }
 
 .rsvp-confirm-secondary {
@@ -90,13 +98,152 @@
 
 .rsvp-confirm-secondary:hover {
     background: rgba(199, 164, 93, 0.12);
+    transform: translateY(-1px);
 }
 
 .rsvp-confirm-primary:hover {
-    background: var(--color-olive);
     border-color: var(--color-olive);
+    background: var(--color-olive);
+    transform: translateY(-1px);
+}
+
+.rsvp-confirm-actions button:disabled {
+    cursor: not-allowed;
+    opacity: 0.62;
+    transform: none;
 }
 
 .rsvp-confirm-modal.active .rsvp-confirm-card {
     animation: zoomInSoft 0.35s ease both;
+}
+
+/* Laptop pequeña */
+@media (max-width: 1200px) {
+    .rsvp-confirm-card {
+        width: min(100%, 440px);
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .rsvp-confirm-card {
+        padding: 36px 32px 32px;
+    }
+
+    .rsvp-confirm-icon {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 18px;
+        font-size: 1.38rem;
+    }
+
+    .rsvp-confirm-card h3 {
+        font-size: 2rem;
+    }
+
+    .rsvp-confirm-card p {
+        margin-top: 16px;
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
+@media (max-width: 768px) {
+    .rsvp-confirm-modal {
+        padding: 24px;
+    }
+
+    .rsvp-confirm-card {
+        width: min(100%, 420px);
+        padding: 34px 28px 30px;
+    }
+
+    .rsvp-confirm-card h3 {
+        font-size: 1.82rem;
+    }
+
+    .rsvp-confirm-actions {
+        gap: 12px;
+        margin-top: 26px;
+    }
+
+    .rsvp-confirm-actions button {
+        min-height: 42px;
+        padding: 0 20px;
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .rsvp-confirm-modal {
+        padding: 18px;
+    }
+
+    .rsvp-confirm-card {
+        padding: 30px 20px 24px;
+    }
+
+    .rsvp-confirm-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 16px;
+        font-size: 1.25rem;
+    }
+
+    .rsvp-confirm-card h3 {
+        font-size: 1.55rem;
+    }
+
+    .rsvp-confirm-card p {
+        font-size: 0.84rem;
+        line-height: 1.6;
+    }
+
+    .rsvp-confirm-actions {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 24px;
+    }
+
+    .rsvp-confirm-actions button {
+        width: 100%;
+        min-height: 42px;
+        padding: 0 16px;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .rsvp-confirm-modal {
+        padding: 12px;
+    }
+
+    .rsvp-confirm-card {
+        padding: 26px 16px 20px;
+    }
+
+    .rsvp-confirm-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.12rem;
+    }
+
+    .rsvp-confirm-card h3 {
+        font-size: 1.34rem;
+    }
+
+    .rsvp-confirm-card p {
+        font-size: 0.78rem;
+        line-height: 1.55;
+    }
+
+    .rsvp-confirm-actions button {
+        min-height: 40px;
+        font-size: 0.56rem;
+    }
 }

@@ -5,10 +5,13 @@
     z-index: 9999;
     width: 74px;
     height: 74px;
-    border-radius: 50%;
     border: 1px solid rgba(201, 164, 106, 0.45);
+    border-radius: 50%;
     background: rgba(250, 247, 240, 0.92);
     color: var(--color-deep-blue);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-family: var(--font-body);
     font-size: 0.72rem;
     font-weight: 600;
@@ -17,7 +20,16 @@
     cursor: pointer;
     box-shadow: 0 16px 40px rgba(23, 50, 74, 0.18);
     backdrop-filter: blur(10px);
-    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        opacity 0.25s ease,
+        visibility 0.25s ease;
 }
 
 .music-button:hover {
@@ -29,24 +41,73 @@
     color: var(--color-ivory);
 }
 
-.music-button {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
 .music-button.is-visible {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
 }
 
+/* Laptop pequeña */
+@media (max-width: 1200px) {
+    .music-button {
+        width: 70px;
+        height: 70px;
+        font-size: 0.68rem;
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .music-button {
+        left: 22px;
+        bottom: 22px;
+
+        width: 66px;
+        height: 66px;
+
+        font-size: 0.64rem;
+        letter-spacing: 0.1rem;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
 @media (max-width: 768px) {
     .music-button {
         left: 18px;
         bottom: 18px;
+
         width: 62px;
         height: 62px;
-        font-size: 0.62rem;
+
+        font-size: 0.6rem;
+        letter-spacing: 0.08rem;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .music-button {
+        left: 16px;
+        bottom: 16px;
+
+        width: 56px;
+        height: 56px;
+
+        font-size: 0.54rem;
+        letter-spacing: 0.06rem;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .music-button {
+        left: 12px;
+        bottom: 12px;
+
+        width: 50px;
+        height: 50px;
+
+        font-size: 0.48rem;
+        letter-spacing: 0.04rem;
     }
 }

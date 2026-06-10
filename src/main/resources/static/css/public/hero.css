@@ -1,6 +1,8 @@
 .hero {
     min-height: calc(100vh - 120px);
+
     padding: 25px clamp(20px, 5vw, 72px) 80px;
+
     background: var(--color-ivory);
     color: var(--color-text-main);
 }
@@ -8,6 +10,7 @@
 .hero-content {
     max-width: 1120px;
     margin: 0 auto;
+
     display: grid;
     grid-template-columns: 220px 1fr 220px;
     align-items: center;
@@ -20,8 +23,10 @@
 
 .hero-label {
     margin-bottom: 24px;
+
     font-size: 0.78rem;
     letter-spacing: 0.36em;
+    text-transform: uppercase;
     color: var(--color-gold);
 }
 
@@ -31,49 +36,65 @@
     line-height: 0.9;
     font-weight: 600;
     color: var(--color-deep-blue);
+
     animation: heroTitleBreath 7s ease-in-out infinite;
 }
 
 .hero-center h1 span {
     display: block;
-    margin: 8px 0px;
+
+    margin: 8px 0;
+
     font-family: var(--font-script);
     font-size: clamp(3rem, 7vw, 5.5rem);
     font-weight: 400;
     color: var(--color-olive);
+
     animation: heroAmpersandFloat 5.5s ease-in-out infinite;
 }
 
 .hero-date {
     margin-top: 28px;
+
     font-family: var(--font-title);
-    font-size: clamp(1.5rem, 4vw,1.8rem);
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
     color: var(--color-text-main);
 }
 
 .hero-message {
     max-width: 420px;
     margin: 24px auto 34px;
+
     color: var(--color-text-soft);
+
     font-size: 0.92rem;
     line-height: 1.8;
-    animation: rotateSlow 2s linear infinite;
+
+    animation: fadeUp 0.9s ease 0.18s both;
 }
 
 .hero-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     min-height: 48px;
     padding: 0 28px;
+    border-radius: var(--radius-pill);
+
     background: var(--color-deep-blue);
     color: var(--color-white);
-    border-radius: var(--radius-pill);
+
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    transition: var(--transition-soft);
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
     animation: heroButtonGlow 5.8s ease-in-out infinite;
 }
 
@@ -84,6 +105,7 @@
 
 .hero-photo {
     overflow: hidden;
+
     background: var(--color-cream);
     box-shadow: var(--shadow-soft);
 }
@@ -91,18 +113,249 @@
 .hero-photo img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
+
     filter: grayscale(100%) contrast(0.95);
 }
 
 .hero-photo-left {
     height: 310px;
     margin-top: 70px;
+
     animation: heroPhotoFloatLeft 7s ease-in-out infinite;
 }
 
 .hero-photo-right {
     height: 280px;
     margin-bottom: 90px;
+
     animation: heroPhotoFloatRight 7.4s ease-in-out infinite;
+}
+
+/* Laptop pequeña */
+@media (max-width: 1200px) {
+    .hero-content {
+        max-width: 1040px;
+        grid-template-columns: 190px 1fr 190px;
+        gap: 42px;
+    }
+
+    .hero-photo-left {
+        height: 290px;
+    }
+
+    .hero-photo-right {
+        height: 265px;
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .hero {
+        min-height: auto;
+        padding: 70px 34px 86px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        max-width: 680px;
+        gap: 34px;
+    }
+
+    .hero-photo {
+        width: min(100%, 360px);
+        margin: 0 auto;
+    }
+
+    .hero-photo-left {
+        height: 360px;
+        margin-top: 0;
+        order: 2;
+    }
+
+    .hero-center {
+        order: 1;
+    }
+
+    .hero-photo-right {
+        height: 340px;
+        margin-bottom: 0;
+        order: 3;
+    }
+
+    .hero-label {
+        margin-bottom: 20px;
+        font-size: 0.72rem;
+        letter-spacing: 0.3em;
+    }
+
+    .hero-center h1 {
+        font-size: clamp(4rem, 14vw, 6.4rem);
+    }
+
+    .hero-center h1 span {
+        font-size: clamp(3rem, 10vw, 4.8rem);
+    }
+
+    .hero-message {
+        max-width: 500px;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
+@media (max-width: 768px) {
+    .hero {
+        padding: 64px 24px 76px;
+    }
+
+    .hero-content {
+        max-width: 560px;
+        gap: 30px;
+    }
+
+    .hero-label {
+        margin-bottom: 18px;
+        font-size: 0.66rem;
+        letter-spacing: 0.24em;
+    }
+
+    .hero-center h1 {
+        font-size: clamp(3.4rem, 16vw, 5.2rem);
+        line-height: 0.92;
+    }
+
+    .hero-center h1 span {
+        margin: 6px 0;
+        font-size: clamp(2.7rem, 12vw, 4rem);
+    }
+
+    .hero-date {
+        margin-top: 24px;
+        font-size: 1.38rem;
+    }
+
+    .hero-message {
+        margin: 20px auto 30px;
+        font-size: 0.88rem;
+        line-height: 1.7;
+    }
+
+    .hero-button {
+        min-height: 46px;
+        padding: 0 24px;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+    }
+
+    .hero-photo {
+        width: min(100%, 320px);
+    }
+
+    .hero-photo-left,
+    .hero-photo-right {
+        height: 320px;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .hero {
+        padding: 54px 16px 66px;
+    }
+
+    .hero-content {
+        gap: 26px;
+    }
+
+    .hero-label {
+        margin-bottom: 16px;
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+    }
+
+    .hero-center h1 {
+        font-size: 3.55rem;
+    }
+
+    .hero-center h1 span {
+        font-size: 3rem;
+    }
+
+    .hero-date {
+        margin-top: 20px;
+        font-size: 1.22rem;
+    }
+
+    .hero-message {
+        max-width: 340px;
+        margin: 18px auto 26px;
+
+        font-size: 0.84rem;
+        line-height: 1.62;
+    }
+
+    .hero-button {
+        width: 100%;
+        max-width: 290px;
+        min-height: 44px;
+
+        font-size: 0.66rem;
+        letter-spacing: 0.1em;
+    }
+
+    .hero-photo {
+        width: min(100%, 280px);
+    }
+
+    .hero-photo-left,
+    .hero-photo-right {
+        height: 290px;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .hero {
+        padding: 48px 12px 58px;
+    }
+
+    .hero-label {
+        font-size: 0.56rem;
+        letter-spacing: 0.14em;
+    }
+
+    .hero-center h1 {
+        font-size: 3rem;
+    }
+
+    .hero-center h1 span {
+        font-size: 2.55rem;
+    }
+
+    .hero-date {
+        font-size: 1.05rem;
+    }
+
+    .hero-message {
+        font-size: 0.78rem;
+        line-height: 1.55;
+    }
+
+    .hero-button {
+        max-width: 260px;
+        min-height: 42px;
+
+        font-size: 0.6rem;
+        letter-spacing: 0.08em;
+    }
+
+    .hero-photo {
+        width: min(100%, 245px);
+    }
+
+    .hero-photo-left,
+    .hero-photo-right {
+        height: 260px;
+    }
 }

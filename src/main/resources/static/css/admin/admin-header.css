@@ -140,10 +140,19 @@
     }
 }
 
-/* Teléfonos pequeños */
-@media (max-width: 380px) {
+/* Tablet */
+@media (max-width: 992px) {
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+}
+
+/* Móvil pequeño */
+@media (max-width: 576px) {
     .admin-header {
         padding: 16px 14px;
+        gap: 14px;
     }
 
     .admin-kicker {
@@ -151,7 +160,7 @@
     }
 
     .admin-header h1 {
-        font-size: 1.32rem;
+        font-size: clamp(1.32rem, 5vw, 1.5rem);
     }
 
     .admin-header p {
@@ -159,7 +168,14 @@
     }
 
     .admin-user {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+
         padding: 8px 12px;
+
+        text-align: center;
         font-size: 0.76rem;
     }
 }

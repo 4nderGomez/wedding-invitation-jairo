@@ -4,7 +4,6 @@
     border-radius: var(--radius-md);
     background: var(--color-white);
     box-shadow: var(--shadow-soft);
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,12 +36,16 @@
     min-width: 220px;
 }
 
-.toggle-registration-button,
-.reset-registration-button {
+.toggle-registration-button {
     min-height: 46px;
     padding: 12px 16px;
     border-radius: var(--radius-sm);
     font-weight: 700;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
 }
 
 .toggle-registration-button.is-enabled {
@@ -64,155 +67,14 @@
     cursor: not-allowed;
 }
 
-.reset-registration-button {
-    border: 1px solid rgba(95, 107, 79, 0.26);
-    background: transparent;
-    color: var(--color-olive);
+.toggle-registration-button:not(.is-locked):hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(47, 42, 37, 0.12);
 }
 
-/* Laptop pequeña */
-@media (max-width: 1200px) {
-    .registration-card {
-        padding: 26px 28px;
-    }
-
-    .registration-card h3 {
-        font-size: 1.35rem;
-    }
-}
-
-/* Tablet mediana */
-@media (max-width: 992px) {
-    .registration-card {
-        padding: 24px;
-
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 22px;
-
-        border-radius: 26px;
-    }
-
-    .registration-card h3 {
-        font-size: 1.28rem;
-    }
-
-    .registration-card p {
-        font-size: 0.9rem;
-        line-height: 1.5;
-    }
-
-    .registration-counter {
-        margin-top: 10px;
-        font-size: 0.8rem;
-    }
-
-    .registration-actions {
-        width: 100%;
-        min-width: 0;
-    }
-
-    .toggle-registration-button,
-    .reset-registration-button {
-        width: 100%;
-    }
-}
-
-/* Tablet pequeña / teléfono grande */
-@media (max-width: 768px) {
-    .registration-card {
-        padding: 22px 20px;
-        border-radius: 22px;
-    }
-
-    .registration-card h3 {
-        font-size: 1.18rem;
-        line-height: 1.2;
-    }
-
-    .registration-card p {
-        margin-top: 5px;
-
-        font-size: 0.86rem;
-        line-height: 1.45;
-    }
-
-    .registration-counter {
-        font-size: 0.76rem;
-    }
-
-    .registration-actions {
-        gap: 8px;
-    }
-
-    .toggle-registration-button,
-    .reset-registration-button {
-        min-height: 44px;
-
-        padding: 10px 14px;
-
-        font-size: 0.84rem;
-    }
-}
-
-/* Teléfonos medianos */
-@media (max-width: 576px) {
-    .registration-card {
-        padding: 20px 16px;
-        gap: 18px;
-
-        border-radius: 20px;
-    }
-
-    .registration-card h3 {
-        font-size: 1.05rem;
-    }
-
-    .registration-card p {
-        font-size: 0.82rem;
-    }
-
-    .registration-counter {
-        margin-top: 8px;
-        font-size: 0.72rem;
-    }
-
-    .toggle-registration-button,
-    .reset-registration-button {
-        min-height: 42px;
-
-        padding: 10px 12px;
-
-        font-size: 0.8rem;
-    }
-}
-
-/* Teléfonos pequeños */
-@media (max-width: 380px) {
-    .registration-card {
-        padding: 18px 14px;
-        border-radius: 18px;
-    }
-
-    .registration-card h3 {
-        font-size: 0.96rem;
-    }
-
-    .registration-card p {
-        font-size: 0.78rem;
-        line-height: 1.42;
-    }
-
-    .registration-counter {
-        font-size: 0.68rem;
-    }
-
-    .toggle-registration-button,
-    .reset-registration-button {
-        min-height: 40px;
-
-        padding: 9px 10px;
-
-        font-size: 0.76rem;
-    }
+.toggle-registration-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+    transform: none;
+    box-shadow: none;
 }

@@ -1,15 +1,12 @@
 .guest-photos-section {
     position: relative;
-
     padding:
         clamp(86px, 11vw, 138px)
         clamp(20px, 5vw, 72px)
         clamp(220px, 18vw, 320px);
-
     background:
         linear-gradient(rgba(18, 34, 49, 0.72), rgba(18, 34, 49, 0.72)),
         url("../../images/sections/guest-photos-bg.jpeg") center/cover no-repeat;
-
     color: var(--color-white);
     overflow: hidden;
 }
@@ -167,4 +164,398 @@
 .guest-photos-image,
 .guest-photos-card img {
     animation: floatSoft 4.8s ease-in-out infinite;
+}
+
+.guest-photos-card {
+    position: relative;
+
+    max-width: 500px;
+    margin: 38px auto 0;
+    padding: clamp(26px, 4vw, 34px) clamp(24px, 4vw, 38px);
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(22, 36, 49, 0.72),
+            rgba(36, 52, 64, 0.64)
+        );
+
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    overflow: hidden;
+
+    animation: zoomInSoft 0.9s ease 0.12s both;
+}
+
+.guest-photos-card::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+
+    border: 1px solid rgba(199, 164, 93, 0.22);
+
+    pointer-events: none;
+}
+
+.guest-camera-wrapper {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 14px;
+}
+
+.guest-camera-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            rgba(199, 164, 93, 0.18),
+            transparent 70%
+        );
+
+    filter: blur(10px);
+
+    pointer-events: none;
+}
+
+.guest-camera-image {
+    position: relative;
+    z-index: 1;
+
+    width: clamp(120px, 18vw, 180px);
+
+    object-fit: contain;
+
+    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.28));
+}
+
+.guest-photos-card h3 {
+    position: relative;
+    z-index: 1;
+
+    margin-top: 0;
+
+    font-family: var(--font-title);
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    font-weight: 600;
+    color: var(--color-ivory);
+}
+
+.guest-photos-card p {
+    position: relative;
+    z-index: 1;
+
+    max-width: 360px;
+    margin: 12px auto 0;
+
+    line-height: 1.7;
+    color: rgba(255, 253, 248, 0.84);
+}
+
+.guest-photos-button {
+    position: relative;
+    z-index: 2;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+    margin-top: 24px;
+    padding: 0 30px;
+
+    border: 1px solid rgba(199, 164, 93, 0.32);
+    border-radius: var(--radius-pill);
+
+    background: rgba(255, 253, 248, 0.92);
+    color: var(--color-deep-blue);
+
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.guest-photos-button:hover:not(:disabled) {
+    background: var(--color-gold);
+    color: var(--color-deep-blue);
+    transform: translateY(-2px);
+}
+
+.guest-photos-button:disabled {
+    opacity: 0.58;
+    cursor: not-allowed;
+}
+
+.guest-photos-image,
+.guest-photos-card img {
+    animation: floatSoft 4.8s ease-in-out infinite;
+}
+
+/* Laptop pequeña */
+@media (max-width: 1200px) {
+    .guest-photos-container {
+        max-width: 980px;
+    }
+
+    .guest-photos-card {
+        max-width: 480px;
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .guest-photos-section {
+        padding:
+            112px
+            34px
+            240px;
+    }
+
+    .guest-photos-content {
+        max-width: 660px;
+    }
+
+    .guest-photos-content .section-label {
+        margin-bottom: 16px;
+    }
+
+    .guest-photos-content h2 {
+        font-size: clamp(2.4rem, 7vw, 4rem);
+    }
+
+    .guest-photos-content > p {
+        margin-top: 24px;
+        font-size: 0.96rem;
+        line-height: 1.75;
+    }
+
+    .guest-photos-card {
+        margin-top: 34px;
+        padding: 30px 32px;
+    }
+
+    .guest-camera-wrapper::before {
+        width: 160px;
+        height: 160px;
+    }
+
+    .guest-camera-image {
+        width: 150px;
+    }
+
+    .guest-photos-card h3 {
+        font-size: 2.15rem;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
+@media (max-width: 768px) {
+    .guest-photos-section {
+        padding:
+            96px
+            24px
+            210px;
+
+        background-position: center;
+    }
+
+    .guest-photos-content .section-label {
+        font-size: 0.66rem;
+        letter-spacing: 0.22em;
+    }
+
+    .guest-photos-content h2 {
+        font-size: clamp(2.1rem, 9vw, 3.2rem);
+        line-height: 1.05;
+    }
+
+    .guest-photos-content > p {
+        margin-top: 22px;
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .guest-photos-card {
+        max-width: 460px;
+        margin-top: 30px;
+        padding: 28px 26px;
+    }
+
+    .guest-photos-card::before {
+        inset: 10px;
+    }
+
+    .guest-camera-wrapper {
+        margin-bottom: 12px;
+    }
+
+    .guest-camera-wrapper::before {
+        width: 146px;
+        height: 146px;
+    }
+
+    .guest-camera-image {
+        width: 136px;
+    }
+
+    .guest-photos-card h3 {
+        font-size: 1.95rem;
+    }
+
+    .guest-photos-card p {
+        font-size: 0.9rem;
+        line-height: 1.65;
+    }
+
+    .guest-photos-button {
+        min-height: 46px;
+        padding: 0 24px;
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .guest-photos-section {
+        padding:
+            82px
+            16px
+            180px;
+    }
+
+    .guest-photos-section::after {
+        height: 130px;
+    }
+
+    .guest-photos-content .section-label {
+        margin-bottom: 14px;
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+    }
+
+    .guest-photos-content h2 {
+        font-size: 2.35rem;
+    }
+
+    .guest-photos-content > p {
+        margin-top: 18px;
+        font-size: 0.86rem;
+        line-height: 1.62;
+    }
+
+    .guest-photos-card {
+        margin-top: 26px;
+        padding: 24px 20px;
+    }
+
+    .guest-photos-card::before {
+        inset: 8px;
+    }
+
+    .guest-camera-wrapper::before {
+        width: 130px;
+        height: 130px;
+    }
+
+    .guest-camera-image {
+        width: 118px;
+    }
+
+    .guest-photos-card h3 {
+        font-size: 1.7rem;
+    }
+
+    .guest-photos-card p {
+        max-width: 300px;
+        font-size: 0.84rem;
+    }
+
+    .guest-photos-button {
+        width: 100%;
+        min-height: 44px;
+        margin-top: 22px;
+        padding: 0 18px;
+
+        font-size: 0.64rem;
+        letter-spacing: 0.1em;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .guest-photos-section {
+        padding:
+            72px
+            12px
+            150px;
+    }
+
+    .guest-photos-section::after {
+        height: 110px;
+    }
+
+    .guest-photos-content .section-label {
+        font-size: 0.56rem;
+        letter-spacing: 0.14em;
+    }
+
+    .guest-photos-content h2 {
+        font-size: 2rem;
+    }
+
+    .guest-photos-content > p {
+        font-size: 0.8rem;
+        line-height: 1.55;
+    }
+
+    .guest-photos-card {
+        padding: 22px 16px;
+    }
+
+    .guest-camera-wrapper::before {
+        width: 116px;
+        height: 116px;
+    }
+
+    .guest-camera-image {
+        width: 104px;
+    }
+
+    .guest-photos-card h3 {
+        font-size: 1.45rem;
+    }
+
+    .guest-photos-card p {
+        font-size: 0.78rem;
+    }
+
+    .guest-photos-button {
+        min-height: 42px;
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+    }
 }

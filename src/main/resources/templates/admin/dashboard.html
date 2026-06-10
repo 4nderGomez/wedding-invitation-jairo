@@ -9,27 +9,33 @@
 <body>
     <div class="admin-layout">
         <aside class="admin-sidebar">
-            <div class="sidebar-top">
-                <div class="sidebar-logo">
-                    <h2>J & J</h2>
-                    <p>Administración de boda</p>
+            <button type="button" class="sidebar-toggle-button" aria-label="Abrir menú de administración">
+                ☰
+            </button>
+
+            <div class="sidebar-menu">
+                <div class="sidebar-top">
+                    <div class="sidebar-logo">
+                        <h2>J & J</h2>
+                        <p>Administración de boda</p>
+                    </div>
+
+                    <nav class="sidebar-nav">
+                        <a href="#stats" class="nav-link is-active">Cantidad de invitados</a>
+                        <a href="#todayRegistrations" class="nav-link">Registrados hoy</a>
+                        <a href="#guestMessages" class="nav-link">Mensajes</a>
+                        <a href="#guests" class="nav-link">Lista de invitados</a>
+                        <a href="#registrationControl" class="nav-link">Registro</a>
+                    </nav>
                 </div>
 
-                <nav class="sidebar-nav">
-                    <a href="#stats" class="nav-link is-active">Cantidad de invitados</a>
-                    <a href="#todayRegistrations" class="nav-link">Registrados hoy</a>
-                    <a href="#guestMessages" class="nav-link">Mensajes</a>
-                    <a href="#guests" class="nav-link">Lista de invitados</a>
-                    <a href="#registrationControl" class="nav-link">Registro</a>
-                </nav>
+                <form method="post" action="/logout" class="logout-form">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <button type="submit" class="logout-button">
+                        Cerrar sesión
+                    </button>
+                </form>
             </div>
-
-            <form method="post" action="/logout" class="logout-form">
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-                <button type="submit" class="logout-button">
-                    Cerrar sesión
-                </button>
-            </form>
         </aside>
 
         <main class="admin-main">

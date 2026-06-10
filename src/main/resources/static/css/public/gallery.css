@@ -222,3 +222,464 @@ body.gallery-open {
     opacity: 1;
     visibility: visible;
 }
+
+.gallery-arrow {
+    flex: 0 0 auto;
+
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(199, 164, 93, 0.42);
+    border-radius: 50%;
+
+    background: var(--color-card-glass);
+    color: var(--color-deep-blue);
+
+    font-size: 2rem;
+    line-height: 1;
+
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    z-index: 5;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+
+    animation: galleryArrowPulse 3.5s ease-in-out infinite;
+}
+
+.gallery-arrow:hover {
+    background: var(--color-deep-blue);
+    color: var(--color-white);
+    transform: translateY(-1px);
+}
+
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: clamp(24px, 5vw, 64px);
+
+    background: rgba(10, 18, 28, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.gallery-lightbox.active {
+    display: flex;
+    animation: lightboxFadeIn 0.35s ease both;
+}
+
+.gallery-lightbox img {
+    display: block;
+
+    width: auto;
+    height: auto;
+    max-width: min(88vw, 980px);
+    max-height: 82vh;
+
+    object-fit: contain;
+
+    border: 1px solid rgba(199, 164, 93, 0.48);
+    background: var(--color-cream);
+    box-shadow: var(--shadow-elegant);
+}
+
+.gallery-lightbox.active #lightboxImage {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+
+    animation: lightboxImageIn 0.4s ease both;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: clamp(18px, 4vw, 34px);
+    right: clamp(18px, 4vw, 42px);
+
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.36);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--color-white);
+
+    font-size: 2rem;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.lightbox-close:hover {
+    background: var(--color-white);
+    color: var(--color-deep-blue);
+    transform: rotate(8deg);
+}
+
+.lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 54px;
+    height: 54px;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--color-white);
+
+    font-size: 2.5rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.lightbox-arrow:hover {
+    background: var(--color-white);
+    color: var(--color-deep-blue);
+}
+
+.lightbox-arrow-left {
+    left: clamp(18px, 4vw, 48px);
+}
+
+.lightbox-arrow-right {
+    right: clamp(18px, 4vw, 48px);
+}
+
+body.gallery-open {
+    overflow: hidden;
+}
+
+/* Laptop pequeña */
+@media (max-width: 1200px) {
+    .gallery-container {
+        max-width: 1120px;
+    }
+
+    .gallery-track {
+        gap: 18px;
+    }
+
+    .gallery-slide {
+        flex-basis: calc((100% - 36px) / 3);
+        height: clamp(360px, 36vw, 480px);
+    }
+
+    .gallery-slide:hover {
+        transform: scale(1.06);
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .gallery-section {
+        padding: 76px 34px;
+    }
+
+    .gallery-heading {
+        margin-bottom: 34px;
+    }
+
+    .gallery-heading h2 {
+        font-size: clamp(2.2rem, 7vw, 3.6rem);
+    }
+
+    .gallery-heading p {
+        margin-top: 16px;
+        font-size: 0.96rem;
+        line-height: 1.7;
+    }
+
+    .gallery-carousel {
+        gap: 12px;
+    }
+
+    .gallery-track {
+        gap: 16px;
+    }
+
+    .gallery-slide {
+        flex-basis: calc((100% - 16px) / 2);
+        height: clamp(340px, 48vw, 440px);
+    }
+
+    .gallery-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1.8rem;
+    }
+
+    .gallery-slide:hover {
+        transform: scale(1.04);
+    }
+
+    .lightbox-arrow {
+        width: 48px;
+        height: 48px;
+        font-size: 2.2rem;
+    }
+
+    .lightbox-close {
+        width: 44px;
+        height: 44px;
+        font-size: 1.8rem;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
+@media (max-width: 768px) {
+    .gallery-section {
+        padding: 68px 24px;
+    }
+
+    .gallery-heading {
+        margin-bottom: 30px;
+    }
+
+    .gallery-heading .section-label {
+        font-size: 0.66rem;
+        letter-spacing: 0.22em;
+    }
+
+    .gallery-heading h2 {
+        font-size: clamp(2rem, 9vw, 3rem);
+        line-height: 1.05;
+    }
+
+    .gallery-heading p {
+        margin-top: 14px;
+        font-size: 0.9rem;
+        line-height: 1.65;
+    }
+
+    .gallery-carousel {
+        gap: 8px;
+    }
+
+    .gallery-track-wrapper {
+        padding: 10px 2px;
+    }
+
+    .gallery-track {
+        gap: 14px;
+    }
+
+    .gallery-slide {
+        flex-basis: calc((100% - 14px) / 2);
+        height: clamp(280px, 58vw, 380px);
+    }
+
+    .gallery-slide::after {
+        inset: 9px;
+    }
+
+    .gallery-slide:hover {
+        transform: none;
+    }
+
+    .gallery-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 1.55rem;
+    }
+
+    .gallery-lightbox {
+        padding: 24px;
+    }
+
+    .gallery-lightbox img {
+        max-width: 88vw;
+        max-height: 76vh;
+    }
+
+    .lightbox-arrow {
+        width: 42px;
+        height: 42px;
+        font-size: 1.9rem;
+    }
+
+    .lightbox-arrow-left {
+        left: 12px;
+    }
+
+    .lightbox-arrow-right {
+        right: 12px;
+    }
+
+    .lightbox-close {
+        top: 16px;
+        right: 16px;
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 1.6rem;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .gallery-section {
+        padding: 60px 16px;
+    }
+
+    .gallery-heading {
+        margin-bottom: 26px;
+    }
+
+    .gallery-heading .section-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+    }
+
+    .gallery-heading h2 {
+        font-size: 2.25rem;
+    }
+
+    .gallery-heading p {
+        font-size: 0.86rem;
+        line-height: 1.6;
+    }
+
+    .gallery-carousel {
+        gap: 6px;
+    }
+
+    .gallery-track {
+        gap: 12px;
+    }
+
+    .gallery-slide {
+        flex-basis: calc((100% - 12px) / 2);
+        height: 260px;
+    }
+
+    .gallery-arrow {
+        width: 34px;
+        height: 34px;
+        font-size: 1.4rem;
+    }
+
+    .gallery-lightbox {
+        padding: 18px;
+    }
+
+    .gallery-lightbox img {
+        max-width: 92vw;
+        max-height: 72vh;
+    }
+
+    .lightbox-arrow {
+        top: auto;
+        bottom: 24px;
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 1.75rem;
+        transform: none;
+    }
+
+    .lightbox-arrow-left {
+        left: calc(50% - 52px);
+    }
+
+    .lightbox-arrow-right {
+        right: calc(50% - 52px);
+    }
+
+    .lightbox-close {
+        top: 14px;
+        right: 14px;
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 1.45rem;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .gallery-section {
+        padding: 54px 12px;
+    }
+
+    .gallery-heading .section-label {
+        font-size: 0.56rem;
+        letter-spacing: 0.14em;
+    }
+
+    .gallery-heading h2 {
+        font-size: 1.95rem;
+    }
+
+    .gallery-heading p {
+        font-size: 0.8rem;
+    }
+
+    .gallery-track {
+        gap: 10px;
+    }
+
+    .gallery-slide {
+        flex-basis: 100%;
+        height: 250px;
+    }
+
+    .gallery-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 1.25rem;
+    }
+
+    .gallery-slide::after {
+        inset: 7px;
+    }
+
+    .gallery-lightbox img {
+        max-height: 68vh;
+    }
+
+    .lightbox-arrow {
+        bottom: 20px;
+        width: 36px;
+        height: 36px;
+        font-size: 1.5rem;
+    }
+
+    .lightbox-arrow-left {
+        left: calc(50% - 46px);
+    }
+
+    .lightbox-arrow-right {
+        right: calc(50% - 46px);
+    }
+
+    .lightbox-close {
+        width: 34px;
+        height: 34px;
+        font-size: 1.3rem;
+    }
+}

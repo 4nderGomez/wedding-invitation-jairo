@@ -1,11 +1,11 @@
 .countdown-section {
     position: relative;
     padding: clamp(90px, 12vw, 150px) clamp(20px, 5vw, 72px);
-    background: 
+    background:
         linear-gradient(rgba(23, 50, 74, 0.72), rgba(23, 50, 74, 0.72)),
         url("../../images/sections/countdown-bg.jpeg") center / cover no-repeat;
-        color: var(--color-white);
-        text-align: center;
+    color: var(--color-white);
+    text-align: center;
 }
 
 .countdown-heading {
@@ -44,6 +44,7 @@
     border: 1px solid rgba(255, 253, 248, 0.22);
     background: rgba(255, 253, 248, 0.08);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     animation: countdownCardFloat 2.8s ease-in-out infinite;
 }
 
@@ -74,4 +75,172 @@
 
 .countdown-item:nth-child(4) {
     animation-delay: 1.05s;
+}
+
+/* Laptop pequeña */
+@media (max-width: 1200px) {
+    .countdown-overlay {
+        max-width: 900px;
+    }
+
+    .countdown-grid {
+        margin-top: 48px;
+        gap: 22px;
+    }
+
+    .countdown-item {
+        padding: 26px 16px;
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .countdown-section {
+        padding: 110px 34px;
+    }
+
+    .countdown-overlay {
+        max-width: 760px;
+    }
+
+    .countdown-section .section-label {
+        margin-bottom: 16px;
+        font-size: 0.72rem;
+        letter-spacing: 0.34em;
+    }
+
+    .countdown-section h2 {
+        font-size: clamp(2.4rem, 7vw, 4rem);
+    }
+
+    .countdown-grid {
+        margin-top: 42px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .countdown-item {
+        padding: 24px 16px;
+    }
+
+    .countdown-item span {
+        font-size: clamp(2.4rem, 8vw, 3.8rem);
+    }
+
+    .countdown-item p {
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
+@media (max-width: 768px) {
+    .countdown-section {
+        padding: 96px 24px;
+        background-position: center;
+    }
+
+    .countdown-section .section-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.28em;
+    }
+
+    .countdown-section h2 {
+        font-size: clamp(2.1rem, 9vw, 3.2rem);
+        line-height: 1.05;
+    }
+
+    .countdown-grid {
+        margin-top: 36px;
+        gap: 14px;
+    }
+
+    .countdown-item {
+        padding: 22px 14px;
+    }
+
+    .countdown-item span {
+        font-size: clamp(2.1rem, 10vw, 3.2rem);
+    }
+
+    .countdown-item p {
+        margin-top: 10px;
+        font-size: 0.66rem;
+        letter-spacing: 0.16em;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .countdown-section {
+        padding: 86px 16px;
+    }
+
+    .countdown-heading {
+        animation-duration: 2.6s;
+    }
+
+    .countdown-section .section-label {
+        margin-bottom: 14px;
+        font-size: 0.62rem;
+        letter-spacing: 0.22em;
+    }
+
+    .countdown-section h2 {
+        font-size: 2.25rem;
+    }
+
+    .countdown-grid {
+        margin-top: 32px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .countdown-item {
+        padding: 20px 10px;
+    }
+
+    .countdown-item span {
+        font-size: 2.35rem;
+    }
+
+    .countdown-item p {
+        margin-top: 9px;
+        font-size: 0.6rem;
+        letter-spacing: 0.12em;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .countdown-section {
+        padding: 78px 12px;
+    }
+
+    .countdown-section .section-label {
+        font-size: 0.58rem;
+        letter-spacing: 0.18em;
+    }
+
+    .countdown-section h2 {
+        font-size: 1.95rem;
+    }
+
+    .countdown-grid {
+        margin-top: 28px;
+        gap: 10px;
+    }
+
+    .countdown-item {
+        padding: 18px 8px;
+    }
+
+    .countdown-item span {
+        font-size: 2rem;
+    }
+
+    .countdown-item p {
+        font-size: 0.54rem;
+        letter-spacing: 0.1em;
+    }
 }

@@ -1,20 +1,16 @@
 .footer-section {
     position: relative;
-
     margin-top: -42px;
-
     padding:
         clamp(120px, 11vw, 170px)
         clamp(20px, 5vw, 72px)
         clamp(72px, 9vw, 112px);
-
     background:
         linear-gradient(
             135deg,
             rgba(247, 241, 234, 0.96),
             rgba(255, 253, 248, 0.98)
         );
-
     color: var(--color-text-main);
     text-align: center;
     overflow: hidden;
@@ -23,19 +19,131 @@
 .footer-section::before {
     content: "";
     position: absolute;
-
     right: -240px;
     top: -260px;
-
     width: 520px;
     height: 520px;
-
     border-radius: 50%;
-
     background: rgba(232, 184, 180, 0.16);
-
     filter: blur(22px);
+    pointer-events: none;
+}
 
+.footer-section::after {
+    content: "";
+    position: absolute;
+    left: -180px;
+    bottom: -220px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: rgba(113, 139, 157, 0.12);
+    filter: blur(24px);
+    pointer-events: none;
+}
+
+.footer-container {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    animation: fadeUp 0.9s ease both;
+}
+
+.footer-section .section-label {
+    margin-bottom: 18px;
+    color: var(--color-gold);
+}
+
+.footer-section h2 {
+    font-family: var(--font-title);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-deep-blue);
+}
+
+.footer-date {
+    margin-top: 24px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-olive);
+}
+
+.footer-message {
+    max-width: 540px;
+    margin: 28px auto 0;
+    font-size: clamp(0.96rem, 1.2vw, 1.06rem);
+    line-height: 1.9;
+    color: var(--color-text-soft);
+}
+
+.footer-divider {
+    width: 74px;
+    height: 1px;
+    margin: 36px auto 26px;
+    background: rgba(199, 164, 93, 0.45);
+}
+
+.footer-developed {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+}
+
+.footer-developed .email-autor {
+    text-transform: lowercase;
+}
+
+.footer-developed span {
+    color: var(--color-deep-blue);
+    font-weight: 700;
+}
+
+.footer-section {
+    position: relative;
+    margin-top: -42px;
+    padding:
+        clamp(120px, 11vw, 170px)
+        clamp(20px, 5vw, 72px)
+        clamp(72px, 9vw, 112px);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(247, 241, 234, 0.96),
+            rgba(255, 253, 248, 0.98)
+        );
+    color: var(--color-text-main);
+    text-align: center;
+    overflow: hidden;
+}
+
+.footer-section::before {
+    content: "";
+    position: absolute;
+    right: -240px;
+    top: -260px;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: rgba(232, 184, 180, 0.16);
+    filter: blur(22px);
+    pointer-events: none;
+}
+
+.footer-section::after {
+    content: "";
+    position: absolute;
+    left: -180px;
+    bottom: -220px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: rgba(113, 139, 157, 0.12);
+    filter: blur(24px);
     pointer-events: none;
 }
 

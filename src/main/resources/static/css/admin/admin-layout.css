@@ -15,9 +15,10 @@
 }
 
 .dashboard-section {
+    margin-top: 56px;
+    margin-bottom: 32px;
     padding: 28px;
     border-radius: var(--radius-lg);
-    margin-bottom: 32px;
 }
 
 .dashboard-section:nth-of-type(1) {
@@ -60,27 +61,6 @@
     border-left: 4px solid var(--color-dusty-pink);
 }
 
-.dashboard-section {
-    margin-top: 56px;
-}
-
-/* Laptop / tablet grande */
-@media (max-width: 1200px) {
-    .admin-main {
-        padding: 28px;
-    }
-
-    .dashboard-section {
-        padding: 26px;
-        margin-top: 44px;
-    }
-
-    .dashboard-section:nth-of-type(1) {
-        padding: 44px 30px 32px;
-    }
-}
-
-/* Tablet mediana */
 @media (max-width: 992px) {
     .admin-layout {
         display: block;
@@ -94,9 +74,9 @@
     }
 
     .dashboard-section {
-        padding: 24px;
         margin-top: 36px;
         margin-bottom: 28px;
+        padding: 24px;
         border-radius: 28px;
     }
 
@@ -112,7 +92,6 @@
     }
 }
 
-/* Tablet pequeña / teléfono grande */
 @media (max-width: 768px) {
     .admin-main {
         padding: 18px;
@@ -120,9 +99,9 @@
     }
 
     .dashboard-section {
-        padding: 20px;
         margin-top: 30px;
         margin-bottom: 24px;
+        padding: 20px;
         border-radius: 24px;
     }
 
@@ -138,45 +117,26 @@
     }
 }
 
-/* Teléfonos medianos */
 @media (max-width: 576px) {
     .admin-main {
-        padding: 14px;
+        padding: 10px;
         padding-top: 82px;
     }
 
     .dashboard-section {
-        padding: 18px 14px;
-        margin-top: 26px;
+        margin-top: 24px;
         margin-bottom: 22px;
-        border-radius: 20px;
-    }
-
-    .dashboard-section:nth-of-type(1) {
-        padding: 24px 14px 20px;
-        border-radius: 20px;
-    }
-
-    .section-header {
-        margin-bottom: 16px;
-        padding-left: 10px;
-    }
-}
-
-/* Teléfonos pequeños */
-@media (max-width: 380px) {
-    .admin-main {
-        padding: 10px;
-        padding-top: 78px;
-    }
-
-    .dashboard-section {
         padding: 16px 12px;
-        margin-top: 22px;
         border-radius: 18px;
     }
 
     .dashboard-section:nth-of-type(1) {
         padding: 22px 12px 18px;
+        border-radius: 18px;
+    }
+
+    .section-header {
+        margin-bottom: 16px;
+        padding-left: 10px;
     }
 }

@@ -6,27 +6,35 @@
 
 .companion-card {
     position: relative;
+
     padding: 22px;
-    background: rgba(255, 253, 248, 0.78);
     border: 1px solid rgba(199, 164, 93, 0.22);
+
+    background: rgba(255, 253, 248, 0.78);
     box-shadow: 0 14px 34px rgba(10, 18, 28, 0.06);
+
+    overflow: hidden;
 }
 
 .companion-card::before {
     content: "";
     position: absolute;
     inset: 10px;
+
     border: 1px solid rgba(199, 164, 93, 0.14);
+
     pointer-events: none;
 }
 
 .companion-card-heading {
     position: relative;
     z-index: 1;
+
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 18px;
+
     margin-bottom: 18px;
 }
 
@@ -40,26 +48,163 @@
 .remove-companion-button {
     width: 36px;
     height: 36px;
+    border: 1px solid rgba(199, 164, 93, 0.28);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--color-deep-blue);
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(199, 164, 93, 0.28);
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.72);
-    color: var(--color-deep-blue);
+
     font-size: 1.4rem;
     line-height: 1;
+
     cursor: pointer;
-    transition: var(--transition-soft);
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
 }
 
 .remove-companion-button:hover {
     background: var(--color-deep-blue);
     color: var(--color-white);
+    transform: translateY(-1px);
 }
 
 .companion-card .form-row,
 .companion-card .form-group {
     position: relative;
     z-index: 1;
+}
+
+/* Laptop pequeña */
+@media (max-width: 1200px) {
+    .companion-card {
+        padding: 21px;
+    }
+
+    .companion-card-heading h4 {
+        font-size: 1.28rem;
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .companions-list {
+        gap: 16px;
+    }
+
+    .companion-card {
+        padding: 20px;
+    }
+
+    .companion-card::before {
+        inset: 9px;
+    }
+
+    .companion-card-heading {
+        gap: 14px;
+        margin-bottom: 16px;
+    }
+
+    .companion-card-heading h4 {
+        font-size: 1.22rem;
+    }
+
+    .remove-companion-button {
+        width: 34px;
+        height: 34px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
+@media (max-width: 768px) {
+    .companions-list {
+        gap: 14px;
+    }
+
+    .companion-card {
+        padding: 18px;
+    }
+
+    .companion-card::before {
+        inset: 8px;
+    }
+
+    .companion-card-heading {
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+
+    .companion-card-heading h4 {
+        font-size: 1.12rem;
+        line-height: 1.2;
+    }
+
+    .remove-companion-button {
+        flex: 0 0 auto;
+        width: 32px;
+        height: 32px;
+        font-size: 1.22rem;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .companions-list {
+        gap: 12px;
+    }
+
+    .companion-card {
+        padding: 16px;
+    }
+
+    .companion-card::before {
+        inset: 7px;
+    }
+
+    .companion-card-heading {
+        margin-bottom: 14px;
+    }
+
+    .companion-card-heading h4 {
+        font-size: 1rem;
+    }
+
+    .remove-companion-button {
+        width: 30px;
+        height: 30px;
+        font-size: 1.12rem;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .companion-card {
+        padding: 14px;
+    }
+
+    .companion-card::before {
+        inset: 6px;
+    }
+
+    .companion-card-heading {
+        gap: 10px;
+    }
+
+    .companion-card-heading h4 {
+        font-size: 0.92rem;
+    }
+
+    .remove-companion-button {
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+    }
 }

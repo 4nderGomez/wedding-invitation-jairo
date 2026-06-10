@@ -2,11 +2,12 @@ import { MusicPlayer } from "./public/MusicPlayer.js";
 import { InvitationIntro } from "./public/InvitationIntro.js";
 import { CountdownTimer } from "./public/CountdownTimer.js";
 import { GalleryCarousel } from "./public/GalleryCarousel.js";
-import { RsvpModal } from "./rsvp/RsvpModal.js"
-import { RsvpStateManager} from "./rsvp/RsvpStateManager.js";
+import { SiteNavigation } from "./public/SiteNavigation.js";
+import { RsvpModal } from "./rsvp/RsvpModal.js";
+import { RsvpStateManager } from "./rsvp/RsvpStateManager.js";
 import { RsvpValidator } from "./rsvp/RsvpValidator.js";
 import { RsvpApi } from "./rsvp/RsvpApi.js";
-import { RsvpConfirmModal} from "./rsvp/RsvpConfirmModal.js"
+import { RsvpConfirmModal } from "./rsvp/RsvpConfirmModal.js";
 import { RsvpForm } from "./rsvp/RsvpForm.js";
 import { CompanionManager } from "./rsvp/CompanionManager.js";
 import { WeddingCalendar } from "./rsvp/WeddingCalendar.js";
@@ -49,12 +50,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const invitationIntro = new InvitationIntro(musicPlayer);
     const countdownTimer = new CountdownTimer("2026-11-21T17:00:00");
     const galleryCarousel = new GalleryCarousel();
+    const siteNavigation = new SiteNavigation();
 
     const rsvpModal = new RsvpModal();
     const rsvpStateManager = new RsvpStateManager();
     const rsvpValidator = new RsvpValidator();
     const rsvpApi = new RsvpApi();
     const rsvpConfirmModal = new RsvpConfirmModal();
+
     const rsvpForm = new RsvpForm(
         rsvpModal,
         rsvpStateManager,
@@ -62,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         rsvpApi,
         rsvpConfirmModal
     );
+
     const companionManager = new CompanionManager();
     const weddingCalendar = new WeddingCalendar();
 
@@ -69,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     invitationIntro.init();
     countdownTimer.init();
     galleryCarousel.init();
+    siteNavigation.init();
     rsvpModal.init();
     rsvpForm.init();
     companionManager.init();

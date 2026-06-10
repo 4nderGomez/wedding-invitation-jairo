@@ -8,6 +8,7 @@
     padding: clamp(20px, 4vw, 48px);
     background: rgba(10, 18, 28, 0.72);
     backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 }
 
 .rsvp-modal.active {
@@ -19,6 +20,7 @@
     width: min(100%, 820px);
     max-height: 88vh;
     padding: clamp(26px, 4vw, 42px);
+    border: 1px solid rgba(199, 164, 93, 0.34);
     overflow-y: auto;
     background:
         linear-gradient(
@@ -26,7 +28,6 @@
             rgba(255, 253, 248, 0.97),
             rgba(247, 241, 234, 0.96)
         );
-    border: 1px solid rgba(199, 164, 93, 0.34);
     box-shadow: var(--shadow-elegant);
 }
 
@@ -43,27 +44,28 @@
     top: 18px;
     right: 18px;
     z-index: 5;
-    top: 0;
-    margin-left: auto;
     width: 40px;
     height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: 1px solid rgba(199, 164, 93, 0.32);
     border-radius: 50%;
     background: rgba(255, 253, 248, 0.88);
     color: var(--color-deep-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.5rem;
     line-height: 1;
     cursor: pointer;
-    z-index: 4;
-    transition: var(--transition-soft);
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
 }
 
 .rsvp-modal-close:hover {
     background: var(--color-deep-blue);
     color: var(--color-white);
+    transform: rotate(8deg);
 }
 
 .rsvp-modal-heading {
@@ -108,4 +110,172 @@ body.rsvp-modal-open {
 
 .rsvp-modal.active .rsvp-modal-card {
     animation: zoomInSoft 0.35s ease both;
+}
+
+/* Laptop pequeña */
+@media (max-width: 1200px) {
+    .rsvp-modal-card {
+        width: min(100%, 780px);
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .rsvp-modal-card {
+        width: min(100%, 720px);
+        max-height: 86vh;
+        padding: 38px 34px;
+    }
+
+    .rsvp-modal-heading {
+        margin-bottom: 24px;
+    }
+
+    .rsvp-modal-heading h2 {
+        font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    .rsvp-modal-heading p {
+        margin-top: 18px;
+        font-size: 0.94rem;
+        line-height: 1.7;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
+@media (max-width: 768px) {
+    .rsvp-modal {
+        padding: 24px;
+    }
+
+    .rsvp-modal-card {
+        width: 100%;
+        max-height: 86vh;
+        padding: 36px 28px 30px;
+    }
+
+    .rsvp-modal-card::before {
+        inset: 10px;
+    }
+
+    .rsvp-modal-close {
+        top: 14px;
+        right: 14px;
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 1.35rem;
+    }
+
+    .rsvp-modal-heading {
+        margin: 0 auto 24px;
+    }
+
+    .rsvp-modal-heading .section-label {
+        margin-bottom: 10px;
+        font-size: 0.66rem;
+        letter-spacing: 0.22em;
+    }
+
+    .rsvp-modal-heading h2 {
+        font-size: clamp(1.9rem, 8vw, 2.75rem);
+        line-height: 1.05;
+    }
+
+    .rsvp-modal-heading p {
+        margin-top: 16px;
+        font-size: 0.88rem;
+        line-height: 1.65;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .rsvp-modal {
+        padding: 16px;
+        align-items: flex-start;
+    }
+
+    .rsvp-modal-card {
+        max-height: calc(100vh - 32px);
+        padding: 34px 20px 24px;
+    }
+
+    .rsvp-modal-card::before {
+        inset: 8px;
+    }
+
+    .rsvp-modal-close {
+        top: 10px;
+        right: 10px;
+
+        width: 34px;
+        height: 34px;
+
+        font-size: 1.2rem;
+    }
+
+    .rsvp-modal-heading {
+        margin-bottom: 22px;
+        padding: 0 18px;
+    }
+
+    .rsvp-modal-heading .section-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+    }
+
+    .rsvp-modal-heading h2 {
+        font-size: 2.1rem;
+    }
+
+    .rsvp-modal-heading p {
+        font-size: 0.82rem;
+        line-height: 1.58;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .rsvp-modal {
+        padding: 10px;
+    }
+
+    .rsvp-modal-card {
+        max-height: calc(100vh - 20px);
+        padding: 30px 16px 20px;
+    }
+
+    .rsvp-modal-card::before {
+        inset: 6px;
+    }
+
+    .rsvp-modal-close {
+        top: 8px;
+        right: 8px;
+
+        width: 30px;
+        height: 30px;
+
+        font-size: 1.05rem;
+    }
+
+    .rsvp-modal-heading {
+        padding: 0 14px;
+    }
+
+    .rsvp-modal-heading .section-label {
+        font-size: 0.56rem;
+        letter-spacing: 0.14em;
+    }
+
+    .rsvp-modal-heading h2 {
+        font-size: 1.8rem;
+    }
+
+    .rsvp-modal-heading p {
+        font-size: 0.76rem;
+        line-height: 1.5;
+    }
 }

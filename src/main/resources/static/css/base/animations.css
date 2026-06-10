@@ -1,6 +1,6 @@
-/* Welcome animations */
+/* Global entrance animations */
 
-@keyframes welcomeFadeUp {
+@keyframes fadeUp {
     from {
         opacity: 0;
         transform: translateY(28px);
@@ -12,255 +12,31 @@
     }
 }
 
-@keyframes welcomeFadeDown {
+@keyframes fadeLeft {
     from {
         opacity: 0;
-        transform: translateY(-24px);
+        transform: translateX(-34px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
     }
 }
 
-@keyframes welcomeZoomInSoft {
+@keyframes fadeRight {
     from {
         opacity: 0;
-        transform: scale(0.92);
+        transform: translateX(34px);
     }
 
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateX(0);
     }
 }
 
-@keyframes welcomeLogoFloat {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-/* Navigation animations */
-
-@keyframes navFloatSoft {
-    0% {
-        transform: translateY(0);
-        box-shadow: 0 12px 34px rgba(23, 50, 74, 0.08);
-    }
-
-    50% {
-        transform: translateY(-4px);
-        box-shadow: 0 16px 38px rgba(23, 50, 74, 0.11);
-    }
-
-    100% {
-        transform: translateY(0);
-        box-shadow: 0 12px 34px rgba(23, 50, 74, 0.08);
-    }
-}
-
-/* Countdown animations */
-
-@keyframes countdownHeadingFloat {
-    0% {
-        transform: translateY(0);
-        opacity: 0.96;
-    }
-
-    50% {
-        transform: translateY(-5px);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(0);
-        opacity: 0.96;
-    }
-}
-
-@keyframes countdownCardFloat {
-    0% {
-        transform: translateY(0);
-        background: rgba(255, 253, 248, 0.08);
-    }
-
-    50% {
-        transform: translateY(-7px);
-        background: rgba(255, 253, 248, 0.12);
-    }
-
-    100% {
-        transform: translateY(0);
-        background: rgba(255, 253, 248, 0.08);
-    }
-}
-
-@keyframes countdownNumberGlow {
-    0% {
-        text-shadow: 0 0 0 rgba(255, 253, 248, 0);
-    }
-
-    50% {
-        text-shadow: 0 0 18px rgba(255, 253, 248, 0.24);
-    }
-
-    100% {
-        text-shadow: 0 0 0 rgba(255, 253, 248, 0);
-    }
-}
-
-/* Schedule animations */
-
-@keyframes scheduleHeadingFloat {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes scheduleCardFloat {
-    0% {
-        transform: translateY(0);
-        background: rgba(255, 253, 248, 0.13);
-    }
-
-    50% {
-        transform: translateY(-8px);
-        background: rgba(255, 253, 248, 0.17);
-    }
-
-    100% {
-        transform: translateY(0);
-        background: rgba(255, 253, 248, 0.13);
-    }
-}
-
-@keyframes scheduleIconPulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 rgba(255, 253, 248, 0);
-    }
-
-    50% {
-        transform: scale(1.045);
-        box-shadow: 0 0 24px rgba(255, 253, 248, 0.18);
-    }
-
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 rgba(255, 253, 248, 0);
-    }
-}
-
-@keyframes scheduleTimeGlow {
-    0% {
-        text-shadow: 0 0 0 rgba(242, 184, 145, 0);
-    }
-
-    50% {
-        text-shadow: 0 0 16px rgba(242, 184, 145, 0.28);
-    }
-
-    100% {
-        text-shadow: 0 0 0 rgba(242, 184, 145, 0);
-    }
-}
-
-/* Gallery animations */
-
-@keyframes galleryHeadingBreath {
-    0% {
-        transform: translateY(0);
-        opacity: 0.96;
-    }
-
-    50% {
-        transform: translateY(-4px);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(0);
-        opacity: 0.96;
-    }
-}
-
-@keyframes galleryCarouselFloat {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes gallerySlideGlow {
-    0% {
-        box-shadow: var(--shadow-card);
-        border-color: rgba(199, 164, 93, 0.22);
-    }
-
-    50% {
-        box-shadow: 0 22px 54px rgba(23, 50, 74, 0.16);
-        border-color: rgba(199, 164, 93, 0.38);
-    }
-
-    100% {
-        box-shadow: var(--shadow-card);
-        border-color: rgba(199, 164, 93, 0.22);
-    }
-}
-
-@keyframes galleryArrowPulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 rgba(199, 164, 93, 0);
-    }
-
-    50% {
-        transform: scale(1.045);
-        box-shadow: 0 0 18px rgba(199, 164, 93, 0.2);
-    }
-
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 rgba(199, 164, 93, 0);
-    }
-}
-
-@keyframes lightboxFadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes lightboxImageIn {
+@keyframes zoomInSoft {
     from {
         opacity: 0;
         transform: scale(0.96);
@@ -272,66 +48,27 @@
     }
 }
 
-/* Calendar animations */
-
-@keyframes calendarHeadingFloat {
+@keyframes floatSoft {
     0% {
         transform: translateY(0);
-        opacity: 0.96;
     }
 
     50% {
-        transform: translateY(-4px);
-        opacity: 1;
+        transform: translateY(-8px);
     }
 
     100% {
         transform: translateY(0);
-        opacity: 0.96;
     }
 }
 
-@keyframes calendarCardFloat {
-    0% {
-        transform: translateY(0);
-        box-shadow: 0 0 0 rgba(199, 164, 93, 0);
-    }
-
-    50% {
-        transform: translateY(-6px);
-        box-shadow: 0 18px 38px rgba(10, 18, 28, 0.16);
-    }
-
-    100% {
-        transform: translateY(0);
-        box-shadow: 0 0 0 rgba(199, 164, 93, 0);
-    }
-}
-
-@keyframes calendarWeddingDayGlow {
-    0% {
-        box-shadow: 0 14px 34px rgba(199, 164, 93, 0.18);
-        transform: scale(1);
-    }
-
-    50% {
-        box-shadow: 0 18px 44px rgba(199, 164, 93, 0.34);
-        transform: scale(1.035);
-    }
-
-    100% {
-        box-shadow: 0 14px 34px rgba(199, 164, 93, 0.18);
-        transform: scale(1);
-    }
-}
-
-@keyframes calendarHeartBeat {
+@keyframes heartBeatSoft {
     0% {
         transform: scale(1);
     }
 
     18% {
-        transform: scale(1.12);
+        transform: scale(1.08);
     }
 
     36% {
@@ -339,7 +76,7 @@
     }
 
     54% {
-        transform: scale(1.08);
+        transform: scale(1.05);
     }
 
     100% {
@@ -347,19 +84,101 @@
     }
 }
 
-@keyframes calendarButtonPulse {
+/* Hero animations */
+
+@keyframes heroTitleBreath {
     0% {
-        transform: translateY(0);
-        box-shadow: 0 0 0 rgba(199, 164, 93, 0);
+        transform: scale(1);
+        opacity: 0.98;
     }
 
     50% {
-        transform: translateY(-3px);
-        box-shadow: 0 14px 30px rgba(199, 164, 93, 0.2);
+        transform: scale(1.018);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.98;
+    }
+}
+
+@keyframes heroAmpersandFloat {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
     }
 
     100% {
         transform: translateY(0);
-        box-shadow: 0 0 0 rgba(199, 164, 93, 0);
+    }
+}
+
+@keyframes heroButtonGlow {
+    0% {
+        box-shadow: 0 0 0 rgba(23, 50, 74, 0);
+    }
+
+    50% {
+        box-shadow: 0 16px 34px rgba(23, 50, 74, 0.18);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(23, 50, 74, 0);
+    }
+}
+
+@keyframes heroPhotoFloatLeft {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(-1deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+@keyframes heroPhotoFloatRight {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(10px) rotate(1deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+/* Modal animations */
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }

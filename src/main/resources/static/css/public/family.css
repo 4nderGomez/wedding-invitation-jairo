@@ -151,3 +151,240 @@
     margin-top: 5px;
     color: var(--color-text-soft);
 }
+
+/* Laptop pequeña */
+@media (max-width: 1200px) {
+    .family-container {
+        width: min(100%, 1120px);
+    }
+
+    .couple-card {
+        grid-template-columns: 132px 1fr;
+        gap: 20px;
+    }
+
+    .couple-card:last-child {
+        grid-template-columns: 1fr 132px;
+    }
+
+    .family-grid {
+        gap: 24px;
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .family-section {
+        padding: 86px 34px;
+    }
+
+    .family-heading {
+        margin-bottom: 38px;
+    }
+
+    .family-heading .section-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.28rem;
+    }
+
+    .family-heading h2 {
+        font-size: clamp(2.25rem, 7vw, 3.6rem);
+    }
+
+    .couple-showcase {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        max-width: 620px;
+        margin: 0 auto 64px;
+    }
+
+    .couple-card,
+    .couple-card:last-child {
+        grid-template-columns: 130px 1fr;
+        gap: 22px;
+    }
+
+    .couple-card:last-child .couple-photo {
+        order: 0;
+    }
+
+    .couple-card:last-child .couple-info {
+        text-align: left;
+    }
+
+    .ampersand {
+        justify-self: center;
+        font-size: 4rem;
+    }
+
+    .family-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .family-card-featured {
+        transform: none;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
+@media (max-width: 768px) {
+    .family-section {
+        padding: 76px 24px;
+    }
+
+    .family-heading {
+        margin-bottom: 34px;
+    }
+
+    .family-heading .section-label {
+        margin-bottom: 12px;
+        font-size: 0.64rem;
+        letter-spacing: 0.22rem;
+    }
+
+    .family-heading h2 {
+        font-size: clamp(2rem, 9vw, 3rem);
+        line-height: 1.05;
+    }
+
+    .couple-showcase {
+        gap: 22px;
+        margin-bottom: 54px;
+    }
+
+    .couple-card,
+    .couple-card:last-child {
+        grid-template-columns: 112px 1fr;
+        gap: 18px;
+    }
+
+    .couple-info span,
+    .family-card-content span {
+        margin-bottom: 6px;
+        font-size: 0.62rem;
+        letter-spacing: 0.18rem;
+    }
+
+    .couple-info h3 {
+        font-size: 1.35rem;
+    }
+
+    .ampersand {
+        font-size: 3.4rem;
+    }
+
+    .family-grid {
+        grid-template-columns: 1fr;
+        max-width: 460px;
+        margin: 0 auto;
+    }
+
+    .family-card-content {
+        padding: 20px 20px 22px;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .family-section {
+        padding: 68px 16px;
+    }
+
+    .family-heading {
+        margin-bottom: 30px;
+    }
+
+    .family-heading .section-label {
+        font-size: 0.58rem;
+        letter-spacing: 0.18rem;
+    }
+
+    .family-heading h2 {
+        font-size: 2.15rem;
+    }
+
+    .couple-showcase {
+        max-width: 360px;
+        margin-bottom: 46px;
+    }
+
+    .couple-card,
+    .couple-card:last-child {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        text-align: center;
+    }
+
+    .couple-card:last-child .couple-info {
+        text-align: center;
+    }
+
+    .couple-photo {
+        width: min(100%, 210px);
+        margin: 0 auto;
+    }
+
+    .couple-info h3 {
+        font-size: 1.28rem;
+    }
+
+    .ampersand {
+        font-size: 3rem;
+    }
+
+    .family-grid {
+        gap: 18px;
+    }
+
+    .family-card-content {
+        padding: 18px 18px 20px;
+    }
+
+    .family-card-content h3,
+    .family-card-content p {
+        font-size: 1rem;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .family-section {
+        padding: 60px 12px;
+    }
+
+    .family-heading .section-label {
+        font-size: 0.54rem;
+        letter-spacing: 0.14rem;
+    }
+
+    .family-heading h2 {
+        font-size: 1.9rem;
+    }
+
+    .couple-photo {
+        width: min(100%, 190px);
+    }
+
+    .couple-info span,
+    .family-card-content span {
+        font-size: 0.56rem;
+        letter-spacing: 0.14rem;
+    }
+
+    .couple-info h3 {
+        font-size: 1.15rem;
+    }
+
+    .ampersand {
+        font-size: 2.6rem;
+    }
+
+    .family-card-content {
+        padding: 16px;
+    }
+
+    .family-card-content h3,
+    .family-card-content p {
+        font-size: 0.94rem;
+    }
+}

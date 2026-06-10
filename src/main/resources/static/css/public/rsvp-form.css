@@ -48,6 +48,7 @@
 
 .rsvp-choice-form .rsvp-continue-button {
     display: flex;
+    margin: 38px auto 0;
 }
 
 .rsvp-intro .attendance-options {
@@ -72,10 +73,13 @@
     align-items: center;
     gap: 16px;
     padding: 14px 18px;
-    background: rgba(255, 255, 255, 0.74);
     border: 1px solid rgba(199, 164, 93, 0.16);
+    background: rgba(255, 255, 255, 0.74);
     cursor: pointer;
-    transition: var(--transition-soft);
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .attendance-option:hover {
@@ -97,11 +101,6 @@
     color: var(--color-deep-blue);
 }
 
-
-.rsvp-choice-form .rsvp-continue-button {
-    margin: 38px auto 0;
-}
-
 .rsvp-continue-button {
     position: relative;
     z-index: 1;
@@ -120,7 +119,11 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: var(--transition-soft);
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
 }
 
 .rsvp-continue-button:hover:not(:disabled) {
@@ -191,12 +194,16 @@
     color: var(--color-deep-blue);
     font-family: var(--font-text);
     font-size: 0.9rem;
-    transition: var(--transition-soft);
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
 }
 
 .form-group textarea {
     min-height: 105px;
     padding: 12px 14px;
+    resize: vertical;
 }
 
 .form-group input:focus,
@@ -205,6 +212,20 @@
     outline: none;
     border-color: rgba(95, 107, 79, 0.62);
     box-shadow: 0 0 0 4px rgba(138, 148, 123, 0.14);
+}
+
+.form-group input.is-invalid,
+.form-group select.is-invalid,
+.form-group textarea.is-invalid {
+    border-color: rgba(160, 64, 64, 0.72);
+    box-shadow: 0 0 0 4px rgba(160, 64, 64, 0.1);
+}
+
+.field-error {
+    margin-top: 8px;
+
+    font-size: 0.78rem;
+    color: rgba(160, 64, 64, 0.92);
 }
 
 .form-submit {
@@ -230,12 +251,26 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: var(--transition-soft);
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        opacity 0.25s ease;
 }
 
-.form-submit button:hover {
+.form-submit button:hover:not(:disabled) {
     background: var(--color-olive);
     transform: translateY(-2px);
+}
+
+.form-submit button.is-loading {
+    opacity: 0.72;
+    cursor: wait;
+    pointer-events: none;
+}
+
+.form-submit button:disabled {
+    opacity: 0.72;
+    cursor: not-allowed;
 }
 
 .form-section {
@@ -245,143 +280,6 @@
 .form-section h3 {
     margin-bottom: 12px;
     font-size: 1.35rem;
-}
-
-.companions-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 16px;
-}
-
-.companions-actions button {
-    min-height: 38px;
-    padding: 0 18px;
-    border: 1px solid rgba(199, 164, 93, 0.28);
-    background: rgba(255, 255, 255, 0.72);
-    color: var(--color-deep-blue);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: var(--transition-soft);
-}
-
-.companions-list {
-    gap: 12px;
-}
-
-.companions-actions button:hover {
-    background: var(--color-olive);
-    color: var(--color-white);
-}
-
-.guest-total {
-    margin-top: 14px;
-}
-
-.guest-total p {
-    font-size: 0.92rem;
-    color: var(--color-text-soft);
-}
-
-.form-group input.is-invalid,
-.form-group select.is-invalid,
-.form-group textarea.is-invalid {
-    border-color: rgba(160, 64, 64, 0.72);
-    box-shadow: 0 0 0 4px rgba(160, 64, 64, 0.1);
-}
-
-.field-error {
-    margin-top: 8px;
-    font-size: 0.78rem;
-    color: rgba(160, 64, 64, 0.92);
-}
-
-.companion-card {
-    position: relative;
-    display: grid;
-    grid-template-columns: 7px 1fr;
-    margin-top: 0;
-    background: rgba(255, 253, 248, 0.78);
-    border: 1px solid rgba(199, 164, 93, 0.22);
-    box-shadow: 0 12px 26px rgba(10, 18, 28, 0.05);
-    overflow: hidden;
-}
-
-.companion-type-indicator {
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-.companion-card-adult {
-    background: rgba(138, 148, 123, 0.12);
-}
-
-.companion-card-child {
-    background: rgba(232, 184, 180, 0.14);
-}
-
-.companion-card-adult .companion-type-indicator {
-    background: var(--color-sage);
-}
-
-.companion-card-child .companion-type-indicator {
-    background: var(--color-dusty-pink);
-}
-
-.companion-card-content {
-    position: relative;
-    z-index: 2;
-    padding: 14px 16px 12px;
-}
-
-.companion-card-heading {
-    margin-bottom: 10px;
-}
-
-.companion-card-heading span {
-    display: inline-block;
-    margin-bottom: 3px;
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-gold);
-}
-
-.companion-card-heading h4 {
-    font-size: 0.98rem;
-    line-height: 1.2;
-    color: var(--color-deep-blue);
-}
-
-.compact-row {
-    gap: 12px;
-}
-
-.remove-companion-button {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    z-index: 5;
-    width: 26px;
-    height: 26px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(10, 18, 28, 0.06);
-    color: var(--color-deep-blue);
-    font-size: 1.2rem;
-    line-height: 1;
-    cursor: pointer;
-    transition: var(--transition-soft);
-}
-
-.remove-companion-button:hover {
-    background: var(--color-deep-blue);
-    color: var(--color-white);
 }
 
 .form-section-message {
@@ -400,10 +298,12 @@
 }
 
 .form-section-message .form-submit {
-    height: auto;
     width: 100%;
+    height: auto;
+
     display: flex;
     justify-content: center;
+
     margin-top: 24px;
 }
 
@@ -413,6 +313,7 @@
 
 #notAttendingForm .form-section-message {
     width: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -424,33 +325,26 @@
 }
 
 #notAttendingForm .form-section-message textarea {
+    display: block;
+
     width: 100%;
     max-width: none;
     min-height: 150px;
-    display: block;
 }
 
 #notAttendingForm .form-section-message .form-submit {
     width: 100%;
     height: auto;
+
     display: flex;
     justify-content: center;
+
     margin-top: 24px;
-}
-
-.form-submit button.is-loading {
-    opacity: 0.72;
-    cursor: wait;
-    pointer-events: none;
-}
-
-.form-submit button:disabled {
-    opacity: 0.72;
-    cursor: not-allowed;
 }
 
 .companions-count-note {
     margin: 0 0 14px;
+
     font-size: 0.88rem;
     line-height: 1.6;
     color: var(--color-text-soft);
@@ -460,6 +354,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
+
     margin-top: 12px;
 }
 
@@ -468,14 +363,17 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+
     min-height: 54px;
     padding: 10px 16px;
-    background: rgba(255, 253, 248, 0.52);
     border: 1px solid rgba(138, 148, 123, 0.22);
+
+    background: rgba(255, 253, 248, 0.52);
 }
 
 .companions-count-field label {
     margin: 0;
+
     font-family: var(--font-text);
     font-size: 0.92rem;
     font-weight: 600;
@@ -485,15 +383,21 @@
 .companions-count-field input {
     width: 82px;
     height: 40px;
+
     padding: 0 10px;
     border: 1px solid rgba(124, 147, 163, 0.26);
+
     background: rgba(255, 255, 255, 0.88);
     color: var(--color-deep-blue);
+
     font-family: var(--font-text);
     font-size: 1rem;
     font-weight: 500;
     text-align: center;
-    transition: var(--transition-soft);
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .companions-count-field input:focus {
@@ -505,13 +409,16 @@
 .guest-total {
     margin-top: 10px;
     padding: 10px 14px;
-    background: rgba(242, 184, 145, 0.14);
     border: 1px solid rgba(242, 184, 145, 0.26);
+
+    background: rgba(242, 184, 145, 0.14);
+
     text-align: center;
 }
 
 .guest-total p {
     margin: 0;
+
     font-size: 0.73rem;
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -523,4 +430,304 @@
     color: var(--color-peach);
     font-size: 0.95rem;
     font-weight: 700;
+}
+
+/* Laptop pequeña */
+@media (max-width: 1200px) {
+    .rsvp-intro h2,
+    .rsvp-result h2 {
+        font-size: clamp(1.8rem, 5vw, 3.4rem);
+    }
+
+    .rsvp-section h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .rsvp-intro {
+        text-align: center;
+    }
+
+    .rsvp-intro h2,
+    .rsvp-result h2,
+    .rsvp-intro > p,
+    .rsvp-result > p {
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .rsvp-intro .section-label {
+        margin-bottom: 18px;
+    }
+
+    .rsvp-choice-form {
+        max-width: 560px;
+        margin: 36px auto 0;
+    }
+
+    .rsvp-section {
+        margin-top: 30px;
+    }
+
+    .rsvp-section h3 {
+        margin-bottom: 16px;
+        font-size: 1.42rem;
+    }
+
+    .form-row {
+        gap: 12px;
+    }
+
+    .companions-count-grid {
+        gap: 12px;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
+@media (max-width: 768px) {
+    .rsvp-intro h2,
+    .rsvp-result h2 {
+        font-size: clamp(1.9rem, 8vw, 3rem);
+        line-height: 1.05;
+    }
+
+    .rsvp-intro > p,
+    .rsvp-result > p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .attendance-option {
+        padding: 13px 16px;
+        gap: 14px;
+    }
+
+    .attendance-option span {
+        font-size: 0.92rem;
+    }
+
+    .rsvp-continue-button,
+    .form-submit button {
+        min-height: 46px;
+        padding: 0 26px;
+
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+    }
+
+    .rsvp-section {
+        margin-top: 28px;
+    }
+
+    .rsvp-section h3 {
+        font-size: 1.3rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .form-group label {
+        font-size: 0.74rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        min-height: 42px;
+        font-size: 0.86rem;
+    }
+
+    .companions-count-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .companions-count-field {
+        min-height: 52px;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .rsvp-intro .section-label,
+    .rsvp-result .section-label {
+        margin-bottom: 14px;
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+    }
+
+    .rsvp-intro h2,
+    .rsvp-result h2 {
+        font-size: 2.2rem;
+    }
+
+    .rsvp-intro > p,
+    .rsvp-result > p {
+        font-size: 0.84rem;
+        line-height: 1.62;
+    }
+
+    .rsvp-choice-form {
+        margin-top: 30px;
+    }
+
+    .attendance-options {
+        gap: 12px;
+    }
+
+    .attendance-option {
+        min-height: 50px;
+        padding: 12px 14px;
+    }
+
+    .attendance-option input[type="radio"] {
+        width: 16px;
+        height: 16px;
+    }
+
+    .attendance-option span {
+        font-size: 0.86rem;
+    }
+
+    .rsvp-choice-form .rsvp-continue-button {
+        margin-top: 30px;
+    }
+
+    .rsvp-continue-button,
+    .form-submit button {
+        width: 100%;
+        min-height: 44px;
+        padding: 0 18px;
+
+        font-size: 0.64rem;
+        letter-spacing: 0.1em;
+    }
+
+    .rsvp-section h3 {
+        font-size: 1.16rem;
+    }
+
+    .form-group {
+        margin-bottom: 12px;
+    }
+
+    .form-group label {
+        margin-bottom: 7px;
+        font-size: 0.7rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        min-height: 40px;
+        padding: 0 12px;
+        font-size: 0.8rem;
+    }
+
+    .form-group textarea {
+        min-height: 100px;
+        padding: 10px 12px;
+    }
+
+    #notAttendingForm .form-section-message textarea {
+        min-height: 130px;
+    }
+
+    .companions-count-note {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+
+    .companions-count-field {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+
+        padding: 12px;
+    }
+
+    .companions-count-field label {
+        font-size: 0.84rem;
+        text-align: center;
+    }
+
+    .companions-count-field input {
+        width: 100%;
+        height: 38px;
+    }
+
+    .guest-total p {
+        font-size: 0.66rem;
+        letter-spacing: 0.08em;
+    }
+
+    .guest-total span {
+        font-size: 0.86rem;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .rsvp-intro .section-label,
+    .rsvp-result .section-label {
+        font-size: 0.56rem;
+        letter-spacing: 0.14em;
+    }
+
+    .rsvp-intro h2,
+    .rsvp-result h2 {
+        font-size: 1.9rem;
+    }
+
+    .rsvp-intro > p,
+    .rsvp-result > p {
+        font-size: 0.78rem;
+        line-height: 1.55;
+    }
+
+    .attendance-option {
+        padding: 11px 12px;
+        gap: 10px;
+    }
+
+    .attendance-option span {
+        font-size: 0.78rem;
+    }
+
+    .rsvp-section h3 {
+        font-size: 1.05rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 0.76rem;
+    }
+
+    .rsvp-continue-button,
+    .form-submit button {
+        min-height: 42px;
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+    }
+
+    .companions-count-field label {
+        font-size: 0.78rem;
+    }
+
+    .guest-total {
+        padding: 9px 10px;
+    }
+
+    .guest-total p {
+        font-size: 0.6rem;
+    }
+
+    .guest-total span {
+        font-size: 0.8rem;
+    }
 }

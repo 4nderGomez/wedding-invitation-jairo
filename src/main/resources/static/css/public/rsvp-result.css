@@ -16,13 +16,13 @@
 .rsvp-result-icon {
     width: 58px;
     height: 58px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     margin-bottom: 22px;
     border-radius: 50%;
     background: rgba(199, 164, 93, 0.16);
     color: var(--color-gold);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.6rem;
     line-height: 1;
     box-shadow: 0 14px 34px rgba(199, 164, 93, 0.16);
@@ -73,4 +73,152 @@
 
 .rsvp-result.is-not-attending .rsvp-result-date {
     color: var(--color-blue-gray);
+}
+
+/* Laptop pequeña */
+@media (max-width: 1200px) {
+    .rsvp-result-content {
+        max-width: 540px;
+    }
+
+    .rsvp-result h2 {
+        font-size: clamp(2.1rem, 4.4vw, 3.6rem);
+    }
+}
+
+/* Tablet mediana */
+@media (max-width: 992px) {
+    .rsvp-result-content {
+        max-width: 520px;
+    }
+
+    .rsvp-result-icon {
+        width: 56px;
+        height: 56px;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+    }
+
+    .rsvp-result .section-label {
+        margin-bottom: 14px;
+    }
+
+    .rsvp-result h2 {
+        font-size: clamp(2rem, 6vw, 3.2rem);
+    }
+
+    .rsvp-result-message {
+        margin-top: 22px;
+    }
+
+    .rsvp-result-message p {
+        font-size: 0.94rem;
+        line-height: 1.7;
+    }
+}
+
+/* Tablet pequeña / teléfono grande */
+@media (max-width: 768px) {
+    .rsvp-result-content {
+        max-width: 460px;
+    }
+
+    .rsvp-result-icon {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 18px;
+        font-size: 1.38rem;
+    }
+
+    .rsvp-result .section-label {
+        font-size: 0.66rem;
+        letter-spacing: 0.22em;
+    }
+
+    .rsvp-result h2 {
+        font-size: clamp(1.9rem, 8vw, 2.8rem);
+        line-height: 1.05;
+    }
+
+    .rsvp-result-message {
+        max-width: 420px;
+        margin-top: 20px;
+    }
+
+    .rsvp-result-message p {
+        font-size: 0.88rem;
+        line-height: 1.65;
+    }
+
+    .rsvp-result-date {
+        margin-top: 16px;
+        padding-top: 16px;
+
+        font-size: 0.76rem;
+        letter-spacing: 0.12em;
+        line-height: 1.5;
+    }
+}
+
+/* Teléfonos medianos */
+@media (max-width: 576px) {
+    .rsvp-result-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 16px;
+        font-size: 1.25rem;
+    }
+
+    .rsvp-result .section-label {
+        margin-bottom: 12px;
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+    }
+
+    .rsvp-result h2 {
+        font-size: 2.15rem;
+    }
+
+    .rsvp-result-message {
+        margin-top: 18px;
+    }
+
+    .rsvp-result-message p {
+        margin-bottom: 12px;
+        font-size: 0.82rem;
+        line-height: 1.58;
+    }
+
+    .rsvp-result-date {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 380px) {
+    .rsvp-result-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.12rem;
+    }
+
+    .rsvp-result .section-label {
+        font-size: 0.56rem;
+        letter-spacing: 0.14em;
+    }
+
+    .rsvp-result h2 {
+        font-size: 1.82rem;
+    }
+
+    .rsvp-result-message p {
+        font-size: 0.76rem;
+        line-height: 1.5;
+    }
+
+    .rsvp-result-date {
+        font-size: 0.64rem;
+        letter-spacing: 0.08em;
+    }
 }

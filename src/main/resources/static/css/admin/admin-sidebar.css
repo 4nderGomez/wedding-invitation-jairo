@@ -3,11 +3,14 @@
     top: 0;
     left: 0;
     z-index: 50;
+
     width: var(--sidebar-width);
     height: 100vh;
+
     padding: 32px 24px;
     background: var(--color-text-main);
     color: var(--color-ivory);
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -19,6 +22,7 @@
 
 .sidebar-menu {
     height: 100%;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -39,6 +43,7 @@
 
 .sidebar-nav {
     margin-top: 46px;
+
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -46,10 +51,13 @@
 
 .nav-link {
     display: block;
+
     padding: 13px 15px;
     border-radius: var(--radius-sm);
+
     font-size: 0.92rem;
     color: rgba(255, 253, 248, 0.72);
+
     transition:
         background 0.25s ease,
         color 0.25s ease,
@@ -69,12 +77,16 @@
 
 .logout-button {
     width: 100%;
+
     padding: 13px 15px;
     border: 1px solid rgba(255, 253, 248, 0.22);
     border-radius: var(--radius-sm);
+
     background: transparent;
     color: var(--color-ivory);
+
     cursor: pointer;
+
     transition:
         background 0.25s ease,
         border-color 0.25s ease;
@@ -85,221 +97,99 @@
     border-color: rgba(155, 44, 44, 0.55);
 }
 
-/* Tablet mediana hacia abajo: menú flotante */
-@media (max-width: 992px) {
-    .admin-sidebar {
-        top: 18px;
-        left: auto;
-        right: 18px;
-        z-index: 100;
-        width: auto;
-        height: auto;
-        padding: 0;
-        background: transparent;
-        color: var(--color-ivory);
-        display: block;
+/* ============================= */
+/* MOBILE SIDEBAR */
+/* ============================= */
+
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
     }
 
     .sidebar-toggle-button {
-        width: 48px;
-        height: 48px;
-        border: 1px solid rgba(255, 253, 248, 0.22);
-        border-radius: 50%;
-        background: var(--color-text-main);
-        color: var(--color-ivory);
-        box-shadow: 0 14px 34px rgba(47, 42, 37, 0.22);
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        z-index: 7000;
+
+        width: 58px;
+        height: 58px;
+
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.35rem;
-        line-height: 1;
-        cursor: pointer;
-        transition:
-            transform 0.25s ease,
-            box-shadow 0.25s ease,
-            background 0.25s ease;
-    }
 
-    .sidebar-toggle-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 18px 40px rgba(47, 42, 37, 0.28);
-    }
+        border: none;
+        border-radius: 50%;
 
-    .sidebar-menu {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: min(82vw, 310px);
-        max-height: calc(100vh - 96px);
-        overflow-y: auto;
-        padding: 22px;
-        border: 1px solid rgba(255, 253, 248, 0.14);
-        border-radius: 24px;
         background: var(--color-text-main);
-        box-shadow: 0 24px 60px rgba(47, 42, 37, 0.26);
-        display: none;
+        color: var(--color-ivory);
+
+        font-size: 1.8rem;
+        line-height: 1;
+
+        box-shadow: 0 14px 34px rgba(47, 42, 37, 0.28);
+        cursor: pointer;
     }
 
-    .admin-sidebar.is-open .sidebar-menu {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
+    .admin-sidebar {
+        top: 0;
+        right: 0;
+        left: auto;
+        z-index: 6500;
+
+        width: min(82vw, 320px);
+        height: 100dvh;
+
+        padding: 92px 22px 24px;
+
+        transform: translateX(105%);
+        transition: transform 0.35s ease;
+
+        box-shadow: -18px 0 45px rgba(47, 42, 37, 0.28);
+        overflow-y: auto;
+    }
+
+    .admin-sidebar.is-open {
+        transform: translateX(0);
+    }
+
+    .sidebar-menu {
+        min-height: 100%;
+        height: auto;
     }
 
     .sidebar-logo h2 {
-        font-size: 1.45rem;
+        font-size: 2rem;
     }
 
     .sidebar-logo p {
-        margin-top: 4px;
-        font-size: 0.78rem;
+        font-size: 0.82rem;
+        line-height: 1.4;
     }
 
     .sidebar-nav {
-        margin-top: 24px;
-        gap: 8px;
+        margin-top: 34px;
+        gap: 12px;
     }
 
     .nav-link {
-        padding: 12px 13px;
-        font-size: 0.86rem;
-    }
+        width: 100%;
 
-    .nav-link:hover,
-    .nav-link.is-active {
-        transform: translateX(3px);
+        padding: 15px 16px;
+        border-radius: 14px;
+
+        font-size: 0.95rem;
+        line-height: 1.25;
     }
 
     .logout-form {
-        margin-top: 22px;
-        padding-top: 16px;
-        border-top: 1px solid rgba(255, 253, 248, 0.12);
+        margin-top: 36px;
     }
 
     .logout-button {
-        padding: 12px 13px;
-        font-size: 0.86rem;
-    }
-}
-
-/* Tablet pequeña / teléfono grande */
-@media (max-width: 768px) {
-    .admin-sidebar {
-        top: 16px;
-        right: 16px;
-    }
-
-    .sidebar-toggle-button {
-        width: 46px;
-        height: 46px;
-        font-size: 1.25rem;
-    }
-
-    .sidebar-menu {
-        top: 58px;
-        width: min(86vw, 300px);
-        padding: 20px;
-        border-radius: 22px;
-    }
-
-    .sidebar-logo h2 {
-        font-size: 1.32rem;
-    }
-
-    .sidebar-logo p {
-        font-size: 0.74rem;
-    }
-
-    .nav-link {
-        padding: 11px 12px;
-        font-size: 0.82rem;
-    }
-
-    .logout-button {
-        padding: 11px 12px;
-        font-size: 0.82rem;
-    }
-}
-
-/* Teléfonos medianos */
-@media (max-width: 576px) {
-    .admin-sidebar {
-        top: 14px;
-        right: 14px;
-    }
-
-    .sidebar-toggle-button {
-        width: 44px;
-        height: 44px;
-        font-size: 1.18rem;
-    }
-
-    .sidebar-menu {
-        top: 56px;
-        width: min(88vw, 290px);
-        padding: 18px;
-        border-radius: 20px;
-    }
-
-    .sidebar-logo h2 {
-        font-size: 1.2rem;
-    }
-
-    .sidebar-nav {
-        margin-top: 20px;
-    }
-
-    .nav-link {
-        padding: 10px 11px;
-        font-size: 0.78rem;
-    }
-
-    .logout-form {
-        margin-top: 18px;
-        padding-top: 14px;
-    }
-
-    .logout-button {
-        padding: 10px 11px;
-        font-size: 0.78rem;
-    }
-}
-
-/* Teléfonos pequeños */
-@media (max-width: 380px) {
-    .admin-sidebar {
-        top: 12px;
-        right: 12px;
-    }
-
-    .sidebar-toggle-button {
-        width: 40px;
-        height: 40px;
-        font-size: 1.05rem;
-    }
-
-    .sidebar-menu {
-        top: 52px;
-        width: min(90vw, 270px);
-        padding: 16px;
-        border-radius: 18px;
-    }
-
-    .sidebar-logo h2 {
-        font-size: 1.08rem;
-    }
-
-    .sidebar-logo p {
-        font-size: 0.7rem;
-    }
-
-    .nav-link {
-        padding: 9px 10px;
-        font-size: 0.74rem;
-    }
-
-    .logout-button {
-        padding: 9px 10px;
-        font-size: 0.74rem;
+        padding: 15px 16px;
+        border-radius: 14px;
+        font-size: 0.95rem;
     }
 }

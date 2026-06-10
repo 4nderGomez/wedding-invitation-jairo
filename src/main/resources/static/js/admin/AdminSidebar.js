@@ -33,8 +33,9 @@ export class AdminSidebar {
 
         document.addEventListener("click", (event) => {
             const clickedInsideSidebar = this.sidebar.contains(event.target);
+            const clickedToggleButton = this.toggleButton?.contains(event.target);
 
-            if (!clickedInsideSidebar) {
+            if (!clickedInsideSidebar && !clickedToggleButton) {
                 this.closeMobileMenu();
             }
         });
@@ -72,10 +73,26 @@ export class AdminSidebar {
 
     toggleMobileMenu() {
         this.sidebar.classList.toggle("is-open");
+        this.updateToggleButton();
     }
 
     closeMobileMenu() {
         this.sidebar.classList.remove("is-open");
+        this.updateToggleButton();
+    }
+
+    updateToggleButton() {
+        if (!this.toggleButton) {
+            return;
+        }
+
+        const isOpen = this.sidebar.classList.contains("is-open");
+
+        this.toggleButton.textContent = isOpen ? "×" : "☰";
+        this.toggleButton.setAttribute(
+            "aria-label",
+            isOpen ? "Cerrar menú de administración" : "Abrir menú de administración"
+        );
     }
 
     setActiveLink(sectionId) {

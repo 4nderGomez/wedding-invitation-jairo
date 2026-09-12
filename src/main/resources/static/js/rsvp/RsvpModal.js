@@ -26,10 +26,21 @@ export class RsvpModal {
         });
 
         document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") {
+                if (event.key !== "Escape")
+                    return;
+
+                const confirmModal = document.getElementById("rsvpConfirmModal");
+
+                const confirmModalIsOpen = confirmModal && (confirmModal.getAttribute("aria-hidden")
+                        === "false" || confirmModal.classList.contains("active")
+                    );
+
+                if (confirmModalIsOpen)
+                    return;
+
                 this.closeActiveModal();
             }
-        });
+        );
     }
 
     openAttendingModal() {
@@ -46,6 +57,8 @@ export class RsvpModal {
         this.activeModal = modal;
         this.previousFocusedElement = document.activeElement;
 
+        modal.inert = false;
+
         modal.classList.add("active");
         modal.setAttribute("aria-hidden", "false");
 
@@ -55,16 +68,18 @@ export class RsvpModal {
     closeActiveModal() {
         if (!this.activeModal) return;
 
-        if (this.activeModal.contains(document.activeElement)) {
-            document.activeElement.blur();
-        }
+        if (this.activeModal.contains(document.activeElement))
+            document.activeElement?.blur();
 
         this.activeModal.classList.remove("active");
+
+        this.activeModal.inert = true;
+
         this.activeModal.setAttribute("aria-hidden", "true");
 
         document.body.classList.remove("rsvp-modal-open");
 
-        this.previousFocusedElement?.focus();
+        this.previousFocusedElement?.focus({preventScroll: true});
 
         this.activeModal = null;
         this.previousFocusedElement = null;

@@ -1,361 +1,777 @@
 .hero {
-    min-height: calc(100vh - 120px);
+    position: relative;
+    isolation: isolate;
+    min-height: 100svh;
+    overflow: hidden;
+    background: var(--color-midnight);
+    color: var(--color-ivory);
+}
 
-    padding: 25px clamp(20px, 5vw, 72px) 80px;
+/* Marco editorial */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    z-index: 4;
+    border: 1px solid rgba(244, 240, 232, 0.22);
+    pointer-events: none;
+}
 
-    background: var(--color-ivory);
-    color: var(--color-text-main);
+.hero-background,
+.hero-background img,
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-background {
+    z-index: -3;
+}
+
+.hero-background img {
+    object-fit: cover;
+    object-position: center center;
+}
+
+.hero-overlay {
+    z-index: -2;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(244, 240, 232, 0.08)
+            0%,
+            transparent
+            35%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(21, 38, 45, 0.34)
+            0%,
+            transparent
+            46%
+        );
 }
 
 .hero-content {
-    max-width: 1120px;
-    margin: 0 auto;
-
+    width:
+        min(
+            100%,
+            1600px
+        );
+    min-height:
+        100svh;
+    margin:
+        0 auto;
+    padding:
+        34px
+        clamp(
+            32px,
+            6vw,
+            96px
+        )
+        42px;
     display: grid;
-    grid-template-columns: 220px 1fr 220px;
-    align-items: center;
-    gap: clamp(28px, 5vw, 70px);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
 }
 
-.hero-center {
+.hero-heading {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: center;
     text-align: center;
 }
 
 .hero-label {
-    margin-bottom: 24px;
-
-    font-size: 0.78rem;
-    letter-spacing: 0.36em;
+    margin-bottom: 16px;
+    font-size:
+        clamp(
+            0.62rem,
+            0.8vw,
+            0.78rem
+        );
+    font-weight: 500;
+    letter-spacing: 0.42em;
     text-transform: uppercase;
-    color: var(--color-gold);
+    color: var(--color-ivory);
 }
 
-.hero-center h1 {
+.hero-title {
     font-family: var(--font-title);
-    font-size: clamp(4rem, 10vw, 8.4rem);
-    line-height: 0.9;
-    font-weight: 600;
-    color: var(--color-deep-blue);
-
-    animation: heroTitleBreath 7s ease-in-out infinite;
+    font-size:
+        clamp(
+            3.6rem,
+            6.5vw,
+            6.8rem
+        );
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    color: var(--color-midnight);
+    text-shadow: 0 1px 18px rgba(244, 240, 232, 0.10);
 }
 
-.hero-center h1 span {
-    display: block;
-
-    margin: 8px 0;
-
+.hero-title span {
+    display: inline-block;
+    margin: 0 0.05em;
     font-family: var(--font-script);
-    font-size: clamp(3rem, 7vw, 5.5rem);
     font-weight: 400;
-    color: var(--color-olive);
-
-    animation: heroAmpersandFloat 5.5s ease-in-out infinite;
 }
 
 .hero-date {
-    margin-top: 28px;
-
-    font-family: var(--font-title);
-    font-size: clamp(1.5rem, 4vw, 1.8rem);
-    color: var(--color-text-main);
+    margin-top: 18px;
+    font-family: var(--font-body);
+    font-size:
+        clamp(
+            0.72rem,
+            1vw,
+            0.9rem
+        );
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    color: var(--color-ivory);
 }
 
+.hero-cta {
+    grid-column: 2;
+    grid-row: 3;
+    width:
+        min(
+            100%,
+            380px
+        );
+    justify-self: end;
+    text-align: center;
+}
+
+
 .hero-message {
-    max-width: 420px;
-    margin: 24px auto 34px;
-
-    color: var(--color-text-soft);
-
-    font-size: 0.92rem;
-    line-height: 1.8;
-
-    animation: fadeUp 0.9s ease 0.18s both;
+    margin-bottom: 22px;
+    font-size:
+        clamp(
+            0.84rem,
+            1.05vw,
+            1rem
+        );
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--color-ivory);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.42);
 }
 
 .hero-button {
+    position: relative;
+    min-height: 52px;
+    padding: 0 30px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    border:
+        1px solid
+        rgba(
+            214,
+            190,
+            145,
+            0.72
+        );
+    background:
+        linear-gradient(
+            135deg,
 
-    min-height: 48px;
-    padding: 0 28px;
-    border-radius: var(--radius-pill);
+            rgba(
+                202,
+                174,
+                123,
+                0.88
+            )
+            0%,
 
-    background: var(--color-deep-blue);
-    color: var(--color-white);
+            rgba(
+                190,
+                158,
+                105,
+                0.82
+            )
+            55%,
 
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-
+            rgba(
+                218,
+                194,
+                151,
+                0.86
+            )
+            100%
+        );
+    color: var(--color-midnight);
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.055em;
+    box-shadow:
+        0 10px 28px
+        rgba(
+            21,
+            38,
+            45,
+            0.18
+        ),
+        inset
+        0 1px 0
+        rgba(
+            255,
+            255,
+            255,
+            0.20
+        );
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     transition:
-        background 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
 
-    animation: heroButtonGlow 5.8s ease-in-out infinite;
+.hero-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 48%;
+    height: 100%;
+    background:
+        linear-gradient(
+            105deg,
+
+            transparent,
+
+            rgba(
+                255,
+                255,
+                255,
+                0.13
+            ),
+
+            transparent
+        );
+    transform: skewX(-18deg);
+    transition:
+        left 0.65s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
+    pointer-events: none;
 }
 
 .hero-button:hover {
-    background: var(--color-wood);
     transform: translateY(-2px);
+    border-color:
+        rgba(
+            226,
+            204,
+            164,
+            0.90
+        );
+    background:
+        linear-gradient(
+            135deg,
+
+            rgba(
+                211,
+                183,
+                132,
+                0.94
+            ),
+
+            rgba(
+                195,
+                162,
+                109,
+                0.91
+            )
+        );
+    color: var(--color-midnight);
+    box-shadow:
+        0 15px 34px
+        rgba(
+            21,
+            38,
+            45,
+            0.24
+        );
 }
 
-.hero-photo {
-    overflow: hidden;
-
-    background: var(--color-cream);
-    box-shadow: var(--shadow-soft);
+.hero-button:hover::before {
+    left: 120%;
 }
 
-.hero-photo img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    filter: grayscale(100%) contrast(0.95);
+.hero-button:active {
+    transform: translateY(0);
 }
 
-.hero-photo-left {
-    height: 310px;
-    margin-top: 70px;
-
-    animation: heroPhotoFloatLeft 7s ease-in-out infinite;
+.hero-button:focus-visible {
+    outline: 1px solid var(--color-champagne);
+    outline-offset: 5px;
 }
 
-.hero-photo-right {
-    height: 280px;
-    margin-bottom: 90px;
-
-    animation: heroPhotoFloatRight 7.4s ease-in-out infinite;
+.hero-scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: 5;
+    width: 46px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 24px 24px 0 0;
+    background:rgba(21, 38, 45, 0.72);
+    transform: translateX(-50%);
 }
 
-/* Laptop pequeña */
-@media (max-width: 1200px) {
-    .hero-content {
-        max-width: 1040px;
-        grid-template-columns: 190px 1fr 190px;
-        gap: 42px;
-    }
 
-    .hero-photo-left {
-        height: 290px;
-    }
-
-    .hero-photo-right {
-        height: 265px;
-    }
+.hero-scroll-cue span {
+    width: 8px;
+    height: 8px;
+    border-right: 1px solid var(--color-ivory);
+    border-bottom: 1px solid var(--color-ivory);
+    transform:
+        translateY(-2px)
+        rotate(45deg);
 }
 
-/* Tablet mediana */
 @media (max-width: 992px) {
-    .hero {
-        min-height: auto;
-        padding: 70px 34px 86px;
-    }
-
     .hero-content {
-        grid-template-columns: 1fr;
-        max-width: 680px;
-        gap: 34px;
+        padding-left: 42px;
+        padding-right: 42px;
     }
 
-    .hero-photo {
-        width: min(100%, 360px);
-        margin: 0 auto;
+    .hero-title {
+        font-size:
+            clamp(
+                3.4rem,
+                8vw,
+                5.6rem
+            );
     }
 
-    .hero-photo-left {
-        height: 360px;
-        margin-top: 0;
-        order: 2;
-    }
-
-    .hero-center {
-        order: 1;
-    }
-
-    .hero-photo-right {
-        height: 340px;
-        margin-bottom: 0;
-        order: 3;
-    }
-
-    .hero-label {
-        margin-bottom: 20px;
-        font-size: 0.72rem;
-        letter-spacing: 0.3em;
-    }
-
-    .hero-center h1 {
-        font-size: clamp(4rem, 14vw, 6.4rem);
-    }
-
-    .hero-center h1 span {
-        font-size: clamp(3rem, 10vw, 4.8rem);
-    }
-
-    .hero-message {
-        max-width: 500px;
+    .hero-cta {
+        width:
+            min(
+                100%,
+                340px
+            );
     }
 }
 
-/* Tablet pequeña / teléfono grande */
 @media (max-width: 768px) {
     .hero {
-        padding: 64px 24px 76px;
+        min-height: 100svh;
     }
+
+    .hero::after {
+        inset: 8px;
+
+        border-color:
+            rgba(
+                244,
+                240,
+                232,
+                0.30
+            );
+    }
+
+    /*
+     * Aquí automáticamente ya se carga
+     * hero-mobile.jpg gracias al <picture>.
+     */
+
+    .hero-background img {
+        object-position:
+            center center;
+
+        filter:
+            grayscale(100%)
+            contrast(0.94);
+    }
+
+    .hero-overlay {
+        background:
+            linear-gradient(
+                180deg,
+
+                rgba(
+                    244,
+                    240,
+                    232,
+                    0.36
+                )
+                0%,
+
+                rgba(
+                    244,
+                    240,
+                    232,
+                    0.18
+                )
+                36%,
+
+                rgba(
+                    21,
+                    38,
+                    45,
+                    0.05
+                )
+                58%,
+
+                rgba(
+                    21,
+                    38,
+                    45,
+                    0.26
+                )
+                100%
+            );
+    }
+
+
+    /*
+     * Cambio completo de layout.
+     *
+     * Ahora todo pasa al orden:
+     *
+     * Nuestra boda
+     * Jairo & Jennifer
+     * Fecha
+     * Mensaje
+     * Botón
+     */
 
     .hero-content {
-        max-width: 560px;
-        gap: 30px;
+        min-height:
+            100svh;
+
+        padding:
+            calc(
+                max(
+                    16px,
+                    env(
+                        safe-area-inset-top
+                    )
+                )
+                + 78px
+            )
+            22px
+            max(
+                34px,
+                env(
+                    safe-area-inset-bottom
+                )
+            );
+
+        display: flex;
+
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+
+        justify-content:
+            flex-start;
     }
 
-    .hero-label {
-        margin-bottom: 18px;
-        font-size: 0.66rem;
-        letter-spacing: 0.24em;
-    }
 
-    .hero-center h1 {
-        font-size: clamp(3.4rem, 16vw, 5.2rem);
-        line-height: 0.92;
-    }
-
-    .hero-center h1 span {
-        margin: 6px 0;
-        font-size: clamp(2.7rem, 12vw, 4rem);
-    }
-
-    .hero-date {
-        margin-top: 24px;
-        font-size: 1.38rem;
-    }
-
-    .hero-message {
-        margin: 20px auto 30px;
-        font-size: 0.88rem;
-        line-height: 1.7;
-    }
-
-    .hero-button {
-        min-height: 46px;
-        padding: 0 24px;
-        font-size: 0.72rem;
-        letter-spacing: 0.12em;
-    }
-
-    .hero-photo {
-        width: min(100%, 320px);
-    }
-
-    .hero-photo-left,
-    .hero-photo-right {
-        height: 320px;
-    }
-}
-
-/* Teléfonos medianos */
-@media (max-width: 576px) {
-    .hero {
-        padding: 54px 16px 66px;
-    }
-
-    .hero-content {
-        gap: 26px;
-    }
-
-    .hero-label {
-        margin-bottom: 16px;
-        font-size: 0.6rem;
-        letter-spacing: 0.18em;
-    }
-
-    .hero-center h1 {
-        font-size: 3.55rem;
-    }
-
-    .hero-center h1 span {
-        font-size: 3rem;
-    }
-
-    .hero-date {
-        margin-top: 20px;
-        font-size: 1.22rem;
-    }
-
-    .hero-message {
-        max-width: 340px;
-        margin: 18px auto 26px;
-
-        font-size: 0.84rem;
-        line-height: 1.62;
-    }
-
-    .hero-button {
+    .hero-heading {
         width: 100%;
-        max-width: 290px;
-        min-height: 44px;
 
-        font-size: 0.66rem;
-        letter-spacing: 0.1em;
+        text-align: center;
     }
 
-    .hero-photo {
-        width: min(100%, 280px);
+
+    .hero-label {
+        margin-bottom: 12px;
+
+        font-size: 0.62rem;
+
+        letter-spacing: 0.34em;
+
+        color:
+            var(--color-midnight);
     }
 
-    .hero-photo-left,
-    .hero-photo-right {
-        height: 290px;
+
+    .hero-title {
+        font-size:
+            clamp(
+                3rem,
+                13vw,
+                4.5rem
+            );
+
+        line-height: 0.92;
+
+        color:
+            var(--color-midnight);
+    }
+
+
+    .hero-title span {
+        margin:
+            0 0.02em;
+    }
+
+
+    .hero-date {
+        margin-top: 15px;
+
+        font-size: 0.72rem;
+
+        letter-spacing: 0.28em;
+
+        color:
+            var(--color-ocean);
+    }
+
+
+    .hero-cta {
+        width:
+            min(
+                100%,
+                330px
+            );
+
+        margin-top: 20px;
+
+        text-align: center;
+    }
+
+
+    .hero-message {
+        margin-bottom: 18px;
+
+        font-size: 0.82rem;
+
+        line-height: 1.58;
+
+        color:
+            var(--color-midnight);
+
+        text-shadow: none;
+    }
+
+
+    .hero-button {
+        min-height: 48px;
+
+        padding:
+            0 25px;
+
+        font-size: 0.7rem;
+
+        letter-spacing: 0.045em;
+
+        /*
+        * En móvil conservamos el champagne,
+        * sólo ligeramente más sólido porque
+        * la fotografía está en escala de grises.
+        */
+        background:
+            linear-gradient(
+                135deg,
+
+                rgba(
+                    207,
+                    178,
+                    127,
+                    0.92
+                ),
+
+                rgba(
+                    190,
+                    158,
+                    105,
+                    0.88
+                )
+            );
+
+        border-color:
+            rgba(
+                219,
+                197,
+                156,
+                0.78
+            );
+
+        color:
+            var(--color-midnight);
+
+        box-shadow:
+            0 9px 24px
+            rgba(
+                21,
+                38,
+                45,
+                0.16
+            );
+    }
+
+
+    .hero-button:hover {
+        background:
+            linear-gradient(
+                135deg,
+
+                rgba(
+                    215,
+                    187,
+                    135,
+                    0.96
+                ),
+
+                rgba(
+                    198,
+                    165,
+                    111,
+                    0.94
+                )
+            );
+
+        color:
+            var(--color-midnight);
+    }
+
+    .hero-scroll-cue {
+        width: 42px;
+
+        height: 26px;
     }
 }
 
-/* Teléfonos pequeños */
-@media (max-width: 380px) {
-    .hero {
-        padding: 48px 12px 58px;
+@media (max-width: 430px) {
+    .hero-content {
+        padding-top:
+            calc(
+                max(
+                    14px,
+                    env(
+                        safe-area-inset-top
+                    )
+                )
+                + 72px
+            );
+
+        padding-left: 18px;
+        padding-right: 18px;
     }
 
     .hero-label {
         font-size: 0.56rem;
-        letter-spacing: 0.14em;
+
+        letter-spacing: 0.3em;
     }
 
-    .hero-center h1 {
-        font-size: 3rem;
-    }
-
-    .hero-center h1 span {
-        font-size: 2.55rem;
+    .hero-title {
+        font-size:
+            clamp(
+                2.75rem,
+                13vw,
+                3.55rem
+            );
     }
 
     .hero-date {
-        font-size: 1.05rem;
+        margin-top: 13px;
+
+        font-size: 0.66rem;
+
+        letter-spacing: 0.23em;
+    }
+
+    .hero-cta {
+        max-width: 300px;
+
+        margin-top: 17px;
     }
 
     .hero-message {
-        font-size: 0.78rem;
-        line-height: 1.55;
+        margin-bottom: 15px;
+
+        font-size: 0.76rem;
+
+        line-height: 1.52;
     }
 
     .hero-button {
-        max-width: 260px;
+        min-height: 45px;
+
+        padding:
+            0 21px;
+
+        font-size: 0.68rem;
+    }
+}
+
+@media (
+    max-height: 680px
+)
+and
+(
+    max-width: 768px
+) {
+    .hero-content {
+        padding-top:
+            calc(
+                max(
+                    12px,
+                    env(
+                        safe-area-inset-top
+                    )
+                )
+                + 62px
+            );
+    }
+
+    .hero-label {
+        margin-bottom: 8px;
+    }
+
+    .hero-title {
+        font-size:
+            clamp(
+                2.55rem,
+                11vw,
+                3.35rem
+            );
+    }
+
+    .hero-date {
+        margin-top: 10px;
+    }
+
+    .hero-cta {
+        margin-top: 13px;
+    }
+
+    .hero-message {
+        margin-bottom: 12px;
+
+        line-height: 1.42;
+    }
+
+    .hero-button {
         min-height: 42px;
-
-        font-size: 0.6rem;
-        letter-spacing: 0.08em;
     }
+}
 
-    .hero-photo {
-        width: min(100%, 245px);
-    }
-
-    .hero-photo-left,
-    .hero-photo-right {
-        height: 260px;
+@media (
+    prefers-reduced-motion: reduce
+) {
+    .hero-button {
+        transition: none;
     }
 }

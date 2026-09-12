@@ -1,0 +1,2110 @@
+/* =========================================================
+   PHOTOS
+   Gallery + Guest photos
+   ========================================================= */
+
+.photos-section {
+    position: relative;
+
+    isolation: isolate;
+
+    width: 100%;
+
+    min-height: 100svh;
+
+    overflow: hidden;
+
+    color:
+        var(--color-ivory);
+
+    /*
+     * Océano.
+     *
+     * No existe ninguna imagen de fondo.
+     */
+    background:
+        radial-gradient(
+            ellipse at 50% -10%,
+            rgba(244, 240, 232, 0.24),
+            transparent 38%
+        ),
+
+        radial-gradient(
+            ellipse at 9% 35%,
+            rgba(184, 199, 199, 0.24),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            ellipse at 92% 55%,
+            rgba(111, 137, 141, 0.28),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            180deg,
+
+            #9fb8bb
+            0%,
+
+            var(--color-slate)
+            19%,
+
+            var(--color-ocean)
+            53%,
+
+            var(--color-midnight)
+            100%
+        );
+}
+
+
+/* =========================================================
+   SEA FOAM
+   ========================================================= */
+
+.photos-section::before {
+    content: "";
+
+    position: absolute;
+
+    inset:
+        -18%
+        -10%
+        auto;
+
+    z-index: -2;
+
+    height: 52%;
+
+    opacity: 0.66;
+
+    background:
+        radial-gradient(
+            ellipse at 5% 75%,
+            rgba(244, 240, 232, 0.58)
+            0 4%,
+            transparent 5.5%
+        ),
+
+        radial-gradient(
+            ellipse at 17% 63%,
+            rgba(244, 240, 232, 0.48)
+            0 5%,
+            transparent 6.5%
+        ),
+
+        radial-gradient(
+            ellipse at 32% 77%,
+            rgba(244, 240, 232, 0.42)
+            0 6%,
+            transparent 7.5%
+        ),
+
+        radial-gradient(
+            ellipse at 51% 66%,
+            rgba(244, 240, 232, 0.44)
+            0 4.5%,
+            transparent 6%
+        ),
+
+        radial-gradient(
+            ellipse at 69% 77%,
+            rgba(244, 240, 232, 0.45)
+            0 6%,
+            transparent 7.5%
+        ),
+
+        radial-gradient(
+            ellipse at 84% 65%,
+            rgba(244, 240, 232, 0.52)
+            0 5%,
+            transparent 6.5%
+        ),
+
+        radial-gradient(
+            ellipse at 96% 78%,
+            rgba(244, 240, 232, 0.58)
+            0 6%,
+            transparent 7.5%
+        );
+
+    filter:
+        blur(5px);
+
+    pointer-events: none;
+}
+
+
+.photos-section::after {
+    content: "";
+
+    position: absolute;
+
+    left: -10%;
+    right: -10%;
+    bottom: -18%;
+
+    z-index: -2;
+
+    height: 44%;
+
+    opacity: 0.46;
+
+    background:
+        radial-gradient(
+            ellipse at 8% 30%,
+            rgba(244, 240, 232, 0.62)
+            0 8%,
+            transparent 9%
+        ),
+
+        radial-gradient(
+            ellipse at 25% 42%,
+            rgba(244, 240, 232, 0.47)
+            0 9%,
+            transparent 10%
+        ),
+
+        radial-gradient(
+            ellipse at 46% 27%,
+            rgba(244, 240, 232, 0.51)
+            0 9%,
+            transparent 10%
+        ),
+
+        radial-gradient(
+            ellipse at 67% 43%,
+            rgba(244, 240, 232, 0.49)
+            0 10%,
+            transparent 11%
+        ),
+
+        radial-gradient(
+            ellipse at 89% 29%,
+            rgba(244, 240, 232, 0.62)
+            0 9%,
+            transparent 10%
+        );
+
+    filter:
+        blur(15px);
+
+    pointer-events: none;
+}
+
+
+/* Luz suave sobre el agua */
+
+.photos-ocean-light {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            rgba(
+                244,
+                240,
+                232,
+                0.06
+            )
+            0%,
+
+            transparent
+            30%,
+
+            rgba(
+                244,
+                240,
+                232,
+                0.08
+            )
+            52%,
+
+            transparent
+            72%,
+
+            rgba(
+                244,
+                240,
+                232,
+                0.04
+            )
+            100%
+        );
+}
+
+
+/* =========================================================
+   FRAME
+   ========================================================= */
+
+.photos-section > .photos-frame {
+    position: absolute;
+
+    inset: 25px;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+.photos-section::marker {
+    display: none;
+}
+
+
+.photos-frame::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -11px;
+
+    border:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.28
+        );
+}
+
+
+.photos-frame-corner {
+    position: absolute;
+
+    width: 34px;
+    height: 34px;
+
+    opacity: 0.78;
+}
+
+
+.photos-frame-corner--top-left {
+    top: 0;
+    left: 0;
+
+    border-top:
+        1px solid
+        var(--color-ivory);
+
+    border-left:
+        1px solid
+        var(--color-ivory);
+}
+
+
+.photos-frame-corner--top-right {
+    top: 0;
+    right: 0;
+
+    border-top:
+        1px solid
+        var(--color-ivory);
+
+    border-right:
+        1px solid
+        var(--color-ivory);
+}
+
+
+.photos-frame-corner--bottom-left {
+    bottom: 0;
+    left: 0;
+
+    border-bottom:
+        1px solid
+        var(--color-ivory);
+
+    border-left:
+        1px solid
+        var(--color-ivory);
+}
+
+
+.photos-frame-corner--bottom-right {
+    right: 0;
+    bottom: 0;
+
+    border-right:
+        1px solid
+        var(--color-ivory);
+
+    border-bottom:
+        1px solid
+        var(--color-ivory);
+}
+
+
+/* =========================================================
+   ANCHOR
+   ========================================================= */
+
+.photos-anchor {
+    position: absolute;
+
+    top: 0;
+}
+
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.photos-layout {
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(
+            100%,
+            1720px
+        );
+
+    min-height:
+        100svh;
+
+    margin:
+        0 auto;
+
+    padding:
+        clamp(
+            62px,
+            7vh,
+            92px
+        )
+        clamp(
+            52px,
+            5vw,
+            90px
+        )
+        clamp(
+            38px,
+            5vh,
+            62px
+        );
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.gallery-heading {
+    width:
+        min(
+            100%,
+            640px
+        );
+
+    margin:
+        0 auto
+        10px;
+
+    text-align: center;
+
+    animation:
+        galleryHeadingBreath
+        6s
+        ease-in-out
+        infinite;
+}
+
+
+.photos-kicker {
+    margin-bottom: 8px;
+
+    font-family:
+        var(--font-body);
+
+    font-size:
+        clamp(
+            0.55rem,
+            0.65vw,
+            0.68rem
+        );
+
+    font-weight: 500;
+
+    letter-spacing:
+        0.42em;
+
+    text-transform:
+        uppercase;
+
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.76
+        );
+}
+
+
+.gallery-heading h2 {
+    margin: 0;
+
+    font-family:
+        var(--font-title);
+
+    font-size:
+        clamp(
+            3.3rem,
+            5vw,
+            5.3rem
+        );
+
+    font-weight: 500;
+
+    line-height: 0.95;
+
+    letter-spacing:
+        -0.045em;
+
+    color:
+        var(--color-ivory);
+
+    text-shadow:
+        0 7px 28px
+        rgba(
+            21,
+            38,
+            45,
+            0.30
+        );
+}
+
+
+/* =========================================================
+   TITLE DECORATION
+   ========================================================= */
+
+.photos-title-line {
+    width:
+        min(
+            100%,
+            250px
+        );
+
+    margin:
+        18px auto
+        0;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr auto 1fr;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+.photos-title-line > span:not(
+    .photos-title-mark
+) {
+    height: 1px;
+
+    background:
+        rgba(
+            244,
+            240,
+            232,
+            0.42
+        );
+}
+
+
+.photos-title-mark {
+    font-family:
+        var(--font-title);
+
+    font-size: 0.67rem;
+
+    letter-spacing:
+        0.16em;
+
+    color:
+        var(--color-champagne);
+}
+
+
+/* =========================================================
+   CAROUSEL
+   ========================================================= */
+
+.gallery-carousel {
+    position: relative;
+
+    width: 100%;
+
+    margin-top:
+        clamp(
+            12px,
+            2vh,
+            22px
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    animation:
+        galleryCarouselFloat
+        7s
+        ease-in-out
+        infinite;
+}
+
+
+/*
+ * El padding vertical es deliberado.
+ *
+ * Permite que las fotos lleguen a scale(1.25)
+ * sin cortar el marco al agrandarse.
+ */
+
+.gallery-track-wrapper {
+    width: 100%;
+
+    overflow: hidden;
+
+    padding:
+        58px
+        5px;
+
+    margin:
+        -49px 0;
+}
+
+
+.gallery-track {
+    display: flex;
+
+    gap: 20px;
+
+    transition:
+        transform
+        0.7s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
+
+    will-change: transform;
+}
+
+
+/* =========================================================
+   PHOTOGRAPHS
+   ========================================================= */
+
+.gallery-slide {
+    position: relative;
+
+    flex:
+        0 0
+        calc(
+            (100% - 60px)
+            / 4
+        );
+
+    height:
+        clamp(
+            310px,
+            38vh,
+            455px
+        );
+
+    margin: 0;
+
+    overflow: hidden;
+
+    background:
+        var(--color-ivory);
+
+    border:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.66
+        );
+
+    box-shadow:
+        0 24px 55px
+        rgba(
+            21,
+            38,
+            45,
+            0.28
+        );
+
+    cursor: pointer;
+
+    z-index: 1;
+
+    transition:
+        transform
+        0.4s ease,
+
+        box-shadow
+        0.4s ease;
+
+    animation:
+        gallerySlideGlow
+        6.2s
+        ease-in-out
+        infinite;
+}
+
+
+.gallery-slide:nth-child(2n) {
+    animation-delay: 0.5s;
+}
+
+
+.gallery-slide:nth-child(3n) {
+    animation-delay: 1s;
+}
+
+
+/*
+ * MARCO INTERIOR
+ *
+ * Se conserva porque es parte del
+ * lenguaje actual de la galería.
+ */
+
+.gallery-slide::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    z-index: 2;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.62
+        );
+
+    pointer-events: none;
+}
+
+
+.gallery-slide::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 6px;
+
+    z-index: 2;
+
+    border:
+        1px solid
+        rgba(
+            184,
+            156,
+            117,
+            0.24
+        );
+
+    pointer-events: none;
+}
+
+
+.gallery-slide img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform
+        0.4s ease,
+
+        filter
+        0.4s ease;
+}
+
+
+/* =========================================================
+   EL EFECTO QUE NO QUEREMOS PERDER
+   ========================================================= */
+
+.gallery-slide:hover {
+    transform:
+        scale(1.25);
+
+    z-index: 20;
+
+    box-shadow:
+        0 38px 80px
+        rgba(
+            21,
+            38,
+            45,
+            0.38
+        );
+}
+
+
+.gallery-slide:hover img {
+    transform:
+        scale(1.035);
+
+    filter:
+        brightness(1.04);
+}
+
+
+/* =========================================================
+   CAROUSEL ARROWS
+   ========================================================= */
+
+.gallery-arrow {
+    flex: 0 0 auto;
+
+    width: 44px;
+    height: 44px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.44
+        );
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            244,
+            240,
+            232,
+            0.11
+        );
+
+    color:
+        var(--color-ivory);
+
+    font-size: 2rem;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    z-index: 30;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+
+    animation:
+        galleryArrowPulse
+        3.5s
+        ease-in-out
+        infinite;
+}
+
+
+.gallery-arrow:hover {
+    background:
+        var(--color-ivory);
+
+    color:
+        var(--color-midnight);
+
+    transform:
+        scale(1.07);
+}
+
+
+.gallery-arrow:focus-visible {
+    outline:
+        2px solid
+        var(--color-champagne);
+
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   GUEST PHOTOS
+   ========================================================= */
+
+.guest-photos-panel {
+    position: relative;
+
+    width:
+        min(
+            100%,
+            1160px
+        );
+
+    margin:
+        clamp(
+            28px,
+            3vh,
+            42px
+        )
+        auto 0;
+
+    padding:
+        19px 22px;
+
+    display: grid;
+
+    grid-template-columns:
+        auto
+        minmax(
+            0,
+            1fr
+        )
+        auto;
+
+    align-items: center;
+
+    gap:
+        22px;
+
+    border:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.20
+        );
+
+    background:
+        linear-gradient(
+            105deg,
+
+            rgba(
+                244,
+                240,
+                232,
+                0.08
+            ),
+
+            rgba(
+                21,
+                38,
+                45,
+                0.24
+            )
+        );
+
+    box-shadow:
+        0 24px 58px
+        rgba(
+            21,
+            38,
+            45,
+            0.18
+        );
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+}
+
+
+.guest-photos-panel::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 7px;
+
+    border:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.10
+        );
+
+    pointer-events: none;
+}
+
+
+/* Camera icon */
+
+.guest-photos-icon {
+    position: relative;
+
+    z-index: 1;
+
+    width: 52px;
+    height: 52px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid
+        rgba(
+            184,
+            156,
+            117,
+            0.60
+        );
+
+    border-radius: 50%;
+
+    color:
+        var(--color-ivory);
+}
+
+
+.guest-photos-icon svg {
+    width: 25px;
+    height: 25px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.1;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+
+/* Copy */
+
+.guest-photos-copy {
+    position: relative;
+
+    z-index: 1;
+}
+
+
+.guest-photos-label {
+    margin-bottom: 3px;
+
+    font-family:
+        var(--font-body);
+
+    font-size: 0.5rem;
+
+    font-weight: 500;
+
+    letter-spacing: 0.28em;
+
+    text-transform: uppercase;
+
+    color:
+        var(--color-champagne);
+}
+
+
+.guest-photos-copy h3 {
+    margin: 0;
+
+    font-family:
+        var(--font-title);
+
+    font-size:
+        clamp(
+            1.25rem,
+            1.8vw,
+            1.75rem
+        );
+
+    font-weight: 500;
+
+    color:
+        var(--color-ivory);
+}
+
+
+.guest-photos-copy > p:last-child {
+    max-width: 580px;
+
+    margin-top: 4px;
+
+    font-family:
+        var(--font-body);
+
+    font-size:
+        0.67rem;
+
+    line-height: 1.55;
+
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.67
+        );
+}
+
+
+/* Action */
+
+.guest-photos-action {
+    position: relative;
+
+    z-index: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+}
+
+
+.guest-photos-status {
+    max-width: 130px;
+
+    font-family:
+        var(--font-body);
+
+    font-size: 0.52rem;
+
+    line-height: 1.4;
+
+    text-align: right;
+
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.58
+        );
+}
+
+
+.guest-photos-button {
+    min-height: 43px;
+
+    padding:
+        0 20px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.44
+        );
+
+    border-radius:
+        var(--radius-pill);
+
+    background:
+        rgba(
+            244,
+            240,
+            232,
+            0.92
+        );
+
+    color:
+        var(--color-midnight);
+
+    font-family:
+        var(--font-body);
+
+    font-size: 0.59rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+
+.guest-photos-button:hover:not(
+    :disabled
+) {
+    background:
+        var(--color-champagne);
+
+    transform:
+        translateY(-2px);
+}
+
+
+.guest-photos-button:disabled {
+    opacity: 0.52;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   LIGHTBOX
+   ========================================================= */
+
+.gallery-lightbox {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        clamp(
+            24px,
+            5vw,
+            64px
+        );
+
+    background:
+        rgba(
+            12,
+            26,
+            32,
+            0.78
+        );
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+}
+
+
+.gallery-lightbox.active {
+    display: flex;
+
+    animation:
+        lightboxFadeIn
+        0.35s ease both;
+}
+
+
+/*
+ * Otro marco alrededor de la fotografía
+ * ampliada.
+ */
+
+.lightbox-frame {
+    position: relative;
+
+    padding: 9px;
+
+    border:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.48
+        );
+
+    background:
+        rgba(
+            244,
+            240,
+            232,
+            0.06
+        );
+
+    box-shadow:
+        0 35px 90px
+        rgba(
+            0,
+            0,
+            0,
+            0.40
+        );
+}
+
+
+.lightbox-frame::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border:
+        1px solid
+        rgba(
+            184,
+            156,
+            117,
+            0.35
+        );
+
+    pointer-events: none;
+}
+
+
+.gallery-lightbox img {
+    display: block;
+
+    width: auto;
+    height: auto;
+
+    max-width:
+        min(
+            82vw,
+            760px
+        );
+
+    max-height:
+        82vh;
+
+    object-fit: contain;
+
+    background:
+        var(--color-midnight);
+}
+
+
+.gallery-lightbox.active
+#lightboxImage {
+    animation:
+        lightboxImageIn
+        0.4s ease both;
+}
+
+
+/* =========================================================
+   LIGHTBOX CONTROLS
+   ========================================================= */
+
+.lightbox-close,
+.lightbox-arrow {
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.40
+        );
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            244,
+            240,
+            232,
+            0.10
+        );
+
+    color:
+        var(--color-ivory);
+
+    cursor: pointer;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.lightbox-close {
+    position: absolute;
+
+    top:
+        clamp(
+            18px,
+            4vw,
+            34px
+        );
+
+    right:
+        clamp(
+            18px,
+            4vw,
+            42px
+        );
+
+    width: 46px;
+    height: 46px;
+
+    font-size: 2rem;
+}
+
+
+.lightbox-close:hover {
+    background:
+        var(--color-ivory);
+
+    color:
+        var(--color-midnight);
+
+    transform:
+        rotate(8deg);
+}
+
+
+.lightbox-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    width: 54px;
+    height: 54px;
+
+    transform:
+        translateY(-50%);
+
+    font-size: 2.5rem;
+}
+
+
+.lightbox-arrow:hover {
+    background:
+        var(--color-ivory);
+
+    color:
+        var(--color-midnight);
+}
+
+
+.lightbox-arrow-left {
+    left:
+        clamp(
+            14px,
+            4vw,
+            60px
+        );
+}
+
+
+.lightbox-arrow-right {
+    right:
+        clamp(
+            14px,
+            4vw,
+            60px
+        );
+}
+
+
+body.gallery-open {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   GALLERY INTERNAL ANIMATIONS
+   These stay.
+   ========================================================= */
+
+@keyframes galleryHeadingBreath {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-3px);
+    }
+
+}
+
+
+@keyframes galleryCarouselFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-4px);
+    }
+
+}
+
+
+@keyframes gallerySlideGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 24px 55px
+            rgba(
+                21,
+                38,
+                45,
+                0.28
+            );
+    }
+
+    50% {
+        box-shadow:
+            0 28px 68px
+            rgba(
+                21,
+                38,
+                45,
+                0.37
+            );
+    }
+
+}
+
+
+@keyframes galleryArrowPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 0
+            rgba(
+                244,
+                240,
+                232,
+                0
+            );
+    }
+
+    50% {
+        box-shadow:
+            0 0 0 5px
+            rgba(
+                244,
+                240,
+                232,
+                0.07
+            );
+    }
+
+}
+
+
+@keyframes lightboxFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes lightboxImageIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    .photos-layout {
+        padding-left: 36px;
+        padding-right: 36px;
+    }
+
+
+    .gallery-slide {
+        flex:
+            0 0
+            calc(
+                (100% - 40px)
+                / 3
+            );
+
+        height:
+            clamp(
+                310px,
+                41vh,
+                430px
+            );
+    }
+
+
+    .gallery-slide:hover {
+        transform:
+            scale(1.16);
+    }
+
+
+    .guest-photos-panel {
+        grid-template-columns:
+            auto
+            1fr;
+
+        gap:
+            16px
+            18px;
+    }
+
+
+    .guest-photos-action {
+        grid-column:
+            1 / -1;
+
+        justify-content:
+            flex-end;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .photos-section {
+        min-height:
+            100svh;
+    }
+
+
+    .photos-frame {
+        inset: 16px;
+    }
+
+
+    .photos-frame::before {
+        inset: -8px;
+    }
+
+
+    .photos-frame-corner {
+        width: 24px;
+        height: 24px;
+    }
+
+
+    .photos-layout {
+        min-height:
+            100svh;
+
+        padding:
+            max(
+                72px,
+                calc(
+                    env(
+                        safe-area-inset-top
+                    )
+                    + 64px
+                )
+            )
+            18px
+            max(
+                25px,
+                env(
+                    safe-area-inset-bottom
+                )
+            );
+    }
+
+
+    .gallery-heading {
+        margin-bottom: 2px;
+    }
+
+
+    .photos-kicker {
+        margin-bottom: 6px;
+
+        font-size: 0.48rem;
+
+        letter-spacing: 0.28em;
+    }
+
+
+    .gallery-heading h2 {
+        font-size:
+            clamp(
+                2.8rem,
+                12vw,
+                3.8rem
+            );
+    }
+
+
+    .photos-title-line {
+        width: 180px;
+
+        margin-top: 12px;
+    }
+
+
+    /* ===============================================
+       MOBILE CAROUSEL
+       =============================================== */
+
+    .gallery-carousel {
+        margin-top: 7px;
+
+        gap: 5px;
+    }
+
+
+    .gallery-track-wrapper {
+        padding:
+            35px
+            2px;
+
+        margin:
+            -29px 0;
+    }
+
+
+    .gallery-track {
+        gap: 13px;
+    }
+
+
+    /*
+     * Una foto completa y parte de la siguiente.
+     *
+     * Esto invita naturalmente al usuario
+     * a deslizar/explorar.
+     */
+
+    .gallery-slide {
+        flex:
+            0 0
+            min(
+                62vw,
+                245px
+            );
+
+        height:
+            min(
+                78vw,
+                340px
+            );
+    }
+
+
+    /*
+     * En touch el crecimiento de hover no
+     * debe dispararse accidentalmente.
+     *
+     * El crecimiento completo sigue existiendo
+     * en desktop y el modal sigue funcionando
+     * en teléfono.
+     */
+
+    .gallery-slide:hover {
+        transform: none;
+    }
+
+
+    .gallery-slide:hover img {
+        transform: none;
+
+        filter: none;
+    }
+
+
+    .gallery-slide::after {
+        inset: 9px;
+    }
+
+
+    .gallery-slide::before {
+        inset: 5px;
+    }
+
+
+    .gallery-arrow {
+        width: 34px;
+        height: 34px;
+
+        font-size: 1.65rem;
+    }
+
+
+    /* ===============================================
+       MOBILE GUEST PHOTOS
+       =============================================== */
+
+    .guest-photos-panel {
+        margin-top: 22px;
+
+        padding:
+            15px
+            15px;
+
+        display: grid;
+
+        grid-template-columns:
+            42px
+            minmax(
+                0,
+                1fr
+            );
+
+        gap:
+            10px
+            13px;
+    }
+
+
+    .guest-photos-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .guest-photos-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+
+    .guest-photos-label {
+        font-size: 0.43rem;
+    }
+
+
+    .guest-photos-copy h3 {
+        font-size:
+            clamp(
+                1.05rem,
+                5vw,
+                1.35rem
+            );
+    }
+
+
+    .guest-photos-copy > p:last-child {
+        margin-top: 3px;
+
+        font-size: 0.58rem;
+
+        line-height: 1.45;
+    }
+
+
+    .guest-photos-action {
+        grid-column:
+            1 / -1;
+
+        display: grid;
+
+        grid-template-columns:
+            1fr auto;
+
+        gap: 10px;
+
+        align-items: center;
+    }
+
+
+    .guest-photos-status {
+        max-width: none;
+
+        font-size: 0.47rem;
+
+        text-align: left;
+    }
+
+
+    .guest-photos-button {
+        min-height: 38px;
+
+        padding:
+            0 15px;
+
+        font-size: 0.51rem;
+    }
+
+
+    /* Lightbox */
+
+    .gallery-lightbox {
+        padding:
+            18px;
+    }
+
+
+    .lightbox-frame {
+        padding: 6px;
+    }
+
+
+    .gallery-lightbox img {
+        max-width: 82vw;
+        max-height: 78vh;
+    }
+
+
+    .lightbox-close {
+        top: 12px;
+        right: 12px;
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 1.65rem;
+    }
+
+
+    .lightbox-arrow {
+        width: 36px;
+        height: 36px;
+
+        font-size: 1.8rem;
+    }
+
+
+    .lightbox-arrow-left {
+        left: 7px;
+    }
+
+
+    .lightbox-arrow-right {
+        right: 7px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .photos-layout {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .gallery-slide {
+        flex-basis:
+            min(
+                64vw,
+                225px
+            );
+
+        height:
+            min(
+                84vw,
+                320px
+            );
+    }
+
+
+    .gallery-track {
+        gap: 11px;
+    }
+
+
+    .guest-photos-copy > p:last-child {
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   SHORT PHONES
+   ========================================================= */
+
+@media
+(max-width: 768px)
+and
+(max-height: 720px) {
+
+    .photos-layout {
+        padding-top: 59px;
+        padding-bottom: 16px;
+    }
+
+
+    .gallery-heading h2 {
+        font-size: 2.55rem;
+    }
+
+
+    .photos-title-line {
+        margin-top: 8px;
+    }
+
+
+    .gallery-slide {
+        flex-basis:
+            min(
+                55vw,
+                205px
+            );
+
+        height:
+            min(
+                68vw,
+                270px
+            );
+    }
+
+
+    .guest-photos-panel {
+        margin-top: 13px;
+
+        padding:
+            11px
+            13px;
+    }
+
+
+    .guest-photos-copy > p:last-child {
+        display: none;
+    }
+
+
+    .guest-photos-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+
+    .guest-photos-action {
+        gap: 6px;
+    }
+
+
+    .guest-photos-button {
+        min-height: 34px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (
+    prefers-reduced-motion: reduce
+) {
+
+    .gallery-heading,
+    .gallery-carousel,
+    .gallery-slide,
+    .gallery-arrow {
+        animation: none;
+    }
+
+
+    .gallery-track,
+    .gallery-slide,
+    .gallery-slide img,
+    .gallery-arrow {
+        transition: none;
+    }
+
+}

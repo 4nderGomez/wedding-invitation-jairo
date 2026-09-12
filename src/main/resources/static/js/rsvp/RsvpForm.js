@@ -68,9 +68,9 @@ export class RsvpForm {
 
             await this.rsvpApi.submitRsvp(rsvpData);
 
+            this.rsvpConfirmModal.close();
             this.rsvpModal.closeActiveModal();
             this.rsvpStateManager.showAttendingResult();
-
         } catch (error) {
             console.error(error.message);
             this.showFormError(this.attendingForm, error.message);
@@ -97,6 +97,7 @@ export class RsvpForm {
 
             await this.rsvpApi.submitRsvp(rsvpData);
 
+            this.rsvpConfirmModal.close();
             this.rsvpModal.closeActiveModal();
             this.rsvpStateManager.showNotAttendingResult();
 

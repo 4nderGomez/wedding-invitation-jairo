@@ -44,7 +44,7 @@ export class MusicPlayer {
 
         try {
             await this.backgroundMusic.play();
-            this.musicButton?.classList.add("is-playing");
+
             this.updateButtonText();
         } catch (error) {
             console.warn("La música no pudo reproducirse:", error);
@@ -55,7 +55,6 @@ export class MusicPlayer {
         if (!this.backgroundMusic) return;
 
         this.backgroundMusic.pause();
-        this.musicButton?.classList.remove("is-playing");
         this.updateButtonText();
     }
 
@@ -70,7 +69,14 @@ export class MusicPlayer {
     updateButtonText() {
         if (!this.musicButton || !this.backgroundMusic) return;
 
-        this.musicButton.textContent = this.backgroundMusic.paused ? "Play" : "Mute";
+        const isPlaying = !this.backgroundMusic.paused;
+
+        this.musicButton.classList.toggle("is-playing", isPlaying);
+
+        const label = isPlaying ? "Pausar música" : "Reproducir música";
+
+        this.musicButton.setAttribute("aria-label", label);
+        this.musicButton.setAttribute("title", label);
     }
 
     pauseByLeavingPage() {

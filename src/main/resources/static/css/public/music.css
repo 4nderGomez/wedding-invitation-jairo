@@ -1,113 +1,264 @@
 .music-button {
     position: fixed;
-    left: 24px;
-    bottom: 24px;
-    z-index: 9999;
-    width: 74px;
-    height: 74px;
-    border: 1px solid rgba(201, 164, 106, 0.45);
+    right: 24px;
+    bottom:
+        max(
+            24px,
+            env(safe-area-inset-bottom)
+        );
+    left: auto;
+    z-index: 3600;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border:
+        1px solid
+        rgba(
+            184,
+            156,
+            117,
+            0.46
+        );
     border-radius: 50%;
-    background: rgba(250, 247, 240, 0.92);
-    color: var(--color-deep-blue);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-body);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.12rem;
-    text-transform: uppercase;
+    background:
+        rgba(
+            244,
+            240,
+            232,
+            0.16
+        );
+    color: var(--color-ivory);
+    box-shadow:
+        0 12px 32px
+        rgba(
+            21,
+            38,
+            45,
+            0.18
+        );
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
     cursor: pointer;
-    box-shadow: 0 16px 40px rgba(23, 50, 74, 0.18);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    transform:
+        translateY(8px);
     transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        color 0.25s ease,
-        opacity 0.25s ease,
-        visibility 0.25s ease;
-}
-
-.music-button:hover {
-    transform: translateY(-3px);
-}
-
-.music-button:not(.is-playing) {
-    background: rgba(23, 50, 74, 0.92);
-    color: var(--color-ivory);
+        opacity 0.35s ease,
+        visibility 0.35s ease,
+        transform 0.35s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
 }
 
 .music-button.is-visible {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    transform: translateY(0);
 }
 
-/* Laptop pequeña */
-@media (max-width: 1200px) {
-    .music-button {
-        width: 70px;
-        height: 70px;
-        font-size: 0.68rem;
+.music-button-icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+.music-button-icon::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 52%;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid var(--color-champagne);
+    transform:
+        translate(
+            -42%,
+            -50%
+        );
+    transition: opacity 0.2s ease;
+}
+
+.music-button-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 9px;
+    height: 11px;
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+    opacity: 0;
+    background:
+        linear-gradient(
+            90deg,
+
+            var(--color-champagne)
+                0
+                2px,
+
+            transparent
+                2px
+                7px,
+
+            var(--color-champagne)
+                7px
+                9px
+        );
+    transition: opacity 0.2s ease;
+}
+
+.music-button.is-playing
+.music-button-icon::before {
+    opacity: 0;
+}
+
+.music-button.is-playing
+.music-button-icon::after {
+    opacity: 1;
+}
+
+.music-button::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border:
+        1px solid
+        rgba(
+            184,
+            156,
+            117,
+            0.18
+        );
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.music-button.is-playing::before {
+    animation:
+        musicRing
+        2.8s
+        ease-in-out
+        infinite;
+}
+
+.music-button:hover {
+    border-color:
+        rgba(
+            184,
+            156,
+            117,
+            0.82
+        );
+
+    background:
+        rgba(
+            244,
+            240,
+            232,
+            0.24
+        );
+    transform: translateY(-2px);
+}
+
+.music-button:focus-visible {
+    outline: 1px solid var(--color-champagne);
+    outline-offset: 4px;
+}
+
+@keyframes musicRing {
+
+    0%,
+    100% {
+        opacity: 0.26;
+
+        transform:
+            scale(0.94);
     }
-}
 
-/* Tablet mediana */
-@media (max-width: 992px) {
-    .music-button {
-        left: 22px;
-        bottom: 22px;
+    50% {
+        opacity: 0.72;
 
-        width: 66px;
-        height: 66px;
-
-        font-size: 0.64rem;
-        letter-spacing: 0.1rem;
+        transform:
+            scale(1);
     }
+
 }
 
-/* Tablet pequeña / teléfono grande */
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 768px) {
+
     .music-button {
-        left: 18px;
-        bottom: 18px;
+        right: 18px;
 
-        width: 62px;
-        height: 62px;
+        bottom:
+            max(
+                18px,
+                env(safe-area-inset-bottom)
+            );
 
-        font-size: 0.6rem;
-        letter-spacing: 0.08rem;
+        width: 47px;
+        height: 47px;
     }
+
 }
 
-/* Teléfonos medianos */
-@media (max-width: 576px) {
+
+/* =========================================================
+   PHONE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
     .music-button {
-        left: 16px;
-        bottom: 16px;
+        right: 14px;
 
-        width: 56px;
-        height: 56px;
+        bottom:
+            max(
+                14px,
+                env(safe-area-inset-bottom)
+            );
 
-        font-size: 0.54rem;
-        letter-spacing: 0.06rem;
+        width: 44px;
+        height: 44px;
     }
+
+
+    .music-button-icon {
+        transform:
+            scale(0.9);
+    }
+
 }
 
-/* Teléfonos pequeños */
-@media (max-width: 380px) {
-    .music-button {
-        left: 12px;
-        bottom: 12px;
 
-        width: 50px;
-        height: 50px;
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
 
-        font-size: 0.48rem;
-        letter-spacing: 0.04rem;
+@media (
+    prefers-reduced-motion:
+    reduce
+) {
+
+    .music-button,
+    .music-button::before {
+        animation: none;
+        transition: none;
     }
+
 }

@@ -1,224 +1,860 @@
 .rsvp-result {
+    position: relative;
+    width: 100%;
+    min-height: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.rsvp-result::before {
+    content: "J & J";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -2;
+    transform:
+        translate(-50%, -50%)
+        rotate(-8deg);
+    font-family: var(--font-title);
+    font-size:
+        clamp(
+            6rem,
+            10vw,
+            9rem
+        );
+    font-weight: 400;
+    line-height: 1;
+    white-space: nowrap;
+    color:
+        rgba(
+            184,
+            156,
+            117,
+            0.055
+        );
+    pointer-events: none;
+    user-select: none;
+}
+
+.rsvp-result::after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle,
+            rgba(
+                184,
+                156,
+                117,
+                0.12
+            )
+            0%,
+
+            rgba(
+                184,
+                156,
+                117,
+                0.045
+            )
+            42%,
+
+            transparent
+            72%
+        );
+    pointer-events: none;
 }
 
 .rsvp-result-content {
     position: relative;
     z-index: 1;
-    max-width: 560px;
+    width: 100%;
+    max-width: 410px;
+    min-height: 100%;
     margin: 0 auto;
+    padding:
+        clamp(
+            52px,
+            0vw,
+            42px
+        )
+        0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: fadeUp 0.8s ease both;
+    animation:
+        rsvpResultReveal
+        900ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        )
+        both;
 }
 
 .rsvp-result-icon {
-    width: 58px;
-    height: 58px;
-    margin-bottom: 22px;
-    border-radius: 50%;
-    background: rgba(199, 164, 93, 0.16);
-    color: var(--color-gold);
+    position: relative;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.6rem;
-    line-height: 1;
-    box-shadow: 0 14px 34px rgba(199, 164, 93, 0.16);
-    animation: heartBeatSoft 2.6s ease-in-out infinite;
+    border:
+        1px solid
+        rgba(
+            184,
+            156,
+            117,
+            0.58
+        );
+    border-radius: 50%;
+    background:
+        rgba(
+            244,
+            240,
+            232,
+            0.72
+        );
+    color: var(--color-champagne);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 400;
+    box-shadow:
+        0 12px 35px
+        rgba(
+            21,
+            38,
+            45,
+            0.08
+        );
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation:
+        rsvpEmblemEntrance
+        900ms
+        160ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        )
+        both;
+}
+
+.rsvp-result-icon::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border:
+        1px solid
+        rgba(
+            184,
+            156,
+            117,
+            0.22
+        );
+    border-radius: inherit;
+    pointer-events: none;
 }
 
 .rsvp-result .section-label {
-    margin-bottom: 16px;
-    color: var(--color-gold);
+    position: relative;
+    margin: 0 0 20px;
+    padding-bottom: 15px;
+    font-family: var(--font-body);
+    font-size: 0.52rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-champagne);
+}
+
+.rsvp-result .section-label::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 38px;
+    height: 1px;
+    transform: translateX(-50%);
+    background:
+        linear-gradient(
+            90deg,
+
+            transparent,
+
+            rgba(
+                184,
+                156,
+                117,
+                0.85
+            ),
+            transparent
+        );
 }
 
 .rsvp-result h2 {
-    max-width: 520px;
+    width: 100%;
+    max-width: 390px;
+    margin: 0;
     font-family: var(--font-title);
-    font-size: clamp(2.3rem, 4.4vw, 4rem);
-    font-weight: 600;
-    line-height: 1;
-    color: var(--color-deep-blue);
+    font-size:
+        clamp(
+            2.35rem,
+            3.3vw,
+            3.45rem
+        );
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    color: var(--color-midnight);
+    text-wrap: balance;
+    overflow-wrap: normal;
+    animation:
+        rsvpTextReveal
+        900ms
+        240ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        )
+        both;
 }
 
 .rsvp-result-message {
-    max-width: 500px;
-    margin-top: 24px;
+    position: relative;
+    width: 100%;
+    max-width: 365px;
+    margin-top: 28px;
+    padding-top: 27px;
+    animation:
+        rsvpTextReveal
+        900ms
+        340ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        )
+        both;
+}
+
+.rsvp-result-message::before {
+    content: "◆";
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.34rem;
+    color:
+        rgba(
+            184,
+            156,
+            117,
+            0.92
+        );
+}
+
+.rsvp-result-message::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 112px;
+    height: 1px;
+    transform: translateX(-50%);
+    background:
+        linear-gradient(
+            90deg,
+
+            transparent
+            0%,
+
+            rgba(
+                184,
+                156,
+                117,
+                0.34
+            )
+            35%,
+
+            transparent
+            46%,
+
+            transparent
+            54%,
+
+            rgba(
+                184,
+                156,
+                117,
+                0.34
+            )
+            65%,
+
+            transparent
+            100%
+        );
 }
 
 .rsvp-result-message p {
+    max-width: 100%;
     margin: 0 auto 14px;
-    font-size: clamp(0.96rem, 1.2vw, 1.06rem);
-    line-height: 1.8;
-    color: var(--color-text-soft);
+    font-family: var(--font-body);
+    font-size:
+        clamp(
+            0.74rem,
+            0.9vw,
+            0.86rem
+        );
+    font-weight: 400;
+    line-height: 1.76;
+    color:
+        rgba(
+            21,
+            38,
+            45,
+            0.72
+        );
+}
+
+.rsvp-result-message p:last-child {
+    margin-bottom: 0;
 }
 
 .rsvp-result-date {
-    margin-top: 18px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(199, 164, 93, 0.26);
-    font-size: 0.82rem;
+    position: relative;
+    margin: auto 0 0;
+    padding-top: 20px;
+    font-family: var(--font-body);
+    font-size: 0.54rem;
     font-weight: 600;
-    letter-spacing: 0.16em;
+    line-height: 1.5;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-ocean);
+    animation:
+        rsvpTextReveal
+        900ms
+        440ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        )
+        both;
 }
 
-.rsvp-result.is-not-attending .rsvp-result-icon {
-    background: rgba(124, 147, 163, 0.16);
-    color: var(--color-blue-gray);
+.rsvp-result-date::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 150px;
+    height: 1px;
+    transform: translateX(-50%);
+    background:
+        linear-gradient(
+            90deg,
+
+            transparent,
+
+            rgba(
+                184,
+                156,
+                117,
+                0.40
+            ),
+
+            transparent
+        );
 }
 
-.rsvp-result.is-not-attending .rsvp-result-date {
-    color: var(--color-blue-gray);
+.rsvp-result.is-attending
+.rsvp-result-icon {
+    background:
+        rgba(
+            184,
+            156,
+            117,
+            0.10
+        );
+    border-color:
+        rgba(
+            184,
+            156,
+            117,
+            0.64
+        );
+    color: var(--color-champagne);
 }
 
-/* Laptop pequeña */
-@media (max-width: 1200px) {
-    .rsvp-result-content {
-        max-width: 540px;
+.rsvp-result.is-attending
+.rsvp-result-icon::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border:
+        1px solid
+        rgba(
+            184,
+            156,
+            117,
+            0.13
+        );
+    border-radius: 50%;
+    animation:
+        rsvpAttendingRing
+        3.6s
+        ease-in-out
+        infinite;
+}
+
+.rsvp-result.is-not-attending::after {
+    background:
+        radial-gradient(
+            circle,
+
+            rgba(
+                111,
+                137,
+                141,
+                0.10
+            )
+            0%,
+
+            rgba(
+                111,
+                137,
+                141,
+                0.035
+            )
+            45%,
+
+            transparent
+            72%
+        );
+}
+
+.rsvp-result.is-not-attending
+.rsvp-result-icon {
+    border-color:
+        rgba(
+            111,
+            137,
+            141,
+            0.42
+        );
+    background:
+        rgba(
+            111,
+            137,
+            141,
+            0.08
+        );
+    color: var(--color-slate);
+}
+
+.rsvp-result.is-not-attending
+.rsvp-result-icon::before {
+    border-color:
+        rgba(
+            111,
+            137,
+            141,
+            0.18
+        );
+}
+
+.rsvp-result.is-not-attending
+.section-label {
+    color: var(--color-slate);
+}
+
+.rsvp-result.is-not-attending
+.section-label::after {
+    background:
+        linear-gradient(
+            90deg,
+
+            transparent,
+
+            rgba(
+                111,
+                137,
+                141,
+                0.72
+            ),
+            transparent
+        );
+}
+
+.rsvp-result.is-not-attending
+.rsvp-result-message::before {
+    color:
+        rgba(
+            111,
+            137,
+            141,
+            0.70
+        );
+}
+
+.rsvp-result.is-not-attending
+.rsvp-result-date {
+    color: var(--color-slate);
+    letter-spacing: 0.18em;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes rsvpResultReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(16px);
     }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes rsvpEmblemEntrance {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.72)
+            rotate(-10deg);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+
+}
+
+
+@keyframes rsvpTextReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes rsvpAttendingRing {
+
+    0%,
+    100% {
+        opacity: 0.36;
+
+        transform:
+            scale(0.96);
+    }
+
+    50% {
+        opacity: 0.08;
+
+        transform:
+            scale(1.12);
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1150px) {
+
+    .rsvp-result {
+        min-height: 370px;
+    }
+
+
+    .rsvp-result-content {
+        max-width: 360px;
+    }
+
 
     .rsvp-result h2 {
-        font-size: clamp(2.1rem, 4.4vw, 3.6rem);
-    }
-}
+        max-width: 350px;
 
-/* Tablet mediana */
-@media (max-width: 992px) {
-    .rsvp-result-content {
-        max-width: 520px;
-    }
-
-    .rsvp-result-icon {
-        width: 56px;
-        height: 56px;
-        margin-bottom: 20px;
-        font-size: 1.5rem;
+        font-size:
+            clamp(
+                2.1rem,
+                3.7vw,
+                3rem
+            );
     }
 
-    .rsvp-result .section-label {
-        margin-bottom: 14px;
-    }
-
-    .rsvp-result h2 {
-        font-size: clamp(2rem, 6vw, 3.2rem);
-    }
 
     .rsvp-result-message {
-        margin-top: 22px;
+        max-width: 330px;
     }
 
-    .rsvp-result-message p {
-        font-size: 0.94rem;
-        line-height: 1.7;
-    }
 }
 
-/* Tablet pequeña / teléfono grande */
-@media (max-width: 768px) {
+
+/* =========================================================
+   MOBILE / SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .rsvp-result {
+        min-height: 410px;
+    }
+
+
     .rsvp-result-content {
-        max-width: 460px;
+        max-width: 440px;
+
+        padding:
+            18px
+            8px;
     }
 
-    .rsvp-result-icon {
-        width: 52px;
-        height: 52px;
-        margin-bottom: 18px;
-        font-size: 1.38rem;
-    }
-
-    .rsvp-result .section-label {
-        font-size: 0.66rem;
-        letter-spacing: 0.22em;
-    }
 
     .rsvp-result h2 {
-        font-size: clamp(1.9rem, 8vw, 2.8rem);
-        line-height: 1.05;
+        max-width: 410px;
+
+        font-size:
+            clamp(
+                2.4rem,
+                8vw,
+                3.35rem
+            );
     }
+
 
     .rsvp-result-message {
-        max-width: 420px;
-        margin-top: 20px;
+        max-width: 385px;
     }
 
-    .rsvp-result-message p {
+}
+
+
+/* =========================================================
+   PHONE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .rsvp-result {
+        min-height: 0;
+
+        padding:
+            28px
+            0
+            20px;
+    }
+
+
+    .rsvp-result::before {
+        font-size:
+            clamp(
+                4.7rem,
+                24vw,
+                6.4rem
+            );
+    }
+
+
+    .rsvp-result::after {
+        width: 220px;
+        height: 220px;
+    }
+
+
+    .rsvp-result-content {
+        width: 100%;
+        max-width: 330px;
+
+        padding: 0;
+    }
+
+
+    .rsvp-result-icon {
+        width: 50px;
+        height: 50px;
+
+        margin-bottom: 17px;
+
         font-size: 0.88rem;
-        line-height: 1.65;
     }
+
+
+    .rsvp-result .section-label {
+        margin-bottom: 15px;
+
+        padding-bottom: 13px;
+
+        font-size: 0.45rem;
+
+        letter-spacing: 0.23em;
+    }
+
+
+    .rsvp-result h2 {
+        max-width: 310px;
+
+        font-size:
+            clamp(
+                2.15rem,
+                10vw,
+                2.75rem
+            );
+
+        line-height: 1;
+    }
+
+
+    .rsvp-result-message {
+        max-width: 295px;
+
+        margin-top: 22px;
+
+        padding-top: 23px;
+    }
+
+
+    .rsvp-result-message p {
+        margin-bottom: 10px;
+
+        font-size: 0.74rem;
+
+        line-height: 1.62;
+    }
+
 
     .rsvp-result-date {
-        margin-top: 16px;
-        padding-top: 16px;
+        max-width: 280px;
 
-        font-size: 0.76rem;
-        letter-spacing: 0.12em;
-        line-height: 1.5;
-    }
-}
+        margin-top: 22px;
 
-/* Teléfonos medianos */
-@media (max-width: 576px) {
-    .rsvp-result-icon {
-        width: 48px;
-        height: 48px;
-        margin-bottom: 16px;
-        font-size: 1.25rem;
-    }
+        padding-top: 17px;
 
-    .rsvp-result .section-label {
-        margin-bottom: 12px;
-        font-size: 0.6rem;
+        font-size: 0.47rem;
+
+        line-height: 1.7;
+
         letter-spacing: 0.18em;
     }
 
-    .rsvp-result h2 {
-        font-size: 2.15rem;
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .rsvp-result-content {
+        max-width: 285px;
     }
+
+
+    .rsvp-result-icon {
+        width: 46px;
+        height: 46px;
+    }
+
+
+    .rsvp-result h2 {
+        max-width: 275px;
+
+        font-size: 2rem;
+    }
+
 
     .rsvp-result-message {
-        margin-top: 18px;
+        max-width: 270px;
     }
 
+
     .rsvp-result-message p {
-        margin-bottom: 12px;
-        font-size: 0.82rem;
+        font-size: 0.7rem;
+
         line-height: 1.58;
     }
 
+
     .rsvp-result-date {
-        font-size: 0.7rem;
-        letter-spacing: 0.1em;
+        max-width: 250px;
+
+        font-size: 0.43rem;
     }
+
 }
 
-/* Teléfonos pequeños */
-@media (max-width: 380px) {
-    .rsvp-result-icon {
-        width: 44px;
-        height: 44px;
-        font-size: 1.12rem;
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (
+    prefers-reduced-motion:
+    reduce
+) {
+
+    .rsvp-result-content,
+    .rsvp-result-icon,
+    .rsvp-result h2,
+    .rsvp-result-message,
+    .rsvp-result-date,
+    .rsvp-result.is-attending
+    .rsvp-result-icon::after {
+        animation: none;
     }
 
-    .rsvp-result .section-label {
-        font-size: 0.56rem;
-        letter-spacing: 0.14em;
-    }
-
-    .rsvp-result h2 {
-        font-size: 1.82rem;
-    }
-
-    .rsvp-result-message p {
-        font-size: 0.76rem;
-        line-height: 1.5;
-    }
-
-    .rsvp-result-date {
-        font-size: 0.64rem;
-        letter-spacing: 0.08em;
-    }
 }

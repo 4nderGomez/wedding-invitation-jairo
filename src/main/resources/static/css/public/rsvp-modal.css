@@ -1,281 +1,1018 @@
+body.rsvp-modal-open {
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
 .rsvp-modal {
     position: fixed;
     inset: 0;
-    z-index: 1100;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(20px, 4vw, 48px);
-    background: rgba(10, 18, 28, 0.72);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    z-index: 50000;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    display: grid;
+    grid-template-columns:
+        minmax(16px, 1fr)
+        minmax(0, 760px)
+        minmax(16px, 1fr);
+    grid-template-rows:
+        minmax(16px, 1fr)
+        auto
+        minmax(16px, 1fr);
+    background:
+        rgba(
+            8,
+            24,
+            30,
+            0.46
+        );
+    backdrop-filter: blur(18px) saturate(0.75) brightness(0.82);
+    -webkit-backdrop-filter: blur(18px) saturate(0.75) brightness(0.82);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    overflow: hidden;
+    overscroll-behavior: none;
+    transition:
+        opacity 320ms ease,
+        visibility 320ms ease;
 }
 
+
+.rsvp-modal[aria-hidden="false"],
+.rsvp-modal.is-open,
 .rsvp-modal.active {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .rsvp-modal-card {
     position: relative;
-    width: min(100%, 820px);
-    max-height: 88vh;
-    padding: clamp(26px, 4vw, 42px);
-    border: 1px solid rgba(199, 164, 93, 0.34);
-    overflow-y: auto;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255, 253, 248, 0.97),
-            rgba(247, 241, 234, 0.96)
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    max-width: 760px;
+    max-height:
+        calc(
+            100dvh - 64px
         );
-    box-shadow: var(--shadow-elegant);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    padding:
+        clamp(
+            32px,
+            4vw,
+            52px
+        );
+    background:
+        rgba(
+            247,
+            243,
+            236,
+            0.97
+        );
+    border:
+        1px solid
+        rgba(
+            199,
+            164,
+            93,
+            0.30
+        );
+    box-shadow:
+        0 40px 100px
+        rgba(
+            5,
+            16,
+            21,
+            0.32
+        );
+    transform:
+        translateY(18px)
+        scale(0.985);
+    opacity: 0;
+    transition:
+        transform
+        420ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
+        opacity
+        320ms
+        ease;
 }
+
+/* Marco editorial */
 
 .rsvp-modal-card::before {
     content: "";
+
     position: absolute;
-    inset: 14px;
-    border: 1px solid rgba(199, 164, 93, 0.2);
+
+    inset: 10px;
+
+    z-index: 0;
+
+    border:
+        1px solid
+        rgba(
+            184,
+            156,
+            117,
+            0.26
+        );
+
     pointer-events: none;
 }
 
+.rsvp-modal[aria-hidden="false"]
+.rsvp-modal-card,
+.rsvp-modal.is-open
+.rsvp-modal-card,
+.rsvp-modal.active
+.rsvp-modal-card {
+    transform:
+        translateY(0)
+        scale(1);
+    opacity: 1;
+}
+
+/* Sí asistiré ligeramente más ancho */
+
+.rsvp-modal-card--attending {
+    width:
+        min(
+            100%,
+            760px
+        );
+}
+
+
+/* No asistiré más contenido */
+
+.rsvp-modal-card--decline {
+    width:
+        min(
+            100%,
+            660px
+        );
+}
+
+
+/* =========================================================
+   INTERNAL SCROLLBAR
+   ========================================================= */
+
+.rsvp-modal-card {
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(
+            21,
+            38,
+            45,
+            0.22
+        )
+        transparent;
+}
+
+
+.rsvp-modal-card::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.rsvp-modal-card::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.rsvp-modal-card::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+
+    background:
+        rgba(
+            21,
+            38,
+            45,
+            0.22
+        );
+}
+
+
+/* Botón para cerrar la ventana emergente */
+
 .rsvp-modal-close {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    z-index: 5;
+    position: sticky;
+    top: 0;
+    z-index: 20;
     width: 40px;
     height: 40px;
-    border: 1px solid rgba(199, 164, 93, 0.32);
+    margin:
+        -18px
+        -18px
+        -22px
+        auto;
+    display: grid;
+    place-items: center;
+    border:
+        1px solid
+        rgba(
+            184,
+            156,
+            117,
+            0.45
+        );
     border-radius: 50%;
-    background: rgba(255, 253, 248, 0.88);
-    color: var(--color-deep-blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
+    background:
+        rgba(
+            247,
+            243,
+            236,
+            0.92
+        );
+    color: var(--color-midnight);
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    font-weight: 300;
     line-height: 1;
     cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     transition:
-        background 0.25s ease,
-        color 0.25s ease,
-        transform 0.25s ease;
+        transform
+        220ms ease,
+        background
+        220ms ease,
+        color
+        220ms ease,
+        border-color
+        220ms ease;
 }
 
 .rsvp-modal-close:hover {
-    background: var(--color-deep-blue);
-    color: var(--color-white);
-    transform: rotate(8deg);
+    transform: rotate(7deg);
+    background: var(--color-midnight);
+    color: var(--color-ivory);
+    border-color: var(--color-midnight);
 }
+
+.rsvp-modal-close:focus-visible {
+    outline: 2px solid var(--color-champagne);
+    outline-offset: 4px;
+}
+
+
+/* Encabezado */
 
 .rsvp-modal-heading {
     position: relative;
     z-index: 1;
-    max-width: 620px;
-    margin: -4px auto 26px;
+    width:
+        min(
+            100%,
+            560px
+        );
+    margin:
+        0 auto
+        clamp(
+            25px,
+            3vh,
+            34px
+        );
     text-align: center;
 }
 
-.rsvp-modal-heading .section-label {
-    margin-bottom: 12px;
-    color: var(--color-gold);
+.rsvp-modal-heading
+.section-label {
+    margin: 0 0 9px;
+    font-family: var(--font-body);
+    font-size: 0.50rem;
+    font-weight: 600;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
+    color: var(--color-champagne);
 }
 
 .rsvp-modal-heading h2 {
+    max-width: none;
+    margin: 0;
     font-family: var(--font-title);
-    font-size: clamp(2.1rem, 4vw, 3.5rem);
-    font-weight: 600;
-    line-height: 1;
-    color: var(--color-deep-blue);
+    font-size:
+        clamp(
+            2.35rem,
+            4vw,
+            3.65rem
+        );
+    font-weight: 500;
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    color: var(--color-midnight);
 }
 
-.rsvp-modal-heading p {
-    max-width: 520px;
-    margin: 22px auto 0;
-    line-height: 1.8;
-    color: var(--color-text-soft);
+.rsvp-modal-heading > p:last-child {
+    max-width: 390px;
+    margin: 12px auto 0;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 400;
+    line-height: 1.55;
+    color:
+        rgba(
+            21,
+            38,
+            45,
+            0.61
+        );
 }
 
-.rsvp-modal .form-section,
-.rsvp-modal .form-row,
-.rsvp-modal .form-group,
-.rsvp-modal .form-submit {
+/* Formulario */
+.rsvp-modal
+.rsvp-form {
     position: relative;
     z-index: 1;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-body.rsvp-modal-open {
+
+/* Separación */
+.rsvp-modal
+.rsvp-modal-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+    gap: 18px;
+    margin: 0 0 18px;
+}
+
+
+/* Tarjetas */
+.rsvp-modal
+.form-group {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.rsvp-modal
+.form-group label {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color:
+        rgba(
+            21,
+            38,
+            45,
+            0.78
+        );
+}
+
+.rsvp-modal
+.form-group input,
+.rsvp-modal
+.form-group select,
+.rsvp-modal
+.form-group textarea {
+    width: 100%;
+    border: 0;
+    border-bottom:
+        1px solid
+        rgba(
+            21,
+            38,
+            45,
+            0.20
+        );
+    border-radius: 0;
+    outline: none;
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.34
+        );
+    color: var(--color-midnight);
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    transition:
+        border-color
+        220ms ease,
+        background
+        220ms ease;
+}
+
+.rsvp-modal
+.form-group input,
+.rsvp-modal
+.form-group select {
+    height: 43px;
+    padding: 0 11px;
+}
+
+.rsvp-modal
+.form-group textarea {
+    min-height: 78px;
+    padding: 11px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.rsvp-modal
+.form-group input:focus,
+.rsvp-modal
+.form-group select:focus,
+.rsvp-modal
+.form-group textarea:focus {
+    border-color: var(--color-champagne);
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.72
+        );
+    box-shadow: none;
+}
+
+/* Secciones internas */
+.rsvp-modal
+.rsvp-modal-section {
+    margin-top:
+        clamp(
+            21px,
+            3vh,
+            30px
+        );
+    padding-top: 18px;
+    border-top:
+        1px solid
+        rgba(
+            21,
+            38,
+            45,
+            0.11
+        );
+}
+
+.rsvp-modal-section-heading {
+    margin-bottom: 14px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.rsvp-modal-section-heading > div {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.rsvp-modal-section-number {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.45rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--color-champagne);
+}
+
+.rsvp-modal-section-heading h3 {
+    margin: 0;
+    font-family: var(--font-title);
+    font-size: 1.45rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-midnight);
+}
+
+.rsvp-modal-section-heading > p {
+    max-width: 280px;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.56rem;
+    line-height: 1.45;
+    text-align: right;
+    color:
+        rgba(
+            21,
+            38,
+            45,
+            0.52
+        );
+}
+
+
+/* Seccion de compañia del invitado */
+.rsvp-modal
+.companions-count-note {
+    margin: 0;
+    font-size: 0.56rem;
+    line-height: 1.45;
+    color:
+        rgba(
+            21,
+            38,
+            45,
+            0.52
+        );
+}
+
+.rsvp-modal
+.companions-count-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+    gap: 12px;
+    margin-top: 0;
+}
+
+.rsvp-modal
+.companions-count-field {
+    min-height: 48px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    border:
+        1px solid
+        rgba(
+            21,
+            38,
+            45,
+            0.11
+        );
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.28
+        );
+}
+
+.rsvp-modal
+.companions-count-field label {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    font-weight: 500;
+    color: var(--color-midnight);
+}
+
+.rsvp-modal
+.companions-count-field input {
+    width: 54px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-bottom:
+        1px solid
+        rgba(
+            21,
+            38,
+            45,
+            0.22
+        );
+    background: transparent;
+    font-family: var(--font-title);
+    font-size: 1.05rem;
+    text-align: center;
+    color: var(--color-midnight);
+}
+
+/* Conteo de invitados total */
+.rsvp-modal
+.guest-total {
+    margin-top: 9px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    text-align: right;
+}
+
+.rsvp-modal
+.guest-total p {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.54rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color:
+        rgba(
+            21,
+            38,
+            45,
+            0.50
+        );
+}
+
+.rsvp-modal
+.guest-total span {
+    margin-left: 3px;
+    font-family: var(--font-title);
+    font-size: 0.92rem;
+    color: var(--color-champagne);
+}
+
+
+/* Seccion de mensaje para los novios */
+.rsvp-modal
+.rsvp-modal-section--message
+.form-group {
+    width: 100%;
+}
+
+.rsvp-modal
+.rsvp-modal-section--message
+textarea {
+    width: 100%;
+    min-height: 72px;
+    resize: none;
+}
+
+.rsvp-modal
+.rsvp-form-feedback {
+    margin-top: 14px;
+    padding: 10px 12px;
+    border:
+        1px solid
+        rgba(
+            21,
+            38,
+            45,
+            0.10
+        );
+    background:
+        rgba(
+            21,
+            38,
+            45,
+            0.035
+        );
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    line-height: 1.5;
+    color: var(--color-midnight);
+}
+
+.rsvp-modal
+.form-submit {
+    width: 100%;
+    height: auto;
+    margin-top: 22px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.rsvp-modal
+.form-submit button {
+    min-height: 0;
+    margin: 0;
+    padding: 9px 2px 8px;
+    border: 0;
+    border-bottom: 1px solid var(--color-midnight);
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-midnight);
+    font-family: var(--font-body);
+    font-size: 0.56rem;
+    font-weight: 600;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+        color
+        220ms ease,
+        border-color
+        220ms ease,
+        padding-right
+        220ms ease;
+}
+
+.rsvp-modal
+.form-submit button::after {
+    content: " →";
+    margin-left: 7px;
+    letter-spacing: 0;
+}
+
+.rsvp-modal
+.form-submit button:hover:not(
+    :disabled
+) {
+    padding-right: 8px;
+    background: transparent;
+    color: var(--color-champagne);
+    border-color: var(--color-champagne);
+    transform: none;
+    box-shadow: none;
+}
+
+/* Vista de la pagina */
+html.rsvp-modal-lock,
+body.rsvp-modal-lock {
     overflow: hidden;
+    overscroll-behavior: none;
 }
 
-.rsvp-modal.active .rsvp-modal-card {
-    animation: zoomInSoft 0.35s ease both;
+.rsvp-modal {
+    overscroll-behavior: none;
 }
 
-/* Laptop pequeña */
-@media (max-width: 1200px) {
-    .rsvp-modal-card {
-        width: min(100%, 780px);
-    }
+.rsvp-modal-card {
+    touch-action: pan-y;
 }
 
-/* Tablet mediana */
-@media (max-width: 992px) {
-    .rsvp-modal-card {
-        width: min(100%, 720px);
-        max-height: 86vh;
-        padding: 38px 34px;
-    }
-
-    .rsvp-modal-heading {
-        margin-bottom: 24px;
-    }
-
-    .rsvp-modal-heading h2 {
-        font-size: clamp(2rem, 5vw, 3rem);
-    }
-
-    .rsvp-modal-heading p {
-        margin-top: 18px;
-        font-size: 0.94rem;
-        line-height: 1.7;
-    }
-}
-
-/* Tablet pequeña / teléfono grande */
-@media (max-width: 768px) {
+/* Tablet y movil */
+@media (max-width: 700px) {
     .rsvp-modal {
-        padding: 24px;
+        padding:
+            max(
+                12px,
+                env(
+                    safe-area-inset-top
+                )
+            )
+            12px
+            max(
+                12px,
+                env(
+                    safe-area-inset-bottom
+                )
+            );
     }
 
     .rsvp-modal-card {
         width: 100%;
-        max-height: 86vh;
-        padding: 36px 28px 30px;
+
+        max-height:
+            calc(
+                100dvh
+                - 24px
+            );
+
+        padding:
+            30px
+            20px
+            22px;
     }
 
     .rsvp-modal-card::before {
-        inset: 10px;
+        inset: 7px;
     }
 
     .rsvp-modal-close {
-        top: 14px;
-        right: 14px;
+        width: 36px;
+        height: 36px;
 
-        width: 38px;
-        height: 38px;
-
-        font-size: 1.35rem;
-    }
-
-    .rsvp-modal-heading {
-        margin: 0 auto 24px;
-    }
-
-    .rsvp-modal-heading .section-label {
-        margin-bottom: 10px;
-        font-size: 0.66rem;
-        letter-spacing: 0.22em;
-    }
-
-    .rsvp-modal-heading h2 {
-        font-size: clamp(1.9rem, 8vw, 2.75rem);
-        line-height: 1.05;
-    }
-
-    .rsvp-modal-heading p {
-        margin-top: 16px;
-        font-size: 0.88rem;
-        line-height: 1.65;
-    }
-}
-
-/* Teléfonos medianos */
-@media (max-width: 576px) {
-    .rsvp-modal {
-        padding: 16px;
-        align-items: flex-start;
-    }
-
-    .rsvp-modal-card {
-        max-height: calc(100vh - 32px);
-        padding: 34px 20px 24px;
-    }
-
-    .rsvp-modal-card::before {
-        inset: 8px;
-    }
-
-    .rsvp-modal-close {
-        top: 10px;
-        right: 10px;
-
-        width: 34px;
-        height: 34px;
+        margin:
+            -18px
+            -8px
+            -16px
+            auto;
 
         font-size: 1.2rem;
     }
 
     .rsvp-modal-heading {
         margin-bottom: 22px;
-        padding: 0 18px;
     }
 
-    .rsvp-modal-heading .section-label {
-        font-size: 0.6rem;
-        letter-spacing: 0.18em;
+    .rsvp-modal-heading
+    .section-label {
+        font-size: 0.43rem;
+
+        letter-spacing:
+            0.22em;
     }
 
     .rsvp-modal-heading h2 {
-        font-size: 2.1rem;
+        font-size:
+            clamp(
+                2rem,
+                9vw,
+                2.65rem
+            );
     }
 
-    .rsvp-modal-heading p {
-        font-size: 0.82rem;
-        line-height: 1.58;
+    .rsvp-modal-heading > p:last-child {
+        max-width: 300px;
+
+        margin-top: 8px;
+
+        font-size: 0.70rem;
     }
+
+    .rsvp-modal
+    .rsvp-modal-grid {
+        grid-template-columns:
+            1fr;
+
+        gap: 13px;
+
+        margin-bottom: 13px;
+    }
+
+    .rsvp-modal
+    .form-group input,
+    .rsvp-modal
+    .form-group select {
+        height: 40px;
+    }
+
+    .rsvp-modal
+    .rsvp-modal-section {
+        margin-top: 18px;
+
+        padding-top: 15px;
+    }
+
+    .rsvp-modal-section-heading {
+        margin-bottom: 12px;
+    }
+
+    .rsvp-modal-section-heading h3 {
+        font-size: 1.25rem;
+    }
+
+    .rsvp-modal-section-heading > p,
+    .rsvp-modal
+    .companions-count-note {
+        font-size: 0.50rem;
+    }
+
+    .rsvp-modal
+    .companions-count-grid {
+        gap: 8px;
+    }
+
+    .rsvp-modal
+    .companions-count-field {
+        min-height: 44px;
+
+        padding:
+            7px 10px;
+    }
+
+    .rsvp-modal
+    .rsvp-modal-section--message
+    textarea {
+        min-height: 62px;
+    }
+
+    .rsvp-modal
+    .form-submit {
+        margin-top: 17px;
+    }
+
 }
 
+
 /* Teléfonos pequeños */
-@media (max-width: 380px) {
+
+@media
+(max-width: 390px) {
+
     .rsvp-modal {
-        padding: 10px;
+        padding: 8px;
     }
+
 
     .rsvp-modal-card {
-        max-height: calc(100vh - 20px);
-        padding: 30px 16px 20px;
+        max-height:
+            calc(
+                100dvh
+                - 16px
+            );
+
+        padding:
+            27px
+            15px
+            18px;
     }
 
-    .rsvp-modal-card::before {
-        inset: 6px;
-    }
-
-    .rsvp-modal-close {
-        top: 8px;
-        right: 8px;
-
-        width: 30px;
-        height: 30px;
-
-        font-size: 1.05rem;
-    }
-
-    .rsvp-modal-heading {
-        padding: 0 14px;
-    }
-
-    .rsvp-modal-heading .section-label {
-        font-size: 0.56rem;
-        letter-spacing: 0.14em;
-    }
 
     .rsvp-modal-heading h2 {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
     }
 
-    .rsvp-modal-heading p {
-        font-size: 0.76rem;
-        line-height: 1.5;
+
+    .rsvp-modal
+    .companions-count-field label {
+        font-size: 0.60rem;
     }
+
+}
+
+
+/* Teléfonos muy pequeños */
+@media
+(max-width: 700px)
+and
+(max-height: 680px) {
+
+    .rsvp-modal-heading {
+        margin-bottom: 17px;
+    }
+
+
+    .rsvp-modal-heading
+    .section-label {
+        margin-bottom: 5px;
+    }
+
+
+    .rsvp-modal-heading h2 {
+        font-size: 1.85rem;
+    }
+
+
+    .rsvp-modal-heading > p:last-child {
+        display: none;
+    }
+
+
+    .rsvp-modal
+    .rsvp-modal-grid {
+        gap: 10px;
+    }
+
+
+    .rsvp-modal
+    .form-group input,
+    .rsvp-modal
+    .form-group select {
+        height: 37px;
+    }
+
+
+    .rsvp-modal
+    .rsvp-modal-section {
+        margin-top: 13px;
+
+        padding-top: 12px;
+    }
+
+}
+
+@media (
+    prefers-reduced-motion: reduce
+) {
+
+    .rsvp-modal,
+    .rsvp-modal-card,
+    .rsvp-modal-close,
+    .rsvp-modal
+    .form-submit button {
+        transition: none;
+    }
+
+}
+
+/* Computadoras de escritorio */
+@media (min-width: 901px) {
+
+    .rsvp-modal {
+        grid-template-columns:
+            minmax(40px, 1fr)
+            minmax(0, 880px)
+            minmax(40px, 1fr);
+    }
+
+
+    .rsvp-modal-card {
+        max-width: 880px;
+    }
+
 }

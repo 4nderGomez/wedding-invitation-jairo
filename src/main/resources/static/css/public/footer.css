@@ -1,209 +1,1147 @@
-.footer-section {
+/* =========================================================
+   WEDDING FOOTER
+   Cinematic final scene
+   ========================================================= */
+
+.wedding-footer {
     position: relative;
-    margin-top: -42px;
+
+    isolation: isolate;
+
+    width: 100%;
+
+    min-height: 100svh;
+
+    overflow: hidden;
+
+    background:
+        var(--color-midnight);
+
+    color:
+        var(--color-ivory);
+}
+
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.wedding-footer-background {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -4;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+.wedding-footer-background img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position:
+        center center;
+}
+
+
+/* =========================================================
+   CINEMATIC OVERLAY
+   La fotografía se conserva mucho más visible.
+   ========================================================= */
+
+.wedding-footer-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -3;
+
+    pointer-events: none;
+
+    background:
+
+        /*
+         * Oscurecimiento lateral.
+         * Las rocas reciben más contraste para el texto.
+         * El centro permanece casi limpio.
+         */
+
+        linear-gradient(
+            90deg,
+
+            rgba(
+                8,
+                18,
+                23,
+                0.62
+            )
+            0%,
+
+            rgba(
+                8,
+                18,
+                23,
+                0.34
+            )
+            19%,
+
+            rgba(
+                8,
+                18,
+                23,
+                0.05
+            )
+            38%,
+
+            rgba(
+                8,
+                18,
+                23,
+                0.00
+            )
+            50%,
+
+            rgba(
+                8,
+                18,
+                23,
+                0.05
+            )
+            62%,
+
+            rgba(
+                8,
+                18,
+                23,
+                0.34
+            )
+            81%,
+
+            rgba(
+                8,
+                18,
+                23,
+                0.64
+            )
+            100%
+        ),
+
+        /*
+         * Sólo oscurecemos ligeramente abajo
+         * para proteger los créditos.
+         */
+
+        linear-gradient(
+            180deg,
+
+            rgba(
+                8,
+                18,
+                23,
+                0.04
+            )
+            0%,
+
+            transparent
+            60%,
+
+            rgba(
+                8,
+                18,
+                23,
+                0.18
+            )
+            78%,
+
+            rgba(
+                8,
+                18,
+                23,
+                0.68
+            )
+            100%
+        );
+}
+
+
+/* =========================================================
+   OUTER FRAME
+   ========================================================= */
+
+.wedding-footer::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 14px;
+
+    z-index: 10;
+
+    border:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.30
+        );
+
+    pointer-events: none;
+}
+
+
+.wedding-footer-frame {
+    position: absolute;
+
+    inset: 25px;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+.wedding-footer-corner {
+    position: absolute;
+
+    width: 34px;
+    height: 34px;
+
+    opacity: 0.72;
+}
+
+
+.wedding-footer-corner--top-left {
+    top: 0;
+    left: 0;
+
+    border-top:
+        1px solid
+        var(--color-champagne);
+
+    border-left:
+        1px solid
+        var(--color-champagne);
+}
+
+
+.wedding-footer-corner--top-right {
+    top: 0;
+    right: 0;
+
+    border-top:
+        1px solid
+        var(--color-champagne);
+
+    border-right:
+        1px solid
+        var(--color-champagne);
+}
+
+
+.wedding-footer-corner--bottom-left {
+    bottom: 0;
+    left: 0;
+
+    border-bottom:
+        1px solid
+        var(--color-champagne);
+
+    border-left:
+        1px solid
+        var(--color-champagne);
+}
+
+
+.wedding-footer-corner--bottom-right {
+    right: 0;
+    bottom: 0;
+
+    border-right:
+        1px solid
+        var(--color-champagne);
+
+    border-bottom:
+        1px solid
+        var(--color-champagne);
+}
+
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.wedding-footer-layout {
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(
+            100%,
+            1720px
+        );
+
+    min-height: 100svh;
+
+    margin:
+        0 auto;
+
     padding:
-        clamp(120px, 11vw, 170px)
-        clamp(20px, 5vw, 72px)
-        clamp(72px, 9vw, 112px);
+        clamp(
+            60px,
+            7vh,
+            90px
+        )
+        clamp(
+            42px,
+            5vw,
+            86px
+        )
+        max(
+            22px,
+            env(
+                safe-area-inset-bottom
+            )
+        );
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+/* =========================================================
+   MAIN COMPOSITION
+   ========================================================= */
+
+.wedding-footer-composition {
+    width: 100%;
+
+    flex: 1;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(
+            260px,
+            0.82fr
+        )
+        minmax(
+            420px,
+            1.65fr
+        )
+        minmax(
+            280px,
+            0.88fr
+        );
+
+    align-items: center;
+
+    gap:
+        clamp(
+            28px,
+            4vw,
+            72px
+        );
+}
+
+
+/*
+ * Esta columna NO contiene contenido.
+ * Su única función es reservar la zona
+ * donde están los novios.
+ */
+
+.wedding-footer-clear-zone {
+    min-width: 0;
+
+    min-height:
+        52vh;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SIDE BLOCKS
+   ========================================================= */
+
+.wedding-footer-side {
+    position: relative;
+
+    width: 100%;
+
+    color:
+        var(--color-ivory);
+}
+
+
+/* IZQUIERDA */
+
+.wedding-footer-side--left {
+    align-self: center;
+
+    justify-self: start;
+
+    text-align: left;
+
+    padding-left:
+        clamp(
+            10px,
+            2vw,
+            32px
+        );
+
+    transform:
+        translateY(-7vh);
+}
+
+
+/* DERECHA */
+
+.wedding-footer-side--right {
+    align-self: center;
+
+    justify-self: end;
+
+    text-align: right;
+
+    padding-right:
+        clamp(
+            10px,
+            2vw,
+            32px
+        );
+
+    transform:
+        translateY(4vh);
+}
+
+
+/* =========================================================
+   KICKER
+   ========================================================= */
+
+.wedding-footer-kicker {
+    margin: 0 0 13px;
+
+    font-family:
+        var(--font-body);
+
+    font-size:
+        clamp(
+            0.48rem,
+            0.62vw,
+            0.64rem
+        );
+
+    font-weight: 500;
+
+    letter-spacing:
+        0.38em;
+
+    text-transform:
+        uppercase;
+
+    color:
+        var(--color-champagne);
+
+    text-shadow:
+        0 2px 12px
+        rgba(
+            0,
+            0,
+            0,
+            0.50
+        );
+}
+
+
+.wedding-footer-message {
+    max-width: 330px;
+
+    margin:
+        clamp(
+            25px,
+            3vh,
+            34px
+        )
+        0
+        0
+        auto;
+
+    font-family:
+        var(--font-body);
+
+    font-size:
+        clamp(
+            0.68rem,
+            0.82vw,
+            0.82rem
+        );
+
+    font-weight: 400;
+
+    line-height: 1.8;
+
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.78
+        );
+
+    text-shadow:
+        0 2px 13px
+        rgba(
+            0,
+            0,
+            0,
+            0.55
+        );
+}
+
+/* =========================================================
+   AMPERSAND
+   ========================================================= */
+
+.wedding-footer-and {
+    margin:
+        0 0
+        -12px;
+
+    font-family:
+        var(--font-script);
+
+    font-size:
+        clamp(
+            2.4rem,
+            4vw,
+            4.2rem
+        );
+
+    line-height: 1;
+
+    color:
+        var(--color-champagne);
+
+    opacity: 0.92;
+}
+.wedding-footer-title span {
+    display: inline-block;
+
+    margin:
+        0 0.04em;
+
+    font-family:
+        var(--font-script);
+
+    font-weight: 400;
+
+    color:
+        var(--color-champagne);
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.wedding-footer-date {
+    margin-top: 20px;
+
+    font-family:
+        var(--font-body);
+
+    font-size:
+        clamp(
+            0.62rem,
+            0.75vw,
+            0.76rem
+        );
+
+    font-weight: 500;
+
+    letter-spacing:
+        0.32em;
+
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.82
+        );
+}
+
+
+.wedding-footer-monogram {
+    font-family:
+        var(--font-title);
+
+    font-size: 0.65rem;
+
+    letter-spacing:
+        0.15em;
+
+    color:
+        var(--color-champagne);
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.wedding-footer-message {
+    max-width: 520px;
+
+    margin:
+        0 auto;
+
+    font-family:
+        var(--font-body);
+
+    font-size:
+        clamp(
+            0.78rem,
+            1vw,
+            0.95rem
+        );
+
+    font-weight: 400;
+
+    line-height: 1.8;
+
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.84
+        );
+
+    text-shadow:
+        0 2px 12px
+        rgba(
+            0,
+            0,
+            0,
+            0.34
+        );
+}
+
+
+/* =========================================================
+   SIGNATURE
+   ========================================================= */
+
+.wedding-footer-signature {
+    margin-top: 20px;
+
+    font-family:
+        var(--font-script);
+
+    font-size:
+        clamp(
+            2rem,
+            3vw,
+            2.8rem
+        );
+
+    line-height: 1;
+
+    color:
+        var(--color-champagne);
+}
+
+/* =========================================================
+   LEFT DETAIL
+   ========================================================= */
+
+.wedding-footer-small-line {
+    width:
+        clamp(
+            50px,
+            5vw,
+            85px
+        );
+
+    height: 1px;
+
+    margin:
+        24px 0
+        18px;
+
     background:
         linear-gradient(
-            135deg,
-            rgba(247, 241, 234, 0.96),
-            rgba(255, 253, 248, 0.98)
+            90deg,
+
+            var(--color-champagne),
+
+            rgba(
+                184,
+                156,
+                117,
+                0
+            )
         );
-    color: var(--color-text-main);
-    text-align: center;
-    overflow: hidden;
 }
 
-.footer-section::before {
-    content: "";
-    position: absolute;
-    right: -240px;
-    top: -260px;
-    width: 520px;
-    height: 520px;
-    border-radius: 50%;
-    background: rgba(232, 184, 180, 0.16);
-    filter: blur(22px);
-    pointer-events: none;
-}
 
-.footer-section::after {
-    content: "";
-    position: absolute;
-    left: -180px;
-    bottom: -220px;
-    width: 420px;
-    height: 420px;
-    border-radius: 50%;
-    background: rgba(113, 139, 157, 0.12);
-    filter: blur(24px);
-    pointer-events: none;
-}
+.wedding-footer-date {
+    margin: 0;
 
-.footer-container {
-    position: relative;
-    z-index: 1;
-    max-width: 720px;
-    margin: 0 auto;
-    animation: fadeUp 0.9s ease both;
-}
+    font-family:
+        var(--font-body);
 
-.footer-section .section-label {
-    margin-bottom: 18px;
-    color: var(--color-gold);
-}
-
-.footer-section h2 {
-    font-family: var(--font-title);
-    font-size: clamp(2.8rem, 6vw, 5rem);
-    font-weight: 600;
-    line-height: 1;
-    color: var(--color-deep-blue);
-}
-
-.footer-date {
-    margin-top: 24px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-olive);
-}
-
-.footer-message {
-    max-width: 540px;
-    margin: 28px auto 0;
-    font-size: clamp(0.96rem, 1.2vw, 1.06rem);
-    line-height: 1.9;
-    color: var(--color-text-soft);
-}
-
-.footer-divider {
-    width: 74px;
-    height: 1px;
-    margin: 36px auto 26px;
-    background: rgba(199, 164, 93, 0.45);
-}
-
-.footer-developed {
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-text-soft);
-}
-
-.footer-developed .email-autor {
-    text-transform: lowercase;
-}
-
-.footer-developed span {
-    color: var(--color-deep-blue);
-    font-weight: 700;
-}
-
-.footer-section {
-    position: relative;
-    margin-top: -42px;
-    padding:
-        clamp(120px, 11vw, 170px)
-        clamp(20px, 5vw, 72px)
-        clamp(72px, 9vw, 112px);
-    background:
-        linear-gradient(
-            135deg,
-            rgba(247, 241, 234, 0.96),
-            rgba(255, 253, 248, 0.98)
+    font-size:
+        clamp(
+            0.52rem,
+            0.68vw,
+            0.68rem
         );
-    color: var(--color-text-main);
-    text-align: center;
-    overflow: hidden;
+
+    font-weight: 500;
+
+    letter-spacing:
+        0.30em;
+
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.72
+        );
 }
 
-.footer-section::before {
-    content: "";
-    position: absolute;
-    right: -240px;
-    top: -260px;
-    width: 520px;
-    height: 520px;
-    border-radius: 50%;
-    background: rgba(232, 184, 180, 0.16);
-    filter: blur(22px);
-    pointer-events: none;
+
+/* =========================================================
+   DEVELOPMENT CREDIT
+   ========================================================= */
+
+.wedding-footer-credit {
+    width:
+        min(
+            100%,
+            700px
+        );
+
+    margin-top: auto;
+
+    padding-top:
+        clamp(
+            35px,
+            6vh,
+            70px
+        );
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    justify-content: center;
+
+    column-gap: 10px;
+
+    row-gap: 3px;
+
+    font-family:
+        var(--font-body);
+
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.52
+        );
 }
 
-.footer-section::after {
-    content: "";
-    position: absolute;
-    left: -180px;
-    bottom: -220px;
-    width: 420px;
-    height: 420px;
-    border-radius: 50%;
-    background: rgba(113, 139, 157, 0.12);
-    filter: blur(24px);
-    pointer-events: none;
+
+.wedding-footer-credit-label {
+    margin: 0;
+
+    font-size: 0.45rem;
+
+    font-weight: 400;
+
+    letter-spacing:
+        0.14em;
+
+    text-transform:
+        uppercase;
 }
 
-.footer-container {
-    position: relative;
-    z-index: 1;
-    max-width: 720px;
-    margin: 0 auto;
-    animation: fadeUp 0.9s ease both;
-}
 
-.footer-section .section-label {
-    margin-bottom: 18px;
-    color: var(--color-gold);
-}
+.wedding-footer-developer {
+    margin: 0;
 
-.footer-section h2 {
-    font-family: var(--font-title);
-    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-size: 0.48rem;
+
     font-weight: 600;
-    line-height: 1;
-    color: var(--color-deep-blue);
+
+    letter-spacing:
+        0.14em;
+
+    text-transform:
+        uppercase;
+
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.72
+        );
 }
 
-.footer-date {
-    margin-top: 24px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-olive);
+
+.wedding-footer-email {
+    margin-left: 4px;
+
+    font-size: 0.47rem;
+
+    font-weight: 400;
+
+    letter-spacing:
+        0.08em;
+
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.60
+        );
+
+    text-decoration: none;
+
+    transition:
+        color 0.25s ease;
 }
 
-.footer-message {
-    max-width: 540px;
-    margin: 28px auto 0;
-    font-size: clamp(0.96rem, 1.2vw, 1.06rem);
-    line-height: 1.9;
-    color: var(--color-text-soft);
+
+.wedding-footer-email::before {
+    content: "·";
+
+    margin-right: 10px;
+
+    color:
+        var(--color-champagne);
 }
 
-.footer-divider {
-    width: 74px;
-    height: 1px;
-    margin: 36px auto 26px;
-    background: rgba(199, 164, 93, 0.45);
+
+.wedding-footer-email:hover {
+    color:
+        var(--color-champagne);
 }
 
-.footer-developed {
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-text-soft);
+
+.wedding-footer-copyright {
+    flex-basis: 100%;
+
+    margin:
+        5px 0 0;
+
+    font-size: 0.42rem;
+
+    font-weight: 400;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.38
+        );
 }
 
-.footer-developed .email-autor {
-    text-transform: lowercase;
+
+@media (max-width: 1000px) {
+
+    .wedding-footer-composition {
+        grid-template-columns:
+            minmax(
+                190px,
+                0.8fr
+            )
+            minmax(
+                300px,
+                1.3fr
+            )
+            minmax(
+                200px,
+                0.85fr
+            );
+
+        gap: 20px;
+    }
+
+
+    .wedding-footer-name {
+        font-size:
+            clamp(
+                3rem,
+                7vw,
+                4.5rem
+            );
+    }
+
+
+    .wedding-footer-message {
+        max-width: 260px;
+
+        font-size: 0.67rem;
+    }
+
 }
 
-.footer-developed span {
-    color: var(--color-deep-blue);
-    font-weight: 700;
+
+@media (max-width: 700px) {
+
+    .wedding-footer-background img {
+        object-position:
+            center center;
+    }
+
+
+    .wedding-footer-overlay {
+        background:
+            linear-gradient(
+                180deg,
+
+                rgba(
+                    8,
+                    18,
+                    23,
+                    0.46
+                )
+                0%,
+
+                rgba(
+                    8,
+                    18,
+                    23,
+                    0.12
+                )
+                26%,
+
+                rgba(
+                    8,
+                    18,
+                    23,
+                    0
+                )
+                42%,
+
+                rgba(
+                    8,
+                    18,
+                    23,
+                    0
+                )
+                58%,
+
+                rgba(
+                    8,
+                    18,
+                    23,
+                    0.18
+                )
+                69%,
+
+                rgba(
+                    8,
+                    18,
+                    23,
+                    0.88
+                )
+                100%
+            );
+    }
+
+
+    .wedding-footer-layout {
+        min-height: 100svh;
+
+        padding:
+            max(
+                74px,
+                calc(
+                    env(
+                        safe-area-inset-top
+                    )
+                    + 62px
+                )
+            )
+            25px
+            max(
+                18px,
+                env(
+                    safe-area-inset-bottom
+                )
+            );
+    }
+
+
+    .wedding-footer-composition {
+        min-height: 0;
+
+        flex: 1;
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        grid-template-rows:
+            auto
+            minmax(
+                36vh,
+                1fr
+            )
+            auto;
+
+        gap:
+            0
+            18px;
+    }
+
+
+    /* Jairo arriba izquierda */
+
+    .wedding-footer-side--left {
+        grid-column: 1;
+
+        grid-row: 1;
+
+        align-self: start;
+
+        padding: 0;
+
+        text-align: left;
+
+        transform: none;
+    }
+
+
+    /* Reserva del beso */
+
+    .wedding-footer-clear-zone {
+        grid-column:
+            1 / -1;
+
+        grid-row: 2;
+
+        min-height:
+            36vh;
+    }
+
+
+    /* Jennifer + mensaje abajo */
+
+    .wedding-footer-side--right {
+        grid-column:
+            1 / -1;
+
+        grid-row: 3;
+
+        align-self: end;
+
+        padding: 0;
+
+        text-align: right;
+
+        transform: none;
+    }
+
+
+    .wedding-footer-name {
+        font-size:
+            clamp(
+                3.1rem,
+                14vw,
+                4.1rem
+            );
+    }
+
+
+    .wedding-footer-kicker {
+        max-width: 170px;
+
+        font-size: 0.42rem;
+
+        line-height: 1.6;
+
+        letter-spacing:
+            0.24em;
+    }
+
+
+    .wedding-footer-small-line {
+        width: 50px;
+
+        margin:
+            14px 0
+            11px;
+    }
+
+
+    .wedding-footer-date {
+        font-size: 0.45rem;
+
+        letter-spacing:
+            0.20em;
+    }
+
+
+    .wedding-footer-and {
+        margin-bottom: -8px;
+
+        font-size: 2rem;
+    }
+
+
+    .wedding-footer-message {
+        max-width: 260px;
+
+        margin:
+            15px 0
+            0 auto;
+
+        font-size: 0.63rem;
+
+        line-height: 1.6;
+    }
+
+
+    .wedding-footer-signature {
+        margin-top: 10px;
+
+        font-size: 1.8rem;
+    }
+
+
+    .wedding-footer-credit {
+        padding-top: 15px;
+    }
+
 }

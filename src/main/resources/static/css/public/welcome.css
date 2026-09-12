@@ -1,0 +1,1191 @@
+.welcome-section {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    min-height: 100svh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background: var(--color-midnight);
+    color: var(--color-midnight);
+}
+
+/* Fondo */
+
+.welcome-background {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -3;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+.welcome-background img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position:
+        center center;
+
+    transform: scale(1.002);
+}
+
+
+/*
+ * No ocultamos la fotografía.
+ *
+ * Sólo generamos una zona ligeramente
+ * más limpia del lado donde vivirá
+ * el contenido.
+ */
+
+.welcome-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -2;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            rgba(
+                244,
+                240,
+                232,
+                0.84
+            )
+            0%,
+
+            rgba(
+                244,
+                240,
+                232,
+                0.68
+            )
+            22%,
+
+            rgba(
+                244,
+                240,
+                232,
+                0.33
+            )
+            43%,
+
+            rgba(
+                21,
+                38,
+                45,
+                0.04
+            )
+            67%,
+
+            rgba(
+                21,
+                38,
+                45,
+                0.13
+            )
+            100%
+        );
+
+    transition:
+        background
+        700ms ease;
+}
+
+
+/* =========================================================
+   FINE FRAME
+   ========================================================= */
+
+.welcome-section::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 14px;
+
+    z-index: 10;
+
+    border:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.58
+        );
+
+    pointer-events: none;
+}
+
+
+.welcome-frame {
+    position: absolute;
+
+    inset: 25px;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+/*
+ * Pequeños detalles en las esquinas.
+ * No hacemos otro rectángulo completo
+ * para evitar sobrecargar la foto.
+ */
+
+.welcome-frame-corner {
+    position: absolute;
+
+    width: 34px;
+    height: 34px;
+
+    opacity: 0.72;
+}
+
+
+.welcome-frame-corner--top-left {
+    top: 0;
+    left: 0;
+
+    border-top:
+        1px solid
+        var(--color-champagne);
+
+    border-left:
+        1px solid
+        var(--color-champagne);
+}
+
+
+.welcome-frame-corner--top-right {
+    top: 0;
+    right: 0;
+
+    border-top:
+        1px solid
+        var(--color-champagne);
+
+    border-right:
+        1px solid
+        var(--color-champagne);
+}
+
+
+.welcome-frame-corner--bottom-left {
+    bottom: 0;
+    left: 0;
+
+    border-bottom:
+        1px solid
+        var(--color-champagne);
+
+    border-left:
+        1px solid
+        var(--color-champagne);
+}
+
+
+.welcome-frame-corner--bottom-right {
+    right: 0;
+    bottom: 0;
+
+    border-right:
+        1px solid
+        var(--color-champagne);
+
+    border-bottom:
+        1px solid
+        var(--color-champagne);
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.welcome-content {
+    position: relative;
+
+    z-index: 3;
+
+    width:
+        min(
+            650px,
+            47vw
+        );
+
+    margin-left:
+        clamp(
+            70px,
+            8vw,
+            170px
+        );
+
+    padding:
+        80px 0;
+
+    text-align: left;
+
+    transform:
+        translateY(-1.5vh);
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transition:
+        opacity
+        520ms ease,
+
+        transform
+        700ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
+
+        visibility
+        520ms ease;
+}
+
+
+/* =========================================================
+   KICKER
+   ========================================================= */
+
+.welcome-kicker {
+    margin-bottom: 24px;
+
+    font-family:
+        var(--font-body);
+
+    font-size:
+        clamp(
+            0.64rem,
+            0.75vw,
+            0.76rem
+        );
+
+    font-weight: 500;
+
+    letter-spacing: 0.48em;
+
+    text-transform: uppercase;
+
+    color:
+        var(--color-champagne);
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.welcome-title {
+    margin: 0;
+
+    font-family:
+        var(--font-title);
+
+    font-size:
+        clamp(
+            4rem,
+            6.5vw,
+            7.1rem
+        );
+
+    font-weight: 500;
+
+    line-height: 0.94;
+
+    letter-spacing:
+        -0.045em;
+
+    color:
+        var(--color-midnight);
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.welcome-divider {
+    width: 74px;
+    height: 1px;
+
+    margin:
+        36px 0;
+
+    background:
+        var(--color-champagne);
+}
+
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+.welcome-text {
+    max-width: 610px;
+
+    margin: 0;
+
+    font-family:
+        var(--font-body);
+
+    font-size:
+        clamp(
+            0.95rem,
+            1.15vw,
+            1.08rem
+        );
+
+    font-weight: 400;
+
+    line-height: 1.9;
+
+    color:
+        var(--color-ocean);
+}
+
+
+/* =========================================================
+   SIGNATURE
+   ========================================================= */
+
+.welcome-signature {
+    margin-top: 29px;
+
+    font-family:
+        var(--font-script);
+
+    font-size:
+        clamp(
+            2.8rem,
+            4.5vw,
+            4.4rem
+        );
+
+    line-height: 1;
+
+    color:
+        var(--color-slate);
+}
+
+
+/* =========================================================
+   SAVE THE DATE BUTTON
+   ========================================================= */
+
+.welcome-save-date-button {
+    min-height: 52px;
+
+    margin-top: 33px;
+
+    padding:
+        6px
+        22px
+        6px
+        7px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    border:
+        1px solid
+        rgba(
+            21,
+            38,
+            45,
+            0.34
+        );
+
+    border-radius:
+        var(--radius-pill);
+
+    background:
+        rgba(
+            244,
+            240,
+            232,
+            0.48
+        );
+
+    color:
+        var(--color-midnight);
+
+    font-family:
+        var(--font-body);
+
+    font-size: 0.68rem;
+
+    font-weight: 500;
+
+    letter-spacing: 0.2em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    transition:
+        color 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.welcome-save-date-button-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        var(--color-midnight);
+
+    color:
+        var(--color-ivory);
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.welcome-save-date-button-icon svg {
+    width: 16px;
+    height: 16px;
+
+    fill: currentColor;
+}
+
+
+.welcome-save-date-button:hover {
+    border-color:
+        var(--color-champagne);
+
+    background:
+        var(--color-midnight);
+
+    color:
+        var(--color-ivory);
+
+    box-shadow:
+        0 16px 38px
+        rgba(
+            21,
+            38,
+            45,
+            0.20
+        );
+
+    transform:
+        translateY(-2px);
+}
+
+
+.welcome-save-date-button:hover
+.welcome-save-date-button-icon {
+    background:
+        var(--color-champagne);
+
+    transform:
+        scale(1.04);
+}
+
+
+.welcome-save-date-button:focus-visible {
+    outline:
+        2px solid
+        var(--color-champagne);
+
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   VIDEO LAYER
+   ========================================================= */
+
+.welcome-video-layer {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 5;
+
+    padding:
+        clamp(
+            36px,
+            6vw,
+            90px
+        );
+
+    display: grid;
+
+    place-items: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform:
+        scale(0.985);
+
+    transition:
+        opacity
+        550ms ease,
+
+        transform
+        750ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
+
+        visibility
+        550ms ease;
+}
+
+
+/* =========================================================
+   VIDEO CONTAINER
+   ========================================================= */
+
+.welcome-video-container {
+    position: relative;
+
+    width:
+        min(
+            860px,
+            73vw
+        );
+
+    padding:
+        10px;
+
+    background:
+        rgba(
+            244,
+            240,
+            232,
+            0.08
+        );
+
+    box-shadow:
+        0 32px 90px
+        rgba(
+            21,
+            38,
+            45,
+            0.32
+        );
+
+    backdrop-filter:
+        blur(6px);
+
+    -webkit-backdrop-filter:
+        blur(6px);
+}
+
+/*
+ * Línea editorial alrededor del video.
+ */
+
+.welcome-video-decoration {
+    position: absolute;
+
+    inset: 0;
+
+    border:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.65
+        );
+
+    pointer-events: none;
+}
+
+/* Video */
+.welcome-save-date-video {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: block;
+    object-fit: contain;
+    background: var(--color-midnight);
+
+    /*
+     * El invitado no manipula directamente
+     * el elemento <video>.
+     *
+     * Play, pausa y finalización son
+     * controlados por JavaScript.
+     */
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Bloqueo del scroll para ver el video */
+html.welcome-video-lock,
+body.welcome-video-lock {
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+
+/* Cerrar el video después de que se reproduce */
+.welcome-video-close {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    z-index: 4;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.72
+        );
+    border-radius: 50%;
+    background:
+        rgba(
+            21,
+            38,
+            45,
+            0.88
+        );
+    color: var(--color-ivory);
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    /*
+     * Inicialmente invisible.
+     */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(0.82);
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease,
+        transform
+        0.55s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.welcome-video-close.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.welcome-video-close svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+}
+
+.welcome-video-close:hover {
+    border-color: var(--color-champagne);
+    background: var(--color-ocean);
+}
+
+.welcome-video-close:focus-visible {
+    outline:
+        2px solid
+        var(--color-champagne);
+    outline-offset: 4px;
+}
+
+/* Footer */
+
+.welcome-video-footer {
+    padding:
+        16px 4px
+        5px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+    color: var(--color-ivory);
+}
+
+
+.welcome-video-footer span {
+    height: 1px;
+
+    background:
+        rgba(
+            244,
+            240,
+            232,
+            0.38
+        );
+}
+
+
+.welcome-video-footer p {
+    margin: 0;
+
+    font-family:
+        var(--font-body);
+
+    font-size: 0.63rem;
+
+    letter-spacing: 0.28em;
+}
+
+.welcome-section.is-video-open
+.welcome-content {
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translateY(-22px);
+
+    pointer-events: none;
+}
+
+
+.welcome-section.is-video-open
+.welcome-video-layer {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform:
+        scale(1);
+}
+
+
+/*
+ * La fotografía NO desaparece.
+ *
+ * Simplemente oscurecemos un poco el fondo
+ * para que el video pase al primer plano.
+ */
+
+.welcome-section.is-video-open
+.welcome-overlay {
+    background:
+        rgba(
+            21,
+            38,
+            45,
+            0.53
+        );
+}
+
+
+@media (max-width: 1100px) {
+
+    .welcome-content {
+        width:
+            min(
+                600px,
+                55vw
+            );
+
+        margin-left:
+            clamp(
+                50px,
+                6vw,
+                100px
+            );
+    }
+
+
+    .welcome-title {
+        font-size:
+            clamp(
+                3.8rem,
+                7vw,
+                5.6rem
+            );
+    }
+
+
+    .welcome-video-container {
+        width:
+            min(
+                820px,
+                82vw
+            );
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .welcome-section {
+        min-height: 100svh;
+
+        align-items:
+            flex-start;
+    }
+
+
+    .welcome-background img {
+        object-position:
+            center center;
+    }
+
+
+    /*
+     * Sobre la foto móvil hacemos la
+     * iluminación principalmente arriba,
+     * donde estará el texto.
+     */
+
+    .welcome-overlay {
+        background:
+            linear-gradient(
+                180deg,
+
+                rgba(
+                    244,
+                    240,
+                    232,
+                    0.88
+                )
+                0%,
+
+                rgba(
+                    244,
+                    240,
+                    232,
+                    0.65
+                )
+                34%,
+
+                rgba(
+                    244,
+                    240,
+                    232,
+                    0.20
+                )
+                57%,
+
+                rgba(
+                    21,
+                    38,
+                    45,
+                    0.20
+                )
+                100%
+            );
+    }
+
+
+    .welcome-section::before {
+        inset: 8px;
+    }
+
+
+    .welcome-frame {
+        inset: 16px;
+    }
+
+
+    .welcome-frame-corner {
+        width: 24px;
+        height: 24px;
+    }
+
+
+    .welcome-content {
+        width:
+            min(
+                100%,
+                390px
+            );
+
+        margin:
+            0 auto;
+
+        padding:
+            clamp(
+                100px,
+                14svh,
+                140px
+            )
+            24px
+            70px;
+
+        text-align: center;
+
+        transform: none;
+    }
+
+
+    .welcome-kicker {
+        margin-bottom: 15px;
+
+        font-size: 0.58rem;
+
+        letter-spacing: 0.33em;
+    }
+
+
+    .welcome-title {
+        font-size:
+            clamp(
+                3.15rem,
+                14vw,
+                4.3rem
+            );
+    }
+
+
+    .welcome-divider {
+        width: 58px;
+
+        margin:
+            24px auto
+            26px;
+    }
+
+
+    .welcome-text {
+        font-size:
+            clamp(
+                0.82rem,
+                3.5vw,
+                0.94rem
+            );
+
+        line-height: 1.72;
+    }
+
+
+    .welcome-signature {
+        margin-top: 22px;
+
+        font-size:
+            clamp(
+                2.4rem,
+                11vw,
+                3.25rem
+            );
+    }
+
+
+    .welcome-save-date-button {
+        min-height: 48px;
+
+        margin-top: 25px;
+
+        font-size: 0.62rem;
+    }
+
+
+    .welcome-save-date-button-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    /*
+     * En móvil el video tampoco llena
+     * la pantalla.
+     */
+
+    .welcome-video-layer {
+        padding:
+            26px
+            22px;
+    }
+
+
+    .welcome-video-container {
+        width: 100%;
+
+        max-width: 680px;
+
+        padding: 7px;
+    }
+
+
+    .welcome-video-close {
+        top: -16px;
+        right: -8px;
+
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .welcome-video-footer {
+        padding-top: 13px;
+    }
+
+
+    .welcome-video-footer p {
+        font-size: 0.56rem;
+
+        letter-spacing: 0.22em;
+    }
+
+}
+
+@media (max-width: 430px) {
+
+    .welcome-content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+
+    .welcome-title {
+        font-size:
+            clamp(
+                2.85rem,
+                13.5vw,
+                3.7rem
+            );
+    }
+
+
+    .welcome-text {
+        line-height: 1.62;
+    }
+
+
+    .welcome-video-layer {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+}
+
+@media
+(max-height: 700px)
+and
+(max-width: 768px) {
+
+    .welcome-content {
+        padding-top: 76px;
+    }
+
+
+    .welcome-kicker {
+        margin-bottom: 10px;
+    }
+
+
+    .welcome-title {
+        font-size:
+            clamp(
+                2.7rem,
+                11vw,
+                3.3rem
+            );
+    }
+
+
+    .welcome-divider {
+        margin:
+            17px auto;
+    }
+
+
+    .welcome-text {
+        font-size: 0.78rem;
+
+        line-height: 1.5;
+    }
+
+
+    .welcome-signature {
+        margin-top: 15px;
+
+        font-size: 2.25rem;
+    }
+
+
+    .welcome-save-date-button {
+        margin-top: 18px;
+    }
+
+}
+
+@media (
+    prefers-reduced-motion: reduce
+) {
+
+    .welcome-content,
+    .welcome-video-layer,
+    .welcome-overlay,
+    .welcome-save-date-button,
+    .welcome-save-date-button-icon,
+    .welcome-video-close {
+        transition: none;
+    }
+
+}

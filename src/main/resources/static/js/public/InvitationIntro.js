@@ -1,41 +1,97 @@
 export class InvitationIntro {
     constructor(musicPlayer) {
         this.musicPlayer = musicPlayer;
-        this.startButton = document.getElementById("startInvitationButton");
-        this.welcomeScreen = document.getElementById("welcomeScreen");
-        this.invitationContent = document.getElementById("invitationContent");
+        this.entry = document.getElementById("introScreen");
+        this.enterButton = document.getElementById("enterInvitationButton");
+        this.hero = document.querySelector(".hero");
+        this.exitDuration = 850;
+        this.isEntering = false;
     }
 
     init() {
-        if (!this.startButton || !this.welcomeScreen || !this.invitationContent) {
-            document.body.classList.remove("intro-active");
+        if (!this.entry || !this.enterButton)
             return;
-        }
 
-        document.body.classList.add("intro-active");
+        if ("scrollRestoration" in history)
+            history.scrollRestoration = "manual";
 
-        this.startButton.addEventListener("click", () => {
-            this.startInvitation();
-        });
+        this.resetScrollPosition();
+
+        document.documentElement.classList.add("invitation-entry-active");
+        document.body.classList.add("invitation-entry-active");
+
+        this.enterButton.addEventListener("click", () => {
+                this.enterInvitation();
+            }
+        );
+
+        window.setTimeout(() => {
+                this.enterButton.focus();
+            },
+            120
+        );
     }
 
-    async startInvitation() {
+    async enterInvitation() {
+        if (this.isEntering)
+            return;
+
+        this.isEntering = true;
+        this.enterButton.disabled = true;
+        this.resetScrollPosition();
+
         try {
             await this.musicPlayer?.play();
         } catch (error) {
-            console.warn("La música no pudo iniciar, pero la invitación continuará.", error);
+            console.warn(
+                "No se pudo iniciar la música al entrar.",
+                error
+            );
         }
 
-        this.musicPlayer?.showButton();
+        this.openInvitation();
+    }
 
-        this.welcomeScreen.classList.add("is-hidden");
-        this.invitationContent.classList.add("is-visible");
+    openInvitation() {
+        this.resetScrollPosition();
+        this.entry.classList.add("is-leaving");
 
-        document.body.classList.remove("intro-active");
+        document.documentElement.classList.remove("invitation-entry-active");
+        document.body.classList.remove("invitation-entry-active");
         document.body.classList.add("invitation-started");
 
-        setTimeout(() => {
-            this.welcomeScreen.remove();
-        }, 1200);
+        requestAnimationFrame(() => {
+                this.resetScrollPosition();
+            }
+        );
+
+        window.setTimeout(() => {
+                this.entry.remove();
+                this.resetScrollPosition();
+            },
+            this.exitDuration
+        );
+    }
+
+    resetScrollPosition() {
+        if (this.hero) {
+            const heroTop =
+                this.hero.getBoundingClientRect().top
+                + window.scrollY;
+
+            window.scrollTo({
+                top: heroTop,
+                left: 0,
+                behavior: "auto"
+            });
+
+            return;
+        }
+
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "auto"
+        });
     }
 }

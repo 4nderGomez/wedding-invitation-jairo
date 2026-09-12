@@ -1,390 +1,1258 @@
 .family-section {
-    padding: clamp(64px, 10vw, 104px) clamp(20px, 5vw, 72px);
-    background: var(--color-ivory);
-    color: var(--color-text-main);
-}
-
-.family-container {
-    width: min(100%, 1280px);
-    margin: 0 auto;
-}
-
-.family-heading {
-    max-width: 760px;
-    margin: 0 auto 44px;
-    text-align: center;
-    animation: fadeUp 0.9s ease both;
-}
-
-.family-heading .section-label {
-    margin-bottom: 16px;
-    font-size: 0.72rem;
-    letter-spacing: 0.34rem;
-    text-transform: uppercase;
-    color: var(--color-gold);
-}
-
-.family-heading h2 {
-    font-family: var(--font-title);
-    font-size: clamp(2.6rem, 6vw, 4.4rem);
-    font-weight: 600;
-    line-height: 1;
-    color: var(--color-deep-blue);
-}
-
-/* Novios */
-.couple-showcase {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    align-items: center;
-    gap: clamp(22px, 4vw, 46px);
-    margin-bottom: clamp(54px, 8vw, 78px);
-}
-
-.couple-card {
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    align-items: center;
-    gap: 24px;
-}
-
-.couple-card:first-child {
-    animation: fadeLeft 0.9s ease 0.12s both;
-}
-
-.couple-card:last-child {
-    grid-template-columns: 1fr 150px;
-    animation: fadeRight 0.9s ease 1.12s both;
-}
-
-.couple-card:last-child .couple-photo {
-    order: 2;
-}
-
-.couple-card:last-child .couple-info {
-    text-align: right;
-}
-
-.couple-photo {
+    position: relative;
+    isolation: isolate;
     width: 100%;
-    aspect-ratio: 4 / 5;
+    min-height: 100svh;
     overflow: hidden;
-    background: var(--color-cream);
-    box-shadow: var(--shadow-soft);
+    display: flex;
+    align-items: center;
+    background: var(--color-midnight);
+    color: var(--color-ivory);
 }
 
-.couple-photo img,
-.family-photo img {
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.family-background {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -4;
+
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    filter: grayscale(20%) contrast(0.96);
 }
 
-.couple-info span,
-.family-card-content span {
-    display: inline-block;
-    margin-bottom: 8px;
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.24rem;
-    text-transform: uppercase;
-    color: var(--color-gold);
-}
 
-.couple-info h3 {
-    font-family: var(--font-title);
-    font-size: clamp(1.45rem, 2.6vw, 2.05rem);
-    font-weight: 600;
-    line-height: 1.18;
-    color: var(--color-olive);
-}
-
-.ampersand {
-    font-family: var(--font-script);
-    font-size: clamp(3rem, 7vw, 4.8rem);
-    line-height: 0.8;
-    color: var(--color-sage);
-    animation: zoomInSoft 0.9s ease 0.2s both;
-}
-
-/* Familia */
-.family-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(22px, 3vw, 32px);
-}
-
-.family-card {
-    background: var(--color-cream);
-    border: 1px solid rgba(23, 50, 74, 0.08);
-    overflow: hidden;
-    animation: fadeUp 0.9s ease both;
-}
-
-.family-card-featured {
-    transform: translateY(18px);
-}
-
-.family-photo {
+.family-background img {
     width: 100%;
-    aspect-ratio: 5 / 3.8;
-    overflow: hidden;
-    background: var(--color-ivory);
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position:
+        center center;
+
+    transform:
+        scale(1.035);
+
+    transition:
+        transform
+        2200ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
 }
 
-.family-card-content {
-    padding: 22px 24px 24px;
-    text-align: center;
+
+/*
+ * Dejamos limpia la mitad izquierda
+ * donde están Jairo y Jennifer.
+ *
+ * La derecha se oscurece gradualmente
+ * para construir la zona de créditos.
+ */
+
+.family-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -3;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            rgba(
+                21,
+                38,
+                45,
+                0.02
+            )
+            0%,
+
+            rgba(
+                21,
+                38,
+                45,
+                0.04
+            )
+            34%,
+
+            rgba(
+                21,
+                38,
+                45,
+                0.32
+            )
+            52%,
+
+            rgba(
+                21,
+                38,
+                45,
+                0.74
+            )
+            72%,
+
+            rgba(
+                21,
+                38,
+                45,
+                0.94
+            )
+            100%
+        );
 }
 
-.family-card-content h3,
-.family-card-content p {
-    font-family: var(--font-title);
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
+
+/* =========================================================
+   EDITORIAL FRAME
+   ========================================================= */
+
+.family-section::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 14px;
+
+    z-index: 10;
+
+    border:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.34
+        );
+
+    pointer-events: none;
+}
+
+
+.family-frame {
+    position: absolute;
+
+    inset: 25px;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+.family-frame-corner {
+    position: absolute;
+
+    width: 34px;
+    height: 34px;
+
+    opacity: 0.72;
+}
+
+
+.family-frame-corner--top-left {
+    top: 0;
+    left: 0;
+
+    border-top:
+        1px solid
+        var(--color-champagne);
+
+    border-left:
+        1px solid
+        var(--color-champagne);
+}
+
+
+.family-frame-corner--top-right {
+    top: 0;
+    right: 0;
+
+    border-top:
+        1px solid
+        var(--color-champagne);
+
+    border-right:
+        1px solid
+        var(--color-champagne);
+}
+
+
+.family-frame-corner--bottom-left {
+    bottom: 0;
+    left: 0;
+
+    border-bottom:
+        1px solid
+        var(--color-champagne);
+
+    border-left:
+        1px solid
+        var(--color-champagne);
+}
+
+
+.family-frame-corner--bottom-right {
+    right: 0;
+    bottom: 0;
+
+    border-right:
+        1px solid
+        var(--color-champagne);
+
+    border-bottom:
+        1px solid
+        var(--color-champagne);
+}
+
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.family-layout {
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(
+            100%,
+            1600px
+        );
+
+    min-height:
+        100svh;
+
+    margin:
+        0 auto;
+
+    padding:
+        clamp(
+            74px,
+            8vh,
+            110px
+        )
+        clamp(
+            52px,
+            6vw,
+            105px
+        );
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(
+            520px,
+            0.82fr
+        );
+
+    align-items: center;
+
+    gap:
+        clamp(
+            40px,
+            6vw,
+            100px
+        );
+}
+
+
+/* =========================================================
+   RIGHT COLUMN
+   ========================================================= */
+
+.family-heading,
+.family-credits {
+    grid-column: 2;
+}
+
+
+.family-heading {
+    align-self: end;
+
+    margin-bottom: 28px;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.family-kicker {
+    margin-bottom: 14px;
+
+    font-family:
+        var(--font-body);
+
+    font-size:
+        clamp(
+            0.55rem,
+            0.66vw,
+            0.68rem
+        );
+
     font-weight: 500;
-    line-height: 1.42;
-    color: var(--color-text-main);
+
+    line-height: 1.7;
+
+    letter-spacing: 0.42em;
+
+    text-transform: uppercase;
+
+    color:
+        var(--color-champagne);
 }
 
-.family-card-content p {
-    margin-top: 5px;
-    color: var(--color-text-soft);
+
+.family-heading h2 {
+    margin: 0;
+
+    font-family:
+        var(--font-title);
+
+    font-size:
+        clamp(
+            2.8rem,
+            4.7vw,
+            5.1rem
+        );
+
+    font-weight: 500;
+
+    line-height: 0.95;
+
+    letter-spacing:
+        -0.045em;
+
+    color:
+        var(--color-ivory);
 }
 
-/* Laptop pequeña */
-@media (max-width: 1200px) {
-    .family-container {
-        width: min(100%, 1120px);
-    }
 
-    .couple-card {
-        grid-template-columns: 132px 1fr;
-        gap: 20px;
-    }
+/* =========================================================
+   CREDITS
+   ========================================================= */
 
-    .couple-card:last-child {
-        grid-template-columns: 1fr 132px;
-    }
+.family-credits {
+    position: relative;
 
-    .family-grid {
-        gap: 24px;
-    }
+    align-self: start;
+
+    padding-left:
+        clamp(
+            24px,
+            2.6vw,
+            42px
+        );
 }
 
-/* Tablet mediana */
-@media (max-width: 992px) {
-    .family-section {
-        padding: 86px 34px;
+
+/*
+ * Línea vertical estilo créditos.
+ */
+
+.family-credits::before {
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+    left: 0;
+
+    width: 1px;
+    height: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--color-champagne),
+            rgba(
+                184,
+                156,
+                117,
+                0.12
+            )
+        );
+
+    transition:
+        height
+        1200ms
+        250ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
+}
+
+
+/* =========================================================
+   ROLES
+   ========================================================= */
+
+.family-role {
+    margin-bottom: 8px;
+
+    font-family:
+        var(--font-body);
+
+    font-size:
+        0.6rem;
+
+    font-weight: 500;
+
+    letter-spacing: 0.32em;
+
+    text-transform: uppercase;
+
+    color:
+        var(--color-champagne);
+}
+
+
+/* =========================================================
+   COUPLE
+   ========================================================= */
+
+.family-couple {
+    padding-bottom: 4px;
+}
+
+
+.family-couple-names {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    gap:
+        clamp(
+            14px,
+            1.5vw,
+            24px
+        );
+}
+
+
+.family-couple-names p {
+    margin: 0;
+
+    font-family:
+        var(--font-title);
+
+    font-size:
+        clamp(
+            1.35rem,
+            1.75vw,
+            1.9rem
+        );
+
+    font-weight: 500;
+
+    line-height: 1.16;
+
+    color:
+        var(--color-ivory);
+}
+
+
+.family-couple-names p span {
+    display: block;
+
+    margin-top: 3px;
+
+    color:
+        var(--color-mist);
+}
+
+
+.family-ampersand {
+    font-family:
+        var(--font-script);
+
+    font-size:
+        clamp(
+            2.8rem,
+            3.8vw,
+            4.2rem
+        );
+
+    line-height: 1;
+
+    color:
+        var(--color-champagne);
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.family-credit-line {
+    width: 100%;
+    height: 1px;
+
+    margin:
+        26px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(
+                184,
+                156,
+                117,
+                0.70
+            ),
+            rgba(
+                184,
+                156,
+                117,
+                0
+            )
+        );
+
+    transform-origin: left center;
+}
+
+
+/* =========================================================
+   FAMILY GROUPS
+   ========================================================= */
+
+.family-groups {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        30px
+        clamp(
+            26px,
+            3vw,
+            50px
+        );
+}
+
+
+.family-group {
+    position: relative;
+}
+
+
+.family-group--wide {
+    grid-column:
+        1 / -1;
+
+    padding-top: 4px;
+}
+
+
+.family-person {
+    margin: 0;
+
+    font-family:
+        var(--font-title);
+
+    font-size:
+        clamp(
+            0.98rem,
+            1.2vw,
+            1.24rem
+        );
+
+    font-weight: 400;
+
+    line-height: 1.55;
+
+    color:
+        var(--color-ivory);
+}
+
+
+.family-person + .family-person {
+    margin-top: 2px;
+
+    color:
+        var(--color-mist);
+}
+
+
+/* =========================================================
+   CINEMATIC REVEAL
+   ========================================================= */
+
+.family-reveal {
+    opacity: 0;
+
+    filter:
+        blur(7px);
+
+    transform:
+        translateY(24px);
+
+    transition:
+        opacity
+        900ms
+        var(--family-delay, 0ms)
+        ease,
+
+        filter
+        1050ms
+        var(--family-delay, 0ms)
+        ease,
+
+        transform
+        1100ms
+        var(--family-delay, 0ms)
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
+}
+
+
+.family-credit-line.family-reveal {
+    transform:
+        scaleX(0);
+
+    filter: none;
+}
+
+
+.family-section.is-visible
+.family-reveal {
+    opacity: 1;
+
+    filter:
+        blur(0);
+
+    transform:
+        translateY(0);
+}
+
+
+.family-section.is-visible
+.family-credit-line.family-reveal {
+    transform:
+        scaleX(1);
+}
+
+
+.family-section.is-visible
+.family-credits::before {
+    height: 100%;
+}
+
+
+.family-section.is-visible
+.family-background img {
+    transform:
+        scale(1);
+}
+
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+@media (max-width: 1250px) {
+
+    .family-layout {
+        grid-template-columns:
+            minmax(0, 0.9fr)
+            minmax(
+                470px,
+                0.85fr
+            );
+
+        padding-left: 48px;
+        padding-right: 48px;
     }
 
-    .family-heading {
-        margin-bottom: 38px;
-    }
-
-    .family-heading .section-label {
-        font-size: 0.68rem;
-        letter-spacing: 0.28rem;
-    }
 
     .family-heading h2 {
-        font-size: clamp(2.25rem, 7vw, 3.6rem);
+        font-size:
+            clamp(
+                2.7rem,
+                4.8vw,
+                4.2rem
+            );
     }
 
-    .couple-showcase {
-        grid-template-columns: 1fr;
-        gap: 24px;
-        max-width: 620px;
-        margin: 0 auto 64px;
+}
+
+
+/* =========================================================
+   TABLET + MOBILE
+   Uses family-mobile.jpg
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .family-section {
+        min-height: 100svh;
+
+        align-items: stretch;
     }
 
-    .couple-card,
-    .couple-card:last-child {
-        grid-template-columns: 130px 1fr;
-        gap: 22px;
+
+    .family-background img {
+        object-position:
+            center 47%;
     }
 
-    .couple-card:last-child .couple-photo {
-        order: 0;
+
+    /*
+     * En móvil dejamos los rostros despejados
+     * y construimos el área de créditos desde
+     * la parte inferior.
+     */
+
+    .family-overlay {
+        background:
+            linear-gradient(
+                180deg,
+
+                rgba(
+                    21,
+                    38,
+                    45,
+                    0.18
+                )
+                0%,
+
+                rgba(
+                    21,
+                    38,
+                    45,
+                    0.02
+                )
+                25%,
+
+                rgba(
+                    21,
+                    38,
+                    45,
+                    0.05
+                )
+                39%,
+
+                rgba(
+                    21,
+                    38,
+                    45,
+                    0.48
+                )
+                57%,
+
+                rgba(
+                    21,
+                    38,
+                    45,
+                    0.90
+                )
+                76%,
+
+                rgba(
+                    21,
+                    38,
+                    45,
+                    0.98
+                )
+                100%
+            );
     }
 
-    .couple-card:last-child .couple-info {
-        text-align: left;
+
+    .family-section::after {
+        inset: 8px;
     }
 
-    .ampersand {
-        justify-self: center;
-        font-size: 4rem;
+
+    .family-frame {
+        inset: 16px;
     }
 
-    .family-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    .family-frame-corner {
+        width: 24px;
+        height: 24px;
     }
 
-    .family-card-featured {
+
+    .family-layout {
+        position: relative;
+
+        min-height: 100svh;
+
+        padding:
+            max(
+                92px,
+                calc(
+                    env(
+                        safe-area-inset-top
+                    )
+                    + 72px
+                )
+            )
+            24px
+            max(
+                30px,
+                env(
+                    safe-area-inset-bottom
+                )
+            );
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content:
+            space-between;
+
+        gap: 30px;
+    }
+
+
+    /* Encabezado arriba */
+
+    .family-heading {
+        width:
+            min(
+                100%,
+                500px
+            );
+
+        margin:
+            0 auto;
+
+        text-align: center;
+
+        align-self: auto;
+    }
+
+
+    .family-kicker {
+        margin-bottom: 9px;
+
+        font-size: 0.52rem;
+
+        line-height: 1.55;
+
+        letter-spacing: 0.28em;
+
+        color:
+            rgba(
+                244,
+                240,
+                232,
+                0.90
+            );
+
+        text-shadow:
+            0 2px 12px
+            rgba(
+                21,
+                38,
+                45,
+                0.55
+            );
+    }
+
+
+    .family-heading h2 {
+        font-size:
+            clamp(
+                2.65rem,
+                10vw,
+                4rem
+            );
+
+        color:
+            var(--color-ivory);
+
+        text-shadow:
+            0 3px 20px
+            rgba(
+                21,
+                38,
+                45,
+                0.42
+            );
+    }
+
+
+    /* Créditos abajo */
+
+    .family-credits {
+        width:
+            min(
+                100%,
+                650px
+            );
+
+        margin:
+            0 auto;
+
+        padding-left: 0;
+
+        text-align: center;
+    }
+
+
+    .family-credits::before {
+        display: none;
+    }
+
+
+    .family-couple {
+        padding-bottom: 0;
+    }
+
+
+    .family-role {
+        margin-bottom: 5px;
+
+        font-size: 0.52rem;
+
+        letter-spacing: 0.25em;
+    }
+
+
+    .family-couple-names {
+        grid-template-columns:
+            1fr
+            auto
+            1fr;
+
+        gap: 10px;
+    }
+
+
+    .family-couple-names p {
+        font-size:
+            clamp(
+                0.96rem,
+                3.1vw,
+                1.25rem
+            );
+
+        line-height: 1.18;
+    }
+
+
+    .family-couple-names p span {
+        margin-top: 1px;
+    }
+
+
+    .family-ampersand {
+        font-size:
+            clamp(
+                2rem,
+                7vw,
+                2.8rem
+            );
+    }
+
+
+    .family-credit-line {
+        width: 62px;
+
+        margin:
+            14px auto 16px;
+
+        background:
+            var(--color-champagne);
+
+        transform-origin: center;
+    }
+
+
+    .family-groups {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap:
+            14px
+            20px;
+    }
+
+
+    .family-group--wide {
+        grid-column:
+            1 / -1;
+
+        padding-top: 2px;
+    }
+
+
+    .family-person {
+        font-size:
+            clamp(
+                0.76rem,
+                2.55vw,
+                0.98rem
+            );
+
+        line-height: 1.42;
+
+        text-shadow:
+            0 2px 10px
+            rgba(
+                21,
+                38,
+                45,
+                0.50
+            );
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .family-background img {
+        object-position:
+            center 45%;
+    }
+
+
+    .family-layout {
+        padding:
+            max(
+                82px,
+                calc(
+                    env(
+                        safe-area-inset-top
+                    )
+                    + 68px
+                )
+            )
+            20px
+            max(
+                26px,
+                env(
+                    safe-area-inset-bottom
+                )
+            );
+    }
+
+
+    .family-heading h2 {
+        font-size:
+            clamp(
+                2.5rem,
+                12vw,
+                3.6rem
+            );
+    }
+
+
+    .family-kicker {
+        max-width: 330px;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        font-size: 0.48rem;
+
+        letter-spacing: 0.22em;
+    }
+
+
+    .family-groups {
+        gap:
+            12px
+            14px;
+    }
+
+
+    .family-person {
+        font-size:
+            clamp(
+                0.72rem,
+                3.4vw,
+                0.9rem
+            );
+    }
+
+
+    .family-couple-names p {
+        font-size:
+            clamp(
+                0.88rem,
+                3.8vw,
+                1.08rem
+            );
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .family-layout {
+        padding-left: 17px;
+        padding-right: 17px;
+    }
+
+
+    .family-heading h2 {
+        font-size:
+            clamp(
+                2.3rem,
+                11.5vw,
+                3.1rem
+            );
+    }
+
+
+    .family-couple-names {
+        gap: 7px;
+    }
+
+
+    .family-ampersand {
+        font-size: 2rem;
+    }
+
+
+    .family-role {
+        font-size: 0.46rem;
+
+        letter-spacing: 0.19em;
+    }
+
+
+    .family-person {
+        font-size:
+            clamp(
+                0.68rem,
+                3.25vw,
+                0.82rem
+            );
+    }
+
+}
+
+
+/* =========================================================
+   SHORT PHONES
+   ========================================================= */
+
+@media
+(max-width: 600px)
+and
+(max-height: 720px) {
+
+    .family-layout {
+        padding-top: 68px;
+        padding-bottom: 20px;
+
+        gap: 15px;
+    }
+
+
+    .family-heading h2 {
+        font-size: 2.35rem;
+    }
+
+
+    .family-kicker {
+        margin-bottom: 5px;
+    }
+
+
+    .family-credit-line {
+        margin:
+            9px auto
+            11px;
+    }
+
+
+    .family-groups {
+        gap:
+            9px
+            12px;
+    }
+
+
+    .family-person {
+        line-height: 1.32;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (
+    prefers-reduced-motion: reduce
+) {
+
+    .family-background img,
+    .family-reveal,
+    .family-credits::before {
+        transition: none;
+    }
+
+
+    .family-reveal {
+        opacity: 1;
+
+        filter: none;
+
         transform: none;
     }
-}
 
-/* Tablet pequeña / teléfono grande */
-@media (max-width: 768px) {
-    .family-section {
-        padding: 76px 24px;
+
+    .family-credit-line.family-reveal {
+        transform: none;
     }
 
-    .family-heading {
-        margin-bottom: 34px;
+
+    .family-credits::before {
+        height: 100%;
     }
 
-    .family-heading .section-label {
-        margin-bottom: 12px;
-        font-size: 0.64rem;
-        letter-spacing: 0.22rem;
-    }
-
-    .family-heading h2 {
-        font-size: clamp(2rem, 9vw, 3rem);
-        line-height: 1.05;
-    }
-
-    .couple-showcase {
-        gap: 22px;
-        margin-bottom: 54px;
-    }
-
-    .couple-card,
-    .couple-card:last-child {
-        grid-template-columns: 112px 1fr;
-        gap: 18px;
-    }
-
-    .couple-info span,
-    .family-card-content span {
-        margin-bottom: 6px;
-        font-size: 0.62rem;
-        letter-spacing: 0.18rem;
-    }
-
-    .couple-info h3 {
-        font-size: 1.35rem;
-    }
-
-    .ampersand {
-        font-size: 3.4rem;
-    }
-
-    .family-grid {
-        grid-template-columns: 1fr;
-        max-width: 460px;
-        margin: 0 auto;
-    }
-
-    .family-card-content {
-        padding: 20px 20px 22px;
-    }
-}
-
-/* Teléfonos medianos */
-@media (max-width: 576px) {
-    .family-section {
-        padding: 68px 16px;
-    }
-
-    .family-heading {
-        margin-bottom: 30px;
-    }
-
-    .family-heading .section-label {
-        font-size: 0.58rem;
-        letter-spacing: 0.18rem;
-    }
-
-    .family-heading h2 {
-        font-size: 2.15rem;
-    }
-
-    .couple-showcase {
-        max-width: 360px;
-        margin-bottom: 46px;
-    }
-
-    .couple-card,
-    .couple-card:last-child {
-        grid-template-columns: 1fr;
-        gap: 14px;
-        text-align: center;
-    }
-
-    .couple-card:last-child .couple-info {
-        text-align: center;
-    }
-
-    .couple-photo {
-        width: min(100%, 210px);
-        margin: 0 auto;
-    }
-
-    .couple-info h3 {
-        font-size: 1.28rem;
-    }
-
-    .ampersand {
-        font-size: 3rem;
-    }
-
-    .family-grid {
-        gap: 18px;
-    }
-
-    .family-card-content {
-        padding: 18px 18px 20px;
-    }
-
-    .family-card-content h3,
-    .family-card-content p {
-        font-size: 1rem;
-    }
-}
-
-/* Teléfonos pequeños */
-@media (max-width: 380px) {
-    .family-section {
-        padding: 60px 12px;
-    }
-
-    .family-heading .section-label {
-        font-size: 0.54rem;
-        letter-spacing: 0.14rem;
-    }
-
-    .family-heading h2 {
-        font-size: 1.9rem;
-    }
-
-    .couple-photo {
-        width: min(100%, 190px);
-    }
-
-    .couple-info span,
-    .family-card-content span {
-        font-size: 0.56rem;
-        letter-spacing: 0.14rem;
-    }
-
-    .couple-info h3 {
-        font-size: 1.15rem;
-    }
-
-    .ampersand {
-        font-size: 2.6rem;
-    }
-
-    .family-card-content {
-        padding: 16px;
-    }
-
-    .family-card-content h3,
-    .family-card-content p {
-        font-size: 0.94rem;
-    }
 }

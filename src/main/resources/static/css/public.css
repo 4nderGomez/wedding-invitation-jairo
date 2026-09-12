@@ -7,18 +7,18 @@
 @import url("./public/welcome-screen.css");
 @import url("./public/site-nav.css");
 @import url("./public/hero.css");
-@import url("./public/intro.css");
+@import url("./public/welcome.css");
 @import url("./public/family.css");
-@import url("./public/countdown.css");
-@import url("./public/locations.css");
-@import url("./public/schedule.css");
-@import url("./public/gallery.css");
-@import url("./public/guest-photos.css");
+@import url("./public/wedding-details.css");
+@import url("./public/photos.css");
+
+@import url("./public/confirmation.css");
 @import url("./public/rsvp-layout.css");
 @import url("./public/rsvp-form.css");
+@import url("./public/rsvp-modal.css");
+@import url("./public/rsvp-confirm.css");
 @import url("./public/rsvp-result.css");
 @import url("./public/rsvp-calendar.css");
-@import url("./public/rsvp-modal.css");
 @import url("./public/rsvp-states.css");
-@import url("./public/rsvp-confirm.css");
+
 @import url("./public/footer.css");

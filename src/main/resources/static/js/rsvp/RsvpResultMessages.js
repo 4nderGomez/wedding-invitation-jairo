@@ -3,28 +3,35 @@ export const RSVP_RESULT_MESSAGES = {
         stateClass: "is-attending",
         calendarClass: "is-confirmed",
         buttonClass: "is-confirmed",
-        icon: "❤",
-        label: "Confirmación recibida",
-        title: "¡Gracias por acompañarnos!",
+
+        icon: "✓",
+
+        label: "Asistencia confirmada",
+
+        title: "Nos vemos en nuestro gran día",
+
         paragraphs: [
-            "Tu confirmación ha sido recibida correctamente.",
-            "Nos emociona saber que formarás parte de este momento tan importante en nuestras vidas.",
-            "Te esperamos con mucho cariño."
+            "Tu lugar ya forma parte de nuestra celebración."
         ],
-        date: "21 de Noviembre de 2026"
+
+        date: "21 · 11 · 2026"
     },
 
     NOT_ATTENDING: {
         stateClass: "is-not-attending",
         calendarClass: "is-declined",
         buttonClass: "is-declined",
-        icon: "❤",
+
+        icon: "✦",
+
         label: "Respuesta recibida",
-        title: "Gracias por avisarnos",
+
+        title: "Gracias por hacérnoslo saber",
+
         paragraphs: [
-            "Aunque nos hubiera encantado compartir este día contigo, comprendemos que no siempre es posible asistir.",
-            "Agradecemos mucho tu respuesta y te enviamos un afectuoso saludo."
+            "Aunque esta vez no podamos coincidir, agradecemos mucho que hayas tomado un momento para responder."
         ],
-        date: "21 de Noviembre de 2026"
+
+        date: "Con cariño · Jairo & Jennifer"
     }
 };

@@ -1,5 +1,6 @@
 import { MusicPlayer } from "./public/MusicPlayer.js";
 import { InvitationIntro } from "./public/InvitationIntro.js";
+import { WelcomeSaveTheDate } from "./public/WelcomeSaveTheDate.js";
 import { CountdownTimer } from "./public/CountdownTimer.js";
 import { GalleryCarousel } from "./public/GalleryCarousel.js";
 import { SiteNavigation } from "./public/SiteNavigation.js";
@@ -47,6 +48,7 @@ async function loadRegistrationStatus() {
 
 document.addEventListener("DOMContentLoaded", () => {
     const musicPlayer = new MusicPlayer();
+    const welcomeSaveTheDate = new WelcomeSaveTheDate(musicPlayer);
     const invitationIntro = new InvitationIntro(musicPlayer);
     const countdownTimer = new CountdownTimer("2026-11-21T17:00:00");
     const galleryCarousel = new GalleryCarousel();
@@ -70,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const weddingCalendar = new WeddingCalendar();
 
     musicPlayer.init();
+    welcomeSaveTheDate.init();
     invitationIntro.init();
     countdownTimer.init();
     galleryCarousel.init();

@@ -1,384 +1,662 @@
+.wedding-calendar-panel {
+    position: relative;
+    width: 100%;
+    min-height: 0;
+    padding:
+        clamp(
+            24px,
+            2.5vw,
+            34px
+        );
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+    animation: none;
+}
+
+.wedding-calendar-panel::before {
+    display: none;
+}
+
 .calendar-heading {
     position: relative;
     z-index: 1;
-    text-align: center;
-    animation: calendarHeadingFloat 3s ease-in-out infinite;
+    text-align: left;
+    animation: none;
 }
 
-.calendar-heading .section-label {
-    margin-bottom: 16px;
-    color: var(--color-gold);
+.calendar-year {
+    margin: 0 0 7px;
+    font-family: var(--font-body);
+    font-size: 0.54rem;
+    font-weight: 500;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
+    color: var(--color-champagne);
 }
 
 .calendar-heading h2 {
+    margin: 0;
     font-family: var(--font-title);
-    font-size: clamp(1.4rem, 5vw, 3.2rem);
-    font-weight: 600;
-    line-height: 1;
+    font-size:
+        clamp(
+            2.7rem,
+            3.8vw,
+            4.15rem
+        );
+    font-weight: 500;
+    line-height: 0.92;
+    letter-spacing: -0.045em;
     color: var(--color-ivory);
 }
 
-.calendar-heading p {
-    max-width: 460px;
-    margin: 22px auto 0;
 
-    line-height: 1.8;
-    color: rgba(255, 253, 248, 0.78);
+.calendar-heading h2 span {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.55em;
+    font-family: var(--font-body);
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.64
+        );
+}
+
+.calendar-heading > p:not(
+    .section-label
+):not(
+    .calendar-year
+) {
+    display: none;
+}
+
+.calendar-heading
+.section-label {
+    display: none;
 }
 
 .wedding-calendar-card {
     position: relative;
     z-index: 1;
-    max-width: 600px;
-    margin: 20px auto 0;
-    padding: 12px;
-    border: 1px solid rgba(255, 253, 248, 0.14);
-    background: rgba(255, 253, 248, 0.08);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    animation: calendarCardFloat 3.4s ease-in-out infinite;
-}
-
-.calendar-weekdays,
-.calendar-days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+    width: 100%;
+    max-width: none;
+    margin:
+        clamp(
+            26px,
+            3vh,
+            34px
+        )
+        0 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    animation: none;
 }
 
 .calendar-weekdays {
-    margin-bottom: 14px;
+    display: grid;
+    grid-template-columns:
+        repeat(
+            7,
+            minmax(
+                0,
+                1fr
+            )
+        );
+    gap: 2px;
+    margin-bottom: 9px;
+    padding-bottom: 9px;
+    border-bottom:
+        1px solid
+        rgba(
+            244,
+            240,
+            232,
+            0.18
+        );
 }
 
 .calendar-weekdays span {
     text-align: center;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    font-family: var(--font-body);
+    font-size: 0.48rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(255, 253, 248, 0.62);
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.48
+        );
 }
+
+.calendar-days {
+    display: grid;
+    grid-template-columns:
+        repeat(
+            7,
+            minmax(
+                0,
+                1fr
+            )
+        );
+    gap: 5px 2px;
+}
+
 
 .calendar-day {
     position: relative;
-    min-height: 40px;
-    border: 1px solid rgba(255, 253, 248, 0.1);
-    background: rgba(255, 253, 248, 0.05);
-    color: rgba(255, 253, 248, 0.78);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
+
+    min-height: 33px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: none;
+
+    background: transparent;
+
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.66
+        );
+
+    font-family:
+        var(--font-body);
+
+    font-size: 0.73rem;
+
+    font-weight: 400;
+
     transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        color 0.25s ease,
-        transform 0.25s ease;
+        color 0.25s ease;
 }
+
 
 .calendar-day-empty {
     opacity: 0;
+
     pointer-events: none;
 }
 
+
+/* =========================================================
+   WEDDING DAY
+   ========================================================= */
+
 .wedding-day {
-    border-color: rgba(199, 164, 93, 0.62);
-    background: rgba(199, 164, 93, 0.22);
-    color: var(--color-ivory);
-    font-weight: 700;
-    box-shadow: 0 14px 34px rgba(199, 164, 93, 0.18);
-    animation: calendarWeddingDayGlow 2.8s ease-in-out infinite;
+    position: relative;
+
+    width: 33px;
+    height: 33px;
+
+    min-height: 33px;
+
+    justify-self: center;
+
+    border:
+        1px solid
+        var(--color-champagne);
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            184,
+            156,
+            117,
+            0.12
+        );
+
+    color:
+        var(--color-ivory);
+
+    font-weight: 600;
+
+    box-shadow: none;
+
+    animation: none;
 }
+
+
+/*
+ * Convertimos el pequeño corazón
+ * en un acento muy discreto.
+ */
 
 .wedding-day-icon {
     position: absolute;
-    top: -10px;
-    right: -8px;
-    width: 24px;
-    height: 24px;
+
+    top: -6px;
+    right: -7px;
+
+    width: 15px;
+    height: 15px;
+
+    display: grid;
+
+    place-items: center;
+
     border-radius: 50%;
-    background: var(--color-gold);
-    color: var(--color-deep-blue);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
+
+    background:
+        var(--color-champagne);
+
+    color:
+        var(--color-midnight);
+
+    font-size: 0.53rem;
+
     line-height: 1;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
-    animation: calendarHeartBeat 1.8s ease-in-out infinite;
+
+    box-shadow:
+        0 4px 12px
+        rgba(
+            0,
+            0,
+            0,
+            0.16
+        );
+
+    animation: none;
 }
+
+
+/* =========================================================
+   ACTION
+   ========================================================= */
 
 .calendar-actions {
     position: relative;
+
     z-index: 1;
-    margin-top: 24px;
-    text-align: center;
+
+    margin-top:
+        clamp(
+            24px,
+            3vh,
+            32px
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content:
+        flex-start;
+
+    text-align: left;
 }
+
+
+/*
+ * Ya no parece un CTA comercial.
+ *
+ * Se comporta como una acción editorial
+ * discreta.
+ */
 
 .calendar-button {
+    position: relative;
+
+    min-height: 0;
+
+    padding:
+        8px 2px;
+
     display: inline-flex;
+
     align-items: center;
-    justify-content: center;
-    min-height: 50px;
-    padding: 0 30px;
-    border: 1px solid rgba(199, 164, 93, 0.46);
-    border-radius: var(--radius-pill);
-    background: var(--color-gold);
-    color: var(--color-deep-blue);
-    font-size: 0.74rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+
+    gap: 10px;
+
+    border: none;
+
+    border-bottom:
+        1px solid
+        rgba(
+            184,
+            156,
+            117,
+            0.70
+        );
+
+    border-radius: 0;
+
+    background: transparent;
+
+    color:
+        var(--color-ivory);
+
+    font-family:
+        var(--font-body);
+
+    font-size: 0.56rem;
+
+    font-weight: 600;
+
+    letter-spacing:
+        0.20em;
+
+    text-transform:
+        uppercase;
+
+    box-shadow: none;
+
+    animation: none;
+
     transition:
-        background 0.25s ease,
-        box-shadow 0.25s ease,
-        transform 0.25s ease;
-    animation: calendarButtonPulse 3.2s ease-in-out infinite;
+        color 0.25s ease,
+        border-color 0.25s ease,
+        padding-right 0.25s ease;
 }
+
+
+.calendar-button::after {
+    content: "↗";
+
+    font-size: 0.8rem;
+
+    font-weight: 400;
+
+    letter-spacing: 0;
+
+    color:
+        var(--color-champagne);
+}
+
 
 .calendar-button:hover {
-    background: var(--color-ivory);
-    box-shadow: var(--shadow-button);
-    transform: translateY(-2px);
+    padding-right: 8px;
+
+    background: transparent;
+
+    color:
+        var(--color-champagne);
+
+    border-color:
+        var(--color-champagne);
+
+    box-shadow: none;
+
+    transform: none;
 }
+
 
 .calendar-note {
-    max-width: 360px;
-    margin: 16px auto 0;
-    font-size: 0.82rem;
-    line-height: 1.7;
-    color: rgba(255, 253, 248, 0.58);
+    display: none;
 }
 
-/* Laptop pequeña */
-@media (max-width: 1200px) {
-    .wedding-calendar-card {
-        max-width: 560px;
+
+/* =========================================================
+   RSVP STATUS COMPATIBILITY
+   ========================================================= */
+
+.wedding-day.is-confirmed {
+    border-color:
+        var(--color-champagne);
+
+    background:
+        var(--color-champagne);
+
+    color:
+        var(--color-midnight);
+
+    box-shadow: none;
+}
+
+
+.wedding-day.is-confirmed
+.wedding-day-icon {
+    background:
+        var(--color-ivory);
+
+    color:
+        var(--color-midnight);
+}
+
+
+.wedding-day.is-declined {
+    border-color:
+        rgba(
+            184,
+            199,
+            199,
+            0.46
+        );
+
+    background:
+        transparent;
+
+    color:
+        rgba(
+            244,
+            240,
+            232,
+            0.60
+        );
+
+    box-shadow: none;
+}
+
+
+.wedding-day.is-declined
+.wedding-day-icon {
+    background:
+        var(--color-slate);
+
+    color:
+        var(--color-ivory);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .wedding-calendar-panel {
+        padding:
+            22px
+            20px;
     }
-}
 
-/* Tablet mediana */
-@media (max-width: 992px) {
+
+    .calendar-heading {
+        text-align: center;
+    }
+
+
+    .calendar-year {
+        font-size: 0.5rem;
+    }
+
+
     .calendar-heading h2 {
-        font-size: clamp(1.8rem, 6vw, 3rem);
+        font-size:
+            clamp(
+                2.45rem,
+                8vw,
+                3.25rem
+            );
     }
 
-    .calendar-heading p {
-        max-width: 440px;
-        margin-top: 20px;
-        font-size: 0.94rem;
-        line-height: 1.7;
-    }
-
-    .wedding-calendar-card {
-        max-width: 540px;
-        margin-top: 22px;
-    }
-
-    .calendar-weekdays,
-    .calendar-days {
-        gap: 8px;
-    }
-
-    .calendar-day {
-        min-height: 38px;
-        font-size: 0.86rem;
-    }
-
-    .calendar-button {
-        min-height: 48px;
-        padding: 0 28px;
-    }
-}
-
-/* Tablet pequeña / teléfono grande */
-@media (max-width: 768px) {
-    .calendar-heading .section-label {
-        margin-bottom: 14px;
-        font-size: 0.66rem;
-        letter-spacing: 0.22em;
-    }
-
-    .calendar-heading h2 {
-        font-size: clamp(1.7rem, 8vw, 2.7rem);
-        line-height: 1.05;
-    }
-
-    .calendar-heading p {
-        max-width: 400px;
-        margin-top: 18px;
-        font-size: 0.88rem;
-        line-height: 1.65;
-    }
 
     .wedding-calendar-card {
-        max-width: 500px;
-        padding: 10px;
+        width:
+            min(
+                100%,
+                430px
+            );
+
+        margin:
+            24px auto 0;
     }
 
-    .calendar-weekdays,
-    .calendar-days {
-        gap: 7px;
-    }
-
-    .calendar-weekdays {
-        margin-bottom: 12px;
-    }
-
-    .calendar-weekdays span {
-        font-size: 0.6rem;
-        letter-spacing: 0.08em;
-    }
-
-    .calendar-day {
-        min-height: 36px;
-        font-size: 0.82rem;
-    }
-
-    .wedding-day-icon {
-        top: -8px;
-        right: -6px;
-        width: 22px;
-        height: 22px;
-        font-size: 0.8rem;
-    }
 
     .calendar-actions {
-        margin-top: 22px;
+        justify-content:
+            center;
+
+        margin-top: 24px;
     }
 
-    .calendar-button {
-        min-height: 46px;
-        padding: 0 24px;
-        font-size: 0.68rem;
-        letter-spacing: 0.12em;
-    }
-
-    .calendar-note {
-        font-size: 0.78rem;
-        line-height: 1.6;
-    }
 }
 
-/* Teléfonos medianos */
-@media (max-width: 576px) {
-    .calendar-heading .section-label {
-        font-size: 0.6rem;
-        letter-spacing: 0.18em;
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .wedding-calendar-panel {
+        padding:
+            18px
+            12px;
     }
+
 
     .calendar-heading h2 {
-        font-size: 2.2rem;
+        font-size:
+            clamp(
+                2.25rem,
+                10vw,
+                2.85rem
+            );
     }
 
-    .calendar-heading p {
-        max-width: 320px;
-        font-size: 0.84rem;
-        line-height: 1.58;
+
+    .calendar-heading h2 span {
+        font-size: 0.47em;
     }
+
 
     .wedding-calendar-card {
-        max-width: 100%;
-        margin-top: 20px;
-        padding: 8px;
+        margin-top: 21px;
     }
 
-    .calendar-weekdays,
-    .calendar-days {
-        gap: 5px;
-    }
 
     .calendar-weekdays {
-        margin-bottom: 10px;
+        margin-bottom: 7px;
+
+        padding-bottom: 7px;
     }
+
 
     .calendar-weekdays span {
-        font-size: 0.52rem;
-        letter-spacing: 0.04em;
+        font-size: 0.43rem;
     }
+
+
+    .calendar-days {
+        gap:
+            3px
+            0;
+    }
+
 
     .calendar-day {
-        min-height: 32px;
-        font-size: 0.74rem;
+        min-height: 29px;
+
+        font-size: 0.66rem;
     }
+
+
+    .wedding-day {
+        width: 29px;
+        height: 29px;
+
+        min-height: 29px;
+    }
+
 
     .wedding-day-icon {
-        top: -7px;
+        width: 13px;
+        height: 13px;
+
+        top: -5px;
         right: -5px;
-        width: 20px;
-        height: 20px;
-        font-size: 0.72rem;
+
+        font-size: 0.46rem;
     }
+
+
+    .calendar-actions {
+        margin-top: 19px;
+    }
+
 
     .calendar-button {
-        width: 100%;
-        max-width: 300px;
-        min-height: 44px;
+        font-size: 0.50rem;
 
-        padding: 0 18px;
-
-        font-size: 0.62rem;
-        letter-spacing: 0.1em;
+        letter-spacing:
+            0.16em;
     }
 
-    .calendar-note {
-        max-width: 300px;
-        margin-top: 14px;
-        font-size: 0.74rem;
-    }
 }
 
-/* Teléfonos pequeños */
-@media (max-width: 380px) {
-    .calendar-heading .section-label {
-        font-size: 0.56rem;
-        letter-spacing: 0.14em;
+
+/* =========================================================
+   SHORT MOBILE
+   ========================================================= */
+
+@media
+(max-width: 600px)
+and
+(max-height: 720px) {
+
+    .wedding-calendar-panel {
+        padding:
+            14px
+            10px;
     }
+
 
     .calendar-heading h2 {
-        font-size: 1.9rem;
+        font-size: 2.15rem;
     }
 
-    .calendar-heading p {
-        font-size: 0.78rem;
-    }
 
     .wedding-calendar-card {
-        padding: 6px;
+        margin-top: 15px;
     }
 
-    .calendar-weekdays,
-    .calendar-days {
-        gap: 4px;
-    }
-
-    .calendar-weekdays span {
-        font-size: 0.48rem;
-    }
 
     .calendar-day {
-        min-height: 28px;
-        font-size: 0.68rem;
+        min-height: 26px;
     }
 
-    .wedding-day-icon {
-        top: -6px;
-        right: -4px;
-        width: 18px;
-        height: 18px;
-        font-size: 0.64rem;
+
+    .wedding-day {
+        width: 26px;
+        height: 26px;
+
+        min-height: 26px;
     }
 
-    .calendar-button {
-        max-width: 270px;
-        min-height: 42px;
 
-        font-size: 0.56rem;
-        letter-spacing: 0.08em;
+    .calendar-actions {
+        margin-top: 14px;
     }
 
-    .calendar-note {
-        font-size: 0.68rem;
-        line-height: 1.55;
-    }
 }

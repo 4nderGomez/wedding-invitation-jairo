@@ -60,6 +60,8 @@ export class InvitationIntro {
         document.body.classList.remove("invitation-entry-active");
         document.body.classList.add("invitation-started");
 
+        this.musicPlayer?.showButton();
+
         requestAnimationFrame(() => {
                 this.resetScrollPosition();
             }

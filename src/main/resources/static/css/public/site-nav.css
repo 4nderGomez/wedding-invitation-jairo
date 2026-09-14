@@ -4,9 +4,18 @@ body.site-nav-open {
 
 .site-nav {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
     z-index: 4000;
-    pointer-events: none;
+    pointer-events: auto;
+    overflow: visible;
+}
+
+.site-nav.is-open {
+    width: 100%;
+    height: 100%;
 }
 
 .site-nav-toggle {
@@ -59,6 +68,10 @@ body.site-nav-open {
     -webkit-backdrop-filter: blur(14px) saturate(115%);
     cursor: pointer;
     pointer-events: auto;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
     overflow: hidden;
     transition:
         opacity 0.25s ease,
@@ -479,7 +492,6 @@ body.site-nav-open {
 
 /* Como se vera en otros dispositivos */
 @media (max-width: 768px) {
-
     .site-nav-toggle {
         top:
             max(
@@ -488,25 +500,20 @@ body.site-nav-open {
                     safe-area-inset-top
                 )
             );
-
         left: 16px;
-
         width: 58px;
         height: 58px;
-
         border-radius: 16px;
+        z-index: 10;
     }
-
 
     .site-nav-monogram-letter {
         font-size: 1.42rem;
     }
 
-
     .site-nav-monogram-ampersand {
         font-size: 1.2rem;
     }
-
 
     .site-nav-menu {
         width:
@@ -514,7 +521,6 @@ body.site-nav-open {
                 380px,
                 94vw
             );
-
         padding:
             max(
                 20px,
@@ -529,39 +535,36 @@ body.site-nav-open {
                     safe-area-inset-bottom
                 )
             );
+        z-index: 8;
     }
 
+    .site-nav-backdrop {
+        z-index: 7;
+    }
 
     .site-nav-close {
         width: 44px;
         height: 44px;
-
         margin-bottom: 26px;
     }
 
 }
 
 @media (max-width: 420px) {
-
     .site-nav-toggle {
         left: 14px;
-
         width: 54px;
         height: 54px;
-
         border-radius: 15px;
     }
-
 
     .site-nav-monogram-letter {
         font-size: 1.32rem;
     }
 
-
     .site-nav-monogram-ampersand {
         font-size: 1.12rem;
     }
-
 
     .site-nav-menu {
         width: 94vw;

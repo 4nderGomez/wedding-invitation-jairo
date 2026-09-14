@@ -745,18 +745,12 @@
     outline-offset: 4px;
 }
 
-
-/* =========================================================
-   LAPTOP
-   ========================================================= */
-
+/* Laptop= */
 @media (max-width: 1250px) {
-
     .wedding-details-layout {
         padding-left: 45px;
         padding-right: 45px;
     }
-
 
     .wedding-details-information {
         grid-template-columns:
@@ -768,7 +762,6 @@
                 330px,
                 1fr
             );
-
         gap:
             clamp(
                 65px,
@@ -780,79 +773,49 @@
 }
 
 
-/* =========================================================
-   TABLET + MOBILE
-   ========================================================= */
-
+/* Tablet y teléfono */
 @media (max-width: 900px) {
-
     .wedding-details-section {
         min-height: 100svh;
     }
 
-
     .wedding-details-background img {
-        object-position:
-            center center;
+        object-position: center center;
     }
-
     .wedding-gift-note {
         width:
             min(
                 100%,
                 480px
             );
-
         margin-top: 3px;
-
-        padding:
-            14px
-            12px
-            0;
-
+        padding: 14px 12px 0;
         grid-template-columns:
             26px
             minmax(
                 0,
                 1fr
             );
-
         gap: 11px;
-
         text-align: left;
     }
-
 
     .wedding-gift-ornament {
         width: 26px;
         height: 26px;
-
         font-size: 0.38rem;
     }
 
-
     .wedding-gift-kicker {
         margin-bottom: 4px;
-
         font-size: 0.41rem;
-
         letter-spacing: 0.2em;
     }
 
-
     .wedding-gift-message {
         font-size: 0.56rem;
-
         line-height: 1.55;
     }
-
-    /*
-     * Arriba:
-     * fondo claro para fecha y countdown.
-     *
-     * Abajo:
-     * degradado azul oscuro para la información.
-     */
 
     .wedding-details-overlay {
         background:
@@ -909,26 +872,21 @@
             );
     }
 
-
     .wedding-details-section::after {
         inset: 8px;
     }
 
-
     .wedding-details-frame {
         inset: 16px;
     }
-
 
     .wedding-details-corner {
         width: 24px;
         height: 24px;
     }
 
-
     .wedding-details-layout {
         min-height: 100svh;
-
         padding:
             max(
                 78px,
@@ -948,36 +906,22 @@
             );
     }
 
-
-    /* =====================================================
-       MOBILE HEADER
-       ===================================================== */
-
     .wedding-details-header {
         width:
             min(
                 100%,
                 430px
             );
-
-        color:
-            var(--color-midnight);
+        color: var(--color-midnight);
     }
-
 
     .wedding-details-kicker {
         margin-bottom: 6px;
-
         font-size: 0.49rem;
-
         letter-spacing: 0.32em;
-
-        color:
-            var(--color-ocean);
-
+        color: var(--color-ocean);
         text-shadow: none;
     }
-
 
     .wedding-details-header h2 {
         font-size:
@@ -986,27 +930,16 @@
                 10vw,
                 3.5rem
             );
-
-        color:
-            var(--color-midnight);
-
+        color: var(--color-midnight);
         text-shadow: none;
     }
 
 
     .wedding-details-subtitle {
         margin-top: 5px;
-
         font-size: 0.53rem;
-
-        color:
-            var(--color-ocean);
+        color: var(--color-ocean);
     }
-
-
-    /* =====================================================
-       MOBILE COUNTDOWN
-       ===================================================== */
 
     .wedding-countdown {
         width:
@@ -1014,12 +947,9 @@
                 100%,
                 360px
             );
-
         margin-top: 17px;
-
         gap: 5px;
     }
-
 
     .wedding-countdown-item span {
         font-size:
@@ -1028,27 +958,18 @@
                 6.5vw,
                 2rem
             );
-
-        color:
-            var(--color-midnight);
+        color: var(--color-midnight);
     }
-
 
     .wedding-countdown-item p {
         margin-top: 4px;
-
         font-size: 0.42rem;
-
         letter-spacing: 0.15em;
-
-        color:
-            var(--color-ocean);
+        color: var(--color-ocean);
     }
-
 
     .wedding-countdown-separator {
         height: 24px;
-
         background:
             rgba(
                 21,
@@ -1058,44 +979,58 @@
             );
     }
 
-
-    /* =====================================================
-       BOTTOM AREA
-       ===================================================== */
-
     .wedding-details-information {
+        width: 100%;
         margin-top: auto;
-
         padding-top:
             clamp(
-                65px,
-                10vh,
-                105px
+                58px,
+                9svh,
+                92px
             );
-
         display: flex;
-
         flex-direction: column;
-
-        gap: 15px;
+        align-items: stretch;
+        gap: 16px;
     }
 
+    .wedding-venues,
+    .wedding-schedule {
+        width:
+            min(
+                100%,
+                470px
+            );
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-    .wedding-details-block-heading {
-        margin-bottom: 8px;
+    .wedding-schedule {
+        align-self: center;
 
         text-align: center;
     }
 
+    .wedding-schedule
+    .wedding-details-block-heading {
+        width: 100%;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        text-align: center;
+    }
+
+    .wedding-details-block-heading {
+        margin-bottom: 8px;
+        text-align: center;
+    }
 
     .wedding-details-block-heading > p {
         margin-bottom: 3px;
-
         font-size: 0.43rem;
-
         letter-spacing: 0.22em;
     }
-
 
     .wedding-details-block-heading h3 {
         font-size:
@@ -1106,17 +1041,9 @@
             );
     }
 
-
-    /* =====================================================
-       MOBILE LOCATIONS
-       ===================================================== */
-
     .wedding-venue {
         min-height: 62px;
-
-        padding:
-            9px 1px;
-
+        padding: 9px 1px;
         grid-template-columns:
             32px
             minmax(
@@ -1124,31 +1051,24 @@
                 1fr
             )
             auto;
-
         gap: 9px;
     }
-
 
     .wedding-venue-icon {
         width: 29px;
         height: 29px;
     }
 
-
     .wedding-venue-icon img {
         width: 14px;
         height: 14px;
     }
 
-
     .wedding-venue-type {
         margin-bottom: 2px;
-
         font-size: 0.42rem;
-
         letter-spacing: 0.17em;
     }
-
 
     .wedding-venue-content strong {
         font-size:
@@ -1157,30 +1077,23 @@
                 2.7vw,
                 0.86rem
             );
-
         line-height: 1.18;
     }
 
-
     .wedding-venue-meta {
         margin-top: 3px;
-
         font-size: 0.48rem;
     }
-
 
     .wedding-venue-arrow {
         font-size: 0.75rem;
     }
 
-
-    /* =====================================================
-       MOBILE SCHEDULE
-       ===================================================== */
-
     .wedding-schedule-list {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
         display: grid;
-
         grid-template-columns:
             repeat(
                 3,
@@ -1189,7 +1102,6 @@
                     1fr
                 )
             );
-
         border-bottom:
             1px solid
             rgba(
@@ -1200,27 +1112,16 @@
             );
     }
 
-
     .wedding-schedule-event {
         min-height: 82px;
-
-        padding:
-            8px 5px;
-
+        padding: 8px 5px;
         display: flex;
-
         flex-direction: column;
-
         align-items: center;
-
         justify-content: center;
-
         gap: 4px;
-
         text-align: center;
-
         border-bottom: 0;
-
         border-right:
             1px solid
             rgba(
@@ -1231,43 +1132,35 @@
             );
     }
 
-
     .wedding-schedule-event:last-child {
         border-right: 0;
     }
 
-
     .wedding-schedule-icon {
-        width: 27px;
-        height: 27px;
+        width: 29px;
+        height: 29px;
     }
-
 
     .wedding-schedule-icon img {
         width: 13px;
         height: 13px;
     }
 
-
     .wedding-schedule-time {
         font-size: 0.67rem;
     }
 
-
     .wedding-schedule-copy strong {
-        font-size: 0.72rem;
+        font-size: 0.74rem;
     }
-
 
     .wedding-schedule-copy small {
         display: none;
     }
 
-
     .wedding-schedule-arrow {
         display: none;
     }
-
 
     .wedding-venue:hover,
     .wedding-schedule-event:hover {
@@ -1316,124 +1209,102 @@
 }
 
 
-/* =========================================================
-   SHORT PHONES
-   ========================================================= */
+/* Telefonos pequeños */
 
 @media
 (max-width: 900px)
 and
 (max-height: 730px) {
-
     .wedding-details-layout {
         padding-top: 59px;
         padding-bottom: 16px;
     }
 
-
     .wedding-details-header h2 {
         font-size: 2.15rem;
     }
-
 
     .wedding-details-subtitle {
         display: none;
     }
 
-
     .wedding-countdown {
         margin-top: 10px;
     }
-
 
     .wedding-countdown-item span {
         font-size: 1.35rem;
     }
 
-
     .wedding-countdown-item p {
         font-size: 0.38rem;
     }
 
-
     .wedding-details-information {
         padding-top: 30px;
-
         gap: 8px;
     }
-
 
     .wedding-details-block-heading {
         margin-bottom: 5px;
     }
 
-
     .wedding-details-block-heading > p {
         display: none;
     }
-
 
     .wedding-details-block-heading h3 {
         font-size: 1.2rem;
     }
 
-
     .wedding-venue {
         min-height: 51px;
-
-        padding:
-            5px 1px;
+        padding: 5px 1px;
     }
-
 
     .wedding-venue-meta {
         display: none;
     }
 
-
     .wedding-schedule-event {
         min-height: 61px;
-
-        padding:
-            5px 3px;
+        padding: 5px 3px;
     }
-
 
     .wedding-schedule-icon {
         width: 23px;
         height: 23px;
     }
-
     .wedding-gift-note {
-        padding-top: 9px;
-
+        width:
+            min(
+                100%,
+                470px
+            );
+        margin: 5px auto 0;
+        padding: 14px 12px 0;
         grid-template-columns:
-            22px
+            26px
             minmax(
                 0,
                 1fr
             );
-
-        gap: 8px;
+        gap: 11px;
+        text-align: left;
     }
-
 
     .wedding-gift-ornament {
         width: 22px;
         height: 22px;
-
         font-size: 0.32rem;
     }
-
 
     .wedding-gift-kicker {
         display: none;
     }
 
-
     .wedding-gift-message {
         font-size: 0.48rem;
-
         line-height: 1.42;
     }
 }

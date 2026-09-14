@@ -663,27 +663,11 @@ body.invitation-entry-active
         display: block;
     }
 
-
-    /*
-     * En teléfono utilizamos el cielo.
-     *
-     * Los novios quedan debajo completamente
-     * libres de texto.
-     */
-
     .invitation-entry-content {
-        width:
-            min(
-                100%,
-                390px
-            );
-
-        margin:
-            0 auto;
-
-        transform: none;
-
-        text-align: center;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
 
@@ -745,9 +729,13 @@ body.invitation-entry-active
 
     .invitation-entry-button {
         min-height: 57px;
-
-        margin-top: 24px;
-
+        margin-top: auto;
+        margin-bottom:
+            clamp(
+                16px,
+                3svh,
+                30px
+            );
         grid-template-columns:
             42px
             auto

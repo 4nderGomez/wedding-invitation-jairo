@@ -9,6 +9,7 @@ export class SiteNavigation {
         this.backdrop = document.getElementById("siteNavBackdrop");
         this.navLinks = Array.from(document.querySelectorAll(".site-nav-link"));
         this.sectionObserver = null;
+        this.isMenuOpen = false;
     }
 
 
@@ -30,12 +31,15 @@ export class SiteNavigation {
 
 
     bindEvents() {
-        this.toggleButton.addEventListener("click", () => {
-                    this.openMenu();
+        this.toggleButton.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    this.toggleMenu();
                 }
             );
 
         this.closeButton.addEventListener("click", () => {
+                    event.preventDefault();
                     this.closeMenu(true);
                 }
             );
@@ -53,9 +57,7 @@ export class SiteNavigation {
             });
 
         document.addEventListener("keydown", (event) => {
-                const menuIsOpen = this.nav.classList.contains("is-open");
-
-                if (event.key === "Escape" && menuIsOpen)
+                if (event.key === "Escape" && this.isMenuOpen)
                     this.closeMenu(true);
             }
         );
@@ -63,41 +65,41 @@ export class SiteNavigation {
 
 
     toggleMenu() {
-
-        const menuIsOpen =
-            this.nav.classList
-                .contains("is-open");
-
-
-        if (menuIsOpen) {
-
+        if (this.isMenuOpen) {
             this.closeMenu();
-
             return;
         }
-
 
         this.openMenu();
     }
 
 
     openMenu() {
+        if (this.isMenuOpen)
+            return;
+
+        this.isMenuOpen = true;
         this.nav.classList.add("is-open");
+
         document.body.classList.add("site-nav-open");
 
         this.setMenuAccessibility(true);
 
         window.setTimeout(() => {
-                this.closeButton.focus();
-            }, 120);
+                if (!this.isMenuOpen)
+                    return;
+
+                this.closeButton?.focus({preventScroll: true});
+            },
+            180
+        );
     }
 
-
     closeMenu(restoreFocus = false) {
-        const menuIsOpen = this.nav.classList.contains("is-open");
+        if (!this.isMenuOpen)
+            return;
 
-        if (!menuIsOpen) return;
-
+        this.isMenuOpen = false;
         this.nav.classList.remove("is-open");
 
         document.body.classList.remove("site-nav-open");
@@ -106,9 +108,11 @@ export class SiteNavigation {
 
         if (restoreFocus) {
             window.setTimeout(() => {
-                this.toggleButton.focus();
-            }, 50
+                    this.toggleButton?.focus({preventScroll: true});
+                },
+                80
             );
+
         }
     }
 

@@ -843,7 +843,6 @@ body.welcome-video-lock {
 
 
 @media (max-width: 1100px) {
-
     .welcome-content {
         width:
             min(
@@ -859,7 +858,6 @@ body.welcome-video-lock {
             );
     }
 
-
     .welcome-title {
         font-size:
             clamp(
@@ -868,7 +866,6 @@ body.welcome-video-lock {
                 5.6rem
             );
     }
-
 
     .welcome-video-container {
         width:
@@ -880,28 +877,83 @@ body.welcome-video-lock {
 
 }
 
+/* Tablet y plegables */
 
-@media (max-width: 768px) {
-
+@media
+(min-width: 769px)
+and
+(max-width: 1100px)
+and
+(orientation: portrait) {
     .welcome-section {
         min-height: 100svh;
-
-        align-items:
-            flex-start;
+        align-items: flex-start;
     }
 
+    .welcome-content {
+        width:
+            min(
+                100%,
+                520px
+            );
+        min-height: 100svh;
+        margin: 0 auto;
+        padding: 108px 36px 48px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        text-align: center;
+        transform: none;
+    }
+
+    .welcome-title {
+        font-size:
+            clamp(
+                3.6rem,
+                8vw,
+                5rem
+            );
+    }
+
+    .welcome-text {
+        max-width: 430px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 0.92rem;
+        line-height: 1.6;
+    }
+
+    .welcome-signature {
+        font-size:
+            clamp(
+                2.7rem,
+                7vw,
+                3.7rem
+            );
+    }
+
+    .welcome-save-date-button {
+        min-height: 44px;
+        margin-top: auto;
+        margin-bottom:
+            clamp(
+                34px,
+                5svh,
+                58px
+            );
+    }
+}
+
+@media (max-width: 768px) {
+    .welcome-section {
+        min-height: 100svh;
+        align-items: flex-start;
+    }
 
     .welcome-background img {
-        object-position:
-            center center;
+        object-position: center center;
     }
-
-
-    /*
-     * Sobre la foto móvil hacemos la
-     * iluminación principalmente arriba,
-     * donde estará el texto.
-     */
 
     .welcome-overlay {
         background:
@@ -912,7 +964,7 @@ body.welcome-video-lock {
                     244,
                     240,
                     232,
-                    0.88
+                    0.82
                 )
                 0%,
 
@@ -920,33 +972,47 @@ body.welcome-video-lock {
                     244,
                     240,
                     232,
-                    0.65
+                    0.56
                 )
-                34%,
+                27%,
 
                 rgba(
                     244,
                     240,
                     232,
-                    0.20
+                    0.12
                 )
-                57%,
+                45%,
+
+                rgba(
+                    244,
+                    240,
+                    232,
+                    0.02
+                )
+                63%,
 
                 rgba(
                     21,
                     38,
                     45,
-                    0.20
+                    0.12
+                )
+                82%,
+
+                rgba(
+                    21,
+                    38,
+                    45,
+                    0.24
                 )
                 100%
             );
     }
 
-
     .welcome-section::before {
         inset: 8px;
     }
-
 
     .welcome-frame {
         inset: 16px;
@@ -958,103 +1024,100 @@ body.welcome-video-lock {
         height: 24px;
     }
 
-
     .welcome-content {
         width:
             min(
                 100%,
                 390px
             );
-
-        margin:
-            0 auto;
-
+        min-height: 100svh;
+        margin: 0 auto;
         padding:
             clamp(
-                100px,
-                14svh,
-                140px
+                84px,
+                11svh,
+                112px
             )
             24px
-            70px;
-
+            max(
+                34px,
+                env(safe-area-inset-bottom)
+            );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
         text-align: center;
-
         transform: none;
     }
 
-
     .welcome-kicker {
         margin-bottom: 15px;
-
-        font-size: 0.58rem;
-
-        letter-spacing: 0.33em;
+        font-size: 0.55rem;
+        letter-spacing: 0.31em;
     }
-
 
     .welcome-title {
         font-size:
             clamp(
-                3.15rem,
-                14vw,
-                4.3rem
+                2.9rem,
+                13vw,
+                4rem
             );
+        line-height: 0.94;
     }
-
 
     .welcome-divider {
-        width: 58px;
-
-        margin:
-            24px auto
-            26px;
+        width: 52px;
+        margin: 18px auto 19px;
     }
-
 
     .welcome-text {
+        max-width: 330px;
+        margin-left: auto;
+        margin-right: auto;
         font-size:
             clamp(
-                0.82rem,
-                3.5vw,
-                0.94rem
+                0.76rem,
+                3.2vw,
+                0.88rem
             );
-
-        line-height: 1.72;
+        line-height: 1.58;
     }
-
 
     .welcome-signature {
-        margin-top: 22px;
-
+        margin-top: 15px;
         font-size:
             clamp(
-                2.4rem,
-                11vw,
-                3.25rem
+                2.15rem,
+                9.5vw,
+                2.9rem
             );
+        line-height: 1;
     }
-
 
     .welcome-save-date-button {
-        min-height: 48px;
-
-        margin-top: 25px;
-
-        font-size: 0.62rem;
+        min-height: 43px;
+        margin-top: auto;
+        margin-bottom:
+            clamp(
+                30px,
+                5svh,
+                52px
+            );
+        padding:
+            5px
+            18px
+            5px
+            6px;
+        font-size: 0.59rem;
+        letter-spacing: 0.18em;
     }
-
 
     .welcome-save-date-button-icon {
-        width: 34px;
-        height: 34px;
+        width: 32px;
+        height: 32px;
     }
-
-
-    /*
-     * En móvil el video tampoco llena
-     * la pantalla.
-     */
 
     .welcome-video-layer {
         padding:
@@ -1062,123 +1125,159 @@ body.welcome-video-lock {
             22px;
     }
 
-
     .welcome-video-container {
         width: 100%;
-
         max-width: 680px;
-
         padding: 7px;
     }
-
 
     .welcome-video-close {
         top: -16px;
         right: -8px;
-
         width: 38px;
         height: 38px;
     }
-
 
     .welcome-video-footer {
         padding-top: 13px;
     }
 
-
     .welcome-video-footer p {
         font-size: 0.56rem;
-
         letter-spacing: 0.22em;
     }
 
 }
 
 @media (max-width: 430px) {
-
     .welcome-content {
-        padding-left: 20px;
-        padding-right: 20px;
+        min-height: 100svh;
+        padding-top:
+            clamp(
+                78px,
+                10svh,
+                96px
+            );
+        padding-left: 19px;
+        padding-right: 19px;
+        padding-bottom:
+            max(
+                28px,
+                env(safe-area-inset-bottom)
+            );
     }
-
 
     .welcome-title {
         font-size:
             clamp(
-                2.85rem,
-                13.5vw,
-                3.7rem
+                2.7rem,
+                12.6vw,
+                3.45rem
             );
     }
 
-
     .welcome-text {
-        line-height: 1.62;
+        max-width: 300px;
+        font-size: 0.76rem;
+        line-height: 1.52;
     }
 
+    .welcome-signature {
+        margin-top: 13px;
+        font-size:
+            clamp(
+                2rem,
+                9vw,
+                2.55rem
+            );
+    }
+
+    .welcome-save-date-button {
+        min-height: 41px;
+        margin-top: auto;
+        margin-bottom:
+            clamp(
+                24px,
+                4svh,
+                38px
+            );
+        padding:
+            4px
+            16px
+            4px
+            5px;
+        font-size: 0.56rem;
+    }
+
+    .welcome-save-date-button-icon {
+        width: 30px;
+        height: 30px;
+    }
 
     .welcome-video-layer {
         padding-left: 16px;
         padding-right: 16px;
     }
-
 }
 
 @media
 (max-height: 700px)
 and
 (max-width: 768px) {
-
     .welcome-content {
-        padding-top: 76px;
+        padding-top: 68px;
+        padding-bottom:
+            max(
+                22px,
+                env(safe-area-inset-bottom)
+            );
     }
-
 
     .welcome-kicker {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
+        font-size: 0.51rem;
     }
-
 
     .welcome-title {
         font-size:
             clamp(
-                2.7rem,
-                11vw,
-                3.3rem
+                2.45rem,
+                10.5vw,
+                3.05rem
             );
     }
 
-
     .welcome-divider {
-        margin:
-            17px auto;
+        margin: 13px auto;
     }
-
 
     .welcome-text {
-        font-size: 0.78rem;
-
-        line-height: 1.5;
+        max-width: 285px;
+        font-size: 0.7rem;
+        line-height: 1.4;
     }
-
 
     .welcome-signature {
-        margin-top: 15px;
-
-        font-size: 2.25rem;
+        margin-top: 10px;
+        font-size: 2rem;
     }
-
 
     .welcome-save-date-button {
-        margin-top: 18px;
+        min-height: 38px;
+        margin-top: auto;
+        margin-bottom: 18px;
+        font-size: 0.53rem;
     }
 
+    .welcome-save-date-button-icon {
+        width: 28px;
+        height: 28px;
+    }
 }
 
 @media (
     prefers-reduced-motion: reduce
 ) {
-
     .welcome-content,
     .welcome-video-layer,
     .welcome-overlay,

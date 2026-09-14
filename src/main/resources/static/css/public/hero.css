@@ -368,6 +368,72 @@
     }
 }
 
+/* Tablets en vertical */
+
+@media
+(min-width: 769px)
+and
+(max-width: 1024px)
+and
+(orientation: portrait) {
+    .hero-content {
+        min-height: 100svh;
+        padding:
+            92px
+            38px
+            46px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .hero-heading {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size:
+            clamp(
+                4rem,
+                9vw,
+                5.8rem
+            );
+    }
+
+    .hero-cta {
+        width:
+            min(
+                100%,
+                330px
+            );
+        margin-top: auto;
+        margin-bottom:
+            clamp(
+                48px,
+                7svh,
+                82px
+            );
+        text-align: center;
+    }
+
+    .hero-message {
+        max-width: 310px;
+        margin: 0 auto 14px;
+        font-size: 0.82rem;
+        line-height: 1.52;
+        color: var(--color-midnight);
+        text-shadow: none;
+    }
+
+    .hero-button {
+        min-height: 44px;
+        padding: 0 22px;
+        font-size: 0.68rem;
+    }
+}
+
 @media (max-width: 768px) {
     .hero {
         min-height: 100svh;
@@ -375,7 +441,6 @@
 
     .hero::after {
         inset: 8px;
-
         border-color:
             rgba(
                 244,
@@ -385,15 +450,8 @@
             );
     }
 
-    /*
-     * Aquí automáticamente ya se carga
-     * hero-mobile.jpg gracias al <picture>.
-     */
-
     .hero-background img {
-        object-position:
-            center center;
-
+        object-position: center center;
         filter:
             grayscale(100%)
             contrast(0.94);
@@ -408,7 +466,7 @@
                     244,
                     240,
                     232,
-                    0.36
+                    0.31
                 )
                 0%,
 
@@ -416,73 +474,55 @@
                     244,
                     240,
                     232,
-                    0.18
+                    0.14
                 )
-                36%,
+                27%,
+
+                rgba(
+                    244,
+                    240,
+                    232,
+                    0.025
+                )
+                48%,
 
                 rgba(
                     21,
                     38,
                     45,
-                    0.05
+                    0.04
                 )
-                58%,
+                67%,
 
                 rgba(
                     21,
                     38,
                     45,
-                    0.26
+                    0.24
                 )
                 100%
             );
     }
 
-
-    /*
-     * Cambio completo de layout.
-     *
-     * Ahora todo pasa al orden:
-     *
-     * Nuestra boda
-     * Jairo & Jennifer
-     * Fecha
-     * Mensaje
-     * Botón
-     */
-
     .hero-content {
-        min-height:
-            100svh;
-
+        min-height: 100svh;
         padding:
             calc(
                 max(
                     16px,
-                    env(
-                        safe-area-inset-top
-                    )
+                    env(safe-area-inset-top)
                 )
                 + 78px
             )
             22px
             max(
-                34px,
-                env(
-                    safe-area-inset-bottom
-                )
+                32px,
+                env(safe-area-inset-bottom)
             );
-
         display: flex;
-
-        flex-direction:
-            column;
-
-        align-items:
-            center;
-
-        justify-content:
-            flex-start;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
     }
 
 
@@ -542,44 +582,39 @@
         width:
             min(
                 100%,
-                330px
+                290px
             );
-
-        margin-top: 20px;
-
+        margin-top: auto;
+        margin-bottom:
+            clamp(
+                38px,
+                6svh,
+                64px
+            );
         text-align: center;
     }
 
 
     .hero-message {
-        margin-bottom: 18px;
-
-        font-size: 0.82rem;
-
-        line-height: 1.58;
-
-        color:
-            var(--color-midnight);
-
+        max-width: 270px;
+        margin: 0 auto 12px;
+        font-size:
+            clamp(
+                0.70rem,
+                2.4vw,
+                0.78rem
+            );
+        line-height: 1.48;
+        color: var(--color-midnight);
         text-shadow: none;
     }
 
 
     .hero-button {
-        min-height: 48px;
-
-        padding:
-            0 25px;
-
+        min-height: 41px;
+        padding: 0 19px;
         font-size: 0.7rem;
-
         letter-spacing: 0.045em;
-
-        /*
-        * En móvil conservamos el champagne,
-        * sólo ligeramente más sólido porque
-        * la fotografía está en escala de grises.
-        */
         background:
             linear-gradient(
                 135deg,
@@ -598,7 +633,6 @@
                     0.88
                 )
             );
-
         border-color:
             rgba(
                 219,
@@ -606,10 +640,7 @@
                 156,
                 0.78
             );
-
-        color:
-            var(--color-midnight);
-
+        color: var(--color-midnight);
         box-shadow:
             0 9px 24px
             rgba(
@@ -693,36 +724,32 @@
     }
 
     .hero-cta {
-        max-width: 300px;
-
-        margin-top: 17px;
+        width: 100%;
+        max-width: 280px;
+        margin-top: auto;
+        margin-bottom:
+            clamp(
+                34px,
+                5.5svh,
+                50px
+            );
     }
 
     .hero-message {
-        margin-bottom: 15px;
-
-        font-size: 0.76rem;
-
-        line-height: 1.52;
+        max-width: 250px;
+        margin: 0 auto 10px;
+        font-size: 0.71rem;
+        line-height: 1.45;
     }
 
     .hero-button {
-        min-height: 45px;
-
-        padding:
-            0 21px;
-
-        font-size: 0.68rem;
+        min-height: 39px;
+        padding: 0 17px;
+        font-size: 0.63rem;
     }
 }
 
-@media (
-    max-height: 680px
-)
-and
-(
-    max-width: 768px
-) {
+@media (max-height: 680px) and (max-width: 768px) {
     .hero-content {
         padding-top:
             calc(
@@ -754,17 +781,21 @@ and
     }
 
     .hero-cta {
-        margin-top: 13px;
+        margin-top: auto;
+        margin-bottom: 25px;
     }
 
     .hero-message {
-        margin-bottom: 12px;
-
-        line-height: 1.42;
+        max-width: 245px;
+        margin-bottom: 8px;
+        font-size: 0.67rem;
+        line-height: 1.38;
     }
 
     .hero-button {
-        min-height: 42px;
+        min-height: 37px;
+        padding: 0 16px;
+        font-size: 0.61rem;
     }
 }
 

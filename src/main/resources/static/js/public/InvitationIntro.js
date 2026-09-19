@@ -20,15 +20,38 @@ export class InvitationIntro {
         document.documentElement.classList.add("invitation-entry-active");
         document.body.classList.add("invitation-entry-active");
 
-        this.enterButton.addEventListener("click", () => {
-                this.enterInvitation();
-            }
-        );
+        this.startEntryAnimation();
+
+        this.enterButton
+            .addEventListener("click", () => {
+                    this.enterInvitation();
+                }
+            );
 
         window.setTimeout(() => {
-                this.enterButton.focus();
+                if (!this.isEntering) {
+                    this.enterButton.focus({
+                        preventScroll: true
+                    });
+                }
             },
-            120
+            1600
+        );
+    }
+
+    startEntryAnimation() {
+        if (!this.entry)
+            return;
+
+        requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                        if (!this.entry)
+                            return;
+
+                        this.entry.classList.add("is-ready");
+                    }
+                );
+            }
         );
     }
 
@@ -43,10 +66,7 @@ export class InvitationIntro {
         try {
             await this.musicPlayer?.play();
         } catch (error) {
-            console.warn(
-                "No se pudo iniciar la música al entrar.",
-                error
-            );
+            console.warn("No se pudo iniciar la música al entrar.",error);
         }
 
         this.openInvitation();
@@ -54,6 +74,7 @@ export class InvitationIntro {
 
     openInvitation() {
         this.resetScrollPosition();
+        this.entry.classList.remove("is-ready");
         this.entry.classList.add("is-leaving");
 
         document.documentElement.classList.remove("invitation-entry-active");
@@ -68,8 +89,15 @@ export class InvitationIntro {
         );
 
         window.setTimeout(() => {
-                this.entry.remove();
+                this.entry?.remove();
+                this.entry = null;
                 this.resetScrollPosition();
+
+                document.dispatchEvent(
+                    new CustomEvent(
+                        "invitation:entered"
+                    )
+                );
             },
             this.exitDuration
         );
@@ -78,8 +106,11 @@ export class InvitationIntro {
     resetScrollPosition() {
         if (this.hero) {
             const heroTop =
-                this.hero.getBoundingClientRect().top
-                + window.scrollY;
+                this.hero
+                    .getBoundingClientRect()
+                    .top
+                +
+                window.scrollY;
 
             window.scrollTo({
                 top: heroTop,

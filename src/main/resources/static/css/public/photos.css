@@ -400,29 +400,14 @@
     flex-direction: column;
 }
 
-
-/* =========================================================
-   HEADING
-   ========================================================= */
-
 .gallery-heading {
     width:
         min(
             100%,
             640px
         );
-
-    margin:
-        0 auto
-        10px;
-
+    margin: 0 auto 10px;
     text-align: center;
-
-    animation:
-        galleryHeadingBreath
-        6s
-        ease-in-out
-        infinite;
 }
 
 
@@ -531,119 +516,72 @@
         );
 }
 
-
 .photos-title-mark {
-    font-family:
-        var(--font-title);
-
+    font-family: var(--font-title);
     font-size: 0.67rem;
-
-    letter-spacing:
-        0.16em;
-
-    color:
-        var(--color-champagne);
+    letter-spacing: 0.16em;
+    color: var(--color-champagne);
 }
-
-
-/* =========================================================
-   CAROUSEL
-   ========================================================= */
 
 .gallery-carousel {
     position: relative;
-
     width: 100%;
-
     margin-top:
         clamp(
             12px,
             2vh,
             22px
         );
-
     display: flex;
-
     align-items: center;
-
     gap: 16px;
-
-    animation:
-        galleryCarouselFloat
-        7s
-        ease-in-out
-        infinite;
 }
-
-
-/*
- * El padding vertical es deliberado.
- *
- * Permite que las fotos lleguen a scale(1.25)
- * sin cortar el marco al agrandarse.
- */
 
 .gallery-track-wrapper {
     width: 100%;
-
     overflow: hidden;
-
-    padding:
-        58px
-        5px;
-
-    margin:
-        -49px 0;
+    padding: 58px 5px;
+    margin: -49px 0;
+    touch-action: pan-y;
+    cursor: grab;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
+
+.gallery-track-wrapper.is-dragging {
+    cursor: grabbing;
+}
 
 .gallery-track {
     display: flex;
-
     gap: 20px;
-
-    transition:
-        transform
-        0.7s
-        cubic-bezier(
-            0.22,
-            1,
-            0.36,
-            1
+    transform:
+        translate3d(
+            0,
+            0,
+            0
         );
-
     will-change: transform;
 }
 
-
-/* =========================================================
-   PHOTOGRAPHS
-   ========================================================= */
-
 .gallery-slide {
     position: relative;
-
     flex:
         0 0
         calc(
             (100% - 60px)
             / 4
         );
-
     height:
         clamp(
             310px,
             38vh,
             455px
         );
-
     margin: 0;
-
     overflow: hidden;
-
-    background:
-        var(--color-ivory);
-
+    background: var(--color-ivory);
     border:
         1px solid
         rgba(
@@ -652,7 +590,6 @@
             232,
             0.66
         );
-
     box-shadow:
         0 24px 55px
         rgba(
@@ -661,52 +598,20 @@
             45,
             0.28
         );
-
     cursor: pointer;
-
     z-index: 1;
-
     transition:
         transform
         0.4s ease,
-
         box-shadow
         0.4s ease;
-
-    animation:
-        gallerySlideGlow
-        6.2s
-        ease-in-out
-        infinite;
 }
-
-
-.gallery-slide:nth-child(2n) {
-    animation-delay: 0.5s;
-}
-
-
-.gallery-slide:nth-child(3n) {
-    animation-delay: 1s;
-}
-
-
-/*
- * MARCO INTERIOR
- *
- * Se conserva porque es parte del
- * lenguaje actual de la galería.
- */
 
 .gallery-slide::after {
     content: "";
-
     position: absolute;
-
     inset: 12px;
-
     z-index: 2;
-
     border:
         1px solid
         rgba(
@@ -715,20 +620,14 @@
             255,
             0.62
         );
-
     pointer-events: none;
 }
 
-
 .gallery-slide::before {
     content: "";
-
     position: absolute;
-
     inset: 6px;
-
     z-index: 2;
-
     border:
         1px solid
         rgba(
@@ -737,23 +636,17 @@
             117,
             0.24
         );
-
     pointer-events: none;
 }
-
 
 .gallery-slide img {
     width: 100%;
     height: 100%;
-
     display: block;
-
     object-fit: cover;
-
     transition:
         transform
         0.4s ease,
-
         filter
         0.4s ease;
 }
@@ -779,30 +672,17 @@
         );
 }
 
-
 .gallery-slide:hover img {
-    transform:
-        scale(1.035);
-
-    filter:
-        brightness(1.04);
+    transform: scale(1.035);
+    filter: brightness(1.04);
 }
-
-
-/* =========================================================
-   CAROUSEL ARROWS
-   ========================================================= */
 
 .gallery-arrow {
     flex: 0 0 auto;
-
     width: 44px;
     height: 44px;
-
     display: grid;
-
     place-items: center;
-
     border:
         1px solid
         rgba(
@@ -811,9 +691,7 @@
             232,
             0.44
         );
-
     border-radius: 50%;
-
     background:
         rgba(
             244,
@@ -821,34 +699,17 @@
             232,
             0.11
         );
-
-    color:
-        var(--color-ivory);
-
+    color: var(--color-ivory);
     font-size: 2rem;
-
     line-height: 1;
-
     cursor: pointer;
-
-    backdrop-filter:
-        blur(10px);
-
-    -webkit-backdrop-filter:
-        blur(10px);
-
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 30;
-
     transition:
         background 0.25s ease,
         color 0.25s ease,
         transform 0.25s ease;
-
-    animation:
-        galleryArrowPulse
-        3.5s
-        ease-in-out
-        infinite;
 }
 
 
@@ -1468,102 +1329,8 @@
         );
 }
 
-
 body.gallery-open {
     overflow: hidden;
-}
-
-
-/* =========================================================
-   GALLERY INTERNAL ANIMATIONS
-   These stay.
-   ========================================================= */
-
-@keyframes galleryHeadingBreath {
-
-    0%,
-    100% {
-        transform:
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateY(-3px);
-    }
-
-}
-
-
-@keyframes galleryCarouselFloat {
-
-    0%,
-    100% {
-        transform:
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateY(-4px);
-    }
-
-}
-
-
-@keyframes gallerySlideGlow {
-
-    0%,
-    100% {
-        box-shadow:
-            0 24px 55px
-            rgba(
-                21,
-                38,
-                45,
-                0.28
-            );
-    }
-
-    50% {
-        box-shadow:
-            0 28px 68px
-            rgba(
-                21,
-                38,
-                45,
-                0.37
-            );
-    }
-
-}
-
-
-@keyframes galleryArrowPulse {
-
-    0%,
-    100% {
-        box-shadow:
-            0 0 0
-            rgba(
-                244,
-                240,
-                232,
-                0
-            );
-    }
-
-    50% {
-        box-shadow:
-            0 0 0 5px
-            rgba(
-                244,
-                240,
-                232,
-                0.07
-            );
-    }
-
 }
 
 
@@ -1578,7 +1345,6 @@ body.gallery-open {
     }
 
 }
-
 
 @keyframes lightboxImageIn {
 
@@ -1629,8 +1395,7 @@ body.gallery-open {
 
 
     .gallery-slide:hover {
-        transform:
-            scale(1.16);
+        transform: scale(1.25);
     }
 
 
@@ -1655,11 +1420,7 @@ body.gallery-open {
 
 }
 
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
+/* MOBILE */
 @media (max-width: 768px) {
 
     .photos-section {
@@ -1734,43 +1495,22 @@ body.gallery-open {
 
     .photos-title-line {
         width: 180px;
-
         margin-top: 12px;
     }
 
-
-    /* ===============================================
-       MOBILE CAROUSEL
-       =============================================== */
-
     .gallery-carousel {
         margin-top: 7px;
-
         gap: 5px;
     }
 
-
     .gallery-track-wrapper {
-        padding:
-            35px
-            2px;
-
-        margin:
-            -29px 0;
+        padding: 35px 2px;
+        margin: -29px 0;
     }
-
 
     .gallery-track {
         gap: 13px;
     }
-
-
-    /*
-     * Una foto completa y parte de la siguiente.
-     *
-     * Esto invita naturalmente al usuario
-     * a deslizar/explorar.
-     */
 
     .gallery-slide {
         flex:
@@ -1786,16 +1526,6 @@ body.gallery-open {
                 340px
             );
     }
-
-
-    /*
-     * En touch el crecimiento de hover no
-     * debe dispararse accidentalmente.
-     *
-     * El crecimiento completo sigue existiendo
-     * en desktop y el modal sigue funcionando
-     * en teléfono.
-     */
 
     .gallery-slide:hover {
         transform: none;
@@ -2083,6 +1813,34 @@ and
 
 }
 
+@media (hover: hover) and (pointer: fine) {
+
+    .gallery-slide:hover {
+        transform:
+            scale(1.12);
+
+        z-index: 20;
+
+        box-shadow:
+            0 30px 68px
+            rgba(
+                21,
+                38,
+                45,
+                0.34
+            );
+    }
+
+
+    .gallery-slide:hover img {
+        transform:
+            scale(1.025);
+
+        filter:
+            brightness(1.03);
+    }
+
+}
 
 /* =========================================================
    REDUCED MOTION

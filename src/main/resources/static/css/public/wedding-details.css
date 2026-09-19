@@ -745,6 +745,48 @@
     outline-offset: 4px;
 }
 
+/* COUNTDOWN — MOVIMIENTO SUTIL */
+.wedding-countdown-item {
+    min-width: 0;
+    text-align: center;
+    animation:
+        weddingCountdownFloat
+        4.8s
+        ease-in-out
+        infinite;
+}
+
+.wedding-countdown-item:nth-of-type(1) {
+    animation-delay: 0ms;
+}
+
+.wedding-countdown-item:nth-of-type(2) {
+    animation-delay: 220ms;
+}
+
+.wedding-countdown-item:nth-of-type(3) {
+    animation-delay: 440ms;
+}
+
+.wedding-countdown-item:nth-of-type(4) {
+    animation-delay: 660ms;
+}
+
+@keyframes weddingCountdownFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-4px);
+    }
+
+}
+
 /* Laptop= */
 @media (max-width: 1250px) {
     .wedding-details-layout {

@@ -40,17 +40,6 @@ body.invitation-entry-active {
     object-fit: cover;
     object-position: center center;
     transform: scale(1.01);
-    transition:
-        transform
-        1200ms
-        cubic-bezier(
-            0.22,
-            1,
-            0.36,
-            1
-        ),
-        filter
-        1000ms ease;
 }
 
 .invitation-entry-overlay {
@@ -502,7 +491,18 @@ body.invitation-entry-active
 
 .invitation-entry.is-leaving
 .invitation-entry-background img {
+    animation: none;
     transform: scale(1.035);
+
+    transition:
+        transform
+        1200ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
 }
 
 
@@ -968,22 +968,266 @@ and
     }
 }
 
+/* Animaciones */
+.invitation-entry:not(.is-ready)
+.invitation-entry-kicker,
+.invitation-entry:not(.is-ready)
+.invitation-entry-title,
+.invitation-entry:not(.is-ready)
+.invitation-entry-line,
+.invitation-entry:not(.is-ready)
+.invitation-entry-copy,
+.invitation-entry:not(.is-ready)
+.invitation-entry-button,
+.invitation-entry:not(.is-ready)::after,
+.invitation-entry:not(.is-ready)
+.invitation-entry-corner {
+    opacity: 0;
+}
 
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
+.invitation-entry:not(.is-ready)
+.invitation-entry-background img {
+    transform: scale(1.045);
+}
 
-@media (
-    prefers-reduced-motion: reduce
-) {
+.invitation-entry.is-ready
+.invitation-entry-background img {
+    animation:
+        invitationEntryBackgroundReveal
+        3200ms
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        )
+        both;
+}
 
-    .invitation-entry,
-    .invitation-entry-background img,
-    .invitation-entry-content,
+.invitation-entry.is-ready::after {
+    animation:
+        invitationEntryFrameReveal
+        1600ms
+        ease
+        200ms
+        both;
+}
+
+.invitation-entry.is-ready
+.invitation-entry-corner {
+    animation:
+        invitationEntryCornerReveal
+        1500ms
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        )
+        300ms
+        both;
+}
+
+.invitation-entry.is-ready
+.invitation-entry-kicker {
+    animation:
+        invitationEntryFadeUp
+        1200ms
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        )
+        350ms
+        both;
+}
+
+.invitation-entry.is-ready
+.invitation-entry-title {
+    animation:
+        invitationEntryTitleReveal
+        1500ms
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        )
+        550ms
+        both;
+}
+
+.invitation-entry.is-ready
+.invitation-entry-line {
+    transform-origin: left center;
+
+    animation:
+        invitationEntryLineReveal
+        1400ms
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        )
+        900ms
+        both;
+}
+
+.invitation-entry.is-ready
+.invitation-entry-copy {
+    animation:
+        invitationEntryFadeUp
+        1250ms
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        )
+        1100ms
+        both;
+}
+
+.invitation-entry.is-ready
+.invitation-entry-button {
+    animation:
+        invitationEntryButtonReveal
+        1350ms
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        )
+        1350ms
+        both;
+}
+
+@keyframes invitationEntryBackgroundReveal {
+    from {
+        transform: scale(1.045);
+    }
+
+    to {
+        transform: scale(1.01);
+    }
+
+}
+
+@keyframes invitationEntryFrameReveal {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes invitationEntryCornerReveal {
+    from {
+        opacity: 0;
+        transform: scale(0.90);
+    }
+
+    to {
+        opacity: 0.88;
+        transform: scale(1);
+    }
+
+}
+
+@keyframes invitationEntryFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes invitationEntryTitleReveal {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes invitationEntryLineReveal {
+    from {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes invitationEntryButtonReveal {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(22px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .invitation-entry.is-ready
+    .invitation-entry-line {
+        transform-origin: center center;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .invitation-entry:not(.is-ready)
+    .invitation-entry-kicker,
+    .invitation-entry:not(.is-ready)
+    .invitation-entry-title,
+    .invitation-entry:not(.is-ready)
+    .invitation-entry-line,
+    .invitation-entry:not(.is-ready)
+    .invitation-entry-copy,
+    .invitation-entry:not(.is-ready)
     .invitation-entry-button,
-    .invitation-entry-button-icon,
-    .invitation-entry-button-arrow {
-        transition: none;
+    .invitation-entry:not(.is-ready)::after,
+    .invitation-entry:not(.is-ready)
+    .invitation-entry-corner {
+        opacity: 1;
+    }
+
+    .invitation-entry:not(.is-ready)
+    .invitation-entry-background img {
+        transform: scale(1.01);
     }
 
 }

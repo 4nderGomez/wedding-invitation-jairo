@@ -11,113 +11,43 @@
 }
 
 /* Fondo */
-
 .welcome-background {
     position: absolute;
-
     inset: 0;
-
     z-index: -3;
-
     width: 100%;
     height: 100%;
 }
-
 
 .welcome-background img {
     width: 100%;
     height: 100%;
-
     display: block;
-
     object-fit: cover;
-
-    object-position:
-        center center;
-
-    transform: scale(1.002);
+    object-position: center center;
 }
-
-
-/*
- * No ocultamos la fotografía.
- *
- * Sólo generamos una zona ligeramente
- * más limpia del lado donde vivirá
- * el contenido.
- */
 
 .welcome-overlay {
     position: absolute;
-
     inset: 0;
-
     z-index: -2;
 
     background:
         linear-gradient(
             90deg,
-
-            rgba(
-                244,
-                240,
-                232,
-                0.84
-            )
-            0%,
-
-            rgba(
-                244,
-                240,
-                232,
-                0.68
-            )
-            22%,
-
-            rgba(
-                244,
-                240,
-                232,
-                0.33
-            )
-            43%,
-
-            rgba(
-                21,
-                38,
-                45,
-                0.04
-            )
-            67%,
-
-            rgba(
-                21,
-                38,
-                45,
-                0.13
-            )
-            100%
+            rgba(244, 240, 232, 0.84) 0%,
+            rgba(244, 240, 232, 0.68) 22%,
+            rgba(244, 240, 232, 0.33) 43%,
+            rgba(21, 38, 45, 0.04) 67%,
+            rgba(21, 38, 45, 0.13) 100%
         );
-
-    transition:
-        background
-        700ms ease;
 }
-
-
-/* =========================================================
-   FINE FRAME
-   ========================================================= */
 
 .welcome-section::before {
     content: "";
-
     position: absolute;
-
     inset: 14px;
-
     z-index: 10;
-
     border:
         1px solid
         rgba(
@@ -126,132 +56,112 @@
             232,
             0.58
         );
-
     pointer-events: none;
 }
 
+.welcome-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        rgba(
+            21,
+            38,
+            45,
+            0.53
+        );
+    opacity: 0;
+    transition:
+        opacity
+        550ms
+        ease;
+}
+
+.welcome-section.is-video-open
+.welcome-overlay::after {
+    opacity: 1;
+}
 
 .welcome-frame {
     position: absolute;
-
     inset: 25px;
-
     z-index: 10;
-
     pointer-events: none;
 }
 
-
-/*
- * Pequeños detalles en las esquinas.
- * No hacemos otro rectángulo completo
- * para evitar sobrecargar la foto.
- */
-
 .welcome-frame-corner {
     position: absolute;
-
     width: 34px;
     height: 34px;
-
     opacity: 0.72;
 }
-
 
 .welcome-frame-corner--top-left {
     top: 0;
     left: 0;
-
     border-top:
         1px solid
         var(--color-champagne);
-
     border-left:
         1px solid
         var(--color-champagne);
 }
-
 
 .welcome-frame-corner--top-right {
     top: 0;
     right: 0;
-
     border-top:
         1px solid
         var(--color-champagne);
-
     border-right:
         1px solid
         var(--color-champagne);
 }
 
-
 .welcome-frame-corner--bottom-left {
     bottom: 0;
     left: 0;
-
     border-bottom:
         1px solid
         var(--color-champagne);
-
     border-left:
         1px solid
         var(--color-champagne);
 }
 
-
 .welcome-frame-corner--bottom-right {
     right: 0;
     bottom: 0;
-
     border-right:
         1px solid
         var(--color-champagne);
-
     border-bottom:
         1px solid
         var(--color-champagne);
 }
 
-
-/* =========================================================
-   CONTENT
-   ========================================================= */
-
 .welcome-content {
     position: relative;
-
     z-index: 3;
-
     width:
         min(
             650px,
             47vw
         );
-
     margin-left:
         clamp(
             70px,
             8vw,
             170px
         );
-
-    padding:
-        80px 0;
-
+    padding: 80px 0;
     text-align: left;
-
-    transform:
-        translateY(-1.5vh);
-
+    transform: translateY(-1.5vh);
     opacity: 1;
-
     visibility: visible;
-
     transition:
         opacity
         520ms ease,
-
         transform
         700ms
         cubic-bezier(
@@ -265,153 +175,78 @@
         520ms ease;
 }
 
-
-/* =========================================================
-   KICKER
-   ========================================================= */
-
 .welcome-kicker {
     margin-bottom: 24px;
-
-    font-family:
-        var(--font-body);
-
+    font-family: var(--font-body);
     font-size:
         clamp(
             0.64rem,
             0.75vw,
             0.76rem
         );
-
     font-weight: 500;
-
     letter-spacing: 0.48em;
-
     text-transform: uppercase;
-
-    color:
-        var(--color-champagne);
+    color: var(--color-champagne);
 }
-
-
-/* =========================================================
-   TITLE
-   ========================================================= */
 
 .welcome-title {
     margin: 0;
-
-    font-family:
-        var(--font-title);
-
+    font-family: var(--font-title);
     font-size:
         clamp(
             4rem,
             6.5vw,
             7.1rem
         );
-
     font-weight: 500;
-
     line-height: 0.94;
-
-    letter-spacing:
-        -0.045em;
-
-    color:
-        var(--color-midnight);
+    letter-spacing: -0.045em;
+    color: var(--color-midnight);
 }
-
-
-/* =========================================================
-   DIVIDER
-   ========================================================= */
 
 .welcome-divider {
     width: 74px;
     height: 1px;
-
-    margin:
-        36px 0;
-
-    background:
-        var(--color-champagne);
+    margin: 36px 0;
+    background: var(--color-champagne);
 }
-
-
-/* =========================================================
-   TEXT
-   ========================================================= */
 
 .welcome-text {
     max-width: 610px;
-
     margin: 0;
-
-    font-family:
-        var(--font-body);
-
+    font-family: var(--font-body);
     font-size:
         clamp(
             0.95rem,
             1.15vw,
             1.08rem
         );
-
     font-weight: 400;
-
     line-height: 1.9;
-
-    color:
-        var(--color-ocean);
+    color: var(--color-ocean);
 }
-
-
-/* =========================================================
-   SIGNATURE
-   ========================================================= */
 
 .welcome-signature {
     margin-top: 29px;
-
-    font-family:
-        var(--font-script);
-
+    font-family: var(--font-script);
     font-size:
         clamp(
             2.8rem,
             4.5vw,
             4.4rem
         );
-
     line-height: 1;
-
-    color:
-        var(--color-slate);
+    color: var(--color-slate);
 }
-
-
-/* =========================================================
-   SAVE THE DATE BUTTON
-   ========================================================= */
 
 .welcome-save-date-button {
     min-height: 52px;
-
     margin-top: 33px;
-
-    padding:
-        6px
-        22px
-        6px
-        7px;
-
+    padding: 6px 22px 6px 7px;
     display: inline-flex;
-
     align-items: center;
-
     gap: 13px;
-
     border:
         1px solid
         rgba(
@@ -420,10 +255,7 @@
             45,
             0.34
         );
-
-    border-radius:
-        var(--radius-pill);
-
+    border-radius: var(--radius-pill);
     background:
         rgba(
             244,
@@ -431,29 +263,15 @@
             232,
             0.48
         );
-
-    color:
-        var(--color-midnight);
-
-    font-family:
-        var(--font-body);
-
+    color: var(--color-midnight);
+    font-family: var(--font-body);
     font-size: 0.68rem;
-
     font-weight: 500;
-
     letter-spacing: 0.2em;
-
     text-transform: uppercase;
-
     cursor: pointer;
-
-    backdrop-filter:
-        blur(8px);
-
-    -webkit-backdrop-filter:
-        blur(8px);
-
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     transition:
         color 0.3s ease,
         background 0.3s ease,
@@ -462,49 +280,30 @@
         transform 0.3s ease;
 }
 
-
 .welcome-save-date-button-icon {
     width: 38px;
     height: 38px;
-
     flex-shrink: 0;
-
     display: grid;
-
     place-items: center;
-
     border-radius: 50%;
-
-    background:
-        var(--color-midnight);
-
-    color:
-        var(--color-ivory);
-
+    background: var(--color-midnight);
+    color: var(--color-ivory);
     transition:
         background 0.3s ease,
         transform 0.3s ease;
 }
 
-
 .welcome-save-date-button-icon svg {
     width: 16px;
     height: 16px;
-
     fill: currentColor;
 }
 
-
 .welcome-save-date-button:hover {
-    border-color:
-        var(--color-champagne);
-
-    background:
-        var(--color-midnight);
-
-    color:
-        var(--color-ivory);
-
+    border-color: var(--color-champagne);
+    background: var(--color-midnight);
+    color: var(--color-ivory);
     box-shadow:
         0 16px 38px
         rgba(
@@ -513,66 +312,41 @@
             45,
             0.20
         );
-
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 }
-
 
 .welcome-save-date-button:hover
 .welcome-save-date-button-icon {
-    background:
-        var(--color-champagne);
-
-    transform:
-        scale(1.04);
+    background: var(--color-champagne);
+    transform: scale(1.04);
 }
-
 
 .welcome-save-date-button:focus-visible {
     outline:
         2px solid
         var(--color-champagne);
-
     outline-offset: 4px;
 }
 
-
-/* =========================================================
-   VIDEO LAYER
-   ========================================================= */
-
 .welcome-video-layer {
     position: absolute;
-
     inset: 0;
-
     z-index: 5;
-
     padding:
         clamp(
             36px,
             6vw,
             90px
         );
-
     display: grid;
-
     place-items: center;
-
     opacity: 0;
-
     visibility: hidden;
-
     pointer-events: none;
-
-    transform:
-        scale(0.985);
-
+    transform: scale(0.985);
     transition:
         opacity
         550ms ease,
-
         transform
         750ms
         cubic-bezier(
@@ -581,28 +355,18 @@
             0.36,
             1
         ),
-
         visibility
         550ms ease;
 }
 
-
-/* =========================================================
-   VIDEO CONTAINER
-   ========================================================= */
-
 .welcome-video-container {
     position: relative;
-
     width:
         min(
             860px,
             73vw
         );
-
-    padding:
-        10px;
-
+    padding: 10px;
     background:
         rgba(
             244,
@@ -610,7 +374,6 @@
             232,
             0.08
         );
-
     box-shadow:
         0 32px 90px
         rgba(
@@ -619,23 +382,13 @@
             45,
             0.32
         );
-
-    backdrop-filter:
-        blur(6px);
-
-    -webkit-backdrop-filter:
-        blur(6px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
-
-/*
- * Línea editorial alrededor del video.
- */
 
 .welcome-video-decoration {
     position: absolute;
-
     inset: 0;
-
     border:
         1px solid
         rgba(
@@ -644,7 +397,6 @@
             232,
             0.65
         );
-
     pointer-events: none;
 }
 
@@ -657,14 +409,6 @@
     display: block;
     object-fit: contain;
     background: var(--color-midnight);
-
-    /*
-     * El invitado no manipula directamente
-     * el elemento <video>.
-     *
-     * Play, pausa y finalización son
-     * controlados por JavaScript.
-     */
     pointer-events: none;
     user-select: none;
     -webkit-user-select: none;
@@ -775,7 +519,6 @@ body.welcome-video-lock {
 
 .welcome-video-footer span {
     height: 1px;
-
     background:
         rgba(
             244,
@@ -788,24 +531,16 @@ body.welcome-video-lock {
 
 .welcome-video-footer p {
     margin: 0;
-
-    font-family:
-        var(--font-body);
-
+    font-family: var(--font-body);
     font-size: 0.63rem;
-
     letter-spacing: 0.28em;
 }
 
 .welcome-section.is-video-open
 .welcome-content {
     opacity: 0;
-
     visibility: hidden;
-
-    transform:
-        translateY(-22px);
-
+    transform: translateY(-22px);
     pointer-events: none;
 }
 
@@ -813,34 +548,57 @@ body.welcome-video-lock {
 .welcome-section.is-video-open
 .welcome-video-layer {
     opacity: 1;
-
     visibility: visible;
-
     pointer-events: auto;
-
-    transform:
-        scale(1);
+    transform: scale(1);
 }
 
+/* Animación del botón */
+.welcome-save-date-button-icon {
+    position: relative;
+}
 
-/*
- * La fotografía NO desaparece.
- *
- * Simplemente oscurecemos un poco el fondo
- * para que el video pase al primer plano.
- */
-
-.welcome-section.is-video-open
-.welcome-overlay {
-    background:
+.welcome-save-date-button-icon::after {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border:
+        1px solid
         rgba(
-            21,
-            38,
-            45,
-            0.53
+            184,
+            156,
+            117,
+            0.55
         );
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0.92);
+    animation:
+        welcomePlayPulse
+        2800ms
+        ease-in-out
+        infinite;
 }
 
+
+@keyframes welcomePlayPulse {
+
+    0%,
+    100% {
+        opacity: 0.12;
+
+        transform:
+            scale(0.94);
+    }
+
+    50% {
+        opacity: 0.55;
+
+        transform:
+            scale(1.10);
+    }
+
+}
 
 @media (max-width: 1100px) {
     .welcome-content {
@@ -946,11 +704,6 @@ and
 }
 
 @media (max-width: 768px) {
-    .welcome-section {
-        min-height: 100svh;
-        align-items: flex-start;
-    }
-
     .welcome-background img {
         object-position: center center;
     }

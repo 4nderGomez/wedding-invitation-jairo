@@ -40,12 +40,16 @@
                 media="(max-width: 768px)"
                 srcset="/images/portada/entry-mobile.webp"
                 th:srcset="@{/images/portada/entry-mobile.webp}"
+                type="image/webp"
             >
 
             <img
                 src="/images/portada/entry-desktop.webp"
                 th:src="@{/images/portada/entry-desktop.webp}"
                 alt=""
+                loading="eager"
+                fetchpriority="high"
+                draggable="false"
             >
         </picture>
 
@@ -103,7 +107,7 @@
                 ></div>
 
                 <p class="invitation-entry-copy">
-                    Acompañanos a descubrir lo que hemos preparado para ti.
+                    Acompáñanos a descubrir lo que hemos preparado para ti.
                 </p>
 
                 <button
@@ -239,10 +243,23 @@
         <header class="hero" id="hero">
             <picture class="hero-background">
                 <!-- Fotografía exclusiva para teléfono -->
-                <source media="(max-width: 768px)" srcset="/images/hero/hero-mobile.webp" th:srcset="@{/images/hero/hero-mobile.webp}">
+                <source 
+                    media="(max-width: 768px)"
+                    srcset="/images/hero/hero-mobile.webp"
+                    th:srcset="@{/images/hero/hero-mobile.webp}"
+                    type="image/webp"
+                >
 
                 <!-- Fotografía escritorio -->
-                <img src="/images/hero/hero-desktop.webp" th:src="@{/images/hero/hero-desktop.webp}" alt="Jairo y Jennifer en la playa">
+                <img 
+                    src="/images/hero/hero-desktop.webp"
+                    th:src="@{/images/hero/hero-desktop.webp}"
+                    alt="Jairo y Jennifer en la playa"
+                    loading="eager"
+                    decoding="async"
+                    fetchpriority="auto"
+                    draggable="false"
+                >
             </picture>
 
             <div class="hero-overlay" aria-hidden="true"></div>
@@ -267,7 +284,7 @@
                         Con alegría queremos compartir
                         el inicio de esta nueva historia.
                     </p>
-                    <a href="#rsvp" class="hero-button">
+                    <a href="#confirmation" class="hero-button">
                         Confirmar asistencia
                     </a>
                 </div>
@@ -282,15 +299,21 @@
             <!--MENSAJE DE AGRADECIMIENTO A LOS INVITADOS -->
             <section class="section welcome-section" id="welcome">
                 <picture class="welcome-background" aria-hidden="true">
-                    <source media="(max-width: 768px)"
+                    <source 
+                        media="(max-width: 768px)"
                         srcset="/images/welcome/welcome-mobile.webp"
                         th:srcset="@{/images/welcome/welcome-mobile.webp}"
+                        type="image/webp"
                     >
 
                     <img
                         src="/images/welcome/welcome-desktop.webp"
                         th:src="@{/images/welcome/welcome-desktop.webp}"
                         alt=""
+                        loading="lazy"
+                        decoding="async"
+                        fetchpriority="low"
+                        draggable="false"
                     >
                 </picture>
 
@@ -380,6 +403,12 @@
                                 type="video/mp4"
                             >
 
+                            <source
+                                src="/video/save-the-date.webm"
+                                th:src="@{/video/save-the-date.webm}"
+                                type="video/webm"
+                            >
+
                             Tu navegador no puede reproducir este video.
                         </video>
 
@@ -396,17 +425,22 @@
 
             <!-- NOMBRES DE NOVIOS Y FAMILIAS -->
             <section class="section family-section" id="family">
-                <picture class="family-background">
+                <picture class="family-background" aria-hidden="true">
                     <source
                         media="(max-width: 900px)"
                         srcset="/images/family/family-mobile.webp"
                         th:srcset="@{/images/family/family-mobile.webp}"
+                        type="image/webp"
                     >
 
                     <img
                         src="/images/family/family-desktop.webp"
                         th:src="@{/images/family/family-desktop.webp}"
                         alt="Jairo y Jennifer frente al mar"
+                        loading="lazy"
+                        decoding="async"
+                        fetchpriority="low"
+                        draggable="false"
                     >
                 </picture>
 
@@ -553,6 +587,10 @@
                         src="/images/details/wedding-details-desktop.webp"
                         th:src="@{/images/details/wedding-details-desktop.webp}"
                         alt=""
+                        loading="lazy"
+                        decoding="async"
+                        fetchpriority="low"
+                        draggable="false"
                     >
                 </picture>
 
@@ -1004,103 +1042,281 @@
                                 class="gallery-track"
                                 id="galleryTrack"
                             >
-                                <figure
-                                    class="gallery-slide"
-                                >
+                                <!-- FOTO 1 -->
+                                <figure class="gallery-slide">
                                     <img
-                                        src="/images/gallery/1.webp"
-                                        th:src="@{/images/gallery/1.webp}"
+                                        src="/images/gallery/thumbs/1-480.webp"
+                                        srcset="
+                                            /images/gallery/thumbs/1-480.webp 480w,
+                                            /images/gallery/thumbs/1-768.webp 768w
+                                        "
+                                        sizes="
+                                            (max-width: 430px) 225px,
+                                            (max-width: 768px) 245px,
+                                            (max-width: 1024px) 33vw,
+                                            25vw
+                                        "
+                                        data-full-src="/images/gallery/full/1-1280.webp"
+                                        data-full-srcset="
+                                            /images/gallery/full/1-1280.webp 1280w,
+                                            /images/gallery/full/1-1920.webp 1920w
+                                        "
                                         alt="Jairo y Jennifer durante su sesión fotográfica"
+                                        loading="lazy"
+                                        decoding="async"
+                                        fetchpriority="low"
+                                        draggable="false"
                                     >
                                 </figure>
 
-                                <figure
-                                    class="gallery-slide"
-                                >
+                                <!-- FOTO 2 -->
+                                <figure class="gallery-slide">
                                     <img
-                                        src="/images/gallery/2.webp"
-                                        th:src="@{/images/gallery/2.webp}"
+                                        src="/images/gallery/thumbs/2-480.webp"
+                                        srcset="
+                                            /images/gallery/thumbs/2-480.webp 480w,
+                                            /images/gallery/thumbs/2-768.webp 768w
+                                        "
+                                        sizes="
+                                            (max-width: 430px) 225px,
+                                            (max-width: 768px) 245px,
+                                            (max-width: 1024px) 33vw,
+                                            25vw
+                                        "
+                                        data-full-src="/images/gallery/full/2-1280.webp"
+                                        data-full-srcset="
+                                            /images/gallery/full/2-1280.webp 1280w,
+                                            /images/gallery/full/2-1920.webp 1920w
+                                        "
                                         alt="Jairo y Jennifer durante su sesión fotográfica"
+                                        loading="lazy"
+                                        decoding="async"
+                                        fetchpriority="low"
+                                        draggable="false"
                                     >
                                 </figure>
 
-                                <figure
-                                    class="gallery-slide"
-                                >
+
+                                <!-- FOTO 3 -->
+                                <figure class="gallery-slide">
                                     <img
-                                        src="/images/gallery/3.webp"
-                                        th:src="@{/images/gallery/3.webp}"
+                                        src="/images/gallery/thumbs/3-480.webp"
+                                        srcset="
+                                            /images/gallery/thumbs/3-480.webp 480w,
+                                            /images/gallery/thumbs/3-768.webp 768w
+                                        "
+                                        sizes="
+                                            (max-width: 430px) 225px,
+                                            (max-width: 768px) 245px,
+                                            (max-width: 1024px) 33vw,
+                                            25vw
+                                        "
+                                        data-full-src="/images/gallery/full/3-1280.webp"
+                                        data-full-srcset="
+                                            /images/gallery/full/3-1280.webp 1280w,
+                                            /images/gallery/full/3-1920.webp 1920w
+                                        "
                                         alt="Jairo y Jennifer durante su sesión fotográfica"
+                                        loading="lazy"
+                                        decoding="async"
+                                        fetchpriority="low"
+                                        draggable="false"
                                     >
                                 </figure>
 
-                                <figure
-                                    class="gallery-slide"
-                                >
+
+                                <!-- FOTO 4 -->
+                                <figure class="gallery-slide">
                                     <img
-                                        src="/images/gallery/4.webp"
-                                        th:src="@{/images/gallery/4.webp}"
+                                        src="/images/gallery/thumbs/4-480.webp"
+                                        srcset="
+                                            /images/gallery/thumbs/4-480.webp 480w,
+                                            /images/gallery/thumbs/4-768.webp 768w
+                                        "
+                                        sizes="
+                                            (max-width: 430px) 225px,
+                                            (max-width: 768px) 245px,
+                                            (max-width: 1024px) 33vw,
+                                            25vw
+                                        "
+                                        data-full-src="/images/gallery/full/4-1280.webp"
+                                        data-full-srcset="
+                                            /images/gallery/full/4-1280.webp 1280w,
+                                            /images/gallery/full/4-1920.webp 1920w
+                                        "
                                         alt="Jairo y Jennifer durante su sesión fotográfica"
+                                        loading="lazy"
+                                        decoding="async"
+                                        fetchpriority="low"
+                                        draggable="false"
                                     >
                                 </figure>
 
-                                <figure
-                                    class="gallery-slide"
-                                >
+
+                                <!-- FOTO 5 -->
+                                <figure class="gallery-slide">
                                     <img
-                                        src="/images/gallery/5.webp"
-                                        th:src="@{/images/gallery/5.webp}"
+                                        src="/images/gallery/thumbs/5-480.webp"
+                                        srcset="
+                                            /images/gallery/thumbs/5-480.webp 480w,
+                                            /images/gallery/thumbs/5-768.webp 768w
+                                        "
+                                        sizes="
+                                            (max-width: 430px) 225px,
+                                            (max-width: 768px) 245px,
+                                            (max-width: 1024px) 33vw,
+                                            25vw
+                                        "
+                                        data-full-src="/images/gallery/full/5-1280.webp"
+                                        data-full-srcset="
+                                            /images/gallery/full/5-1280.webp 1280w,
+                                            /images/gallery/full/5-1920.webp 1920w
+                                        "
                                         alt="Jairo y Jennifer durante su sesión fotográfica"
+                                        loading="lazy"
+                                        decoding="async"
+                                        fetchpriority="low"
+                                        draggable="false"
                                     >
                                 </figure>
 
-                                <figure
-                                    class="gallery-slide"
-                                >
+
+                                <!-- FOTO 6 -->
+                                <figure class="gallery-slide">
                                     <img
-                                        src="/images/gallery/6.webp"
-                                        th:src="@{/images/gallery/6.webp}"
+                                        src="/images/gallery/thumbs/6-480.webp"
+                                        srcset="
+                                            /images/gallery/thumbs/6-480.webp 480w,
+                                            /images/gallery/thumbs/6-768.webp 768w
+                                        "
+                                        sizes="
+                                            (max-width: 430px) 225px,
+                                            (max-width: 768px) 245px,
+                                            (max-width: 1024px) 33vw,
+                                            25vw
+                                        "
+                                        data-full-src="/images/gallery/full/6-1280.webp"
+                                        data-full-srcset="
+                                            /images/gallery/full/6-1280.webp 1280w,
+                                            /images/gallery/full/6-1920.webp 1920w
+                                        "
                                         alt="Jairo y Jennifer durante su sesión fotográfica"
+                                        loading="lazy"
+                                        decoding="async"
+                                        fetchpriority="low"
+                                        draggable="false"
                                     >
                                 </figure>
 
-                                <figure
-                                    class="gallery-slide"
-                                >
+
+                                <!-- FOTO 7 -->
+                                <figure class="gallery-slide">
                                     <img
-                                        src="/images/gallery/7.webp"
-                                        th:src="@{/images/gallery/7.webp}"
+                                        src="/images/gallery/thumbs/7-480.webp"
+                                        srcset="
+                                            /images/gallery/thumbs/7-480.webp 480w,
+                                            /images/gallery/thumbs/7-768.webp 768w
+                                        "
+                                        sizes="
+                                            (max-width: 430px) 225px,
+                                            (max-width: 768px) 245px,
+                                            (max-width: 1024px) 33vw,
+                                            25vw
+                                        "
+                                        data-full-src="/images/gallery/full/7-1280.webp"
+                                        data-full-srcset="
+                                            /images/gallery/full/7-1280.webp 1280w,
+                                            /images/gallery/full/7-1920.webp 1920w
+                                        "
                                         alt="Jairo y Jennifer durante su sesión fotográfica"
+                                        loading="lazy"
+                                        decoding="async"
+                                        fetchpriority="low"
+                                        draggable="false"
                                     >
                                 </figure>
 
-                                <figure
-                                    class="gallery-slide"
-                                >
+
+                                <!-- FOTO 8 -->
+                                <figure class="gallery-slide">
                                     <img
-                                        src="/images/gallery/8.webp"
-                                        th:src="@{/images/gallery/8.webp}"
+                                        src="/images/gallery/thumbs/8-480.webp"
+                                        srcset="
+                                            /images/gallery/thumbs/8-480.webp 480w,
+                                            /images/gallery/thumbs/8-768.webp 768w
+                                        "
+                                        sizes="
+                                            (max-width: 430px) 225px,
+                                            (max-width: 768px) 245px,
+                                            (max-width: 1024px) 33vw,
+                                            25vw
+                                        "
+                                        data-full-src="/images/gallery/full/8-1280.webp"
+                                        data-full-srcset="
+                                            /images/gallery/full/8-1280.webp 1280w,
+                                            /images/gallery/full/8-1920.webp 1920w
+                                        "
                                         alt="Jairo y Jennifer durante su sesión fotográfica"
+                                        loading="lazy"
+                                        decoding="async"
+                                        fetchpriority="low"
+                                        draggable="false"
                                     >
                                 </figure>
 
-                                <figure
-                                    class="gallery-slide"
-                                >
+
+                                <!-- FOTO 9 -->
+                                <figure class="gallery-slide">
                                     <img
-                                        src="/images/gallery/9.webp"
-                                        th:src="@{/images/gallery/9.webp}"
+                                        src="/images/gallery/thumbs/9-480.webp"
+                                        srcset="
+                                            /images/gallery/thumbs/9-480.webp 480w,
+                                            /images/gallery/thumbs/9-768.webp 768w
+                                        "
+                                        sizes="
+                                            (max-width: 430px) 225px,
+                                            (max-width: 768px) 245px,
+                                            (max-width: 1024px) 33vw,
+                                            25vw
+                                        "
+                                        data-full-src="/images/gallery/full/9-1280.webp"
+                                        data-full-srcset="
+                                            /images/gallery/full/9-1280.webp 1280w,
+                                            /images/gallery/full/9-1920.webp 1920w
+                                        "
                                         alt="Jairo y Jennifer durante su sesión fotográfica"
+                                        loading="lazy"
+                                        decoding="async"
+                                        fetchpriority="low"
+                                        draggable="false"
                                     >
                                 </figure>
 
-                                <figure
-                                    class="gallery-slide"
-                                >
+
+                                <!-- FOTO 10 -->
+                                <figure class="gallery-slide">
                                     <img
-                                        src="/images/gallery/10.webp"
-                                        th:src="@{/images/gallery/10.webp}"
+                                        src="/images/gallery/thumbs/10-480.webp"
+                                        srcset="
+                                            /images/gallery/thumbs/10-480.webp 480w,
+                                            /images/gallery/thumbs/10-768.webp 768w
+                                        "
+                                        sizes="
+                                            (max-width: 430px) 225px,
+                                            (max-width: 768px) 245px,
+                                            (max-width: 1024px) 33vw,
+                                            25vw
+                                        "
+                                        data-full-src="/images/gallery/full/10-1280.webp"
+                                        data-full-srcset="
+                                            /images/gallery/full/10-1280.webp 1280w,
+                                            /images/gallery/full/10-1920.webp 1920w
+                                        "
                                         alt="Jairo y Jennifer durante su sesión fotográfica"
+                                        loading="lazy"
+                                        decoding="async"
+                                        fetchpriority="low"
+                                        draggable="false"
                                     >
                                 </figure>
                             </div>
@@ -1213,6 +1429,8 @@
                             id="lightboxImage"
                             src=""
                             alt="Fotografía ampliada de Jairo y Jennifer"
+                            decoding="async"
+                            draggable="false"
                         >
                     </div>
 

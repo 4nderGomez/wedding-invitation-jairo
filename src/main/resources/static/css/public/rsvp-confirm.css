@@ -486,7 +486,6 @@
             brightness(0.76);
     }
 
-
     .rsvp-confirm-card {
         width:
             min(
@@ -500,27 +499,20 @@
             28px;
     }
 
-
     .rsvp-confirm-card::before {
         inset: 7px;
     }
 
-
     .rsvp-confirm-emblem {
         width: 48px;
         height: 48px;
-
         margin-bottom: 15px;
     }
 
-
     .rsvp-confirm-kicker {
         font-size: 0.42rem;
-
-        letter-spacing:
-            0.25em;
+        letter-spacing: 0.25em;
     }
-
 
     .rsvp-confirm-card h3 {
         font-size:
@@ -531,54 +523,31 @@
             );
     }
 
-
     .rsvp-confirm-divider {
         margin:
             17px auto;
     }
 
-
     #rsvpConfirmMessage {
         max-width: 300px;
-
         font-size: 0.72rem;
-
         line-height: 1.58;
     }
 
-
     .rsvp-confirm-actions {
         margin-top: 25px;
-
         flex-direction: column-reverse;
-
         gap: 9px;
     }
 
-
-    /*
-     * La acción definitiva queda primero
-     * visualmente.
-     */
-
-    .rsvp-confirm-primary,
-    .rsvp-confirm-secondary {
+    .rsvp-confirm-primary, .rsvp-confirm-secondary {
         width: 100%;
-
         min-height: 45px;
     }
 
 }
 
-
-/* =========================================================
-   VERY SMALL / SHORT PHONE
-   ========================================================= */
-
-@media
-(max-width: 390px),
-(max-height: 620px) {
-
+@media (max-width: 390px), (max-height: 620px) {
     .rsvp-confirm-card {
         padding:
             30px
@@ -590,7 +559,6 @@
     .rsvp-confirm-emblem {
         width: 42px;
         height: 42px;
-
         margin-bottom: 12px;
     }
 
@@ -599,23 +567,15 @@
         font-size: 2rem;
     }
 
-
     .rsvp-confirm-divider {
-        margin:
-            13px auto;
+        margin: 13px auto;
     }
-
 
     .rsvp-confirm-actions {
         margin-top: 19px;
     }
 
 }
-
-
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
 
 @media (
     prefers-reduced-motion: reduce

@@ -1,46 +1,26 @@
-/* =========================================================
-   PHOTOS
-   Gallery + Guest photos
-   ========================================================= */
-
 .photos-section {
     position: relative;
-
     isolation: isolate;
-
     width: 100%;
-
     min-height: 100svh;
-
     overflow: hidden;
-
-    color:
-        var(--color-ivory);
-
-    /*
-     * Océano.
-     *
-     * No existe ninguna imagen de fondo.
-     */
+    color: var(--color-ivory);
     background:
         radial-gradient(
             ellipse at 50% -10%,
             rgba(244, 240, 232, 0.24),
             transparent 38%
         ),
-
         radial-gradient(
             ellipse at 9% 35%,
             rgba(184, 199, 199, 0.24),
             transparent 32%
         ),
-
         radial-gradient(
             ellipse at 92% 55%,
             rgba(111, 137, 141, 0.28),
             transparent 34%
         ),
-
         linear-gradient(
             180deg,
 
@@ -58,27 +38,13 @@
         );
 }
 
-
-/* =========================================================
-   SEA FOAM
-   ========================================================= */
-
 .photos-section::before {
     content: "";
-
     position: absolute;
-
-    inset:
-        -18%
-        -10%
-        auto;
-
+    inset: -18% -10% auto;
     z-index: -2;
-
     height: 52%;
-
     opacity: 0.66;
-
     background:
         radial-gradient(
             ellipse at 5% 75%,
@@ -86,71 +52,55 @@
             0 4%,
             transparent 5.5%
         ),
-
         radial-gradient(
             ellipse at 17% 63%,
             rgba(244, 240, 232, 0.48)
             0 5%,
             transparent 6.5%
         ),
-
         radial-gradient(
             ellipse at 32% 77%,
             rgba(244, 240, 232, 0.42)
             0 6%,
             transparent 7.5%
         ),
-
         radial-gradient(
             ellipse at 51% 66%,
             rgba(244, 240, 232, 0.44)
             0 4.5%,
             transparent 6%
         ),
-
         radial-gradient(
             ellipse at 69% 77%,
             rgba(244, 240, 232, 0.45)
             0 6%,
             transparent 7.5%
         ),
-
         radial-gradient(
             ellipse at 84% 65%,
             rgba(244, 240, 232, 0.52)
             0 5%,
             transparent 6.5%
         ),
-
         radial-gradient(
             ellipse at 96% 78%,
             rgba(244, 240, 232, 0.58)
             0 6%,
             transparent 7.5%
         );
-
-    filter:
-        blur(5px);
-
+    filter: blur(5px);
     pointer-events: none;
 }
 
-
 .photos-section::after {
     content: "";
-
     position: absolute;
-
     left: -10%;
     right: -10%;
     bottom: -18%;
-
     z-index: -2;
-
     height: 44%;
-
     opacity: 0.46;
-
     background:
         radial-gradient(
             ellipse at 8% 30%,
@@ -800,7 +750,6 @@
                 0.24
             )
         );
-
     box-shadow:
         0 24px 58px
         rgba(
@@ -809,22 +758,14 @@
             45,
             0.18
         );
-
-    backdrop-filter:
-        blur(14px);
-
-    -webkit-backdrop-filter:
-        blur(14px);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 }
-
 
 .guest-photos-panel::before {
     content: "";
-
     position: absolute;
-
     inset: 7px;
-
     border:
         1px solid
         rgba(
@@ -833,25 +774,16 @@
             232,
             0.10
         );
-
     pointer-events: none;
 }
 
-
-/* Camera icon */
-
 .guest-photos-icon {
     position: relative;
-
     z-index: 1;
-
     width: 52px;
     height: 52px;
-
     display: grid;
-
     place-items: center;
-
     border:
         1px solid
         rgba(
@@ -860,150 +792,97 @@
             117,
             0.60
         );
-
     border-radius: 50%;
-
-    color:
-        var(--color-ivory);
+    color: var(--color-ivory);
 }
-
 
 .guest-photos-icon svg {
     width: 25px;
     height: 25px;
-
     fill: none;
-
     stroke: currentColor;
-
     stroke-width: 1.1;
-
     stroke-linecap: round;
-
     stroke-linejoin: round;
 }
 
-
-/* Copy */
-
 .guest-photos-copy {
     position: relative;
-
     z-index: 1;
 }
 
-
 .guest-photos-label {
-    margin-bottom: 3px;
-
-    font-family:
-        var(--font-body);
-
-    font-size: 0.5rem;
-
-    font-weight: 500;
-
-    letter-spacing: 0.28em;
-
-    text-transform: uppercase;
-
+    margin-bottom: 5px;
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
     color:
-        var(--color-champagne);
+        rgba(
+            202,
+            164,
+            108,
+            1
+        );
 }
-
 
 .guest-photos-copy h3 {
-    margin: 0;
-
-    font-family:
-        var(--font-title);
-
     font-size:
         clamp(
-            1.25rem,
-            1.8vw,
-            1.75rem
+            1.55rem,
+            2vw,
+            2rem
         );
-
     font-weight: 500;
-
-    color:
-        var(--color-ivory);
+    line-height: 1.08;
 }
 
-
 .guest-photos-copy > p:last-child {
-    max-width: 580px;
-
-    margin-top: 4px;
-
-    font-family:
-        var(--font-body);
-
+    max-width: 620px;
+    margin-top: 6px;
     font-size:
-        0.67rem;
-
+        clamp(
+            0.82rem,
+            0.9vw,
+            0.94rem
+        );
     line-height: 1.55;
-
     color:
         rgba(
             244,
             240,
             232,
-            0.67
+            0.86
         );
 }
-
-
-/* Action */
 
 .guest-photos-action {
     position: relative;
-
     z-index: 1;
-
     display: flex;
-
     align-items: center;
-
     gap: 16px;
 }
 
-
 .guest-photos-status {
-    max-width: 130px;
-
-    font-family:
-        var(--font-body);
-
-    font-size: 0.52rem;
-
-    line-height: 1.4;
-
-    text-align: right;
-
+    max-width: 160px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    line-height: 1.45;
     color:
         rgba(
             244,
             240,
             232,
-            0.58
+            0.78
         );
 }
 
-
 .guest-photos-button {
-    min-height: 43px;
-
-    padding:
-        0 20px;
-
+    min-height: 46px;
+    padding:  0 22px;
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
     border:
         1px solid
         rgba(
@@ -1012,10 +891,7 @@
             232,
             0.44
         );
-
-    border-radius:
-        var(--radius-pill);
-
+    border-radius: var(--radius-pill);
     background:
         rgba(
             244,
@@ -1023,23 +899,13 @@
             232,
             0.92
         );
-
-    color:
-        var(--color-midnight);
-
-    font-family:
-        var(--font-body);
-
-    font-size: 0.59rem;
-
-    font-weight: 600;
-
-    letter-spacing: 0.12em;
-
+    color: var(--color-midnight);
+    font-family: var(--font-body);
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
     text-transform: uppercase;
-
     cursor: pointer;
-
     transition:
         background 0.25s ease,
         color 0.25s ease,
@@ -1422,33 +1288,26 @@ body.gallery-open {
 
 /* MOBILE */
 @media (max-width: 768px) {
-
     .photos-section {
         min-height:
             100svh;
     }
 
-
     .photos-frame {
         inset: 16px;
     }
 
-
     .photos-frame::before {
         inset: -8px;
     }
-
 
     .photos-frame-corner {
         width: 24px;
         height: 24px;
     }
 
-
     .photos-layout {
-        min-height:
-            100svh;
-
+        min-height: 100svh;
         padding:
             max(
                 72px,
@@ -1468,20 +1327,15 @@ body.gallery-open {
             );
     }
 
-
     .gallery-heading {
         margin-bottom: 2px;
     }
 
-
     .photos-kicker {
         margin-bottom: 6px;
-
         font-size: 0.48rem;
-
         letter-spacing: 0.28em;
     }
-
 
     .gallery-heading h2 {
         font-size:
@@ -1491,7 +1345,6 @@ body.gallery-open {
                 3.8rem
             );
     }
-
 
     .photos-title-line {
         width: 180px;
@@ -1556,145 +1409,101 @@ body.gallery-open {
         font-size: 1.65rem;
     }
 
-
-    /* ===============================================
-       MOBILE GUEST PHOTOS
-       =============================================== */
-
     .guest-photos-panel {
+        font-size: 0.58rem;
+        letter-spacing: 0.18em;
         margin-top: 22px;
-
-        padding:
-            15px
-            15px;
-
+        padding: 15px 15px;
         display: grid;
-
         grid-template-columns:
             42px
             minmax(
                 0,
                 1fr
             );
-
-        gap:
-            10px
-            13px;
+        gap: 10px 13px;
     }
-
 
     .guest-photos-icon {
         width: 40px;
         height: 40px;
     }
 
-
     .guest-photos-icon svg {
         width: 20px;
         height: 20px;
     }
 
-
     .guest-photos-label {
         font-size: 0.43rem;
     }
 
-
     .guest-photos-copy h3 {
         font-size:
             clamp(
-                1.05rem,
-                5vw,
-                1.35rem
+                1.3rem,
+                5.5vw,
+                1.6rem
             );
     }
 
-
     .guest-photos-copy > p:last-child {
-        margin-top: 3px;
-
-        font-size: 0.58rem;
-
-        line-height: 1.45;
+        display: block;
+        margin-top: 5px;
+        font-size: 0.78rem;
+        line-height: 1.5;
     }
 
-
     .guest-photos-action {
-        grid-column:
-            1 / -1;
-
+        grid-column: 1 / -1;
         display: grid;
-
-        grid-template-columns:
-            1fr auto;
-
+        grid-template-columns: 1fr auto;
         gap: 10px;
-
         align-items: center;
     }
 
-
     .guest-photos-status {
-        max-width: none;
-
-        font-size: 0.47rem;
-
+        font-size: 0.62rem;
+        line-height: 1.4;
         text-align: left;
     }
 
-
     .guest-photos-button {
-        min-height: 38px;
-
-        padding:
-            0 15px;
-
-        font-size: 0.51rem;
+        min-height: 40px;
+        padding: 0 16px;
+        font-size: 0.58rem;
     }
-
-
-    /* Lightbox */
 
     .gallery-lightbox {
-        padding:
-            18px;
+        padding: 18px;
     }
-
 
     .lightbox-frame {
         padding: 6px;
     }
-
 
     .gallery-lightbox img {
         max-width: 82vw;
         max-height: 78vh;
     }
 
-
     .lightbox-close {
         top: 12px;
         right: 12px;
-
         width: 38px;
         height: 38px;
-
         font-size: 1.65rem;
     }
-
 
     .lightbox-arrow {
         width: 36px;
         height: 36px;
-
         font-size: 1.8rem;
     }
-
 
     .lightbox-arrow-left {
         left: 7px;
     }
-
 
     .lightbox-arrow-right {
         right: 7px;
@@ -1702,11 +1511,7 @@ body.gallery-open {
 
 }
 
-
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
+/* SMALL MOBILE */
 @media (max-width: 430px) {
 
     .photos-layout {

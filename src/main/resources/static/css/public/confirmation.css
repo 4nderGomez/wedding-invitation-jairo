@@ -1,77 +1,34 @@
-/* =========================================================
-   CONFIRMATION
-   RSVP + Calendar
-   ========================================================= */
-
 .confirmation-section {
     position: relative;
-
     isolation: isolate;
-
     width: 100%;
-
     min-height: 100svh;
-
     overflow: hidden;
-
-    background:
-        var(--color-midnight);
-
-    color:
-        var(--color-ivory);
+    background: var(--color-midnight);
+    color: var(--color-ivory);
 }
-
-
-/* =========================================================
-   BACKGROUND
-   ========================================================= */
 
 .confirmation-background {
     position: absolute;
-
     inset: 0;
-
     z-index: -4;
-
     width: 100%;
     height: 100%;
 }
-
 
 .confirmation-background img {
     width: 100%;
     height: 100%;
-
     display: block;
-
     object-fit: cover;
-
-    object-position:
-        center center;
+    object-position: center center;
 }
-
-
-/* =========================================================
-   OVERLAY
-   ========================================================= */
 
 .confirmation-overlay {
     position: absolute;
-
     inset: 0;
-
     z-index: -3;
-
     background:
-
-        /*
-         * Un poco más oscuro en laterales,
-         * donde estarán los paneles.
-         *
-         * El centro queda ligeramente
-         * más limpio para los novios.
-         */
-
         linear-gradient(
             90deg,
 
@@ -123,7 +80,6 @@
             )
             100%
         ),
-
         linear-gradient(
             180deg,
 
@@ -161,20 +117,11 @@
         );
 }
 
-
-/* =========================================================
-   FRAME
-   ========================================================= */
-
 .confirmation-section::after {
     content: "";
-
     position: absolute;
-
     inset: 14px;
-
     z-index: 10;
-
     border:
         1px solid
         rgba(
@@ -183,66 +130,50 @@
             232,
             0.34
         );
-
     pointer-events: none;
 }
-
 
 .confirmation-frame {
     position: absolute;
-
     inset: 25px;
-
     z-index: 10;
-
     pointer-events: none;
 }
 
-
 .confirmation-frame-corner {
     position: absolute;
-
     width: 34px;
     height: 34px;
 }
 
-
 .confirmation-frame-corner--top-left {
     top: 0;
     left: 0;
-
     border-top:
         1px solid
         var(--color-champagne);
-
     border-left:
         1px solid
         var(--color-champagne);
 }
 
-
 .confirmation-frame-corner--top-right {
     top: 0;
     right: 0;
-
     border-top:
         1px solid
         var(--color-champagne);
-
     border-right:
         1px solid
         var(--color-champagne);
 }
 
-
 .confirmation-frame-corner--bottom-left {
     bottom: 0;
     left: 0;
-
     border-bottom:
         1px solid
         var(--color-champagne);
-
     border-left:
         1px solid
         var(--color-champagne);
@@ -252,38 +183,24 @@
 .confirmation-frame-corner--bottom-right {
     right: 0;
     bottom: 0;
-
     border-right:
         1px solid
         var(--color-champagne);
-
     border-bottom:
         1px solid
         var(--color-champagne);
 }
 
-
-/* =========================================================
-   CONTAINER
-   ========================================================= */
-
 .confirmation-container {
     position: relative;
-
     z-index: 2;
-
     width:
         min(
             100%,
             1720px
         );
-
-    min-height:
-        100svh;
-
-    margin:
-        0 auto;
-
+    min-height: 100svh;
+    margin: 0 auto;
     padding:
         clamp(
             64px,
@@ -300,16 +217,9 @@
             5vh,
             68px
         );
-
     display: flex;
-
     flex-direction: column;
 }
-
-
-/* =========================================================
-   HEADING
-   ========================================================= */
 
 .confirmation-heading {
     width:
@@ -317,7 +227,6 @@
             100%,
             690px
         );
-
     margin:
         0 auto
         clamp(
@@ -325,60 +234,45 @@
             5vh,
             58px
         );
-
     text-align: center;
 }
 
-
 .confirmation-kicker {
     margin-bottom: 9px;
-
-    font-family:
-        var(--font-body);
-
+    font-family: var(--font-body);
+    text-transform: uppercase;
     font-size:
         clamp(
-            0.56rem,
-            0.7vw,
-            0.7rem
+            0.72rem,
+            0.9vw,
+            0.86rem
         );
-
-    font-weight: 500;
-
-    letter-spacing:
-        0.46em;
-
-    text-transform:
-        uppercase;
-
-    color:
-        var(--color-champagne);
+    font-weight: 700;
+    letter-spacing: 0.34em;
+    color: #B58B54;
+    text-shadow:
+        0 1px 8px
+        rgba(
+            21,
+            38,
+            45,
+            0.10
+        );
 }
-
 
 .confirmation-heading h2 {
     margin: 0;
-
-    font-family:
-        var(--font-title);
-
+    font-family: var(--font-title);
     font-size:
         clamp(
             3.3rem,
             5vw,
             5.3rem
         );
-
     font-weight: 500;
-
     line-height: 0.95;
-
-    letter-spacing:
-        -0.045em;
-
-    color:
-        var(--color-ivory);
-
+    letter-spacing: -0.045em;
+    color: var(--color-ivory);
     text-shadow:
         0 6px 26px
         rgba(
@@ -394,30 +288,19 @@
     width:
         min(
             100%,
-            250px
+            230px
         );
-
-    margin:
-        19px auto
-        14px;
-
+    margin: 16px auto 12px;
     display: grid;
-
-    grid-template-columns:
-        1fr
-        auto
-        1fr;
-
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-
     gap: 12px;
 }
-
 
 .confirmation-heading-line > span:first-child,
 .confirmation-heading-line > span:last-child {
     height: 1px;
-
+    opacity: 0.70;
     background:
         rgba(
             244,
@@ -427,59 +310,40 @@
         );
 }
 
-
 .confirmation-heading-line > span:nth-child(2) {
-    font-family:
-        var(--font-title);
-
-    font-size: 0.66rem;
-
-    letter-spacing:
-        0.16em;
-
-    color:
-        var(--color-champagne);
+    font-family: var(--font-title);
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: #B58B54;
 }
-
 
 .confirmation-heading-copy {
     margin: 0 auto;
-
-    max-width: 500px;
-
-    font-family:
-        var(--font-body);
-
+    max-width: 560px;
+    font-family: var(--font-body);
     font-size:
         clamp(
-            0.72rem,
-            0.9vw,
-            0.9rem
+            0.94rem,
+            1vw,
+            1.05rem
         );
-
-    line-height: 1.7;
-
+    font-weight: 500;
+    line-height: 1.55;
     color:
         rgba(
             244,
             240,
             232,
-            0.76
+            0.92
         );
+    text-wrap: balance;
 }
-
-
-/* =========================================================
-   LAYOUT
-   ========================================================= */
 
 .confirmation-layout {
     width: 100%;
-
     margin-top: auto;
-
     display: grid;
-
     grid-template-columns:
         minmax(
             390px,
@@ -493,9 +357,7 @@
             420px,
             520px
         );
-
     align-items: center;
-
     gap:
         clamp(
             24px,
@@ -504,17 +366,9 @@
         );
 }
 
-
-/* =========================================================
-   RSVP PANEL
-   ========================================================= */
-
 .confirmation-rsvp {
     position: relative;
-
-    padding:
-        13px;
-
+    padding: 13px;
     background:
         rgba(
             244,
@@ -522,7 +376,6 @@
             232,
             0.90
         );
-
     border:
         1px solid
         rgba(
@@ -531,7 +384,6 @@
             232,
             0.70
         );
-
     box-shadow:
         0 30px 90px
         rgba(
@@ -540,12 +392,8 @@
             45,
             0.32
         );
-
-    backdrop-filter:
-        blur(15px);
-
-    -webkit-backdrop-filter:
-        blur(15px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 }
 
 
@@ -698,61 +546,32 @@
             117,
             0.50
         );
-
-    color:
-        var(--color-ivory);
+    color: var(--color-ivory);
 }
-
 
 .confirmation-panel-label span {
-    font-family:
-        var(--font-title);
-
+    font-family: var(--font-title);
     font-size: 0.75rem;
-
-    color:
-        var(--color-champagne);
+    color: var(--color-champagne);
 }
-
 
 .confirmation-panel-label p {
     margin: 0;
-
-    font-family:
-        var(--font-body);
-
+    font-family: var(--font-body);
     font-size: 0.48rem;
-
     font-weight: 500;
-
-    letter-spacing:
-        0.16em;
-
-    text-transform:
-        uppercase;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
 }
-
-
-/* =========================================================
-   CENTER MARK
-   ========================================================= */
 
 .confirmation-center-mark {
     align-self: stretch;
-
     min-height: 390px;
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
-
-    color:
-        var(--color-ivory);
-
+    color: var(--color-ivory);
     text-shadow:
         0 4px 20px
         rgba(
@@ -788,79 +607,49 @@
         );
 }
 
-
 .confirmation-center-mark p {
-    margin:
-        13px 0
-        0;
-
-    font-family:
-        var(--font-title);
-
+    margin: 13px 0 0;
+    font-family: var(--font-title);
     font-size:
         clamp(
             3.4rem,
             5vw,
             5.8rem
         );
-
     line-height: 0.85;
 }
 
-
 .confirmation-center-mark small {
-    margin:
-        8px 0
-        13px;
-
-    font-family:
-        var(--font-body);
-
+    margin: 8px 0 13px;
+    font-family: var(--font-body);
     font-size: 0.52rem;
-
-    letter-spacing:
-        0.35em;
-
-    color:
-        var(--color-champagne);
+    letter-spacing: 0.35em;
+    color: var(--color-champagne);
 }
-
-
-/* =========================================================
-   RSVP VISUAL OVERRIDES
-   Functional structure untouched.
-   ========================================================= */
 
 .confirmation-rsvp
 .rsvp-intro {
     text-align: left;
 }
 
-
 .confirmation-rsvp
 .rsvp-intro .section-label {
-    color:
-        var(--color-champagne);
+    color: var(--color-champagne);
 }
-
 
 .confirmation-rsvp
 .rsvp-intro h2,
 .confirmation-rsvp
 .rsvp-result h2 {
-    color:
-        var(--color-midnight);
+    color: var(--color-midnight);
 }
-
 
 .confirmation-rsvp
 .rsvp-intro > p,
 .confirmation-rsvp
 .rsvp-result > p {
-    color:
-        var(--color-text-soft);
+    color: var(--color-text-soft);
 }
-
 
 .confirmation-rsvp
 .attendance-option {
@@ -871,7 +660,6 @@
             255,
             0.68
         );
-
     border:
         1px solid
         rgba(
@@ -882,12 +670,9 @@
         );
 }
 
-
 .confirmation-rsvp
 .attendance-option:hover {
-    border-color:
-        var(--color-champagne);
-
+    border-color: var(--color-champagne);
     box-shadow:
         0 12px 32px
         rgba(
@@ -898,39 +683,26 @@
         );
 }
 
-
 .confirmation-rsvp
 .attendance-option
 input[type="radio"] {
-    accent-color:
-        var(--color-ocean);
+    accent-color: var(--color-ocean);
 }
-
 
 .confirmation-rsvp
 .rsvp-continue-button,
 .confirmation-rsvp
 .form-submit button {
-    background:
-        var(--color-midnight);
-
-    color:
-        var(--color-ivory);
+    background: var(--color-midnight);
+    color: var(--color-ivory);
 }
-
 
 .confirmation-rsvp
 .rsvp-continue-button:hover:not(:disabled),
 .confirmation-rsvp
 .form-submit button:hover {
-    background:
-        var(--color-ocean);
+    background: var(--color-ocean);
 }
-
-
-/* =========================================================
-   INPUTS
-   ========================================================= */
 
 .confirmation-rsvp
 .form-group input,
@@ -954,9 +726,7 @@ input[type="radio"] {
             45,
             0.14
         );
-
-    color:
-        var(--color-midnight);
+    color: var(--color-midnight);
 }
 
 
@@ -1074,28 +844,16 @@ p {
 }
 
 
-/* =========================================================
-   MOBILE + TABLET SMALL
-   ========================================================= */
-
+/* MOBILE + TABLET SMALL */
 @media (max-width: 900px) {
 
     .confirmation-section {
         min-height: 100svh;
     }
 
-
     .confirmation-background img {
-        object-position:
-            center center;
+        object-position: center center;
     }
-
-
-    /*
-     * Imagen móvil:
-     * zona superior más limpia,
-     * zona inferior más oscura.
-     */
 
     .confirmation-overlay {
         background:
@@ -1109,7 +867,6 @@ p {
                     0.24
                 )
                 0%,
-
                 rgba(
                     21,
                     38,
@@ -1117,7 +874,6 @@ p {
                     0.08
                 )
                 23%,
-
                 rgba(
                     21,
                     38,
@@ -1125,7 +881,6 @@ p {
                     0.18
                 )
                 45%,
-
                 rgba(
                     21,
                     38,
@@ -1133,7 +888,6 @@ p {
                     0.68
                 )
                 66%,
-
                 rgba(
                     21,
                     38,
@@ -1144,27 +898,21 @@ p {
             );
     }
 
-
     .confirmation-section::after {
         inset: 8px;
     }
 
-
     .confirmation-frame {
         inset: 16px;
     }
-
 
     .confirmation-frame-corner {
         width: 24px;
         height: 24px;
     }
 
-
     .confirmation-container {
-        min-height:
-            100svh;
-
+        min-height: 100svh;
         padding:
             max(
                 78px,
@@ -1184,16 +932,21 @@ p {
             );
     }
 
-
     .confirmation-heading {
-        margin-bottom:
+        width:
+            min(
+                100%,
+                520px
+            );
+
+        margin:
+            0 auto
             clamp(
-                190px,
-                30vh,
-                300px
+                120px,
+                18vh,
+                190px
             );
     }
-
 
     .confirmation-heading h2 {
         font-size:
@@ -1204,34 +957,42 @@ p {
             );
     }
 
-
     .confirmation-kicker {
-        font-size: 0.48rem;
-
-        letter-spacing: 0.30em;
+        font-size: 0.56rem;
+        font-weight: 600;
+        letter-spacing: 0.28em;
     }
 
+    .confirmation-heading-line {
+        width: 205px;
+        margin: 14px auto 11px;
+    }
 
     .confirmation-heading-copy {
-        max-width: 320px;
-
-        font-size: 0.67rem;
+        max-width: 390px;
+        font-size:
+            clamp(
+                0.9rem,
+                2.1vw,
+                0.98rem
+            );
+        font-weight: 500;
+        line-height: 1.52;
+        color:
+            rgba(
+                244,
+                240,
+                232,
+                0.94
+            );
     }
-
-
-    /*
-     * Ahora RSVP y calendario
-     * aparecen uno debajo del otro.
-     */
 
     .confirmation-layout {
+        margin-top: 0;
         display: flex;
-
         flex-direction: column;
-
         gap: 34px;
     }
-
 
     .confirmation-rsvp,
     .confirmation-calendar {
@@ -1240,29 +1001,20 @@ p {
                 100%,
                 620px
             );
-
-        margin:
-            0 auto;
+        margin: 0 auto;
     }
-
 
     .confirmation-center-mark {
         min-height: auto;
-
         flex-direction: row;
-
         gap: 12px;
     }
-
 
     .confirmation-center-mark > span {
         width: auto;
         height: 1px;
-
         flex: 1;
-
         min-height: 0;
-
         background:
             linear-gradient(
                 90deg,
@@ -1280,27 +1032,19 @@ p {
             );
     }
 
-
     .confirmation-center-mark p {
         margin: 0;
-
         font-size: 2.1rem;
     }
 
-
     .confirmation-center-mark small {
-        margin: 0;
-
-        font-size: 0.44rem;
+        font-size: 0.54rem;
+        letter-spacing: 0.24em;
     }
 
 }
 
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
+/* MOBILE */
 @media (max-width: 600px) {
 
     .confirmation-container {
@@ -1308,21 +1052,20 @@ p {
         padding-right: 15px;
     }
 
-
-    /*
-     * Dejamos visible la pareja antes
-     * de comenzar los formularios.
-     */
-
     .confirmation-heading {
-        margin-bottom:
+        width:
+            min(
+                100%,
+                390px
+            );
+        margin:
+            0 auto
             clamp(
-                230px,
-                34vh,
-                330px
+                100px,
+                15vh,
+                145px
             );
     }
-
 
     .confirmation-heading h2 {
         font-size:
@@ -1333,38 +1076,60 @@ p {
             );
     }
 
-
-    .confirmation-heading-line {
-        width: 185px;
-
-        margin-top: 13px;
+    .confirmation-kicker {
+        font-size: 0.64rem;
+        font-weight: 700;
+        letter-spacing: 0.26em;
     }
 
+    .confirmation-heading-line > span:nth-child(2) {
+        font-size: 0.76rem;
+        font-weight: 600;
+    }
+
+    .confirmation-heading-line {
+        width: 180px;
+        margin: 13px auto 10px;
+    }
+
+    .confirmation-heading-copy {
+        max-width: 330px;
+        font-size:
+            clamp(
+                0.88rem,
+                3.7vw,
+                0.95rem
+            );
+        line-height: 1.48;
+        color:
+            rgba(
+                244,
+                240,
+                232,
+                0.95
+            );
+    }
 
     .confirmation-rsvp,
     .confirmation-calendar {
         padding: 8px;
     }
 
-
     .confirmation-rsvp-content,
     .confirmation-calendar-content {
-        padding:
-            30px 18px
-            22px;
+        padding: 30px 18px 22px;
     }
-
 
     .confirmation-panel-label {
         top: -15px;
         left: 17px;
     }
 
-
     .confirmation-panel-label p {
-        font-size: 0.42rem;
+        font-size: 0.56rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
     }
-
 
     .confirmation-rsvp
     .rsvp-intro h2 {
@@ -1376,39 +1141,42 @@ p {
             );
     }
 
-
     .confirmation-rsvp
     .attendance-option {
         min-height: 50px;
-
-        padding:
-            12px 14px;
+        padding: 12px 14px;
     }
 
 }
 
-
-/* =========================================================
-   SHORT PHONES
-   ========================================================= */
-
+/* SHORT PHONES */
 @media
 (max-width: 600px)
 and
 (max-height: 720px) {
 
     .confirmation-heading {
-        margin-bottom: 170px;
+        margin-bottom: 80px;
     }
-
-
-    .confirmation-heading-copy {
-        display: none;
-    }
-
 
     .confirmation-heading h2 {
-        font-size: 2.6rem;
+        font-size:
+            clamp(
+                2.35rem,
+                11vw,
+                2.8rem
+            );
+    }
+
+    .confirmation-heading-copy {
+        display: block;
+        max-width: 300px;
+        font-size: 0.84rem;
+        line-height: 1.45;
+    }
+
+    .confirmation-heading-line {
+        margin: 11px auto 9px;
     }
 
 }

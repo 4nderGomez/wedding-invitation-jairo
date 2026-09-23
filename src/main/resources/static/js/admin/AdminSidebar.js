@@ -1,15 +1,14 @@
 export class AdminSidebar {
     constructor() {
-        this.sidebar = document.querySelector(".admin-sidebar");
-        this.toggleButton = document.querySelector(".sidebar-toggle-button");
-        this.navLinks = document.querySelectorAll(".nav-link");
+        this.navigation = document.querySelector(".admin-bottom-nav");
+        this.navLinks = document.querySelectorAll(".admin-bottom-nav .nav-link");
         this.sections = document.querySelectorAll("main section[id]");
+        this.observer = null;
     }
 
     init() {
-        if (!this.sidebar) {
+        if (!this.navigation || !this.navLinks.length)
             return;
-        }
 
         this.bindEvents();
         this.observeSections();
@@ -18,96 +17,85 @@ export class AdminSidebar {
     bindEvents() {
         this.navLinks.forEach((link) => {
             link.addEventListener("click", () => {
-                this.clearActiveLinks();
-                link.classList.add("is-active");
-                this.closeMobileMenu();
-            });
-        });
+                    const href = link.getAttribute("href");
 
-        if (this.toggleButton) {
-            this.toggleButton.addEventListener("click", (event) => {
-                event.stopPropagation();
-                this.toggleMobileMenu();
-            });
-        }
+                    if (!href || !href.startsWith("#"))
+                        return;
 
-        document.addEventListener("click", (event) => {
-            const clickedInsideSidebar = this.sidebar.contains(event.target);
-            const clickedToggleButton = this.toggleButton?.contains(event.target);
+                    const sectionId = href.substring(1);
 
-            if (!clickedInsideSidebar && !clickedToggleButton) {
-                this.closeMobileMenu();
-            }
-        });
-
-        window.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") {
-                this.closeMobileMenu();
-            }
+                    this.setActiveLink(sectionId);
+                }
+            );
         });
     }
 
     observeSections() {
-        if (!this.sections.length) {
+        if (!this.sections.length)
             return;
-        }
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const sectionId = entry.target.id;
-                        this.setActiveLink(sectionId);
-                    }
-                });
-            },
-            {
-                root: null,
-                threshold: 0.35,
-                rootMargin: "-120px 0px -45% 0px"
+        this.observer =
+            new IntersectionObserver((entries) => {
+                    const visibleEntries =
+                        entries
+                            .filter(
+                                (entry) =>
+                                    entry.isIntersecting
+                            )
+
+                            .sort(
+                                (a, b) =>
+                                    b.intersectionRatio -
+                                    a.intersectionRatio
+                            );
+
+                    if (!visibleEntries.length)
+                        return;
+
+
+                    const activeSection = visibleEntries[0].target;
+
+                    this.setActiveLink(activeSection.id);
+                }, {
+                    root: null,
+
+                    threshold: [
+                        0.15,
+                        0.30,
+                        0.50,
+                        0.70
+                    ],
+
+                    rootMargin:
+                        "-15% 0px -55% 0px"
+                }
+            );
+
+        this.sections.forEach((section) => {
+                this.observer.observe(section);
             }
-        );
-
-        this.sections.forEach((section) => observer.observe(section));
-    }
-
-    toggleMobileMenu() {
-        this.sidebar.classList.toggle("is-open");
-        this.updateToggleButton();
-    }
-
-    closeMobileMenu() {
-        this.sidebar.classList.remove("is-open");
-        this.updateToggleButton();
-    }
-
-    updateToggleButton() {
-        if (!this.toggleButton) {
-            return;
-        }
-
-        const isOpen = this.sidebar.classList.contains("is-open");
-
-        this.toggleButton.textContent = isOpen ? "×" : "☰";
-        this.toggleButton.setAttribute(
-            "aria-label",
-            isOpen ? "Cerrar menú de administración" : "Abrir menú de administración"
         );
     }
 
     setActiveLink(sectionId) {
         this.clearActiveLinks();
 
-        const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+        const activeLink = document.querySelector(`.admin-bottom-nav .nav-link[href="#${sectionId}"]`);
 
-        if (activeLink) {
-            activeLink.classList.add("is-active");
-        }
+        if (!activeLink) 
+            return;
+
+        activeLink.classList.add("is-active");
+        activeLink.setAttribute("aria-current", "page");
     }
 
     clearActiveLinks() {
         this.navLinks.forEach((link) => {
-            link.classList.remove("is-active");
-        });
+                link.classList.remove("is-active"
+                );
+                link.removeAttribute("aria-current"
+                );
+            }
+        );
     }
 }

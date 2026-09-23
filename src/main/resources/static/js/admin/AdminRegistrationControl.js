@@ -68,29 +68,49 @@ export class AdminRegistrationControl {
     }
 
     render() {
-        this.toggleButton.classList.remove("is-enabled", "is-disabled", "is-locked");
+        this.toggleButton.classList.remove(
+            "is-enabled",
+            "is-disabled",
+            "is-locked"
+        );
 
-        this.counter.textContent = `Intentos usados: ${this.status.disableCount} de ${this.status.maxDisableCount}`;
+        this.counter.textContent =
+            `Desactivaciones usadas: ${this.status.disableCount} de ${this.status.maxDisableCount}`;
 
+
+        /*
+        * BLOQUEADO
+        */
         if (this.status.locked) {
-            this.toggleButton.textContent = "Bloqueado";
+            this.toggleButton.textContent = "Registro bloqueado";
             this.toggleButton.classList.add("is-locked");
             this.toggleButton.disabled = true;
+            this.toggleButton.setAttribute("aria-pressed", "false");
+            this.description.textContent = "El formulario quedó bloqueado después de utilizar las desactivaciones disponibles.";
 
-            this.description.textContent = "El control de registro fue bloqueado porque ya se usaron los 3 intentos de desactivación.";
             return;
         }
 
         this.toggleButton.disabled = false;
 
+        /*
+        * HABILITADO
+        */
         if (this.status.enabled) {
             this.toggleButton.textContent = "Registro habilitado";
             this.toggleButton.classList.add("is-enabled");
-            this.description.textContent = "Los invitados pueden confirmar su asistencia.";
-        } else {
-            this.toggleButton.textContent = "Registro deshabilitado";
-            this.toggleButton.classList.add("is-disabled");
-            this.description.textContent = "El botón Continuar está desactivado. Los invitados ya no pueden registrarse.";
+            this.toggleButton.setAttribute("aria-pressed", "true");
+            this.description.textContent = "Abierto: los invitados pueden enviar nuevas confirmaciones.";
+
+            return;
         }
+
+        /*
+        * DESHABILITADO
+        */
+        this.toggleButton.textContent = "Registro deshabilitado";
+        this.toggleButton.classList.add("is-disabled");
+        this.toggleButton.setAttribute("aria-pressed", "false");
+        this.description.textContent = "Cerrado: actualmente no se aceptan nuevas confirmaciones.";
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class SecurityConfig {
@@ -20,6 +22,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
                     "/",
+                    "/invitacion-novia",
+                    "/invitacion-novio",
                     "/i/**",
                     "/api/guests/confirm",
                     "/admin/api/settings/registration",
@@ -50,13 +54,18 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         UserDetails admin = User
-            .withUsername("admin")
-            .password("{noop}admin123")
+            .withUsername("AdminNovios")
+            .password(passwordEncoder.encode("Jairo&Jennifer"))
             .roles("ADMIN")
             .build();
 
-            return new InMemoryUserDetailsManager(admin);
+        return new InMemoryUserDetailsManager(admin);
     }
 }

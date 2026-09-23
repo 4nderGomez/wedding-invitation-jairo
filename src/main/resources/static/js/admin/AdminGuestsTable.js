@@ -100,10 +100,17 @@ export class AdminGuestsTable {
             const matchesSide = !side || guest.guestSide === side;
             const matchesAttendance = !attendance || guest.attendanceStatus === attendance;
 
-            const matchesType =
-                !type ||
-                (type === "ADULT" && (guest.adultCompanionsCount ?? 0) > 0) ||
-                (type === "CHILD" && (guest.childCompanionsCount ?? 0) > 0);
+            const childCompanionsCount = Number(guest.childCompanionsCount ?? 0);
+
+            const matchesType = !type ||
+                (
+                    type === "ADULT" &&
+                    childCompanionsCount === 0
+                ) ||
+                (
+                    type === "CHILD" &&
+                    childCompanionsCount > 0
+                );
 
             return matchesSearch && matchesSide && matchesAttendance && matchesType;
         });
@@ -130,8 +137,6 @@ export class AdminGuestsTable {
                 <td>${this.safeText(guest.firstName)}</td>
                 <td>${this.safeText(guest.lastName)}</td>
                 <td>${this.formatGuestSide(guest.guestSide)}</td>
-                <td>${this.safeText(guest.phone)}</td>
-                <td>${this.safeText(guest.email)}</td>
                 <td>${guest.adultCompanionsCount ?? 0}</td>
                 <td>${guest.childCompanionsCount ?? 0}</td>
                 <td>${this.formatAttendance(guest.attendanceStatus)}</td>

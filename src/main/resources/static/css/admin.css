@@ -10,7 +10,8 @@
 @import url("./admin/admin-sidebar.css");
 @import url("./admin/admin-header.css");
 @import url("./admin/admin-stats.css");
-@import url("./admin/admin-tables.css");
-@import url("./admin/admin-modal.css");
+@import url("./admin/admin-today.css");
 @import url("./admin/admin-messages.css");
+@import url("./admin/admin-guest.css");
 @import url("./admin/admin-registration.css");
+@import url("./admin/admin-modal.css");

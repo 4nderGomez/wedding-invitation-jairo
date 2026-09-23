@@ -49,8 +49,6 @@ export class AdminTodayRegistrations {
                 <td>${this.safeText(guest.firstName)}</td>
                 <td>${this.safeText(guest.lastName)}</td>
                 <td>${this.formatGuestSide(guest.guestSide)}</td>
-                <td>${this.safeText(guest.phone)}</td>
-                <td>${this.safeText(guest.email)}</td>
                 <td>${guest.adultCompanionsCount ?? 0}</td>
                 <td>${guest.childCompanionsCount ?? 0}</td>
                 <td>${this.formatAttendance(guest.attendanceStatus)}</td>

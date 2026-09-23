@@ -45,7 +45,7 @@ public class GuestService {
         guestGroup.setInvitationLink(invitationLink);
         guestGroup.setMainFirstName(cleanText(request.getMainFirstName()));
         guestGroup.setMainLastName(cleanText(request.getMainLastName()));
-        guestGroup.setGuestSide(request.getGuestSide());
+        guestGroup.setGuestSide(invitationLink.getGuestSide());
         guestGroup.setAttendanceStatus(request.getAttendanceStatus());
         guestGroup.setPhone(cleanText(request.getPhone()));
         guestGroup.setMessage(cleanText(request.getMessage()));
@@ -90,9 +90,6 @@ public class GuestService {
 
         if(isBlank(request.getMainLastName()))
             throw new IllegalArgumentException(("Los apellidos del invitado principal son obligatorios"));
-
-        if(request.getGuestSide() == null)
-            throw new IllegalArgumentException("Debes indicar de parte de quién viene el invitado");
 
         if(request.getAttendanceStatus() == AttendanceStatus.ATTENDING) {
             validateCompanionsCount(request.getAdultCompanionsCount(), "adultos");

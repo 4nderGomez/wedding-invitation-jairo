@@ -1,4 +1,5 @@
 import { AdminSidebar } from "./admin/AdminSidebar.js";
+import { AdminHeaderClock } from "./admin/AdminHeader.js";
 import { AdminDashboardSummary } from "./admin/AdminDashboardSummary.js";
 import { AdminTodayRegistrations } from "./admin/AdminTodayRegistrations.js";
 import { AdminDeleteModal } from "./admin/AdminDeleteModal.js";
@@ -8,6 +9,7 @@ import { AdminRegistrationControl } from "./admin/AdminRegistrationControl.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const adminSidebar = new AdminSidebar();
+    const adminHeaderClock = new AdminHeaderClock();
     const adminDashboardSummary = new AdminDashboardSummary();
     const adminDeleteModal = new AdminDeleteModal();
     const adminTodayRegistrations = new AdminTodayRegistrations(adminDeleteModal);
@@ -16,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const adminRegistrationControl = new AdminRegistrationControl();
 
     adminSidebar.init();
+    adminHeaderClock.init();
     adminDashboardSummary.init();
     adminDeleteModal.init();
     adminTodayRegistrations.init();
@@ -24,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     adminRegistrationControl.init();
 
     document.addEventListener("admin:guest-deleted", async () => {
+        await adminHeaderClock.refresh();
         await adminDashboardSummary.refresh();
         await adminTodayRegistrations.refresh();
         await adminGuestMessages.refresh();

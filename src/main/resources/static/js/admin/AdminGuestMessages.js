@@ -71,10 +71,12 @@ export class AdminGuestMessages {
         this.feed.innerHTML = "";
 
         if (!messages || messages.length === 0) {
+            this.feed.hidden = true;
             this.emptyState.hidden = false;
             return;
         }
 
+        this.feed.hidden = false;
         this.emptyState.hidden = true;
 
         messages.forEach((message) => {
@@ -83,14 +85,25 @@ export class AdminGuestMessages {
 
             article.innerHTML = `
                 <div class="message-item">
+
+                    <div class="message-quote" aria-hidden="true">
+                        “
+                    </div>
+
                     <p class="message-text">
                         ${this.safeText(message.message)}
                     </p>
 
                     <div class="message-meta">
-                        <p class="message-author">
-                            Atte: <strong>${this.safeText(message.fullName)}</strong>
-                        </p>
+                        <div class="message-signature">
+                            <span class="message-signature-label">
+                                Mensaje de
+                            </span>
+
+                            <p class="message-author">
+                                ${this.safeText(message.fullName)}
+                            </p>
+                        </div>
 
                         ${this.formatAttendance(message.attendanceStatus)}
                     </div>

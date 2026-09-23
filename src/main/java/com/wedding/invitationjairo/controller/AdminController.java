@@ -34,6 +34,11 @@ public class AdminController {
         this.excelExportService = excelExportService;
     }
 
+    @GetMapping("/admin")
+    public String redirectToDashboard() {
+        return "redirect:/admin/dashboard";
+    }
+
     @GetMapping("/admin/login")
     public String showLonginPage() {
         return "admin/login";

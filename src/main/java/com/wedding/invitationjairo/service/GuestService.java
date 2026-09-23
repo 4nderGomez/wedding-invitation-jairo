@@ -2,6 +2,7 @@ package com.wedding.invitationjairo.service;
 
 import com.wedding.invitationjairo.dto.request.GuestConfirmationRequest;
 import com.wedding.invitationjairo.enums.AttendanceStatus;
+import com.wedding.invitationjairo.enums.GuestSide;
 import com.wedding.invitationjairo.model.GuestGroup;
 import com.wedding.invitationjairo.model.InvitationLink;
 import com.wedding.invitationjairo.repository.GuestGroupRepository;
@@ -38,7 +39,15 @@ public class GuestService {
         validateRequiredRequestData(request);
         validateGuestIsNotDuplicated(request);
 
-        InvitationLink invitationLink = invitationLinkService.getActiveLinkByCode(cleanText(request.getInvitationCode()));
+        String invitationCode;
+        if (request.getGuestSide() == GuestSide.NOVIO)
+            invitationCode = "familia-novio";
+        else if (request.getGuestSide() == GuestSide.NOVIA)
+            invitationCode = "familia-novia";
+        else
+            throw new IllegalArgumentException("Debes indicar de parte de quién viene el invitado");
+
+        InvitationLink invitationLink = invitationLinkService.getActiveLinkByCode(invitationCode);
 
         GuestGroup guestGroup = new GuestGroup();
 
@@ -87,6 +96,9 @@ public class GuestService {
 
         if(isBlank(request.getMainFirstName()))
             throw new IllegalArgumentException(("El nombre del invitado principal es obligatorio"));
+        
+        if(request.getGuestSide() == null)
+            throw new IllegalArgumentException("Debes indicar de parte de quién viene el invitado");
 
         if(isBlank(request.getMainLastName()))
             throw new IllegalArgumentException(("Los apellidos del invitado principal son obligatorios"));

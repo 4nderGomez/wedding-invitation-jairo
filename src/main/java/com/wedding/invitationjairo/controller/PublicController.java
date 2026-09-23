@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.Duration;
 
@@ -20,102 +19,137 @@ public class PublicController {
     private static final String INVITATION_COOKIE = "jj_invitation";
     private static final String BRIDE_INVITATION_CODE = "familia-novia";
     private static final String GROOM_INVITATION_CODE = "familia-novio";
+    /*
+     * Este valor únicamente indica que el invitado
+     * entró por el dominio general.
+     */
+    private static final String GENERAL_INVITATION_CODE =
+        "general";
     private final InvitationLinkService invitationLinkService;
+
 
     public PublicController(InvitationLinkService invitationLinkService) {
         this.invitationLinkService = invitationLinkService;
     }
 
-    @GetMapping("/")
-    public String showMainInvitation(@CookieValue(name = INVITATION_COOKIE, required = false)
-        String invitationCode,
-        Model model) {
-        String resolvedInvitationCode = resolveInvitationCode(invitationCode);
 
-        return renderInvitation(
-            resolvedInvitationCode,
-            model
+    /*
+     * =========================================================
+     * ENTRADA PRINCIPAL
+     * =========================================================
+     *
+     * https://jairoyjennifer.com
+     */
+    @GetMapping("/")
+    public String showMainInvitation(
+        @CookieValue(
+            name = INVITATION_COOKIE,
+            required = false
+        )
+        String invitationCode,
+
+        Model model
+    ) {
+
+        /*
+         * Si ya existe una cookie válida,
+         * conservamos la procedencia.
+         */
+        if (
+            BRIDE_INVITATION_CODE.equals(invitationCode)
+            ||
+            GROOM_INVITATION_CODE.equals(invitationCode)
+        ) {
+
+            InvitationLink invitationLink =
+                invitationLinkService
+                    .getActiveLinkByCode(
+                        invitationCode
+                    );
+
+            model.addAttribute(
+                "invitationCode",
+                invitationLink.getCode()
+            );
+
+            model.addAttribute(
+                "guestSide",
+                invitationLink.getGuestSide()
+            );
+
+            model.addAttribute(
+                "groupName",
+                invitationLink.getGroupName()
+            );
+
+            return "public/invitation";
+        }
+
+
+        /*
+         * Si es la primera vez y entró directamente
+         * por jairoyjennifer.com, no asumimos
+         * NOVIO ni NOVIA.
+         *
+         * El invitado lo indicará en el RSVP.
+         */
+        model.addAttribute(
+            "invitationCode",
+            GENERAL_INVITATION_CODE
         );
+
+        model.addAttribute(
+            "guestSide",
+            null
+        );
+
+        model.addAttribute(
+            "groupName",
+            "Invitación"
+        );
+
+        return "public/invitation";
     }
 
+
+    /*
+     * =========================================================
+     * LINK DE LA NOVIA
+     * =========================================================
+     */
     @GetMapping("/invitacion-novia")
-    public String brideInvitation(HttpServletResponse response) {
-        saveInvitationCookie(response, BRIDE_INVITATION_CODE);
+    public String brideInvitation(
+        HttpServletResponse response
+    ) {
+
+        saveInvitationCookie(
+            response,
+            BRIDE_INVITATION_CODE
+        );
 
         return "redirect:/";
     }
 
     @GetMapping("/invitacion-novio")
-    public String groomInvitation(HttpServletResponse response) {
-        saveInvitationCookie(response, GROOM_INVITATION_CODE);
-
-        return "redirect:/";
-    }
-
-
-    /*
-     * =========================================================
-     * ENLACES ANTIGUOS
-     * =========================================================
-     *
-     * Conservamos /i/{code} para no romper enlaces anteriores.
-     *
-     * Ejemplo:
-     *
-     * /i/familia-novia
-     *
-     * terminará automáticamente en:
-     *
-     * /
-     */
-    @GetMapping("/i/{code}")
-    public String legacyInvitation(@PathVariable String code, HttpServletResponse response) {
-        invitationLinkService.getActiveLinkByCode(code);
+    public String groomInvitation(
+        HttpServletResponse response
+    ) {
 
         saveInvitationCookie(
             response,
-            code
+            GROOM_INVITATION_CODE
         );
 
         return "redirect:/";
     }
 
-    private String renderInvitation(String invitationCode, Model model) {
-        InvitationLink invitationLink = invitationLinkService.getActiveLinkByCode(invitationCode);
+    private void saveInvitationCookie(
+        HttpServletResponse response,
+        String invitationCode
+    ) {
 
-        model.addAttribute("invitationCode", invitationLink.getCode());
-        model.addAttribute("guestSide", invitationLink.getGuestSide());
-        model.addAttribute("groupName", invitationLink.getGroupName());
-
-        return "public/invitation";
-    }
-
-    /*
-     * =========================================================
-     * RESOLVER CÓDIGO
-     * =========================================================
-     *
-     * Si alguien entra directamente a:
-     *
-     * jairoyjennifer.com
-     *
-     * sin haber pasado antes por alguno de los dos links,
-     * utilizamos familia-novia como entrada predeterminada.
-     */
-    private String resolveInvitationCode(String invitationCode) {
-        if (GROOM_INVITATION_CODE.equals(invitationCode))
-            return GROOM_INVITATION_CODE;
-
-        return BRIDE_INVITATION_CODE;
-    }
-
-    /*
-     * =========================================================
-     * GUARDAR PROCEDENCIA
-     * =========================================================
-     */
-    private void saveInvitationCookie(HttpServletResponse response, String invitationCode) {
-        ResponseCookie cookie = ResponseCookie
+        ResponseCookie cookie =
+            ResponseCookie
                 .from(
                     INVITATION_COOKIE,
                     invitationCode
